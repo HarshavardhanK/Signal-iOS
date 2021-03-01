@@ -7,22 +7,11 @@ import UIKit
 import PromiseKit
 
 @objc
-public class GroupInviteLinksUI: NSObject {
-
-    // MARK: - Dependencies
-
-    private class var databaseStorage: SDSDatabaseStorage {
-        return SDSDatabaseStorage.shared
-    }
-
-    private class var groupsV2: GroupsV2Swift {
-        return SSKEnvironment.shared.groupsV2 as! GroupsV2Swift
-    }
-
-    // MARK: -
+public class GroupInviteLinksUI: UIView {
 
     @available(*, unavailable, message:"Do not instantiate this class.")
-    private override init() {
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     @objc
@@ -30,9 +19,6 @@ public class GroupInviteLinksUI: NSObject {
                                            fromViewController: UIViewController) {
         AssertIsOnMainThread()
 
-        guard RemoteConfig.groupsV2GoodCitizen else {
-            return
-        }
         let showInvalidInviteLinkAlert = {
             OWSActionSheets.showActionSheet(title: NSLocalizedString("GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE",
                                                                      comment: "Title for the 'invalid group invite link' alert."),
@@ -58,7 +44,7 @@ public class GroupInviteLinksUI: NSObject {
         // If the group already exists in the database, open it.
         if let existingGroupThread = (databaseStorage.read { transaction in
             TSGroupThread.fetch(groupId: groupV2ContextInfo.groupId, transaction: transaction)
-        }), existingGroupThread.isLocalUserFullMember {
+        }), existingGroupThread.isLocalUserFullMember || existingGroupThread.isLocalUserRequestingMember {
             SignalApp.shared().presentConversation(for: existingGroupThread, animated: true)
             return
         }
@@ -72,22 +58,6 @@ public class GroupInviteLinksUI: NSObject {
 // MARK: -
 
 class GroupInviteLinksActionSheet: ActionSheetController {
-
-    // MARK: - Dependencies
-
-    private var groupsV2: GroupsV2Swift {
-        return SSKEnvironment.shared.groupsV2 as! GroupsV2Swift
-    }
-
-    private var databaseStorage: SDSDatabaseStorage {
-        return SDSDatabaseStorage.shared
-    }
-
-    private var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
-    }
-
-    // MARK: -
 
     private let groupInviteLinkInfo: GroupInviteLinkInfo
     private let groupV2ContextInfo: GroupV2ContextInfo
@@ -103,7 +73,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
         self.groupInviteLinkInfo = groupInviteLinkInfo
         self.groupV2ContextInfo = groupV2ContextInfo
 
-        super.init()
+        super.init(theme: .default)
 
         isCancelable = true
 
@@ -130,7 +100,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
 
         avatarView.autoSetDimension(.width, toSize: CGFloat(Self.avatarSize))
 
-        groupTitleLabel.font = UIFont.ows_dynamicTypeBody.ows_semibold()
+        groupTitleLabel.font = UIFont.ows_dynamicTypeBody.ows_semibold
         groupTitleLabel.textColor = Theme.primaryTextColor
 
         groupSubtitleLabel.font = UIFont.ows_dynamicTypeSubheadline
@@ -154,7 +124,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
         messageLabel.setContentHuggingVerticalHigh()
 
         let cancelButton = OWSFlatButton.button(title: CommonStrings.cancelButton,
-                                                font: UIFont.ows_dynamicTypeBody.ows_semibold(),
+                                                font: UIFont.ows_dynamicTypeBody.ows_semibold,
                                                 titleColor: Theme.secondaryTextAndIconColor,
                                                 backgroundColor: Theme.washColor,
                                                 target: self,
@@ -164,7 +134,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
 
         let joinButton = OWSFlatButton.button(title: NSLocalizedString("GROUP_LINK_ACTION_SHEET_VIEW_JOIN_BUTTON",
                                                                        comment: "Label for the 'join' button in the 'group invite link' action sheet."),
-                                              font: UIFont.ows_dynamicTypeBody.ows_semibold(),
+                                              font: UIFont.ows_dynamicTypeBody.ows_semibold,
                                               titleColor: .ows_accentBlue,
                                               backgroundColor: Theme.washColor,
                                               target: self,
@@ -173,7 +143,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
         self.joinButton = joinButton
 
         let invalidOkayButton = OWSFlatButton.button(title: CommonStrings.okayButton,
-                                              font: UIFont.ows_dynamicTypeBody.ows_semibold(),
+                                              font: UIFont.ows_dynamicTypeBody.ows_semibold,
                                               titleColor: Theme.primaryTextColor,
                                               backgroundColor: Theme.washColor,
                                               target: self,
@@ -231,11 +201,9 @@ class GroupInviteLinksActionSheet: ActionSheetController {
         }.catch { [weak self] error in
             if case GroupsV2Error.expiredGroupInviteLink = error {
                 self?.applyExpiredGroupInviteLink()
-            } else if IsNetworkConnectivityFailure(error) {
-                // TODO: Retry errors?
-                Logger.warn("Error: \(error)")
             } else {
-                owsFailDebug("Error: \(error)")
+                // TODO: Retry errors?
+                owsFailDebugUnlessNetworkFailure(error)
             }
         }
     }
@@ -248,11 +216,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
             self?.applyGroupAvatar(groupAvatar)
         }.catch { error in
             // TODO: Add retry?
-            if IsNetworkConnectivityFailure(error) {
-                Logger.warn("Error: \(error)")
-            } else {
-                owsFailDebug("Error: \(error)")
-            }
+            owsFailDebugUnlessNetworkFailure(error)
         }
     }
 
@@ -316,13 +280,28 @@ class GroupInviteLinksActionSheet: ActionSheetController {
         dismiss(animated: true)
     }
 
+    private func showActionSheet(title: String?,
+                                 message: String? = nil,
+                                 buttonTitle: String? = nil,
+                                 buttonAction: ActionSheetAction.Handler? = nil) {
+        OWSActionSheets.showActionSheet(title: title,
+                                        message: message,
+                                        buttonTitle: buttonTitle,
+                                        buttonAction: buttonAction,
+                                        fromViewController: self)
+    }
+
     @objc
     func didTapJoin(_ sender: UIButton) {
         AssertIsOnMainThread()
 
+        Logger.info("")
+
         guard doesLocalUserSupportGroupsV2 else {
-            OWSActionSheets.showErrorAlert(message: NSLocalizedString("GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE",
-                                                                      comment: "Error message indicating that the local user does not support groups v2."))
+            Logger.warn("Local user does not support groups v2.")
+            showActionSheet(title: CommonStrings.errorAlertTitle,
+                            message: NSLocalizedString("GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE",
+                                                       comment: "Error message indicating that the local user does not support groups v2."))
             return
         }
 
@@ -380,7 +359,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
                 }
             }.catch { error in
                 Logger.warn("Error: \(error)")
-                Logger.flush()
+
                 modalActivityIndicator.dismiss {
                     AssertIsOnMainThread()
 
@@ -397,9 +376,7 @@ class GroupInviteLinksActionSheet: ActionSheetController {
                         message = NSLocalizedString("GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_ERROR_MESSAGE",
                                                     comment: "Error message the attempt to request to join the group failed.")
                     }
-                    OWSActionSheets.showActionSheet(title: title,
-                                                    message: message,
-                                                    fromViewController: self)
+                    self.showActionSheet(title: title, message: message)
                 }
             }
         }

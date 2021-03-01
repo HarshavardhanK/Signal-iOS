@@ -13,17 +13,23 @@
 /* Accessibility label for contact. */
 "ACCESSIBILITY_LABEL_CONTACT" = "Kontakt";
 
+/* Accessibility label for contact. Embeds: {{ the contact name }}. */
+"ACCESSIBILITY_LABEL_CONTACT_FORMAT" = "Kontakt pro %@";
+
 /* Accessibility label for media. */
 "ACCESSIBILITY_LABEL_MEDIA" = "Média";
-
-/* Accessibility label for message. */
-"ACCESSIBILITY_LABEL_MESSAGE" = "Zpráva";
 
 /* Accessibility label for messages sent by you. */
 "ACCESSIBILITY_LABEL_SENDER_SELF" = "Vy";
 
 /* Accessibility label for stickers. */
 "ACCESSIBILITY_LABEL_STICKER" = "Nálepka";
+
+/* Accessibility label for a voice memo. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO" = "Hlasová zpráva";
+
+/* Accessibility label for a voice memo. Embeds: {{ the duration of the voice message }}. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO_FORMAT" = "Hlasová zpráva %@ sekund";
 
 /* Label for 'audio call' button in contact view. */
 "ACTION_AUDIO_CALL" = "Hovor Signal";
@@ -36,6 +42,9 @@
 
 /* Label for 'share contact' button. */
 "ACTION_SHARE_CONTACT" = "Sdílet kontakt";
+
+/* A label for 'tap to download' buttons. */
+"ACTION_TAP_TO_DOWNLOAD" = "Klepnout pro stažení";
 
 /* Label for 'video call' button in contact view. */
 "ACTION_VIDEO_CALL" = "Videohovor";
@@ -50,7 +59,7 @@
 "ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_1_FORMAT" = "Přidat člena do “%2$@”?";
 
 /* Format for the message for the 'add group members' confirmation alert.  Embeds {{ %1$@ number of new members, %2$@ name of the group. }}. */
-"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_N_FORMAT" = "Přidat %1$@členů do “%2$@”?";
+"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_N_FORMAT" = "Přidat %1$@ členů do “%2$@”?";
 
 /* Title for the 'add group member' confirmation alert. */
 "ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_TITLE_1" = "Přidat nového člena";
@@ -103,7 +112,7 @@
 /* The label for the 'don't save' button in action sheets. */
 "ALERT_DONT_SAVE" = "Neukládat";
 
-/* No comment provided by engineer. */
+/* Generic error indicator. */
 "ALERT_ERROR_TITLE" = "Chyba";
 
 /* The label for the 'save' button in action sheets. */
@@ -131,7 +140,7 @@
 "APP_LAUNCH_FAILURE_INVALID_DATABASE_VERSION_TITLE" = "Neznámá verze databáze.";
 
 /* Error indicating that the app could not restore transferred data. */
-"APP_LAUNCH_FAILURE_RESTORE_FAILED_MESSAGE" = "Data přenesená z vašeho starého zařízení nemohla být obnovena. Pošlete prosím debug log na support@signal.org abychom mohli tento problém vyřešit. Pokud si Signal nainstalujete znova, můžete přijít o historii vašich zpráv.";
+"APP_LAUNCH_FAILURE_RESTORE_FAILED_MESSAGE" = "Data přenesená z vašeho starého zařízení nemohla být obnovena. Pošlete prosím debug log na support@signal.org, abychom mohli tento problém vyřešit. Pokud si Signal nainstalujete znova, můžete přijít o historii vašich zpráv.";
 
 /* Error indicating that the app could not restore transferred data. */
 "APP_LAUNCH_FAILURE_RESTORE_FAILED_TITLE" = "Přenos dat se nepodařilo dokončit";
@@ -158,7 +167,7 @@
 "APPEARANCE_SETTINGS_LIGHT_THEME_NAME" = "Světlý";
 
 /* Name indicating that the system theme is enabled. */
-"APPEARANCE_SETTINGS_SYSTEM_THEME_NAME" = "Systém";
+"APPEARANCE_SETTINGS_SYSTEM_THEME_NAME" = "Systémový";
 
 /* Name of application */
 "APPLICATION_NAME" = "Signal";
@@ -198,9 +207,6 @@
 
 /* Generic filename for an attachment with no known name */
 "ATTACHMENT_DEFAULT_FILENAME" = "Příloha";
-
-/* Status label when an attachment download has failed. */
-"ATTACHMENT_DOWNLOADING_STATUS_FAILED" = "Stahování selhalo. Klepnutím to zkuste znovu.";
 
 /* The title of the 'attachment error' alert. */
 "ATTACHMENT_ERROR_ALERT_TITLE" = "Chyba při odesílání přílohy";
@@ -269,7 +275,7 @@
 "ATTACHMENT_PICKER_DOCUMENTS_PICKED_DIRECTORY_FAILED_ALERT_TITLE" = "Nepodporovaný soubor";
 
 /* Short text label for a audio attachment, used for thread preview and on the lock screen */
-"ATTACHMENT_TYPE_AUDIO" = "Audio";
+"ATTACHMENT_TYPE_AUDIO" = "Zvuk";
 
 /* Short text label for a file attachment, used for thread preview and on the lock screen */
 "ATTACHMENT_TYPE_FILE" = "Soubor";
@@ -293,7 +299,7 @@
 "AUDIO_ACTIVITY_PLAYBACK_NAME_AUDIO_MESSAGE" = "Zvuková zpráva";
 
 /* Accessibility label for placing an audio call */
-"AUDIO_CALL_LABEL" = "Audio hovor";
+"AUDIO_CALL_LABEL" = "Zvukový hovor";
 
 /* action sheet button title to enable built in speaker during a call */
 "AUDIO_ROUTE_BUILT_IN_SPEAKER" = "Nahlas";
@@ -358,6 +364,9 @@
 /* Error shown when backup fails due to an unexpected error. */
 "BACKUP_UNEXPECTED_ERROR" = "Neočekávaná chyba zálohy";
 
+/* Accessibility label for banner close button */
+"BANNER_CLOSE_ACCESSIBILITY_LABEL" = "Zavřít banner";
+
 /* An explanation of the consequences of blocking a group. */
 "BLOCK_GROUP_BEHAVIOR_EXPLANATION" = "Již nebudete přijímat zprávy a aktualizace od této skupiny.";
 
@@ -386,13 +395,13 @@
 "BLOCK_LIST_UNBLOCK_BUTTON" = "Odblokovat";
 
 /* An explanation of what unblocking a contact means. */
-"BLOCK_LIST_UNBLOCK_CONTACT_MESSAGE" = "Budete moci vzájemně si posílat zprávy a volat.";
+"BLOCK_LIST_UNBLOCK_CONTACT_MESSAGE" = "Budete si moci vzájemně posílat zprávy a volat.";
 
 /* Action sheet body when confirming you want to unblock a group */
 "BLOCK_LIST_UNBLOCK_GROUP_BODY" = "Stávající členové vás budou moci opět přidat do skupiny.";
 
 /* An explanation of what unblocking a group means. */
-"BLOCK_LIST_UNBLOCK_GROUP_MESSAGE" = "Členové skupiny budou moci přidat vás znovu do této skupiny.";
+"BLOCK_LIST_UNBLOCK_GROUP_MESSAGE" = "Členové skupiny vás budou moci znovu přidat do této skupiny.";
 
 /* Action sheet title when confirming you want to unblock a group. */
 "BLOCK_LIST_UNBLOCK_GROUP_TITLE" = "Odblokovat tuto skupinu?";
@@ -430,8 +439,8 @@
 /* Tooltip highlighting the blur image editing tool. */
 "BLUR_TOOLTIP" = "Nové: Rozostřit tváře nebo kreslením cokoli";
 
-/* browse files option from file sharing menu */
-"BROWSE_FILES_BUTTON" = "Procházet";
+/* Label for the 'add' button. */
+"BUTTON_ADD" = "Přidat";
 
 /* Label for 'continue' button. */
 "BUTTON_CONTINUE" = "Pokračovat";
@@ -444,6 +453,9 @@
 
 /* Label for the 'no' button. */
 "BUTTON_NO" = "Ne";
+
+/* Label for the 'not now' button. */
+"BUTTON_NOT_NOW" = "Nyní ne";
 
 /* Label for the 'okay' button. */
 "BUTTON_OKAY" = "V pořádku";
@@ -474,6 +486,9 @@
 
 /* notification body */
 "CALL_MISSED_BECAUSE_OF_IDENTITY_CHANGE_NOTIFICATION_BODY" = "☎️ Zmeškaný hovor. Změnilo se bezpečnostní číslo volajícího.";
+
+/* Button to return to the current call */
+"CALL_RETURN_BUTTON" = "Vrátit se k hovoru";
 
 /* Call setup status label after outgoing call times out */
 "CALL_SCREEN_STATUS_NO_ANSWER" = "Žádná odpověď";
@@ -515,7 +530,7 @@
 "CALL_VIEW_MUTE_LABEL" = "Ztlumit";
 
 /* Error displayed on the 'call' view when the callee needs to grant permission before we can call them. Embeds {callee short name}. */
-"CALL_VIEW_NEED_PERMISSION_ERROR_FORMAT" = "%@ od vás obdrží požadavek na zprávu. Po přijetí požadavku na zprávu můžete volat.";
+"CALL_VIEW_NEED_PERMISSION_ERROR_FORMAT" = "%@ od vás obdrží požadavek na zprávu. Po přijetí požadavku na zprávu můžete zavolat.";
 
 /* Accessibility label to toggle front- vs. rear-facing camera */
 "CALL_VIEW_SWITCH_CAMERA_DIRECTION" = "Převrátit kameru";
@@ -528,6 +543,9 @@
 
 /* notification action */
 "CALLBACK_BUTTON_TITLE" = "Zavolat zpět";
+
+/* Indicates to the user that their camera is currently off. */
+"CALLING_MEMBER_VIEW_YOUR_CAMERA_IS_OFF" = "Vaše kamera je vypnutá";
 
 /* The generic name used for calls if CallKit privacy is enabled */
 "CALLKIT_ANONYMOUS_CONTACT_NAME" = "Uživatel Signalu";
@@ -557,7 +575,7 @@
 "CHECK_FOR_BACKUP_FAILED_TITLE" = "Chyba";
 
 /* The label for the 'restore backup' button. */
-"CHECK_FOR_BACKUP_RESTORE" = "Obnovení";
+"CHECK_FOR_BACKUP_RESTORE" = "Obnovit";
 
 /* Error indicating that the app could not determine that user's iCloud account status */
 "CLOUDKIT_STATUS_COULD_NOT_DETERMINE" = "Nebylo možné zjistit stav účtu iCloud. Přihlašte se do svého účtu iCloud v nastavení iOS pro zálohování dat Signalu.";
@@ -569,19 +587,19 @@
 "CLOUDKIT_STATUS_RESTRICTED" = "Signalu byl odepřen přístup k účtu iCloud pro vytvoření zálohy. Pro zálohování dat povolte Signalu přístup k vašemu účtu iCloud v nastavení iOS.";
 
 /* The first of two messages demonstrating the chosen conversation color, by rendering this message in an outgoing message bubble. */
-"COLOR_PICKER_DEMO_MESSAGE_1" = "Choose the color of outgoing messages in this chat.";
+"COLOR_PICKER_DEMO_MESSAGE_1" = "Vyberte barvu odchozích zpráv v tomto chatu.";
 
 /* The second of two messages demonstrating the chosen conversation color, by rendering this message in an incoming message bubble. */
 "COLOR_PICKER_DEMO_MESSAGE_2" = "Jen vy uvidíte barvu, kterou vyberete.";
 
 /* Modal Sheet title when picking a conversation color. */
-"COLOR_PICKER_SHEET_TITLE" = "Chat Color";
+"COLOR_PICKER_SHEET_TITLE" = "Barva chatu";
 
 /* Activity Sheet label */
 "COMPARE_SAFETY_NUMBER_ACTION" = "Porovnat se schránkou";
 
 /* Accessibility hint describing what you can do with the compose button */
-"COMPOSE_BUTTON_HINT" = "Select or search for a Signal user to start a chat with.";
+"COMPOSE_BUTTON_HINT" = "Vyberte nebo vyhledejte uživatele Signalu, se kterým chcete zahájit chat.";
 
 /* Accessibility label from compose button. */
 "COMPOSE_BUTTON_LABEL" = "Sestavit";
@@ -683,7 +701,7 @@
 "CONTACT_FIELD_ORGANIZATION" = "Organizace";
 
 /* Body for contact permission action sheet */
-"CONTACT_PERMISSION_ACTION_SHEET_BODY" = "To see contact names and photos in your chats:";
+"CONTACT_PERMISSION_ACTION_SHEET_BODY" = "Zobrazit jména kontaktů a jejich fotky ve vašich chatech:";
 
 /* First step for contact permission action sheet */
 "CONTACT_PERMISSION_ACTION_SHEET_STEP_ONE" = "Klepněte níže na „Přejít na nastavení“";
@@ -701,10 +719,10 @@
 "CONTACT_PERMISSION_REMINDER_MEGAPHONE_ACTION" = "Zapnout";
 
 /* Body for contact permission reminder megaphone */
-"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "See contact names and photos in your chats.";
+"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "Zobrazit jména kontaktů a jejich fotky v chatech.";
 
 /* Title for contact permission reminder megaphone */
-"CONTACT_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "Zapnout Kontakty?";
+"CONTACT_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "Zapnout kontakty?";
 
 /* Label for a contact's phone number. */
 "CONTACT_PHONE" = "Telefon";
@@ -755,22 +773,19 @@
 "CONTACT_VIEW_OPEN_ADDRESS_IN_MAPS_APP" = "Otevřít v Mapách";
 
 /* Label for 'open email in email app' button in contact view. */
-"CONTACT_VIEW_OPEN_EMAIL_IN_EMAIL_APP" = "Poslat email";
+"CONTACT_VIEW_OPEN_EMAIL_IN_EMAIL_APP" = "Poslat e-mail";
 
 /* Indicates that a contact has no name. */
 "CONTACT_WITHOUT_NAME" = "Kontakt beze jména";
 
 /* Message for the 'conversation delete confirmation' alert. */
-"CONVERSATION_DELETE_CONFIRMATION_ALERT_MESSAGE" = "This chat will be deleted from this device.";
+"CONVERSATION_DELETE_CONFIRMATION_ALERT_MESSAGE" = "Tento chat bude odstraněn z tohoto zařízení.";
 
 /* Title for the 'conversation delete confirmation' alert. */
-"CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "Delete Chat?";
-
-/* Indicates that the user can tap to download this image. */
-"CONVERSATION_MEDIA_VIEW_DOWNLOAD_IMAGE" = "Stáhnout";
+"CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "Odstranit chat?";
 
 /* Momentarily shown to the user when attempting to select more conversations than is allowed. Embeds {{max number of conversations}} that can be selected. */
-"CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "You can't select more than %@ chats.";
+"CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "Nemůžete vybrat více než %@ chatů.";
 
 /* table section header for section containing groups */
 "CONVERSATION_PICKER_SECTION_GROUPS" = "Skupiny";
@@ -794,7 +809,7 @@
 "CONVERSATION_SEARCH_RESULTS_FORMAT" = "%d z %d shod";
 
 /* title for conversation settings screen */
-"CONVERSATION_SETTINGS" = "Chat Settings";
+"CONVERSATION_SETTINGS" = "Nastavení chatu";
 
 /* Label for 'add members' button in conversation settings view. */
 "CONVERSATION_SETTINGS_ADD_MEMBERS" = "Přidat členy";
@@ -809,13 +824,13 @@
 "CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_ADMINISTRATOR" = "Administrátoři";
 
 /* Label indicating that all group members can update the group's attributes: name, avatar, etc. */
-"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_MEMBER" = "Vše";
+"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_MEMBER" = "Všichni";
 
 /* Label indicating that no member can update the group's attributes: name, avatar, etc. */
 "CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_NONE" = "Zakázáno";
 
 /* Footer for the 'attributes access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER" = "Vyberte kdo může měnit jméno a obrázek skupiny a časovač mizejících zpráv.";
+"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER" = "Vyberte, kdo může měnit jméno, obrázek skupiny a časovač mizejících zpráv.";
 
 /* Footer text for the 'block and leave' section of contact conversation settings view. */
 "CONVERSATION_SETTINGS_BLOCK_AND_LEAVE_SECTION_CONTACT_FOOTER" = "Již nebudete přijímat zprávy a aktualizace od tohoto uživatele.";
@@ -833,7 +848,10 @@
 "CONVERSATION_SETTINGS_CONTACT_INFO_TITLE" = "Informace o kontaktu";
 
 /* Label for table cell which leads to picking a new conversation color */
-"CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "Chat Color";
+"CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "Barva chatu";
+
+/* Label for the 'edit' button in conversation settings view. */
+"CONVERSATION_SETTINGS_EDIT" = "Upravit";
 
 /* Label for 'edit attributes access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS" = "Kdo může upravovat informace o skupině";
@@ -842,28 +860,25 @@
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Pouze administrátoři";
 
 /* Description for the 'edit group attributes access' alert. */
-"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "Vyberte, kdo může měnit jméno a obrázek skupiny a mizející zprávy.";
+"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "Vyberte, kdo může měnit jméno, obrázek skupiny a mizející zprávy:";
 
 /* Label for button that sets 'group attributes access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_MEMBERS_BUTTON" = "Všichni členové";
 
-/* Label for the 'edit group' button in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_GROUP" = "Upravit";
-
 /* Label for 'edit membership access' action in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "Who Can Add Members";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "Kdo může přidávat členy";
 
 /* Label for button that sets 'group membership access' to 'administrators-only'. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Pouze administrátoři";
 
 /* Description for the 'edit group membership access' alert. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "Vyberte, kdo může měnit členy skupiny:";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "Vyberte, kdo může do této skupiny přidávat členy:";
 
 /* Label for button that sets 'group membership access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_MEMBERS_BUTTON" = "Všichni členové";
 
 /* Label for 'group link' action in conversation settings view. */
-"CONVERSATION_SETTINGS_GROUP_LINK" = "Group Link";
+"CONVERSATION_SETTINGS_GROUP_LINK" = "Skupinový odkaz";
 
 /* Label for 'make group admin' button in conversation settings view. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_BUTTON" = "Udělit administrátorská práva";
@@ -871,26 +886,26 @@
 /* Format for title for 'make group admin' confirmation alert. Embeds {user to make an admin}. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_TITLE_FORMAT" = "%@bude moci upravovat tuto skupinu a její členy. ";
 
+/* Label for 'member invites' action in conversation settings view. */
+"CONVERSATION_SETTINGS_MEMBER_INVITES" = "Pozvánky členů";
+
 /* Label for 'member requests & invites' action in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "Member Requests & Invites";
+"CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "Požadavky & pozvánky členů";
 
 /* Section title of the 'members' section in conversation settings view. */
 "CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE" = "Členové";
 
 /* Format for the section title of the 'members' section in conversation settings view. Embeds: {{ the number of group members }}. */
-"CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "%@členové";
-
-/* Footer for the 'membership access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBERSHIP_ACCESS_SECTION_FOOTER" = "Vyberte, kdo může měnit členy skupiny.";
+"CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "%@ členové";
 
 /* label for 'always' option for mention notifications in conversation settings */
 "CONVERSATION_SETTINGS_MENTION_MODE_AlWAYS" = "Vždy poslat notifikaci";
 
 /* label for 'never' option for mention notifications in conversation settings */
-"CONVERSATION_SETTINGS_MENTION_MODE_NEVER" = "Neupozorňovat pokud je ztlumeno";
+"CONVERSATION_SETTINGS_MENTION_MODE_NEVER" = "Neupozorňovat, pokud je ztlumeno";
 
 /* Title of the 'mention notification mode' action sheet. */
-"CONVERSATION_SETTINGS_MENTION_NOTIFICATION_MODE_ACTION_SHEET_TITLE" = "Přijmout upozornění při zmínce ve ztišených rozhovorech?";
+"CONVERSATION_SETTINGS_MENTION_NOTIFICATION_MODE_ACTION_SHEET_TITLE" = "Přijmout upozornění při zmínce ve ztišených konverzacích?";
 
 /* label for 'mentions' cell in conversation settings */
 "CONVERSATION_SETTINGS_MENTIONS_LABEL" = "Zmínky";
@@ -929,16 +944,16 @@
 "CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_BUTTON" = "Odebrat ze skupiny";
 
 /* Format for title for 'remove from group' confirmation alert. Embeds {user to remove from the group}. */
-"CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_TITLE_FORMAT" = "Odebrat%@ze skupiny?";
+"CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_TITLE_FORMAT" = "Odebrat %@ ze skupiny?";
 
 /* Label for 'revoke group admin' button in conversation settings view. */
 "CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_BUTTON" = "Odebrat administrátorská práva";
 
 /* Format for title for 'revoke group admin' confirmation alert. Embeds {user to revoke admin status from}. */
-"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_TITLE_FORMAT" = "Odebrat %@jako administrátora skupiny?";
+"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_TITLE_FORMAT" = "Odebrat %@ jako administrátora skupiny?";
 
 /* Table cell label in conversation settings which returns the user to the conversation with 'search mode' activated */
-"CONVERSATION_SETTINGS_SEARCH" = "Search Chat";
+"CONVERSATION_SETTINGS_SEARCH" = "Vyhledat v chatu";
 
 /* Label for 'unblock group' action in conversation settings view. */
 "CONVERSATION_SETTINGS_UNBLOCK_GROUP" = "Odblokovat skupinu";
@@ -950,7 +965,7 @@
 "CONVERSATION_SETTINGS_UNMUTE_ACTION" = "Zrušit ztlumení";
 
 /* The alert message if user tries to exit conversation settings view without saving changes. */
-"CONVERSATION_SETTINGS_UNSAVED_CHANGES_MESSAGE" = "Would you like to save the changes that you made to this chat?";
+"CONVERSATION_SETTINGS_UNSAVED_CHANGES_MESSAGE" = "Přejete si uložit vaše změny v tomto chatu?";
 
 /* The alert title if user tries to exit conversation settings view without saving changes. */
 "CONVERSATION_SETTINGS_UNSAVED_CHANGES_TITLE" = "Neuložené změny";
@@ -972,6 +987,12 @@
 
 /* Message shown in conversation view that offers to add an unknown user to your phone's contacts. */
 "CONVERSATION_VIEW_ADD_TO_CONTACTS_OFFER" = "Přidat do kontaktů";
+
+/* Format for sender info for accessibility label for message. Embeds {{ the sender name }}. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_FORMAT" = "%@ odesláno:";
+
+/* Format for sender info for outgoing messages. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_LOCAL_USER" = "Odeslali jste:";
 
 /* button text to delete all items in the current conversation */
 "CONVERSATION_VIEW_DELETE_ALL_MESSAGES" = "Smazat vše";
@@ -1034,7 +1055,7 @@
 "DEBUG_LOG_ALERT_OPTION_COPY_LINK" = "Zkopírovat odkaz";
 
 /* Label for the 'email debug log' option of the debug log alert. */
-"DEBUG_LOG_ALERT_OPTION_EMAIL" = "Emailová podpora";
+"DEBUG_LOG_ALERT_OPTION_EMAIL" = "E-mailová podpora";
 
 /* Label for the 'send to self' option of the debug log alert. */
 "DEBUG_LOG_ALERT_OPTION_SEND_TO_SELF" = "Odeslat sobě";
@@ -1044,9 +1065,6 @@
 
 /* Title of the debug log alert. */
 "DEBUG_LOG_ALERT_TITLE" = "Další krok";
-
-/* Error indicating that the app could not launch the Email app. */
-"DEBUG_LOG_COULD_NOT_EMAIL" = "Nebylo možné otevřít aplikaci Mail.";
 
 /* Message of the alert before redirecting to GitHub Issues. */
 "DEBUG_LOG_GITHUB_ISSUE_ALERT_MESSAGE" = "Odkaz gist byl zkopírován do schránky. Budete přesměrováni do seznamu chyb na GitHub.";
@@ -1058,7 +1076,7 @@
 "DEBUG_LOG_INFO_BUTTON" = "Informace o debug logu";
 
 /* action sheet body */
-"DELETE_ALL_MESSAGES_IN_CONVERSATION_ALERT_BODY" = "Delete all messages in the chat?";
+"DELETE_ALL_MESSAGES_IN_CONVERSATION_ALERT_BODY" = "Odstranit všechny zprávy v chatu?";
 
 /* button text */
 "DELETE_ALL_MESSAGES_IN_CONVERSATION_BUTTON" = "Smazat všechny zprávy";
@@ -1088,7 +1106,7 @@
 "DEVICE_TRANSFER_CANCEL_CONFIRMATION_ACTION" = "Ukončit přenos";
 
 /* The message of the dialog asking the user if they want to cancel a device transfer */
-"DEVICE_TRANSFER_CANCEL_CONFIRMATION_MESSAGE" = "Zavřením tohoto okna ukončíte probíhající přenos, jste si jisti, že chcete pokračovat?";
+"DEVICE_TRANSFER_CANCEL_CONFIRMATION_MESSAGE" = "Zavřením tohoto okna ukončíte probíhající přenos. Jste si jisti, že chcete pokračovat?";
 
 /* The title of the dialog asking the user if they want to cancel a device transfer */
 "DEVICE_TRANSFER_CANCEL_CONFIRMATION_TITLE" = "Ukončit přenos?";
@@ -1154,10 +1172,13 @@
 "DEVICE_TRANSFER_PROMPT_TITLE" = "Přenést účet";
 
 /* The explanation for the device transfer qr code view */
-"DEVICE_TRANSFER_QRCODE_EXPLANATION" = "Otevřete Signal na vašem starém zařízení a přibližte jej, ujistěte se, že na obou zařízeních je zapnutá wifi a bluetooth.";
+"DEVICE_TRANSFER_QRCODE_EXPLANATION" = "Otevřete Signal na vašem starém zařízení a přibližte jej. Ujistěte se, že na obou zařízeních je zapnutá WiFi a Bluetooth.";
 
 /* The second explanation for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_EXPLANATION2" = "Nastavte tento QR kód do rámu ve vašem druhém zařízení.";
+
+/* A prompt to provide further explanation if the user is not seeing the transfer on both devices. */
+"DEVICE_TRANSFER_QRCODE_NOT_SEEING" = "Nevidíte výzvu na svém starém zařízení?";
 
 /* The title for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_TITLE" = "Čekáme na druhé zařízení...";
@@ -1187,10 +1208,10 @@
 "DISAPPEARING_MESSAGES" = "Mizející zprávy";
 
 /* Info Message when added to a group which has enabled disappearing messages. Embeds {{time amount}} before messages disappear. See the *_TIME_AMOUNT strings for context. */
-"DISAPPEARING_MESSAGES_CONFIGURATION_GROUP_EXISTING_FORMAT" = "Messages in this chat will disappear after %@.";
+"DISAPPEARING_MESSAGES_CONFIGURATION_GROUP_EXISTING_FORMAT" = "Zprávy v tomto chatu zmizí po %@.";
 
 /* subheading in conversation settings */
-"DISAPPEARING_MESSAGES_DESCRIPTION" = "When enabled, messages sent and received in this chat will disappear after they have been seen.";
+"DISAPPEARING_MESSAGES_DESCRIPTION" = "Pokud je povoleno, odeslané a přijaté zprávy v této konverzaci zmizí, jakmile budou zobrazeny.";
 
 /* Accessibility hint that contains current timeout information */
 "DISAPPEARING_MESSAGES_HINT" = "Nyní zprávy zmizí po %@";
@@ -1219,11 +1240,11 @@
 /* Error message indicating the a user can't be added to a group. */
 "EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER" = "Tento uživatel nemůže být přidán do skupiny dokud si neupgraduje Signal.";
 
-/* Message for 'group full' error alert when a user can't be added to a group. */
-"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL" = "Dosáhli jste limitu 100 členů na skupinu.";
+/* Format for the 'group full' error alert when a user can't be added to a group because the group is full. Embeds {{ the maximum number of members in a group }}. */
+"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL_FORMAT" = "Dosáhli jste limitu %@ členů na skupinu.";
 
 /* Error message indicating that an avatar image is invalid and cannot be used. */
-"EDIT_GROUP_ERROR_INVALID_AVATAR" = "Nesprávný obrázek";
+"EDIT_GROUP_ERROR_INVALID_AVATAR" = "Neplatný obrázek.";
 
 /* Label for the group name in the 'edit group' view. */
 "EDIT_GROUP_GROUP_NAME" = "Název skupiny";
@@ -1241,16 +1262,16 @@
 "EDIT_ITEM_COPY_ACTION" = "Kopírovat";
 
 /* body of email sent to contacts when inviting to install Signal. Embeds {{link to install Signal}} and {{link to the Signal home page}} */
-"EMAIL_INVITE_BODY" = "Hey,\n\nLately I've been using Signal to keep the chats on my iPhone private. I'd like you to install it too, so we can be confident that only you and I can read our messages or hear our calls.\n\nSignal is available for iPhones and Android. Get it here: %@\n\nSignal works like your existing messaging app. We can send pictures and video, make calls, and start group chats. The best part is, no one else can see any of it, not even the people who make Signal!\n\nYou can read more about Open Whisper Systems, the people who make Signal, here: %@";
+"EMAIL_INVITE_BODY" = "Ahoj,\n\nPoslední dobou jsem začal(a) na svém iPhonu používat Signal, aby moje konverzace zůstaly soukromé. Byl(a) bych rád(a), kdyby sis ho také nainstaloval(a), aby naše zprávy a hovory nemohl sledovat nikdo nepovolaný.\n\nSignal je dostupný pro iPhone a Android. Získáš ho zde: %@\n\nSignal funguje stejně jako tvá stávající aplikace na posílání zpráv. Můžeme posílat obrázky, videa, pořádat hovory a vytvářet skupinové chaty. A nejlepší na tom je, že je nikdo jiný nemůže vidět. Ani lidé, co vyvíjí Signal!\n\nO Open Whisper Systems a lidech, kteří vyvíjí Signal, si můžeš přečíst tady %@";
 
 /* subject of email sent to contacts when inviting to install Signal */
 "EMAIL_INVITE_SUBJECT" = "Přejděme na Signal";
 
 /* Description for the fallback support sheet if user cannot send email */
-"EMAIL_SIGNAL_MESSAGE" = "Vaše zařízení není nastaveno pro odesílání emailů. Pokud chcete kontaktovat podporu, nastavte na svém zařízení email, nebo napište na support@signal.org";
+"EMAIL_SIGNAL_MESSAGE" = "Vaše zařízení není nastaveno pro odesílání e-mailů. Pokud chcete kontaktovat podporu, nastavte na svém zařízení e-mail nebo napište na support@signal.org";
 
 /* Title for the fallback support sheet if user cannot send email */
-"EMAIL_SIGNAL_TITLE" = "Email není dostupný";
+"EMAIL_SIGNAL_TITLE" = "E-mail není dostupný";
 
 /* The name for the emoji category 'Activities' */
 "EMOJI_CATEGORY_ACTIVITIES_NAME" = "Činnosti";
@@ -1271,7 +1292,7 @@
 "EMOJI_CATEGORY_RECENTS_NAME" = "Poslední";
 
 /* The name for the emoji category 'Smileys & People' */
-"EMOJI_CATEGORY_SMILEYSANDPEOPLE_NAME" = " Úsměvy a lidé";
+"EMOJI_CATEGORY_SMILEYSANDPEOPLE_NAME" = "Úsměvy a lidé";
 
 /* The name for the emoji category 'Symbols' */
 "EMOJI_CATEGORY_SYMBOLS_NAME" = "Symboly";
@@ -1334,7 +1355,7 @@
 "ERROR_DESCRIPTION_RESPONSE_FAILED" = "Neplatná odpověď ze strany služby.";
 
 /* Error message when attempting to send message */
-"ERROR_DESCRIPTION_SENDING_UNAUTHORIZED" = "Toto zařízení již není registrováno pod vaším telefonním číslem. Prosím nainstalujte znovu Signal.";
+"ERROR_DESCRIPTION_SENDING_UNAUTHORIZED" = "Toto zařízení již není registrováno pod vaším telefonním číslem. Nainstalujte prosím Signal znovu.";
 
 /* Generic server error */
 "ERROR_DESCRIPTION_SERVER_FAILURE" = "Chyba serveru. Prosím, zkuste to později.";
@@ -1361,7 +1382,7 @@
 "ERROR_MESSAGE_INVALID_MESSAGE" = "Přijatá zpráva byla mimo synchronizaci.";
 
 /* No comment provided by engineer. */
-"ERROR_MESSAGE_INVALID_VERSION" = "Přijata zpráva nekompatibilní s touto verzí.";
+"ERROR_MESSAGE_INVALID_VERSION" = "Přijata zpráva, která je nekompatibilní s touto verzí.";
 
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_NO_SESSION" = "Nedostupné sezení pro kontakt.";
@@ -1371,6 +1392,9 @@
 
 /* Shown when signal users safety numbers changed, embeds the user's {{name or phone number}} */
 "ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE_FORMAT" = "Vaše bezpečnostní číslo s %@ se změnilo.";
+
+/* Text notifying the user that their secure session has been reset */
+"ERROR_MESSAGE_SESSION_REFRESH" = "Sezení konverzace aktualizováno";
 
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_UNKNOWN_ERROR" = "Došlo k neznámé chybě.";
@@ -1382,25 +1406,25 @@
 "ERROR_NETWORK_FAILURE" = "Chyba sítě";
 
 /* Error indicating a send failure due to a delinked application. */
-"ERROR_SENDING_DELINKED" = "Vaše zařízení již není propojené s aplikací. Prosím propojte je znovu, abyste mohli odesílat zprávy.";
+"ERROR_SENDING_DELINKED" = "Vaše zařízení již není propojené s aplikací. Prosím, propojte jej znovu, abyste mohli odesílat zprávy.";
 
 /* Error indicating a send failure due to a deregistered application. */
-"ERROR_SENDING_DEREGISTERED" = "Vaše zařízení již není registrováno. Prosím zaregistrujte jej znovu abyste mohli posílat zprávy.";
+"ERROR_SENDING_DEREGISTERED" = "Vaše zařízení již není registrováno. Prosím, zaregistrujte jej znovu, abyste mohli posílat zprávy.";
 
 /* Error indicating a send failure due to an expired application. */
-"ERROR_SENDING_EXPIRED" = "Vaše verze Signalu je zastaralá. Prosím aktualizujte aplikaci, abyste mohli nadále posílat zprávy.";
+"ERROR_SENDING_EXPIRED" = "Vaše verze Signalu je zastaralá. Prosím, aktualizujte aplikaci, abyste mohli nadále posílat zprávy.";
 
 /* Format string for 'unregistered user' error. Embeds {{the unregistered user's name or signal id}}. */
 "ERROR_UNREGISTERED_USER_FORMAT" = "Neregistrovaný uživatel: %@";
 
 /* Label notifying the user that the app has expired. */
-"EXPIRATION_ERROR" = "Your version of Signal has expired! Tap to update to the most recent version.";
+"EXPIRATION_ERROR" = "Platnost vaší verze aplikace Signal skončila. Klepnutím aktualizujte na nejnovější verzi.";
 
 /* Label warning the user that the app will expire soon. */
-"EXPIRATION_WARNING_SOON" = "Platnost vaší verze aplikace Signal skončí za %d dnů. Dotykem aktualizujte na nejnovější verzi.";
+"EXPIRATION_WARNING_SOON" = "Platnost vaší verze aplikace Signal skončí za %d dnů. Klepnutím aktualizujte na nejnovější verzi.";
 
 /* Label warning the user that the app will expire today. */
-"EXPIRATION_WARNING_TODAY" = "Platnost vaší verze aplikace Signal skončí dnes. Dotykem aktualizujte na nejnovější verzi.";
+"EXPIRATION_WARNING_TODAY" = "Platnost vaší verze aplikace Signal skončí dnes. Klepnutím aktualizujte na nejnovější verzi.";
 
 /* action sheet header when re-sending message which failed because of too many attempts */
 "FAILED_SENDING_BECAUSE_RATE_LIMIT" = "Příliš mnoho selhání s tímto kontaktem. Zkuste to znovu později.";
@@ -1414,7 +1438,7 @@
 /* Button that marks user as verified after a successful fingerprint scan. */
 "FINGERPRINT_SCAN_VERIFY_BUTTON" = "Označit jako ověřený";
 
-/* No comment provided by engineer. */
+/* Label for button to reset a session. */
 "FINGERPRINT_SHRED_KEYMATERIAL_BUTTON" = "Restartovat";
 
 /* Accessibility label for finishing new group */
@@ -1427,7 +1451,7 @@
 "FORWARD_MESSAGE" = "Přeposlat zprávu";
 
 /* Label indicating media gallery is empty */
-"GALLERY_TILES_EMPTY_GALLERY" = "You don't have any media in this chat.";
+"GALLERY_TILES_EMPTY_GALLERY" = "Nemáte žádná média v tomto chatu.";
 
 /* Label indicating loading is in progress */
 "GALLERY_TILES_LOADING_MORE_RECENT_LABEL" = "Načítání novějších médií...";
@@ -1437,6 +1461,15 @@
 
 /* A label for generic attachments. */
 "GENERIC_ATTACHMENT_LABEL" = "Příloha";
+
+/* Title for the 'Get Started' banner */
+"GET_STARTED_BANNER_TITLE" = "Začněte";
+
+/* 'Get Started' button directing users to invite friends */
+"GET_STARTED_CARD_INVITE_FRIENDS" = "Pozvat přátele";
+
+/* 'Get Started' button directing users to create a group */
+"GET_STARTED_CARD_NEW_GROUP" = "Nová skupina";
 
 /* Error displayed when there is a failure fetching a GIF from the remote service. */
 "GIF_PICKER_ERROR_FETCH_FAILURE" = "Chyba při načítání požadovaného GIFu. Prosím ověřte, zda-li jste online.";
@@ -1448,7 +1481,7 @@
 "GIF_PICKER_FAILURE_ALERT_TITLE" = "Nelze zvolit GIF";
 
 /* Alert message shown when user tries to search for GIFs without entering any search terms. */
-"GIF_PICKER_VIEW_MISSING_QUERY" = "Zadejte prosím vyhledávání.";
+"GIF_PICKER_VIEW_MISSING_QUERY" = "Zadejte prosím vyhledávací dotaz.";
 
 /* Title for the 'GIF picker' dialog. */
 "GIF_PICKER_VIEW_TITLE" = "Vyhledat GIF";
@@ -1472,13 +1505,13 @@
 "GRDB_MIGRATION_NOTIFICATION_TITLE" = "Optimalizace databáze";
 
 /* Message indicating that the access to the group's attributes was changed by the local user. Embeds {{new access level}}. */
-"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_LOCAL_USER_FORMAT" = "“%@“ nyní může upravovat informace o skupině.";
+"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_LOCAL_USER_FORMAT" = "\"%@\" nyní může upravovat informace o skupině.";
 
 /* Message indicating that the access to the group's attributes was changed by a remote user. Embeds {{ %1$@ user who changed the access, %2$@ new access level}}. */
-"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@ změnil, kdo může upravovat informace o skupině, na \"%2$@\".";
+"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@ změnil, kdo může upravovat informace o skupině na \"%2$@\".";
 
 /* Message indicating that the access to the group's attributes was changed. Embeds {{new access level}}. */
-"GROUP_ACCESS_ATTRIBUTES_UPDATED_FORMAT" = "“%@“ může měnit informace o skupině.";
+"GROUP_ACCESS_ATTRIBUTES_UPDATED_FORMAT" = "\"%@\" může měnit informace o skupině.";
 
 /* Description of the 'admins only' access level. */
 "GROUP_ACCESS_LEVEL_ADMINISTRATORS" = "Pouze administrátoři";
@@ -1496,19 +1529,148 @@
 "GROUP_ACCESS_LEVEL_UNSATISFIABLE" = "Zakázáno";
 
 /* Message indicating that the access to the group's members was changed by the local user. Embeds {{new access level}}. */
-"GROUP_ACCESS_MEMBERS_UPDATED_BY_LOCAL_USER_FORMAT" = "“%@“ nyní může upravovat členy skupiny.";
+"GROUP_ACCESS_MEMBERS_UPDATED_BY_LOCAL_USER_FORMAT" = "\"%@\" nyní může upravovat členy skupiny.";
 
 /* Message indicating that the access to the group's members was changed by a remote user. Embeds {{ %1$@ user who changed the access, %2$@ new access level}}. */
-"GROUP_ACCESS_MEMBERS_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@ změnil, kdo může upravovat členství ve skupině, na \"%2$@\".";
+"GROUP_ACCESS_MEMBERS_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@ změnil, kdo může upravovat členství ve skupině na \"%2$@\".";
 
 /* Message indicating that the access to the group's members was changed. Embeds {{new access level}}. */
-"GROUP_ACCESS_MEMBERS_UPDATED_FORMAT" = " “%@“ může měnit členství ve skupině.";
+"GROUP_ACCESS_MEMBERS_UPDATED_FORMAT" = "\"%@\" může měnit členství ve skupině.";
+
+/* Message indicating that a feature can only be used by group admins. */
+"GROUP_ADMIN_ONLY_WARNING" = "Toto mohou změnit pouze správci.";
+
+/* Message body for alert explaining that a group call participant is blocked */
+"GROUP_CALL_BLOCKED_ALERT_MESSAGE" = "Nebudete přijímat jejich audio ani video a oni vaše.";
+
+/* Title for alert explaining that a group call participant is blocked. Embeds {{ user's name }} */
+"GROUP_CALL_BLOCKED_ALERT_TITLE_FORMAT" = "%@ je zablokován";
+
+/* String displayed in group call grid cell when a user is blocked. Embeds {user's name} */
+"GROUP_CALL_BLOCKED_USER_FORMAT" = "%@ je zablokován";
+
+/* Button to continue an ongoing group call */
+"GROUP_CALL_CONTINUE_BUTTON" = "Pokračovat ve volání";
+
+/* Text in conversation view for a group call that has since ended */
+"GROUP_CALL_ENDED_MESSAGE" = "Skupinový hovor skončil";
+
+/* A button to receive more info about not seeing a participant in group call grid */
+"GROUP_CALL_ERROR_DETAILS" = "Více informací";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. Embeds {{max device count}}. */
+"GROUP_CALL_HAS_MAX_DEVICES_FORMAT" = "Byl dosažen maximální počet účastníků hovoru - %ld. Zkuste to znovu později.";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. */
+"GROUP_CALL_HAS_MAX_DEVICES_UNKNOWN_COUNT" = "Byl dosažen maximální počet účastníků hovoru. Zkuste to znovu později.";
+
+/* Text explaining the group call is full */
+"GROUP_CALL_IS_FULL" = "Hovor je plný";
+
+/* Button to join an ongoing group call */
+"GROUP_CALL_JOIN_BUTTON" = "Připojit se k hovoru";
+
+/* Button to leave a group call */
+"GROUP_CALL_LEAVE_BUTTON" = "Opustit hovor";
+
+/* String indicating how many people are current in the call */
+"GROUP_CALL_MANY_IN_THIS_CALL_FORMAT" = "V tomto hovoru · %ld lidí";
+
+/* Text explaining that there are more than three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2, %3$@ participantCount-2 }} */
+"GROUP_CALL_MANY_PEOPLE_HERE_FORMAT" = "%1$@, %2$@ a %3$@ dalších se účastní tohoto hovoru";
+
+/* String displayed in cell when media from a user can't be displayed in group call grid. Embeds {user's name} */
+"GROUP_CALL_MISSING_MEDIA_KEYS_FORMAT" = "Nemohu přijmout audio ani video od %@";
+
+/* Message body for alert explaining that a group call participant cannot be displayed because of missing keys */
+"GROUP_CALL_NO_KEYS_ALERT_MESSAGE" = "K tomu může dojít v situaci, kdy jste neprovedli ověření bezpečnostního čísla, jejich zařízení je porouchané nebo vás zablokovali.";
+
+/* Title for alert explaining that a group call participant cannot be displayed because of missing keys. Embeds {{ user's name }} */
+"GROUP_CALL_NO_KEYS_ALERT_TITLE_FORMAT" = "Nemohu přijmout audio ani video od %@";
+
+/* Text explaining that you are the only person currently in the group call */
+"GROUP_CALL_NO_ONE_HERE" = "Nikdo další tady není";
+
+/* Text explaining to the user that nobody has joined this call yet. */
+"GROUP_CALL_NOBODY_IS_IN_YET" = "K hovoru se ještě nikdo nepřipojil.";
+
+/* Copy explaining that many new users have joined the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_JOINED_FORMAT" = "%@, %@ a %ld ostatních se připojilo k hovoru";
+
+/* Copy explaining that many users have left the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_LEFT_FORMAT" = "%@, %@ a %ld dalších hovor opustilo";
+
+/* Copy explaining that a user has joined the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_JOINED_FORMAT" = "%@ se připojil k hovoru";
+
+/* Copy explaining that a user has left the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_LEFT_FORMAT" = "%@ hovor opustil";
+
+/* Copy explaining that two users have joined the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_JOINED_FORMAT" = "%@ a %@ se připojili k hovoru";
+
+/* Copy explaining that two users have left the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_LEFT_FORMAT" = "%@ a %@ hovor opustili";
+
+/* String indicating one person is currently in the call */
+"GROUP_CALL_ONE_IN_THIS_CALL" = "V tomto hovoru · 1 osoba";
+
+/* Text explaining that there is one person in the group call. Embeds {member name} */
+"GROUP_CALL_ONE_PERSON_HERE_FORMAT" = "%@ v tomto hovoru";
+
+/* Text indicating that the user has lost their connection to the call and we are reconnecting. */
+"GROUP_CALL_RECONNECTING" = "Opětovné připojování";
+
+/* notification body when a group call participant joins with an untrusted safety number */
+"GROUP_CALL_SAFETY_NUMBER_CHANGE_BODY" = "Někdo se přidal k tomuto hovoru s bezpečnostním číslem, které se změnilo.";
+
+/* Text in conversation view for a group call that someone started. We don't know who */
+"GROUP_CALL_SOMEONE_STARTED_MESSAGE" = "Někdo zahájil skupinový hovor";
+
+/* Toast view text informing user about swiping to speaker view */
+"GROUP_CALL_SPEAKER_VIEW_TOAST" = "Potáhněte nahoru pro změnu pohledu";
+
+/* Button to start a group call */
+"GROUP_CALL_START_BUTTON" = "Zahájit hovor";
+
+/* Tooltip highlighting group calls. */
+"GROUP_CALL_START_TOOLTIP" = "Ťukněte sem pro zahájení skupinového hovoru";
+
+/* Text explaining that you started a group call. */
+"GROUP_CALL_STARTED_BY_YOU" = "Zahájil jste skupinový hovor";
+
+/* Text explaining that someone started a group call. Embeds {{call creator display name}} */
+"GROUP_CALL_STARTED_MESSAGE_FORMAT" = "%@ zahájil skupinový hovor";
+
+/* Text explaining that there are three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_THREE_PEOPLE_HERE_FORMAT" = "%1$@, %2$@ a 1 další se účastní tohoto hovoru";
+
+/* Text explaining that there are two people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_TWO_PEOPLE_HERE_FORMAT" = "%1$@ a %2$@ se účastní tohoto hovoru";
+
+/* An error displayed to the user when the group call unexpectedly ends. */
+"GROUP_CALL_UNEXPECTEDLY_ENDED" = "Byli jste odpojeni od hovoru. Zkotrolujte své připojení k síti a zkuste to znova.";
+
+/* Text describing the local user as a participant in a group call. */
+"GROUP_CALL_YOU" = "Vy";
+
+/* Text explaining that you are in the group call. */
+"GROUP_CALL_YOU_ARE_HERE" = "Účastníte se skupinového hovoru";
+
+/* Text describing the local user in the group call members sheet when connected from another device. */
+"GROUP_CALL_YOU_ON_ANOTHER_DEVICE" = "Vy (na jiném zařízení)";
+
+/* Body for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_BODY" = "Zahájit bezplatné skupinové hovory lze po otevření nové skupiny.";
+
+/* Title for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_TITLE" = "Představujeme skupinové hovory";
 
 /* Message indicating that group was created by the local user. */
 "GROUP_CREATED_BY_LOCAL_USER" = "Vytvořili jste skupinu.";
 
 /* Message indicating that group was created by another user. Embeds {{remote user name}}. */
-"GROUP_CREATED_BY_REMOTE_USER_FORMAT" = "%@vás přidal do skupiny.";
+"GROUP_CREATED_BY_REMOTE_USER_FORMAT" = "%@ vás přidal(a) do skupiny.";
 
 /* Message indicating that group was created by an unknown user. */
 "GROUP_CREATED_BY_UNKNOWN_USER" = "Skupina byla vytvořena.";
@@ -1526,13 +1688,13 @@
 "GROUP_INVALID_INVITES_ADDED_BY_LOCAL_USER_N" = "Přidali jste neplatné pozvánky.";
 
 /* Message indicating that 1 invalid invite was added by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_1" = "%@přidal neplatnou pozvánku.";
+"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_1" = "%@ přidal(a) neplatnou pozvánku.";
 
 /* Message indicating that multiple invalid invites were added by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_N" = "%@přidal neplatné pozvánky.";
+"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_N" = "%@ přidal(a) neplatné pozvánky.";
 
 /* Message indicating that multiple invalid invites were added to the group. */
-"GROUP_INVALID_INVITES_ADDED_N" = "Neplatné pozvánky byly vybrány.";
+"GROUP_INVALID_INVITES_ADDED_N" = "Neplatné pozvánky byly přidány.";
 
 /* Message indicating that 1 invalid invite was revoked. */
 "GROUP_INVALID_INVITES_REMOVED_1" = "Neplatná pozvánka byla zrušena.";
@@ -1544,88 +1706,91 @@
 "GROUP_INVALID_INVITES_REMOVED_BY_LOCAL_USER_N" = "Zrušili jste neplatné pozvánky.";
 
 /* Message indicating that 1 invalid invite was revoked by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_1" = "%@zrušil neplatnou pozvánku.";
+"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_1" = "%@ zrušil neplatnou pozvánku.";
 
 /* Message indicating that multiple invalid invites were revoked by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_N" = "%@zrušil neplatné pozvánky.";
+"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_N" = "%@ zrušil neplatné pozvánky.";
 
 /* Message indicating that multiple invalid invites were revoked. */
 "GROUP_INVALID_INVITES_REMOVED_N" = "Neplatné pozvánky byly zrušeny.";
 
 /* Message indicating that the group invite link was disabled. */
-"GROUP_INVITE_LINK_DISABLED" = "The group link was turned off.";
+"GROUP_INVITE_LINK_DISABLED" = "Odkaz skupiny byl vypnut.";
 
 /* Message indicating that the group invite link was disabled by the local user. */
-"GROUP_INVITE_LINK_DISABLED_BY_LOCAL_USER" = "Vypnuli jste skupinový odkaz.";
+"GROUP_INVITE_LINK_DISABLED_BY_LOCAL_USER" = "Vypnuli jste odkaz skupiny.";
 
 /* Message indicating that the group invite link was disabled by a remote user. Embeds {{ user who disabled the group invite link }}. */
-"GROUP_INVITE_LINK_DISABLED_BY_REMOTE_USER_FORMAT" = "%@ turned off the group link.";
+"GROUP_INVITE_LINK_DISABLED_BY_REMOTE_USER_FORMAT" = "%@ vypnul odkaz skupiny.";
 
 /* Message indicating that the group invite link was enabled. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL" = "The group link was turned on with admin approval on.";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL" = "Skupinový odkaz se schvalováním správcem byl zapnut.";
 
 /* Message indicating that the group invite link was enabled by the local user. */
 "GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_LOCAL_USER" = "Zapnuli jste skupinový odkaz se schvalováním správce.";
 
 /* Message indicating that the group invite link was enabled by a remote user. Embeds {{ user who enabled the group invite link }}. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned on the group link with admin approval on.";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ zapnul skupinový odkaz se schvalováním správcem.";
 
 /* Message indicating that the group invite link was enabled. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL" = "The group link was turned on with admin approval off.";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL" = "Skupinový odkaz bez schvalování správcem byl zapnut.";
 
 /* Message indicating that the group invite link was enabled by the local user. */
 "GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_LOCAL_USER" = "Zapnuli jste skupinový odkaz bez schvalování správce.";
 
 /* Message indicating that the group invite link was enabled by a remote user. Embeds {{ user who enabled the group invite link }}. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned on the group link with admin approval off.";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ zapnul skupinový odkaz bez schvalování správcem.";
 
 /* Message indicating that the group invite link was reset. */
-"GROUP_INVITE_LINK_RESET" = " The group link was reset.";
+"GROUP_INVITE_LINK_RESET" = "Odkaz skupiny byl obnoven.";
 
 /* Message indicating that the group invite link was reset by the local user. */
 "GROUP_INVITE_LINK_RESET_BY_LOCAL_USER" = "Obnovili jste skupinový odkaz.";
 
 /* Message indicating that the group invite link was reset by a remote user. Embeds {{ user who reset the group invite link }}. */
-"GROUP_INVITE_LINK_RESET_BY_REMOTE_USER_FORMAT" = "%@ reset the group link.";
+"GROUP_INVITE_LINK_RESET_BY_REMOTE_USER_FORMAT" = "%@ obnovil odkaz skupiny.";
 
 /* Message indicating that the group invite link was set to not require approval. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL" = "Admin approval was turned off for the group link.";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL" = "Schvalování skupinového odkazu sprácem bylo vypnuto.";
 
 /* Message indicating that the group invite link was set to not require approval by the local user. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_LOCAL_USER" = "You turned off admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_LOCAL_USER" = "Vypnuli jste schvalování skupinového odkazu správcem.";
 
 /* Message indicating that the group invite link was set to not require approval by a remote user. Embeds {{ user who set the group invite link to not require approval }}. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned off admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ vypnul schvalování skupinového odkazu správcem.";
 
 /* Message indicating that the group invite link was set to require approval. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL" = "Admin approval was turned on for the group link.";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL" = "Schvalování skupinového odkazu sprácem bylo zapnuto.";
 
 /* Message indicating that the group invite link was set to require approval by the local user. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_LOCAL_USER" = "You turned on admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_LOCAL_USER" = "Zapnuli jste schvalování skupinového odkazu správcem.";
 
 /* Message indicating that the group invite link was set to require approval by a remote user. Embeds {{ user who set the group invite link to require approval }}. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned on admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ zapnul schvalování skupinového odkazu správcem.";
 
 /* Format for the message for an alert indicating that a member was invited to a group. Embeds: {{ the number of invites sent. }} */
-"GROUP_INVITES_SENT_ALERT_MESSAGE_1_FORMAT" = "%@nemůže být přidán do skupiny automaticky. Byl pozván, ale neuvidí žádné zprávy dokud pozvání nepřijme.";
+"GROUP_INVITES_SENT_ALERT_MESSAGE_1_FORMAT" = "%@ nemůže být přidán do skupiny automaticky. Byl pozván, ale neuvidí žádné zprávy, dokud pozvání nepřijme.";
 
 /* Title for an alert indicating that a member was invited to a group. */
 "GROUP_INVITES_SENT_ALERT_TITLE_1" = "Pozvánka odeslána";
 
 /* Format for the title for an alert indicating that some members were invited to a group. Embeds: {{ the number of invites sent. }} */
-"GROUP_INVITES_SENT_ALERT_TITLE_N_FORMAT" = "%@pozvánek odesláno";
+"GROUP_INVITES_SENT_ALERT_TITLE_N_FORMAT" = "%@ pozvánek odesláno";
 
 /* Message for an alert indicating that some members were invited to a group. */
-"GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "Tyto uživatele nemůžete přidat do skupiny automaticky. Byli pozváni, ale neuvidí žádné zprávy dokud pozvání nepřijmou.";
+"GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "Tyto uživatele nemůžete přidat do skupiny automaticky. Byli pozváni, ale neuvidí žádné zprávy, dokud pozvání nepřijmou.";
+
+/* The title for the 'group invites' view. */
+"GROUP_INVITES_VIEW_TITLE" = "Pozvánky členů";
 
 /* Subtitle indicating that the group invite link has expired in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "This group link is no longer valid.";
+"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "Tento odkaz skupiny již není platný.";
 
 /* Title indicating that the group invite link has expired in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_TITLE" = "Can’t join group";
+"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_TITLE" = "Nelze přistoupit ke skupině";
 
 /* Indicator for group conversations in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_GROUP_INDICATOR" = "Group";
+"GROUP_LINK_ACTION_SHEET_VIEW_GROUP_INDICATOR" = "Skupina";
 
 /* Label for the 'join' button in the 'group invite link' action sheet. */
 "GROUP_LINK_ACTION_SHEET_VIEW_JOIN_BUTTON" = "Připojit";
@@ -1640,52 +1805,67 @@
 "GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_DUE_TO_NETWORK_ERROR_MESSAGE" = "Zkontrolujte, že jste online a zkuste to znovu.";
 
 /* Error message the attempt to request to join the group failed. */
-"GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_ERROR_MESSAGE" = "Please try again.";
+"GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_ERROR_MESSAGE" = "Prosím, zkuste to znovu.";
 
 /* Message for the 'invalid group invite link' alert. */
-"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_MESSAGE" = "This is not a valid group link. Make sure the entire link is intact and correct before attempting to join.";
+"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_MESSAGE" = "Toto je neplatný odkaz na skupinu. Než se pokusíte přidat, ujistěte se, že odkaz je neporušený a správný.";
 
 /* Title for the 'invalid group invite link' alert. */
-"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "Invalid Link";
-
-/* Indicator that a group invite link has expired. */
-"GROUP_LINK_INVITE_LINK_IS_EXPIRED" = "Link is no longer valid";
-
-/* Button to join a group from a group link. */
-"GROUP_LINK_JOIN_GROUP_BUTTON" = "Join Group";
+"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "Neplatný odkaz";
 
 /* Error message indicating that the local user does not support groups v2. */
-"GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "Update Signal on this device to join this group.";
+"GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "Aktualizujte Signal na tomto zařízení pro přistoupení ke skupině.";
+
+/* Explanation of the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_EXPLANATION" = "Požadovat, aby správce schválil nové členy, kteří se připojují přes odkaz skupiny.";
+
+/* Label for the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_SWITCH" = "Schválit nové členy";
+
+/* Label for the 'enable and share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_ENABLE_AND_SHARE_LINK" = "Povolit a sdílet odkaz";
+
+/* Label for the 'share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SHARE_LINK" = "Sdílet odkaz";
+
+/* Subtitle for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SUBTITLE" = "Sdílejte tento odkaz s přáteli a umožněte jim rychle se přidat ke skupině.";
+
+/* Title for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_TITLE" = "Pozvat přátele";
+
+/* Suggestion to invite more group members via the group invite link. */
+"GROUP_LINK_PROMOTION_UPDATE" = "Pozvěte přátele do vaší skupiny prostřednictvím odkazu skupiny";
 
 /* Description text in the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_DESCRIPTION" = "Lidé, kteří naskenují tento kód, budou schopni připojit se k vaší skupině. Správci stále budou muset schválit nové členy, pokud jste to tak nastavili.";
 
 /* Label for the 'share code' button in the 'group link QR code' view. */
-"GROUP_LINK_QR_CODE_VIEW_SHARE_CODE_BUTTON" = "Share Code";
+"GROUP_LINK_QR_CODE_VIEW_SHARE_CODE_BUTTON" = "Sdílet kód";
 
 /* The title for the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_TITLE" = "QR kód";
 
 /* Label for the 'approve new members' switch in the 'group link' view. */
-"GROUP_LINK_VIEW_APPROVE_NEW_MEMBERS_SWITCH" = "Approve New Members";
+"GROUP_LINK_VIEW_APPROVE_NEW_MEMBERS_SWITCH" = "Schválit nové členy";
 
 /* Label for the 'copy link' button in the 'group link' view. */
 "GROUP_LINK_VIEW_COPY_LINK" = "Zkopírovat odkaz";
 
 /* Label for the 'enable group link' switch in the 'group link' view. */
-"GROUP_LINK_VIEW_ENABLE_GROUP_LINK_SWITCH" = "Group Link";
+"GROUP_LINK_VIEW_ENABLE_GROUP_LINK_SWITCH" = "Skupinový odkaz";
 
 /* Title for the 'manage and share' section of the 'group link' view. */
-"GROUP_LINK_VIEW_MANAGE_AND_SHARE_SECTION_TITLE" = "Manage and Share";
+"GROUP_LINK_VIEW_MANAGE_AND_SHARE_SECTION_TITLE" = "Spravovat a sdílet";
 
 /* Footer for the 'member requests' section of the 'group link' view. */
 "GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_FOOTER" = "Požadovat, aby správce schválil nové členy, kteří se připojují přes skupinový odkaz.";
 
 /* Title for the 'member requests' section of the 'group link' view. */
-"GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_TITLE" = "Member Requests";
+"GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_TITLE" = "Žádosti o členství";
 
 /* Label for the 'reset link' button in the 'group link' view. */
-"GROUP_LINK_VIEW_RESET_LINK" = "Reset Link";
+"GROUP_LINK_VIEW_RESET_LINK" = "Obnovit odkaz";
 
 /* Title for the 'confirm reset link' alert in the 'group link' view. */
 "GROUP_LINK_VIEW_RESET_LINK_CONFIRM_ALERT_TITLE" = "Opravdu chcete obnovit skupinový odkaz? Pomocí současného odkazu se pak už lidé nebudou schopni ke skupině připojit.";
@@ -1703,19 +1883,19 @@
 "GROUP_LINK_VIEW_SHARE_LINK_VIA_SIGNAL" = "Sdílet přes Signal";
 
 /* Message for the 'share group link' action sheet in the 'group link' view. */
-"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "Anyone with this link can join the group, or send a request to join. Share it with people you trust.";
+"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "Kdokoli, kdo má tento odkaz, může vidět jméno skupiny, její členy a může požádat o připojení ke skupině. Sdílejte ho s lidmi, kterým důvěřujete.";
 
 /* The title for the 'group link' view. */
-"GROUP_LINK_VIEW_TITLE" = "Group Link";
+"GROUP_LINK_VIEW_TITLE" = "Odkaz skupiny";
 
 /* Message indicating that the local user was added to the group by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%@vás přidal";
+"GROUP_LOCAL_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%@ vás přidal(a).";
 
 /* Message indicating that the local user was granted administrator role. */
-"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR" = "Stali jste se administrátorem";
+"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR" = "Stali jste se administrátorem.";
 
 /* Message indicating that the local user was granted administrator role by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@vám dal administrátorská práva";
+"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@ vám dal(a) administrátorská práva.";
 
 /* Message indicating that the local user accepted an invite to the group. */
 "GROUP_LOCAL_USER_INVITE_ACCEPTED" = "Přijali jste pozvánku do skupiny.";
@@ -1730,16 +1910,16 @@
 "GROUP_LOCAL_USER_INVITE_DECLINED_FORMAT" = "Odmítli jste pozvánku do skupiny od %@.";
 
 /* Message indicating that the local user's invite was revoked by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_INVITE_REVOKED_BY_REMOTE_USER_FORMAT" = "%@zrušil vaši pozvánku do skupiny.";
+"GROUP_LOCAL_USER_INVITE_REVOKED_BY_REMOTE_USER_FORMAT" = "%@ zrušil vaši pozvánku do skupiny.";
 
 /* Message indicating that the local user's invite was revoked by an unknown user. */
 "GROUP_LOCAL_USER_INVITE_REVOKED_BY_UNKNOWN_USER" = "Vaše pozvánka do skupiny byla zrušena.";
 
 /* Message indicating that the local user was invited to the group by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_INVITED_BY_REMOTE_USER_FORMAT" = "%@vás pozval.";
+"GROUP_LOCAL_USER_INVITED_BY_REMOTE_USER_FORMAT" = "%@ vás pozval(a).";
 
 /* Message indicating that the local user was invited to the group. */
-"GROUP_LOCAL_USER_INVITED_TO_THE_GROUP" = "Byii jste pozváni do skupiny.";
+"GROUP_LOCAL_USER_INVITED_TO_THE_GROUP" = "Byli jste pozváni do skupiny.";
 
 /* Message indicating that the local user has joined the group. */
 "GROUP_LOCAL_USER_JOINED_THE_GROUP" = "Připojili jste se ke skupině.";
@@ -1748,19 +1928,19 @@
 "GROUP_LOCAL_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK" = "Připojili jste se ke skupině pomocí skupinového odkazu.";
 
 /* Message indicating that the local user was removed from the group by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_REMOVED_BY_REMOTE_USER_FORMAT" = "%@vás odebral ze skupiny.";
+"GROUP_LOCAL_USER_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ vás odebral(a) ze skupiny.";
 
 /* Message indicating that the local user was removed from the group by an unknown user. */
 "GROUP_LOCAL_USER_REMOVED_BY_UNKNOWN_USER" = "Byli jste odebráni ze skupiny.";
 
 /* Message indicating that the local user's request to join the group was approved by another user. Embeds {{ %@ the name of the user who approved the reuqest }}. */
-"GROUP_LOCAL_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%@ approved your request to join the group.";
+"GROUP_LOCAL_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%@ schválil váš požadavek na připojení ke skupině.";
 
 /* Message indicating that the local user cancelled their request to join the group. */
 "GROUP_LOCAL_USER_REQUEST_CANCELLED_BY_LOCAL_USER" = "Zrušili jste svůj požadavek na připojení ke skupině.";
 
 /* Message indicating that the local user's request to join the group was rejected. */
-"GROUP_LOCAL_USER_REQUEST_REJECTED" = "Your request to join the group was denied.";
+"GROUP_LOCAL_USER_REQUEST_REJECTED" = "Požadavek na připojení ke skupině byl zamítnut.";
 
 /* Message indicating that the local user requested to join the group. */
 "GROUP_LOCAL_USER_REQUESTED_TO_JOIN_TO_THE_GROUP" = "Odeslali jste požadavek na vstup do skupiny.";
@@ -1769,13 +1949,13 @@
 "GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR" = "Byla vám odebrána administrátorská práva.";
 
 /* Message indicating that the local user had their administrator role revoked by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@vám odebral administrátorská práva.";
+"GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@ vám odebral(a) administrátorská práva.";
+
+/* Message indicating that the local user was added to the group. */
+"GROUP_LOCAL_USER_WAS_ADDED_TO_THE_GROUP" = "Člen vás přidal(a) do skupiny.";
 
 /* Label indicating that a group member is an admin. */
 "GROUP_MEMBER_ADMIN_INDICATOR" = "Správce";
-
-/* Format string for the group member count indicator. Embeds {{ %1$@ the number of members in the group, %2$@ the maximum number of members in the group. }}. */
-"GROUP_MEMBER_COUNT_FORMAT" = "%1$@/%2$@";
 
 /* The 'group member count' indicator when there are no members in the group. */
 "GROUP_MEMBER_COUNT_LABEL_0" = "Žádní členové";
@@ -1784,7 +1964,10 @@
 "GROUP_MEMBER_COUNT_LABEL_1" = "1 člen";
 
 /* Format for the 'group member count' indicator. Embeds {the number of group members}. */
-"GROUP_MEMBER_COUNT_LABEL_FORMAT" = "%@členů";
+"GROUP_MEMBER_COUNT_LABEL_FORMAT" = "%@ členů";
+
+/* Format string for the group member count indicator. Embeds {{ the number of members in the group }}. */
+"GROUP_MEMBER_COUNT_WITHOUT_LIMIT_FORMAT" = "%@ členové";
 
 /* Label indicating the local user. */
 "GROUP_MEMBER_LOCAL_USER" = "Vy";
@@ -1792,8 +1975,8 @@
 /* Accessibility label for the 'call group member' button */
 "GROUP_MEMBERS_CALL" = "Audio hovor";
 
-/* Label indicating that a group has no other members. */
-"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "Žádní členové";
+/* Label indicating that a new group has no other members. */
+"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "Po založení této skupiny můžete přidat nebo pozvat přátele.";
 
 /* Title for the 'members' section of the 'group members' view. */
 "GROUP_MEMBERS_SECTION_TITLE_MEMBERS" = "Členové";
@@ -1808,40 +1991,40 @@
 "GROUP_NAME_PLACEHOLDER" = "Název skupiny (vyžadováno)";
 
 /* Message indicating that a remote user has accepted their invite. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ACCEPTED_INVITE_FORMAT" = "%@přijal pozvání do skupiny.";
+"GROUP_REMOTE_USER_ACCEPTED_INVITE_FORMAT" = "%@ přijal(a) pozvání do skupiny.";
 
 /* Message indicating that a remote user has accepted an invite from the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@přijal vaše pozvání do skupiny.";
+"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@ přijal(a) vaše pozvání do skupiny.";
 
 /* Message indicating that a remote user has accepted their invite. Embeds {{ %1$@ user who accepted their invite, %2$@ user who invited the user}}. */
-"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_REMOTE_USER_FORMAT" = "%1$@přijal pozvání do skupiny od %2$@.";
+"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_REMOTE_USER_FORMAT" = "%1$@ přijal(a) pozvání do skupiny od %2$@.";
 
 /* Message indicating that a remote user was added to the group by the local user. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_LOCAL_USER_FORMAT" = "Přidali jste %@.";
 
 /* Message indicating that a remote user was added to the group by another user. Embeds {{ %1$@ user who added the user, %2$@ user who was added}}. */
-"GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@přidal %2$@.";
+"GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@ přidal(a) %2$@.";
 
 /* Message indicating that a remote user was added to the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ADDED_TO_GROUP_FORMAT" = "%@byl přidán do skupiny.";
+"GROUP_REMOTE_USER_ADDED_TO_GROUP_FORMAT" = "%@ byl přidán do skupiny.";
 
 /* Message indicating that a remote user has declined their invite. */
 "GROUP_REMOTE_USER_DECLINED_INVITE" = "1 osoba odmítla pozvání do skupiny.";
 
 /* Message indicating that a remote user has declined their invite. Embeds {{ user who invited them }}. */
-"GROUP_REMOTE_USER_DECLINED_INVITE_FORMAT" = "1 osoba, kterou pozval %@, odmítla pozvání do skupiny.";
+"GROUP_REMOTE_USER_DECLINED_INVITE_FORMAT" = "1 osoba, kterou pozval(a) %@, odmítla pozvání do skupiny.";
 
 /* Message indicating that a remote user has declined an invite to the group from the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_DECLINED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@odmítl vaše pozvání do skupiny.";
+"GROUP_REMOTE_USER_DECLINED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@ odmítl vaše pozvání do skupiny.";
 
 /* Message indicating that a remote user was granted administrator role. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR" = "%@je nyní administrátorem.";
+"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR" = "%@ je nyní administrátorem";
 
 /* Message indicating that a remote user was granted administrator role by local user. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_LOCAL_USER" = "Dali jste %@ administrátorská práva.";
 
 /* Message indicating that a remote user was granted administrator role by another user. Embeds {{ %1$@ user who granted, %2$@ user who was granted administrator role}}. */
-"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@ udělal %2$@ administrátorem.";
+"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@ udělal(a) %2$@ administrátorem.";
 
 /* Message indicating that a single remote user's invite was revoked. */
 "GROUP_REMOTE_USER_INVITE_REVOKED_1" = "Pozvání do skupiny bylo zrušeno pro 1 osobu.";
@@ -1850,10 +2033,10 @@
 "GROUP_REMOTE_USER_INVITE_REVOKED_BY_LOCAL_USER_FORMAT" = "Pozvání do skupiny pro %@ bylo zrušeno.";
 
 /* Message indicating that a single remote user's invite was revoked by a remote user. Embeds {{ user who revoked the invite }}. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_1_FORMAT" = "%@zrušil pozvání 1 osoby do skupiny.";
+"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_1_FORMAT" = "%@ zrušil pozvání 1 osoby do skupiny.";
 
 /* Message indicating that a group of remote users' invites were revoked by a remote user. Embeds {{ %1$@ user who revoked the invite, %2$@ number of users }}. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_N_FORMAT" = "%1$@zrušil pozvání do skupiny pro %2$@ osob.";
+"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_N_FORMAT" = "%1$@ zrušil pozvání do skupiny pro %2$@ osob.";
 
 /* Message indicating that a group of remote users' invites were revoked. Embeds {{ number of users }}. */
 "GROUP_REMOTE_USER_INVITE_REVOKED_N_FORMAT" = "Pozvání do skupiny bylo zrušeno %@ pozvanými.";
@@ -1865,73 +2048,70 @@
 "GROUP_REMOTE_USER_INVITED_1_FORMAT" = "%@ byl pozván do skupiny.";
 
 /* Message indicating that a remote user was invited to the group by the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_INVITED_BY_LOCAL_USER_FORMAT" = "Pozvali jste%@do skupiny.";
+"GROUP_REMOTE_USER_INVITED_BY_LOCAL_USER_FORMAT" = "Pozvali jste %@ do skupiny.";
 
 /* Message indicating that a single remote user was invited to the group by the local user. Embeds {{ user who invited the user }}. */
-"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_1_FORMAT" = "%@pozval 1 osobu do skupiny.";
+"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_1_FORMAT" = "%@ pozval(a) 1 osobu do skupiny.";
 
 /* Message indicating that a group of remote users were invited to the group by the local user. Embeds {{ %1$@ user who invited the user, %2$@ number of invited users }}. */
-"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_N_FORMAT" = "%1$@pozval %2$@lidí do skupiny.";
+"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_N_FORMAT" = "%1$@ pozval(a) %2$@ lidí do skupiny.";
 
 /* Message indicating that a group of remote users were invited to the group. Embeds {{number of invited users}}. */
-"GROUP_REMOTE_USER_INVITED_N_FORMAT" = "%@lidí bylo pozváno do skupiny.";
+"GROUP_REMOTE_USER_INVITED_N_FORMAT" = "%@ lidí bylo pozváno do skupiny.";
 
 /* Message indicating that a remote user was added to the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_JOINED_GROUP_FORMAT" = "%@se připojil ke skupině.";
+"GROUP_REMOTE_USER_JOINED_GROUP_FORMAT" = "%@ se připojil ke skupině.";
 
 /* Message indicating that another user has joined the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK_FORMAT" = "%@ joined the group via the group link.";
+"GROUP_REMOTE_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK_FORMAT" = "%@ se připojil ke skupině pomocí skupinového odkazu.";
 
 /* Message indicating that a remote user has left the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_LEFT_GROUP_FORMAT" = "%@opustil skupinu.";
+"GROUP_REMOTE_USER_LEFT_GROUP_FORMAT" = "%@ opustil skupinu.";
 
 /* Message indicating that a remote user was removed from the group by the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_REMOVED_BY_LOCAL_USER_FORMAT" = "Odebrali jste %@ze skupiny.";
+"GROUP_REMOTE_USER_REMOVED_BY_LOCAL_USER_FORMAT" = "Odebrali jste %@ ze skupiny.";
 
 /* Message indicating that the remote user was removed from the group. Embeds {{ %1$@ user who removed the user, %2$@ user who was removed}}. */
-"GROUP_REMOTE_USER_REMOVED_FROM_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@odebral %2$@.";
+"GROUP_REMOTE_USER_REMOVED_FROM_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@ odebral(a) %2$@.";
 
 /* Message indicating that a remote user's request to join the group was approved by the local user. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_LOCAL_USER_FORMAT" = "You approved a request to join the group from %@.";
+"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_LOCAL_USER_FORMAT" = "Schválil jste požadavek na připojení ke skupině od %@.";
 
 /* Message indicating that a remote user's request to join the group was approved by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%2$@ approved a request to join the group from %1$@.";
-
-/* Message indicating that a remote user's request to join the group was approved. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_FORMAT" = "A request to join the group from %@ was approved.";
+"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%2$@ schválil požadavek na připojení ke skupině od %1$@.";
 
 /* Message indicating that a remote user cancelled their request to join the group. Embeds {{ the name of the requesting user }}. */
-"GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@ canceled their request to join the group.";
+"GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@ zrušili svůj požadavek na připojení ke skupině.";
 
 /* Message indicating that a remote user's request to join the group was rejected by the local user. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_LOCAL_USER_FORMAT" = "You denied a request to join the group from %@.";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_LOCAL_USER_FORMAT" = "Zamítl jste požadavek na připojení ke skupině od %@.";
 
 /* Message indicating that a remote user's request to join the group was rejected by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_REMOTE_USER_FORMAT" = "%2$@ denied a request to join the group from %1$@.";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_REMOTE_USER_FORMAT" = "%2$@ zamítl požadavek na připojení ke skupině od %1$@.";
 
 /* Message indicating that a remote user's request to join the group was rejected. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_FORMAT" = "A request to join the group from %@ was denied.";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_FORMAT" = "Požadavek na připojení ke skupině od %@ byl zamítnut.";
 
 /* Message indicating that a remote user requested to join the group. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUESTED_TO_JOIN_THE_GROUP_FORMAT" = "%@ requested to join via the group link.";
+"GROUP_REMOTE_USER_REQUESTED_TO_JOIN_THE_GROUP_FORMAT" = "%@ požádal(a) o připojení pomocí skupinového odkazu.";
 
 /* Message indicating that a remote user had their administrator role revoked. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR" = "%@byla odebrána administrátorská práva.";
+"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR" = "%@ byla odebrána administrátorská práva.";
 
 /* Message indicating that a remote user had their administrator role revoked by local user. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_LOCAL_USER" = "Odebrali jste administrátorská práva uživateli %@.";
 
 /* Message indicating that a remote user had their administrator role revoked by another user. Embeds {{ %1$@ user who revoked, %2$@ user who was granted administrator role}}. */
-"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@odebral administrátorská práva uživateli %2$@.";
+"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@ odebral(a) administrátorská práva uživateli %2$@.";
 
 /* Label for the 'member requests' mode of the 'group requests and invites' view. */
-"GROUP_REQUESTS_AND_INVITES_VIEW_MEMBER_REQUESTS_MODE" = "Member Requests";
+"GROUP_REQUESTS_AND_INVITES_VIEW_MEMBER_REQUESTS_MODE" = "Žádosti o členství";
 
 /* Label for the 'pending invites' mode of the 'group requests and invites' view. */
-"GROUP_REQUESTS_AND_INVITES_VIEW_PENDING_INVITES_MODE" = "Pending Invites";
+"GROUP_REQUESTS_AND_INVITES_VIEW_PENDING_INVITES_MODE" = "Čekající pozvánky";
 
 /* The title for the 'group requests and invites' view. */
-"GROUP_REQUESTS_AND_INVITES_VIEW_TITLE" = "Member Requests & Invites";
+"GROUP_REQUESTS_AND_INVITES_VIEW_TITLE" = "Požadavky & pozvánky členů";
 
 /* Info message indicating that the group was updated by an unknown user. */
 "GROUP_UPDATED" = "Skupina aktualizována.";
@@ -1943,7 +2123,7 @@
 "GROUP_UPDATED_AVATAR_REMOVED_BY_LOCAL_USER" = "Odstranili jste obrázek.";
 
 /* Message indicating that the group's avatar was removed by a remote user. Embeds {{user who removed the avatar}}. */
-"GROUP_UPDATED_AVATAR_REMOVED_BY_REMOTE_USER_FORMAT" = "%@odstranil foto.";
+"GROUP_UPDATED_AVATAR_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ odstranil obrázek.";
 
 /* Message indicating that the group's avatar was changed. */
 "GROUP_UPDATED_AVATAR_UPDATED" = "Obrázek skupiny byl aktualizován.";
@@ -1952,13 +2132,13 @@
 "GROUP_UPDATED_AVATAR_UPDATED_BY_LOCAL_USER" = "Změnili jste obrázek.";
 
 /* Message indicating that the group's avatar was changed by a remote user. Embeds {{user who changed the avatar}}. */
-"GROUP_UPDATED_AVATAR_UPDATED_BY_REMOTE_USER_FORMAT" = "%@aktualizoval obrázek.";
+"GROUP_UPDATED_AVATAR_UPDATED_BY_REMOTE_USER_FORMAT" = "%@ aktualizoval(a) obrázek.";
 
 /* Info message indicating that the group was updated by the local user. */
 "GROUP_UPDATED_BY_LOCAL_USER" = "Upravili jste skupinu.";
 
 /* Info message indicating that the group was updated by another user. Embeds {{remote user name}}. */
-"GROUP_UPDATED_BY_REMOTE_USER_FORMAT" = "%@upravil skupinu.";
+"GROUP_UPDATED_BY_REMOTE_USER_FORMAT" = "%@ upravil skupinu.";
 
 /* Message indicating that the group's name was removed. */
 "GROUP_UPDATED_NAME_REMOVED" = "Jméno skupiny bylo odstraněno.";
@@ -1967,16 +2147,37 @@
 "GROUP_UPDATED_NAME_REMOVED_BY_LOCAL_USER" = "Odstranili jste jméno skupiny.";
 
 /* Message indicating that the group's name was removed by a remote user. Embeds {{user who removed the name}}. */
-"GROUP_UPDATED_NAME_REMOVED_BY_REMOTE_USER_FORMAT" = "%@odstranil jméno skupiny.";
+"GROUP_UPDATED_NAME_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ odstranil jméno skupiny.";
 
 /* Message indicating that the group's name was changed by the local user. Embeds {{new group name}}. */
-"GROUP_UPDATED_NAME_UPDATED_BY_LOCAL_USER_FORMAT" = "Změnili jste jméno skupiny na “%@“.";
+"GROUP_UPDATED_NAME_UPDATED_BY_LOCAL_USER_FORMAT" = "Změnili jste jméno skupiny na \"%@\".";
 
 /* Message indicating that the group's name was changed by a remote user. Embeds {{ %1$@ user who changed the name, %2$@ new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@ změnil název skupiny na \"%2$@\".";
 
 /* Message indicating that the group's name was changed. Embeds {{new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_FORMAT" = "Jméno skupiny je nyní \"%@\".";
+
+/* Message indicating that the group was migrated. */
+"GROUP_WAS_MIGRATED" = "Tato skupina byla aktualizována na novou verzi.";
+
+/* Message indicating that 1 user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_1" = "Člen nemohl být přidán do nové verze skupiny a byl z ní odebrán.";
+
+/* Message indicating that the local user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_LOCAL_USER" = "Nemohl jste být přidán do nové verze skupiny a byl jste z ní odebrán.";
+
+/* Message indicating that N users were dropped while migrating the group. Embeds {{ the number of dropped users }}. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_N_FORMAT" = "%@ členů nebylo možné přidat do nové verze skupiny a ze skupiny byli odebráni.";
+
+/* Message indicating that 1 user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_1" = "Člen nemůže být přidán do nové skupiny a byl pozván, aby se připojil.";
+
+/* Message indicating that the local user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_LOCAL_USER" = "Nemohli jste být přidáni do nové skupiny a byli jste pozváni k připojení.";
+
+/* Message indicating that N users were invited while migrating the group. Embeds {{ the number of invited users }}. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_N_FORMAT" = "%@ členů nebylo možné přidat do nové verze skupiny a byli pozváni, aby se připojili.";
 
 /* Message indicating that the local user left the group. */
 "GROUP_YOU_LEFT" = "Opustil jste skupinu.";
@@ -1985,7 +2186,7 @@
 "GROUPS_CANT_REPLACE_ADMIN_ALERT_MESSAGE" = "Než opustíte skupinu, vyberte nového administrátora.";
 
 /* Error message indicating that a member can't be added to a group because they are already in the group. */
-"GROUPS_ERROR_MEMBER_ALREADY_IN_GROUP" = "Uživatel už je ve skupině";
+"GROUPS_ERROR_MEMBER_ALREADY_IN_GROUP" = "Uživatel už je ve skupině.";
 
 /* Error indicating that an error occurred while accepting an invite. */
 "GROUPS_INVITE_ACCEPT_INVITE_FAILED" = "Nepodařilo se přijmout pozvánku.";
@@ -1999,17 +2200,20 @@
 /* Label for 'block inviter' button in group invite view. Embeds {{name of user who invited you}}. */
 "GROUPS_INVITE_BLOCK_INVITER_FORMAT" = "Zablokovat %@";
 
+/* Label for 'invite friends to group' button. */
+"GROUPS_INVITE_FRIENDS_BUTTON" = "Pozvat přátele";
+
 /* Body text for the first section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "Starší skupiny neumí vlastnosti nových skupin, jako je nastavení administrátorů a popisnější aktualizace skupin,";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "Starší skupiny neumí vlastnosti nových skupin, jako je nastavení administrátorů a detailnější aktualizace skupin.";
 
 /* Title for the first section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_TITLE" = "Co jsou starší skupiny?";
 
 /* Body text for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "Starší skupiny nemohou být převedeny na nové, ale můžete vytvořit novou skupinu se stejnými členy.";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "Starší skupiny zatím nelze aktualizovat na nové skupiny, ale můžete vytvořit novou skupinu se stejnými členy, pokud používají poslední verzi aplikace Signal.\n\nSignal umožní možnost aktualizace starších skupin v budoucnosti.";
 
 /* Title for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "Jak \"upgradovat\" starší skupinu?";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "Mohu aktualizovat starší skupinu?";
 
 /* Body text for the third section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_3_BODY" = "Pro vytvoření nové skupiny je třeba, aby všichni členové skupiny aktualizovali na poslední verzi Signal.";
@@ -2017,26 +2221,146 @@
 /* Title for the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_TITLE" = "Starší a nové skupiny";
 
+/* Format for indicator that a group cannot be used until it is migrated. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_BLOCKING_MIGRATION_FORMAT" = "Pro aktivaci nových funkcí jako @zmínky a správci aktualizujte tuto skupinu. Členové, kteří dosud nesdílejí své jméno nebo fotografii v této skupině, budou pozváni, aby se připojili. %@.";
+
+/* Title for the 'can't upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TITLE" = "Nelze aktualizovat na novou skupinu";
+
+/* Text indicating that a legacy group can't be upgraded because it has too many members. Embeds {{ The maximum number of members allowed in a group. }}. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TOO_MANY_MEMBERS_FORMAT" = "Tuto skupinu nelze aktualizovat na novou skupinu, protože má příliš mnoho členů. Maximální velikost skupiny, kterou ještě lze aktualizovat, je %@.";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_1" = "Jakmile budou všichni členové používat verzi Signalu podporující připojení k nové skupině, tato skupina bude aktualizována.";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_2" = "Před aktualizací bude uchována veškerá historie zpráv a média.";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_1" = "Tato skupina nemůže být vytvořena, protože 1 člen používá starší verzi aplikace Signal. Novou skupinu s ním můžete vytvořit, až si aktualizuje Signal, případně jej před vytvořením skupiny odstraňte.";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. Embeds {{ the number of members which do not support v2 groups. }} */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_N_FORMAT" = "Bude vytvořena starší skupina, protože %@ členů využívá starou verzi Signalu. Můžete vytvořit skupinu nového typu poté, co si tito členové aktualizují Signal, případně je odstraňte před tím, než skupinu vytvoříte.";
+
+/* Indicates that a new group cannot be created because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_1" = "Tato skupina nemůže být vytvořena, protože 1 člen používá starší verzi aplikace Signal. Novou skupinu s ním můžete vytvořit, až si aktualizuje Signal, případně jej před vytvořením skupiny odstraňte. %@";
+
+/* Indicates that a new group cannot be created because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_N" = "Bude vytvořena starší skupina, protože %1$@ členů využívá starou verzi Signalu. Můžete vytvořit skupinu nového typu poté, co si tito členové aktualizují Signal, případně je odstraňte před tím, než skupinu vytvoříte. %2$@";
+
 /* Title for alert that explains that a new group will be a legacy group because 1 member does not support v2 groups. */
-"GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_1" = "Bude vytvořena starší skupina, protože 1 člen využívá starou verzi Signalu. Můžete vytvořit skupinu nového typu poté co si tento člen aktualizuje Signal nebo jej odstranit předtím než skupinu vytvoříte.";
+"GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_1" = "Bude vytvořena starší skupina, protože 1 člen využívá starou verzi Signalu. Můžete vytvořit skupinu nového typu poté, co si tento člen aktualizuje Signal, případně jej odstraňte před tím, než skupinu vytvoříte.";
 
 /* Title for alert that explains that a new group will be a legacy group because multiple members do not support v2 groups. Embeds {{ the number of members which do not support v2 groups. }} */
-"GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_N_FORMAT" = "Bude vytvořena starší skupina, protože %@ členů využívá starou verzi Signalu. Můžete vytvořit skupinu nového typu poté co si tito členové aktualizují Signal nebo je odstranit předtím než skupinu vytvoříte.";
+"GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_N_FORMAT" = "Bude vytvořena starší skupina, protože %@ členů využívá starou verzi Signalu. Můžete vytvořit skupinu nového typu poté, co si tito členové aktualizují Signal, případně je odstraňte před tím, než skupinu vytvoříte.";
 
 /* Indicates that a new group will be a legacy group because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_1" = "1 člen nepodporuje skupiny nového typu, tato skupina proto bude ve starší verzi. %@";
 
 /* Indicates that a new group will be a legacy group because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "%1$@členů nepodporuje skupiny nového typu, tato skupina proto bude ve starší verzi. %2$@";
+"GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "%1$@ členů nepodporuje skupiny nového typu, tato skupina proto bude ve starší verzi. %2$@";
 
 /* Brief explanation of legacy groups. Embeds {{ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "Toto je starší skupina. Pro přístup k vlastnostem jako skupinoví administrátoři založte skupinu nového typu. %@";
+"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "Toto je starší skupina. Funkce jako správci skupin jsou dostupné pouze pro nové skupiny. %@";
+
+/* Indicates that a legacy group can't be upgraded because some members can't be migrated. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_MEMBERS_CANT_BE_MIGRATED_FORMAT" = "Tato starší skupina ještě není připravena na aktualizaci na novou skupinu. %@.";
+
+/* Indicates that a legacy group can't be upgraded because it has too many members. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_TOO_MANY_MEMBERS_FORMAT" = "Tuto starší verzi skupiny nelze aktualizovat na novou skupinu, protože je příliš velká. %@.";
+
+/* Explanation of legacy groups. Embeds {{ an \"upgrade\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_WITH_UPGRADE_OFFER_FORMAT" = "Toto je starší verze skupiny. Pro přístup k novým funkcím jako @zmínky a správci, %@.";
+
+/* Title for the the 'dropped group member' banner. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_1" = "1 člen nemohl být znovu přidán do nové skupiny. Chcete ho přidat nyní?";
+
+/* Format for the title for the the 'dropped group members' banner. Embeds: {{ the number of dropped group members }}. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_N_FORMAT" = "%@ členů nemohlo být znovu přidáno do nové skupiny. Chcete je přidat nyní?";
 
 /* Label indicating a legacy group. */
 "GROUPS_LEGACY_GROUP_INDICATOR" = "Starší skupina";
 
-/* A \"learn more\" link with more information about legacy groups. */
-"GROUPS_LEGACY_GROUP_LEARN_MORE_LINK" = "Dozvědět se více";
+/* Indicates that the local user needs to accept an invitation to rejoin the group after a group migration. */
+"GROUPS_LEGACY_GROUP_LOCAL_USER_INVITED" = "Budete muset přijmout pozvánku, abyste se znovu připojili k této skupině, a nebudete přijímat skupinové zprávy, dokud nepřijmete.";
+
+/* Label for the 'migrate' button in the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_MIGRATE_BUTTON" = "Aktualizovat skupinu";
+
+/* Title for the the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_OFFER_BANNER" = "Pro přístup k funkcím jako @zmínky a správci aktualizujete tuto skupinu.";
+
+/* Title for the 'migrated group' alert view. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_ALERT_TITLE" = "Co jsou Nové skupiny?";
+
+/* Explanation of group migration for a migrated group in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_DESCRIPTION" = "Před aktualizací byla uchována veškerá historie zpráv a média.";
+
+/* Explanation of new groups in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_NEW_GROUP_DESCRIPTION" = "Nové skupiny mají funkce jako @zmínky a správce skupin a v budoucnu budou podporovat další funkce.";
+
+/* Title for the 'new groups' alert view. */
+"GROUPS_LEGACY_GROUP_NEW_GROUPS_ALERT_TITLE" = "Nové skupiny";
+
+/* Label for the 'add members' button in the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ADD_MEMBERS_BUTTON" = "Přidat členy";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_1" = "Přidat člena?";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_N" = "Přidat členy?";
+
+/* Label for the 'add members' button in the 're-add dropped groups members' banner. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_BUTTON" = "Přidat členy";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_1" = "Tento člen nemohl být automaticky přidán do nové skupiny, když byla zaktualizována:";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_N" = "Tito členové nemohli být automaticky přidáni do nové skupiny, když byla zaktualizována:";
+
+/* Body text for the second section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_2_BODY" = "Před aktualizací byla uchována veškerá historie zpráv a média.";
+
+/* Body text for the 'dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_1" = "Tento člen byl odebrán ze skupiny a nebude se moci znovu připojit, dokud neupgraduje:";
+
+/* Body text for the 'dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_N" = "Tito členové byli odebráni ze skupiny a nebudou se moci znovu připojit, dokud neupgradují:";
+
+/* Body text for the 'invites member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_1" = "Tento člen bude muset přijmout pozvánku, aby se znovu připojil k této skupině, a dokud ji nepřijme, nebude dostávat skupinové zprávy:";
+
+/* Body text for the 'invites members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_N" = "Tito členové budou muset přijmout pozvánku, aby se znovu připojili k této skupině, a dokud ji nepřijmou, nebudou dostávat skupinové zprávy:";
+
+/* Body text for the 'possibly dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_1" = "Tento člen není způsobilý pro připojení k nové verzi skupiny a bude ze skupiny odstraněn:";
+
+/* Body text for the 'possibly dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_N" = "Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:";
+
+/* Title for the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_TITLE" = "Aktualizovat na novou skupinu";
+
+/* Label for the 'upgrade this group' button in the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_BUTTON" = "Aktualizovat tuto skupinu";
+
+/* Message for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE" = "Tato skupina nyní nemohla být aktualizována na novou skupinu.";
+
+/* Message for error alert indicating the group update failed due to network connectivity. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE_NETWORK" = "Tato skupina nemohla být aktualizována na novou skupinu, protože nejste připojeni k internetu. Zkuste to později.";
+
+/* Title for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_TITLE" = "Aktualizace nemohla být dokončena";
+
+/* Message indicating the group update succeeded. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_SUCCEEDED" = "Aktualizováno na novou skupinu.";
+
+/* An \"upgrade\" link for upgrading legacy groups to new groups. */
+"GROUPS_LEGACY_GROUP_UPGRADE_LINK" = "aktualizovat tuto skupinu";
 
 /* Message for the 'replace group admin' alert. */
 "GROUPS_REPLACE_ADMIN_ALERT_MESSAGE" = "Než opustíte skupinu, vyberte nového administrátora.";
@@ -2045,7 +2369,22 @@
 "GROUPS_REPLACE_ADMIN_ALERT_TITLE" = "Vyberte nového administrátora";
 
 /* Label for the 'replace group admin' button. */
-"GROUPS_REPLACE_ADMIN_BUTTON" = "Vyberte nového administrátora.";
+"GROUPS_REPLACE_ADMIN_BUTTON" = "Vyberte nového administrátora";
+
+/* Format for the alert warning the user that they've reached the recommended limit on how many members can be in a group when creating a new group. Embeds {{ the maximum number of recommended members in a group }}. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_MESSAGE_FORMAT" = "Signal skupiny fungují nejlépe s %@ členy nebo méně. Přidání více členů způsobí zpoždění při odesílání a přijímání zpráv.";
+
+/* Title for alert warning the user that they've reached the recommended limit on how many members can be in a group. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_TITLE" = "Dosažen doporučený limit členů";
+
+/* Message asking the user to confirm that they want to add a member to the group. */
+"GROUPS_TOO_MANY_MEMBERS_CONFIRM" = "Přesto přidat člena?";
+
+/* Label for button that lets the user view the request to join the group. */
+"GROUPS_VIEW_REQUEST_BUTTON" = "Prohlédnout požadavek";
+
+/* Label for button that lets the user view the requests to join the group. */
+"GROUPS_VIEW_REQUESTS_BUTTON" = "Prohlédnout požadavky";
 
 /* Help item allowing the user to file a support request */
 "HELP_CONTACT_US" = "Kontaktujte nás";
@@ -2054,7 +2393,7 @@
 "HELP_SUPPORT_CENTER" = "Centrum uživatelské podpory";
 
 /* Label for 'archived conversations' button. */
-"HOME_VIEW_ARCHIVED_CONVERSATIONS" = "Archived Chats";
+"HOME_VIEW_ARCHIVED_CONVERSATIONS" = "Archivované koverzace";
 
 /* Table cell subtitle label for a conversation the user has blocked. */
 "HOME_VIEW_BLOCKED_CONVERSATION" = "Blokován(a)";
@@ -2075,16 +2414,16 @@
 "HOME_VIEW_FIRST_CONVERSATION_OFFER_3_CONTACTS_FORMAT" = "Někteří z vašich kontaktů jsou již na Signalu, včetně %@, %@ a %@";
 
 /* A label offering to start a new conversation with your contacts, if you have no Signal contacts. */
-"HOME_VIEW_FIRST_CONVERSATION_OFFER_NO_CONTACTS" = "Start your first chat here.";
+"HOME_VIEW_FIRST_CONVERSATION_OFFER_NO_CONTACTS" = "Svou první konverzaci začněte zde.";
 
 /* Table cell subtitle label for a group the user has been added to. {Embeds inviter name} */
-"HOME_VIEW_MESSAGE_REQUEST_ADDED_TO_GROUP_FORMAT" = "%@vás přidal do skupiny.";
+"HOME_VIEW_MESSAGE_REQUEST_ADDED_TO_GROUP_FORMAT" = "%@ vás přidal(a) do skupiny.";
 
 /* Table cell subtitle label for a conversation the user has not accepted. */
 "HOME_VIEW_MESSAGE_REQUEST_CONVERSATION" = "Požadavek na zprávu";
 
 /* Format string when search returns no results. Embeds {{search term}} */
-"HOME_VIEW_SEARCH_NO_RESULTS_FORMAT" = "Nebyly nalezeny žádné výsledky pro „%@“";
+"HOME_VIEW_SEARCH_NO_RESULTS_FORMAT" = "Nebyly nalezeny žádné výsledky pro \"%@\"";
 
 /* Title for the conversation list's 'archive' mode. */
 "HOME_VIEW_TITLE_ARCHIVE" = "Archiv";
@@ -2103,6 +2442,15 @@
 
 /* Momentarily shown to the user when attempting to select more images than is allowed. Embeds {{max number of items}} that can be shared. */
 "IMAGE_PICKER_CAN_SELECT_NO_MORE_TOAST_FORMAT" = "Nemůžete sdílet více než %@ položek.";
+
+/* Button that will present a view for the user to change the photos Signal has access to. */
+"IMAGE_PICKER_CHANGE_PHOTOS" = "Změnit fotografie";
+
+/* Explanation showing that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_EXPLANATION" = "Udělte plný přístup v nastaveních nebo změňte, ke kterým fotografiím může Signal přistupovat.";
+
+/* Title show that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_TITLE" = "Nevidíte své fotografie?";
 
 /* alert title */
 "IMAGE_PICKER_FAILED_TO_PROCESS_ATTACHMENTS" = "Nepodařilo se odeslat přílohu.";
@@ -2126,7 +2474,7 @@
 "IN_CALL_RINGING" = "Vyzvánění…";
 
 /* Call setup status label */
-"IN_CALL_RINGING_AUDIO" = "Audio hovor...";
+"IN_CALL_RINGING_AUDIO" = "Hlasový hovor...";
 
 /* Call setup status label */
 "IN_CALL_RINGING_VIDEO" = "Videohovor...";
@@ -2138,16 +2486,16 @@
 "IN_CALL_TERMINATED" = "Hovor skončil.";
 
 /* Label reminding the user that they are in archive mode. */
-"INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "These chats are archived and will only appear in the Inbox if new messages are received.";
+"INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "Tyto konverzace jsou archivované a zobrazí se mezi doručenými zprávami, pokud budou přijaty nové zprávy.";
 
 /* Message shown in the conversation list when the inbox is empty. */
-"INBOX_VIEW_EMPTY_INBOX" = "Přidejte něco do schránky. Začněte psát přítelům.";
+"INBOX_VIEW_EMPTY_INBOX" = "Zatím žádné konverzace.\nZačněte tím, že napíšete svým přátelům.";
 
 /* info message text in conversation view. {embeds callee name} */
-"INCOMING_CALL_FORMAT" = "%@ vám volal";
+"INCOMING_CALL_FORMAT" = "%@ vám volal(a)";
 
 /* Shown in inbox and conversation after syncing as a placeholder indicating why your message history is missing. */
-"INFO_MESSAGE_SYNCED_THREAD" = "You can send or receive synchronized messages from your phone or iPad.  For your security, chat history isn't transferred to new linked devices.";
+"INFO_MESSAGE_SYNCED_THREAD" = "Můžete posílat a přijímat synchronizované zprávy z vašeho telefonu nebo iPadu. ↵Pro vaši bezpečnost není historie konverzací přenesena na nově připojená zařízení.";
 
 /* Shown in inbox and conversation when a user joins Signal, embeds the new user's {{contact name}} */
 "INFO_MESSAGE_USER_JOINED_SIGNAL_BODY_FORMAT" = "%@ je na Signalu";
@@ -2179,6 +2527,9 @@
 /* Alert warning that sending an invite to multiple users will create a group message whose recipients will be able to see each other. */
 "INVITE_WARNING_MULTIPLE_INVITES_BY_TEXT" = "Pozvání několika uživatelů najednou odešle skupinovou zprávu, jejíž příjemci se navzájem uvidí.";
 
+/* Button to join an active group call */
+"JOIN_CALL_PILL_BUTTON" = "Připojit";
+
 /* Slider label embeds {{TIME_AMOUNT}}, e.g. '2 hours'. See *_TIME_AMOUNT strings for examples. */
 "KEEP_MESSAGES_DURATION" = "Zprávy zmizí za %@.";
 
@@ -2189,13 +2540,13 @@
 "KEY_COMMAND_ALL_MEDIA" = "Přejít na všechna média";
 
 /* A keyboard command to archive the current coversation. */
-"KEY_COMMAND_ARCHIVE" = "Archive Chat";
+"KEY_COMMAND_ARCHIVE" = "Archivovat konverzaci";
 
 /* A keyboard command to open the current conversation's attachment picker. */
 "KEY_COMMAND_ATTACHMENTS" = "Zobrazit přílohy";
 
 /* A keyboard command to open the current conversation's settings. */
-"KEY_COMMAND_CONVERSATION_INFO" = "Go to Chat Info";
+"KEY_COMMAND_CONVERSATION_INFO" = "Přejít na informaci o konverzaci";
 
 /* A keyboard command to focus the current conversation's input field. */
 "KEY_COMMAND_FOCUS_COMPOSER" = "Zaměřit vstupní pole";
@@ -2210,10 +2561,10 @@
 "KEY_COMMAND_NEW_MESSAGE" = "Nová zpráva";
 
 /* A keyboard command to jump to the next conversation in the list. */
-"KEY_COMMAND_NEXT_CONVERSATION" = "Go to Next Chat";
+"KEY_COMMAND_NEXT_CONVERSATION" = "Přejít na následující konverzaci";
 
 /* A keyboard command to jump to the previous conversation in the list. */
-"KEY_COMMAND_PREVIOUS_CONVERSATION" = "Go to Previous Chat";
+"KEY_COMMAND_PREVIOUS_CONVERSATION" = "Přejít na předchozí konverzaci";
 
 /* A keyboard command to begin a search on the conversation list. */
 "KEY_COMMAND_SEARCH" = "Hledat";
@@ -2225,7 +2576,7 @@
 "KEY_COMMAND_STICKERS" = "Zobrazit samolepky";
 
 /* A keyboard command to unarchive the current coversation. */
-"KEY_COMMAND_UNARCHIVE" = "Unarchive Chat";
+"KEY_COMMAND_UNARCHIVE" = "Zrušit archivaci konverzace";
 
 /* Label for the 'learn more' button. */
 "LEARN_MORE" = "Dozvědět se více";
@@ -2246,7 +2597,7 @@
 "LINK_DEVICE_INVALID_CODE_TITLE" = "Připojení zařízení selhalo";
 
 /* confirm the users intent to link a new device */
-"LINK_DEVICE_PERMISSION_ALERT_BODY" = "This device will be able to see your groups and contacts, access your chats, and send messages in your name.";
+"LINK_DEVICE_PERMISSION_ALERT_BODY" = "Toto zařízení uvidí vaše skupiny a kontakty, bude mít přístup k vaším konverzacím a bude moct posílat zprávy vašim jménem.";
 
 /* confirm the users intent to link a new device */
 "LINK_DEVICE_PERMISSION_ALERT_TITLE" = "Připojit toto zařízení?";
@@ -2281,6 +2632,24 @@
 /* Title for link previews megaphone */
 "LINKPREVIEWS_MEGAPHONE_TITLE" = "Náhled pro jakýkoliv odkaz";
 
+/* Body for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_BODY" = "Pro přenesení vašeho Signal účtu na obou zařízeních povolte přístup k lokální síti.";
+
+/* A button asking the user if they need further help getting their transfer working. */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_NEED_HELP" = "Potřebujete pomoc?";
+
+/* First step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_ONE" = "Na obou zařízeních otevřete nastavení.";
+
+/* Third step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_THREE" = "Zapněte \"Lokální síť\"";
+
+/* Second step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_TWO" = "Otevřete Signal";
+
+/* Title for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_TITLE" = "Zapněte přístup k lokální síti";
+
 /* A string indicating that the user can search for a location */
 "LOCATION_PICKER_SEARCH_PLACEHOLDER" = "Hledejte podle jména nebo adresy";
 
@@ -2292,6 +2661,9 @@
 
 /* Title for the 'long text message' view. */
 "LONG_TEXT_VIEW_TITLE" = "Zpráva";
+
+/* A string describing that the user has many groups in common with another user. Embeds {{common group count}} */
+"MANY_GROUPS_IN_COMMON" = "%@ společných skupin";
 
 /* nav bar button item */
 "MEDIA_DETAIL_VIEW_ALL_MEDIA_BUTTON" = "Všechna média";
@@ -2307,6 +2679,12 @@
 
 /* Confirmation button text to delete selected media message from the gallery */
 "MEDIA_GALLERY_DELETE_SINGLE_MESSAGE" = "Smazat zprávu";
+
+/* Format for an indicator of the number of image items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_IMAGE_COUNT_FORMAT" = "%@ fotek";
+
+/* Format for an indicator of the number of image or video items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_MIXED_COUNT_FORMAT" = "%@ položek";
 
 /* Format for the 'more items' indicator for media galleries. Embeds {{the number of additional items}}. */
 "MEDIA_GALLERY_MORE_ITEMS_FORMAT" = "+%@";
@@ -2330,7 +2708,7 @@
 "MESSAGE_ACTION_DELETE_FOR_EVERYONE" = "Smazat pro všechny";
 
 /* A one-time confirmation that you want to delete for everyone */
-"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "This message will be permanently deleted for everyone in the chat. Members will be able to see that you deleted a message.";
+"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "Tato zpráva bude smazána pro všechny členy konverzace, pokud mají nainstalovanou poslední verzi aplikace Signal. Členové konverzace uvidí, že jste zprávu smazali.";
 
 /* The title for the action sheet asking who the user wants to delete the message for. */
 "MESSAGE_ACTION_DELETE_FOR_TITLE" = "Pro koho chcete smazat tuto zprávu?";
@@ -2354,7 +2732,7 @@
 "MESSAGE_ACTION_REPLY" = "Odpovědět na tuto zprávu";
 
 /* Action sheet accessibility label */
-"MESSAGE_ACTION_SELECT_MESSAGE" = "Vícenásobný výběr";
+"MESSAGE_ACTION_SELECT_MESSAGE" = "Hromadný výběr";
 
 /* Action sheet button title */
 "MESSAGE_ACTION_SHARE_MEDIA" = "Sdílet média";
@@ -2369,7 +2747,7 @@
 "MESSAGE_METADATA_VIEW_ATTACHMENT_FILE_SIZE" = "Velikost souboru";
 
 /* Label for the MIME type of attachments in the 'message metadata' view. */
-"MESSAGE_METADATA_VIEW_ATTACHMENT_MIME_TYPE" = "MIME Typ";
+"MESSAGE_METADATA_VIEW_ATTACHMENT_MIME_TYPE" = "MIME typ";
 
 /* Status label for messages which are delivered. */
 "MESSAGE_METADATA_VIEW_MESSAGE_STATUS_DELIVERED" = "Doručeno";
@@ -2432,10 +2810,10 @@
 "MESSAGE_REQUEST_DELETE_CONVERSATION_ACTION" = "Smazat";
 
 /* Action sheet message to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_MESSAGE" = "This chat will be deleted from all of your devices.";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_MESSAGE" = "Tato konverzace bude smazána ze všech vašich zařízení.";
 
 /* Action sheet title to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_TITLE" = "Delete Chat?";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_TITLE" = "Odstranit chat?";
 
 /* Action sheet action to confirm deleting a group via a message request. */
 "MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_ACTION" = "Smazat a odejít";
@@ -2445,6 +2823,27 @@
 
 /* Action sheet title to confirm deleting a group via a message request. */
 "MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_TITLE" = "Smazat a opustit skupinu?";
+
+/* Banner label notifying user that a new message is from a user with the same name as an existing contact */
+"MESSAGE_REQUEST_NAME_COLLISON_BANNER_LABEL" = "Požadavky důkladně ověřte. Signal našel jiný kontakt se stejným jménem.";
+
+/* A header string above a known contact's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_CONTACT_HEADER" = "Váš kontakt";
+
+/* A header string informing the user about name collisions in a message request */
+"MESSAGE_REQUEST_NAME_COLLISON_HEADER" = "Pokud si nejste jisti, od koho požadavek pochází, zkontrolujte kontakty níže a proveďte akci.";
+
+/* A header string above the requester's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_REQUESTER_HEADER" = "Požadavek";
+
+/* A title string for a view that allows a user to review name collisions for an incoming message request */
+"MESSAGE_REQUEST_NAME_COLLISON_TITLE" = "Prověřit požadavek";
+
+/* A button that updates a known contact's information to resolve a name collision */
+"MESSAGE_REQUEST_NAME_COLLISON_UPDATE_CONTACT_ACTION" = "Aktualizovat kontakt";
+
+/* Button to allow user to review known name collisions with an incoming message request */
+"MESSAGE_REQUEST_REVIEW_NAME_COLLISION" = "Prověřit požadavek";
 
 /* A button used to accept a user on an incoming message request. */
 "MESSAGE_REQUEST_VIEW_ACCEPT_BUTTON" = "Přijmout";
@@ -2461,17 +2860,17 @@
 /* A prompt notifying that the user must unblock this group to continue. */
 "MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT_V2" = "Chcete odblokovat tuto skupinu? Dokud bude blokovaná, členové se nedozví, že jste viděli jejich zprávy.";
 
+/* A button used to continue a conversation and share your profile. */
+"MESSAGE_REQUEST_VIEW_CONTINUE_BUTTON" = "Pokračovat";
+
 /* incoming message request button text which deletes a conversation */
 "MESSAGE_REQUEST_VIEW_DELETE_BUTTON" = "Smazat";
 
 /* A prompt notifying that the user must share their profile with this conversation. Embeds {{contact name}}. */
-"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "You must share your profile to continue your chat with %@.";
+"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "Pokračovat v konverzaci s %@ a sdílet s nimi vaše jméno a fotografii?";
 
 /* A prompt notifying that the user must share their profile with this group. */
-"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "You must share your profile to continue your chat with this group.";
-
-/* A prompt for the user to accept or decline an invite to a group. Embeds {{name of user who invited you}}. */
-"MESSAGE_REQUEST_VIEW_GROUP_INVITE_PROMPT_FORMAT" = "%@vás pozval do této skupiny. Chcete aby vám její členové mohli posílat zprávy?";
+"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "Pokračovat v konverzaci s touto skupinou a sdílet vaše jméno a fotografii s jejími členy?";
 
 /* A prompt asking if the user wants to accept a conversation invite. Embeds {{contact name}}. */
 "MESSAGE_REQUEST_VIEW_NEW_CONTACT_PROMPT_FORMAT" = "Dovolit %@ zasílat vám zprávy a sdílet vaše jméno a fotografii? Dokud je neodblokujete, tak žádné zprávy neobdržíte.";
@@ -2482,9 +2881,6 @@
 /* A prompt asking if the user wants to accept a group invite. */
 "MESSAGE_REQUEST_VIEW_NEW_GROUP_PROMPT_V2" = "Chcete se připojit k této skupině? Dokud tak neučiníte, členové se nedozví, že jste viděli jejich zprávy.";
 
-/* A button used to share your profile with an existing thread. */
-"MESSAGE_REQUEST_VIEW_SHARE_PROFILE_BUTTON" = "Sdílet profil";
-
 /* A button used to unlock a blocked conversation. */
 "MESSAGE_REQUEST_VIEW_UNBLOCK_BUTTON" = "Odblokovat";
 
@@ -2492,22 +2888,10 @@
 "MESSAGE_REQUESTS_CANCEL_REQUEST_BUTTON" = "Zrušit požadavek";
 
 /* Title for the confirmation alert when cancelling your request to join the group. */
-"MESSAGE_REQUESTS_CANCEL_REQUEST_CONFIRM_TITLE" = "Cancel your request to join this group?";
+"MESSAGE_REQUESTS_CANCEL_REQUEST_CONFIRM_TITLE" = "Zrušit požadavek na připojení k této skupině?";
 
 /* Indicator that you have requested to join this group. */
-"MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "Your request to join has been sent to the group admin. You’ll be notified when they take action.";
-
-/* Header for message requests splash screen */
-"MESSAGE_REQUESTS_NAMES_SPLASH_TITLE" = "Představujeme žádosti o zprávu";
-
-/* Button to start a create profile name flow from the one time splash screen that appears after upgrading */
-"MESSAGE_REQUESTS_SPLASH_ADD_PROFILE_NAME_BUTTON" = "Přidat název profilu";
-
-/* Body text for message requests splash screen */
-"MESSAGE_REQUESTS_SPLASH_BODY" = "You can now choose to ”Accept” or ”Delete“ a new chat. Names let people know who’s messaging them.";
-
-/* Toast indicating that a profile name has been created. */
-"MESSAGE_REQUESTS_SPLASH_MEGAPHONE_TOAST" = "Vaše profilové jméno bylo uloženo.";
+"MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "Váš požadavek na připojení ke skupině byl zaslán administrátorovi. Budete upozorněn(a), jakmile zareaguje.";
 
 /* message status for message delivered to their recipient. */
 "MESSAGE_STATUS_DELIVERED" = "Doručena";
@@ -2531,7 +2915,7 @@
 "MESSAGE_STATUS_RECIPIENT_SKIPPED" = "Přeskočeno";
 
 /* Label indicating that a message failed to send. */
-"MESSAGE_STATUS_SEND_FAILED" = "Odesílání selhalo.";
+"MESSAGE_STATUS_SEND_FAILED" = "Odesílání selhalo";
 
 /* message status while message is sending. */
 "MESSAGE_STATUS_SENDING" = "Odesílaní...";
@@ -2546,7 +2930,7 @@
 "MESSAGE_TEXT_FIELD_PLACEHOLDER" = "Nová zpráva";
 
 /* Indicates that one member of this group conversation is no longer verified. Embeds {{user's name or phone number}}. */
-"MESSAGES_VIEW_1_MEMBER_NO_LONGER_VERIFIED_FORMAT" = "%@ již není ověřený. Pro možnosti klepněte.";
+"MESSAGES_VIEW_1_MEMBER_NO_LONGER_VERIFIED_FORMAT" = "%@ již není označen(a) jako ověřený. Pro možnosti klepněte.";
 
 /* Indicates that this 1:1 conversation is no longer verified. Embeds {{user's name or phone number}}. */
 "MESSAGES_VIEW_CONTACT_NO_LONGER_VERIFIED_FORMAT" = "%@ již není označen(a) jako ověřený. Pro možnosti klepněte.";
@@ -2591,7 +2975,7 @@
 "MULTIDEVICE_PAIRING_MAX_RECOVERY" = "Dosáhl(a) jste maximálního počtu zařízení, které můžete připojit k vašemu účtu. Prosím odstraňte některé ze zařízení a zkuste to znovu.";
 
 /* An explanation of the consequences of muting a thread. */
-"MUTE_BEHAVIOR_EXPLANATION" = "You will not receive notifications for muted chats.";
+"MUTE_BEHAVIOR_EXPLANATION" = "Pro ztlumené konverzace nebudete dostávat oznámení.";
 
 /* Badge indicating that the user is muted. */
 "MUTED_BADGE" = "Ztlumeno";
@@ -2601,6 +2985,18 @@
 
 /* No comment provided by engineer. */
 "NETWORK_ERROR_RECOVERY" = "Zkontrolujte, že jste online a zkuste to znovu.";
+
+/* String representing only the cellular interface */
+"NETWORK_INTERFACE_SET_CELLULAR" = "Pouze mobilní připojení";
+
+/* String representing the 'never' condition of having no supported network interfaces */
+"NETWORK_INTERFACE_SET_NEVER" = "Nikdy";
+
+/* String representing only the wifi interface */
+"NETWORK_INTERFACE_SET_WIFI" = "Pouze WiFi";
+
+/* String representing both wifi and cellular interfaces */
+"NETWORK_INTERFACE_SET_WIFI_CELLULAR" = "WiFi a mobilní data";
 
 /* A label the cell that lets you add a new member to a group. */
 "NEW_CONVERSATION_FIND_BY_PHONE_NUMBER" = "Najít podle telefonního čísla";
@@ -2619,6 +3015,9 @@
 
 /* Error indicating that a new group could not be created due to network connectivity problems. */
 "NEW_GROUP_CREATION_FAILED_DUE_TO_NETWORK" = "Nová skupina nemohla být vytvořena. Zkontrolujte vaše připojení k internetu a zkuste to znovu.";
+
+/* Indicates that a group member does not support New Groups. */
+"NEW_GROUP_CREATION_MEMBER_DOES_NOT_SUPPORT_NEW_GROUPS" = "Nepodporuje nové skupiny";
 
 /* Message for error alert indicating that a group name is required. */
 "NEW_GROUP_CREATION_MISSING_NAME_ALERT_MESSAGE" = "Jméno skupiny je povinné.";
@@ -2659,6 +3058,9 @@
 /* Label for a button that lets users search for contacts by phone number */
 "NO_CONTACTS_SEARCH_BY_PHONE_NUMBER" = "Najít kontakty pomocí telefonního čísla";
 
+/* A string describing that the user has no groups in common with another user */
+"NO_GROUPS_IN_COMMON" = "Žádné společné skupiny";
+
 /* Explanation of how to see a conversation. */
 "NO_SELECTED_CONVERSATION_DESCRIPTION" = "Vyberte si kontakt nebo skupinu a začněte si povídat.";
 
@@ -2669,13 +3071,13 @@
 "NON_CONTACT_TABLE_CELL_NEW_MESSAGE" = "Nová zpráva pro:";
 
 /* A string asking the user if they'd like to invite a number to signal via SMS. */
-"NON_CONTACT_TABLE_CELL_SEND_SMS" = "Nepodařilo se najít uživatele?";
+"NON_CONTACT_TABLE_CELL_SEND_SMS" = "Nepodařilo se najít uživatele. Pozvat přes SMS?";
 
 /* Label for 1:1 conversation with yourself. */
 "NOTE_TO_SELF" = "Poznámka sobě";
 
 /* Lock screen notification text presented after user powers on their device without unlocking. Embeds {{device model}} (either 'iPad' or 'iPhone') */
-"NOTIFICATION_BODY_PHONE_LOCKED_FORMAT" = "Je možné, že byly přijaty nové zprávy zatímco váš %@ byl restartován.";
+"NOTIFICATION_BODY_PHONE_LOCKED_FORMAT" = "Je možné, že byly přijaty nové zprávy, zatímco váš %@ byl restartován.";
 
 /* Body for notification permission action sheet */
 "NOTIFICATION_PERMISSION_ACTION_SHEET_BODY" = "Přijímat notifikace o nových zprávách:";
@@ -2690,7 +3092,7 @@
 "NOTIFICATION_PERMISSION_ACTION_SHEET_STEP_TWO" = "Klepněte na oznámení";
 
 /* Title for notification permission action sheet */
-"NOTIFICATION_PERMISSION_ACTION_SHEET_TITLE" = "Zapnout Notifikace";
+"NOTIFICATION_PERMISSION_ACTION_SHEET_TITLE" = "Povolit notifikace";
 
 /* Snooze action text for contact permission reminder megaphone */
 "NOTIFICATION_PERMISSION_NOT_NOW_ACTION" = "Nyní ne";
@@ -2705,16 +3107,19 @@
 "NOTIFICATION_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "Zapnout Notifikace?";
 
 /* No comment provided by engineer. */
-"NOTIFICATIONS_FOOTER_WARNING" = "Akce zahrnují “Označit jako přečtené,” “Odpovědět,” a “Volat zpět.”";
+"NOTIFICATIONS_FOOTER_WARNING" = "Akce zahrnují \"Označit jako přečtené\", \"Odpovědět\" a \"Zavolat zpět\".";
 
 /* No comment provided by engineer. */
-"NOTIFICATIONS_NONE" = "Beze jména i obsahu";
+"NOTIFICATIONS_NONE" = "Žádné jméno ani obsah";
 
 /* Table cell switch label. When disabled, Signal will not play notification sounds while the app is in the foreground. */
 "NOTIFICATIONS_SECTION_INAPP" = "Zvuky při spuštěné aplikaci";
 
 /* Label for settings UI that allows user to change the notification sound. */
 "NOTIFICATIONS_SECTION_SOUNDS" = "Zvuky";
+
+/* Label for settings UI that allows user to add a new notification sound. */
+"NOTIFICATIONS_SECTION_SOUNDS_ADD_CUSTOM_SOUND" = "Přidat vlastní zvuk...";
 
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SENDER_AND_MESSAGE" = "Jméno, obsah a akce";
@@ -2725,7 +3130,7 @@
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SHOW" = "Zobrazit";
 
-/* No comment provided by engineer. */
+/* Label for the 'ok' button. */
 "OK" = "OK";
 
 /* Label indicating that the 2fa pin is exhausted in the 'onboarding 2fa' view. */
@@ -2780,7 +3185,7 @@
 "ONBOARDING_MODE_SWITCH_TITLE_PROVISIONING" = "Registrovat tento iPad";
 
 /* header text indicating to the user they're switching from registering to linking flow */
-"ONBOARDING_MODE_SWITCH_TITLE_REGISTERING" = "Přidružit tento iPhone";
+"ONBOARDING_MODE_SWITCH_TITLE_REGISTERING" = "Propojit tento iPhone";
 
 /* warning to the user that registering an ipad is not recommended */
 "ONBOARDING_MODE_SWITCH_WARNING_PROVISIONING" = "Registrací tohoto iPadu deaktivujete Signal na jakémkoliv jiném zařízení aktuálně registrovaném na stejné telefonní číslo.";
@@ -2792,22 +3197,28 @@
 "ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "Povolit oprávnění";
 
 /* Explanation in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_EXPLANATION" = "Notifications let you see when messages arrive and receive updates about new chat activity.";
+"ONBOARDING_PERMISSIONS_EXPLANATION" = "Povolení oznámení a kontaktů vám umožní zjistit, když zprávy dorazí, a pomůže vám najít lidi, které znáte. Kontakty jsou šifrovány, takže služba Signal je nemůže vidět.";
 
 /* Title of the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_TITLE" = "Získat zprávu";
+"ONBOARDING_PERMISSIONS_TITLE" = "Povolit oprávnění";
 
 /* Explanation of the 'onboarding phone number discoverability' view. Embeds {user phone number} */
-"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "Choose who can find you on Signal with your phone number %@";
+"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "Vyberte, kdo vás může v aplikaci Signal najít podle vašeho telefonního čísla %@";
 
 /* Title of the 'onboarding phone number discoverability' view. */
-"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Who can find you with your number?";
+"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Kdo vás může najít podle vašeho čísla?";
+
+/* Placeholder string for phone number field during registration */
+"ONBOARDING_PHONE_NUMBER_PLACEHOLDER" = "Vaše telefonní číslo";
+
+/* Label indicating that registration has been ratelimited. Embeds {{remaining time string}}. */
+"ONBOARDING_PHONE_NUMBER_RATE_LIMIT_WARNING_FORMAT" = "Počkejte prosím pár minut, než to zkusíte znovu. (%@)";
 
 /* Title of the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_TITLE" = "Začněte zadáním telefoního čísla";
+"ONBOARDING_PHONE_NUMBER_TITLE" = "Zadejte vaše tel. číslo";
 
 /* Label indicating that the phone number is invalid in the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "Neplatné číslo";
+"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "Neplatné telefonní číslo. Pro registraci zadejte prosím platné telefonní číslo.";
 
 /* Explanation of the 'onboarding pin attempts exhausted' view when reglock is disabled. */
 "ONBOARDING_PIN_ATTEMPTS_EXHAUSTED_EXPLANATION" = "Došly vám pokusy pro uhodnutí PIN, ale stále můžete ke svému účtu Signal přistupovat, pokud si vytvoříte nový PIN. Z důvodu ochrany vašeho soukromí a bezpečnosti bude váš účet obnoven bez uložených profilových informací a nastavení.";
@@ -2833,6 +3244,15 @@
 /* Title of the 'onboarding PIN' view. */
 "ONBOARDING_PIN_TITLE" = "Zadejte váš PIN";
 
+/* Title label for profile creation step of onboarding */
+"ONBOARDING_PROFILE_CREATION_TITLE" = "Váš profil";
+
+/* Placeholder text for the family name field of the profile creation view. */
+"ONBOARDING_PROFILE_FAMILY_NAME_FIELD" = "Příjmení (volitelné)";
+
+/* Placeholder text for the given name field of the profile creation view. */
+"ONBOARDING_PROFILE_GIVEN_NAME_FIELD" = "Křestní jméno (povinné)";
+
 /* Link to the 'terms and privacy policy' in the 'onboarding splash' view. */
 "ONBOARDING_SPLASH_TERM_AND_PRIVACY_POLICY" = "Smluvní podmínky a zásady ochrany osobních údajů";
 
@@ -2842,38 +3262,29 @@
 /* Label for the link that lets users change their phone number in the onboarding views. */
 "ONBOARDING_VERIFICATION_BACK_LINK" = "Špatné číslo?";
 
-/* Format for the label of the 'sent code' label of the 'onboarding verification' view. Embeds {{the time until the code can be resent}}. */
-"ONBOARDING_VERIFICATION_CODE_COUNTDOWN_FORMAT" = "Neobdržel(a) jsem kód (dostupné za %@)";
+/* Label for button to perform verification with a phone call. */
+"ONBOARDING_VERIFICATION_CALL_ME_BUTTON" = "Zavolejte mi";
 
-/* action sheet item shown after a number of failures to receive a verificaiton SMS during registration */
-"ONBOARDING_VERIFICATION_EMAIL_SIGNAL_SUPPORT" = "Kontaktujte podporu Signalu";
+/* Format string for button counting down time until phone call verification can be performed. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_CALL_ME_COUNTDOWN_FORMAT" = "Zavolejte mi za %@";
+
+/* Label for a progress spinner currently validating code */
+"ONBOARDING_VERIFICATION_CODE_VALIDATION_PROGRESS_LABEL" = "Ověřuji kód...";
 
 /* Label indicating that the verification code is incorrect in the 'onboarding verification' view. */
 "ONBOARDING_VERIFICATION_INVALID_CODE" = "Tento kód je nesprávný";
 
-/* Label for link that can be used when the original code did not arrive. */
-"ONBOARDING_VERIFICATION_ORIGINAL_CODE_MISSING_LINK" = "Neobdržel(a) jsem kód";
+/* Label for button to resend SMS verification code. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_BUTTON" = "Znovu odeslat kód";
 
-/* Message for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_MESSAGE" = "Ujistěte se prosím, že jste připojen(a) k mobilní síti a můžete přijímat SMS zprávy.";
-
-/* Title for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_TITLE" = "Žádný kód?";
-
-/* Label for the 'resend code by SMS' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_SMS_BUTTON" = "Znovu odeslat kód";
-
-/* Label for the 'resend code by voice' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_VOICE_BUTTON" = "Místo toho mi zavolejte";
-
-/* Label for link that can be used when the resent code did not arrive. */
-"ONBOARDING_VERIFICATION_RESENT_CODE_MISSING_LINK" = "Stále žádný kód?";
+/* Format string for button counting down time until SMS code can be resent. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_COUNTDOWN_FORMAT" = "Znovu odeslat kód za %@";
 
 /* Format for the title of the 'onboarding verification' view. Embeds {{the user's phone number}}. */
 "ONBOARDING_VERIFICATION_TITLE_DEFAULT_FORMAT" = "Zadejte kód, který jsme odeslali na %@";
 
-/* Format for the title of the 'onboarding verification' view after the verification code has been resent. Embeds {{the user's phone number}}. */
-"ONBOARDING_VERIFICATION_TITLE_RESENT_FORMAT" = "Právě jsme znovu odeslali kód na %@";
+/* Title label for the onboarding verification page */
+"ONBOARDING_VERIFICATION_TITLE_LABEL" = "Ověřovací kód";
 
 /* Button text which opens the settings app */
 "OPEN_SETTINGS_BUTTON" = "Nastavení";
@@ -2890,53 +3301,47 @@
 /* info message text in conversation view. {embeds callee name} */
 "OUTGOING_CALL_FORMAT" = "Volali jste %@";
 
-/* Error indicating that a PDF could not be displayed. */
-"PDF_VIEW_COULD_NOT_RENDER" = "Nepodařilo se zobrazit PDF";
-
-/* Navbar title for for PDF view. */
-"PDF_VIEW_TITLE" = "PDF";
-
 /* Title of 'accept member request to join group' button. */
 "PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_BUTTON" = "Přidat do skupiny";
 
 /* Title of 'accept member request to join group' confirmation alert. Embeds {{ the name of the requesting group member. }}. */
-"PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Add “%@” to the group?";
+"PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Přidat \"%@\" do skupiny?";
 
 /* Title of 'deny member request to join group' button. */
-"PENDING_GROUP_MEMBERS_DENY_REQUEST_BUTTON" = "Deny Request";
+"PENDING_GROUP_MEMBERS_DENY_REQUEST_BUTTON" = "Zamítnout požadavek";
 
 /* Title of 'deny member request to join group' confirmation alert. Embeds {{ the name of the requesting group member. }}. */
-"PENDING_GROUP_MEMBERS_DENY_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Deny request from “%@”?";
+"PENDING_GROUP_MEMBERS_DENY_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Zamítnout požadavek od \"%@\"?";
 
 /* Format for label indicating the a group member has invited 1 other user to the group. Embeds {{ the name of the inviting group member. }}. */
-"PENDING_GROUP_MEMBERS_MEMBER_INVITED_1_USER_FORMAT" = "%@pozval 1 osobu.";
+"PENDING_GROUP_MEMBERS_MEMBER_INVITED_1_USER_FORMAT" = "%@ pozval(a) 1 osobu";
 
 /* Format for label indicating the a group member has invited N other users to the group. Embeds {{ %1$@ name of the inviting group member, %2$@ the number of users they have invited. }}. */
-"PENDING_GROUP_MEMBERS_MEMBER_INVITED_N_USERS_FORMAT" = "%1$@pozval %2$@lidí";
+"PENDING_GROUP_MEMBERS_MEMBER_INVITED_N_USERS_FORMAT" = "%1$@ pozval(a) %2$@ lidí";
 
 /* Label indicating that a group has no pending member requests. */
-"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "There are no pending member requests.";
+"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "Neexistují žádné nevyřízené žádosti o členství.";
 
 /* Label indicating that a group has no pending members. */
 "PENDING_GROUP_MEMBERS_NO_PENDING_MEMBERS" = "Žádné pozvánky";
 
 /* Message indicating that a request to join the group was successfully approved. Embeds {{ the name of the approved user }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_APPROVED_FORMAT" = "Added “%@“.";
+"PENDING_GROUP_MEMBERS_REQUEST_APPROVED_FORMAT" = "Přidali jste \"%@\".";
 
 /* Format for banner indicating that there are pending member requests to join the group. Embeds {{ the number of pending member requests }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_BANNER_FORMAT" = "%@ pending member requests.";
+"PENDING_GROUP_MEMBERS_REQUEST_BANNER_FORMAT" = "%@ čekajících žádostí o členství.";
 
 /* Label for the 'view requests' button in the pending member requests banner. */
-"PENDING_GROUP_MEMBERS_REQUEST_BANNER_VIEW_REQUESTS" = "View Requests";
+"PENDING_GROUP_MEMBERS_REQUEST_BANNER_VIEW_REQUESTS" = "Prohlédnout požadavky";
 
 /* Message indicating that a request to join the group was successfully denied. Embeds {{ the name of the denied user }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_DENIED_FORMAT" = "Denied “%@“.";
+"PENDING_GROUP_MEMBERS_REQUEST_DENIED_FORMAT" = "Odmítnut \"%@\".";
 
 /* Format for 'revoke invalid 1 invite' item. */
 "PENDING_GROUP_MEMBERS_REVOKE_INVALID_INVITE_1" = "Zrušit neplatnou pozvánku";
 
 /* Format for 'revoke invalid N invites' item. Embeds {{ the number of invalid invites. }}. */
-"PENDING_GROUP_MEMBERS_REVOKE_INVALID_INVITES_N_FORMAT" = "Zrušit %@neplatných pozvánek";
+"PENDING_GROUP_MEMBERS_REVOKE_INVALID_INVITES_N_FORMAT" = "Zrušit %@ neplatných pozvánek";
 
 /* Title of 'revoke invite' button. */
 "PENDING_GROUP_MEMBERS_REVOKE_INVITE_1_BUTTON" = "Zrušit pozvání";
@@ -2945,7 +3350,7 @@
 "PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_1_FORMAT" = "Zrušit pozvánku do skupiny od “%@“?";
 
 /* Format for title of 'revoke invite' confirmation alert. Embeds {{ %1$@ the number of users they have invited, %2$@ name of the inviting group member. }}. */
-"PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_N_FORMAT" = "Zrušit %1$@pozvánek odeslaných “%2$@“?";
+"PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_N_FORMAT" = "Zrušit %1$@ pozvánek odeslaných “%2$@“?";
 
 /* Title of 'revoke invites' button. */
 "PENDING_GROUP_MEMBERS_REVOKE_INVITE_N_BUTTON" = "Zrušit pozvánky";
@@ -2957,7 +3362,7 @@
 "PENDING_GROUP_MEMBERS_SECTION_FOOTER_INVITES_FROM_OTHER_MEMBERS" = "Podrobnosti o lidech pozvaných jinými členy skupiny se nezobrazují. Pokud se pozvaní lidé rozhodnou připojit, jejich informace budou od té doby se skupinou sdíleny. Dokud se nepřipojí, neuvidí žádné zprávy v rámci skupiny.";
 
 /* Footer for the 'pending member requests' section of the 'member requests and invites' view. Embeds {{ the name of the group }}. */
-"PENDING_GROUP_MEMBERS_SECTION_FOOTER_PENDING_MEMBER_REQUESTS_FORMAT" = "People on this list are attempting to join “%@” via the group link.";
+"PENDING_GROUP_MEMBERS_SECTION_FOOTER_PENDING_MEMBER_REQUESTS_FORMAT" = "Lidé na tomto seznamu se pokouší připojit k \"%@\" pomocí skupinového odkazu.";
 
 /* Title for the 'invalid invites' section of the 'member requests and invites' view. */
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_INVALID_INVITES" = "Neplatné pozvánky";
@@ -2966,10 +3371,10 @@
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_INVITES_FROM_OTHER_MEMBERS" = "Pozvánky od ostatních členů skupiny";
 
 /* Title for the 'pending member requests' section of the 'member requests and invites' view. */
-"PENDING_GROUP_MEMBERS_SECTION_TITLE_PENDING_MEMBER_REQUESTS" = "Pending Member Requests";
+"PENDING_GROUP_MEMBERS_SECTION_TITLE_PENDING_MEMBER_REQUESTS" = "Čekající žádosti o členství";
 
 /* Title for the 'people you invited' section of the 'member requests and invites' view. */
-"PENDING_GROUP_MEMBERS_SECTION_TITLE_PEOPLE_YOU_INVITED" = "Lidé, které jste pozval";
+"PENDING_GROUP_MEMBERS_SECTION_TITLE_PEOPLE_YOU_INVITED" = "Lidé, které jste pozval(a)";
 
 /* Label for view-once messages that have invalid content. */
 "PER_MESSAGE_EXPIRATION_INVALID_CONTENT" = "Chyba při zpracování příchozí zprávy";
@@ -2996,37 +3401,37 @@
 "PER_MESSAGE_EXPIRATION_VIEWED" = "Zobrazeno";
 
 /* A user friendly name for the 'everybody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY" = "Everybody";
+"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY" = "Všichni";
 
 /* A user friendly description of the 'everybody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY_DESCRIPTION" = "Anyone who has your phone number in their contacts will see you as a contact on Signal. Others will be able to find you in Search.";
+"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY_DESCRIPTION" = "Kdokoli, kdo má vaše telefonní číslo ve svých kontaktech, vás v aplikaci Signal uvidí jako kontakt. Ostatní vás budou moci najít ve vyhledávání.";
 
 /* A user friendly name for the 'nobody' phone number discoverability mode. */
 "PHONE_NUMBER_DISCOVERABILITY_NOBODY" = "Nikdo";
 
 /* A user friendly description of the 'nobody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_NOBODY_DESCRIPTION" = "Nobody on Signal will be able to find you with your phone number. You won’t be visible as contact for people who have your phone number in their contacts and others won’t be able to find you with your phone number in search.";
+"PHONE_NUMBER_DISCOVERABILITY_NOBODY_DESCRIPTION" = "Nikdo v aplikaci Signal vás nebude moci najít podle vašeho telefonního čísla. Nebudete vidiltený jako kontakt pro lidi, kteří vá mají ve svých kontatech a ostatní vás nebudou moci najít podle vašeho telefonního čísla.";
 
 /* A format for a label showing an example phone number. Embeds {{the example phone number}}. */
 "PHONE_NUMBER_EXAMPLE_FORMAT" = "Příklad: %@";
 
 /* A user friendly name for the 'contacts only' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_CONTACTS_ONLY" = "My Contacts";
+"PHONE_NUMBER_SHARING_CONTACTS_ONLY" = "Moje kontakty";
 
 /* A user friendly description of the 'contacts only' phone number sharing mode. */
 "PHONE_NUMBER_SHARING_CONTACTS_ONLY_DESCRIPTION" = "Pouze vaše kontakty budou v Signalu vidět vaše telefonní číslo.";
 
 /* A user friendly name for the 'everybody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_EVERYBODY" = "Everybody";
+"PHONE_NUMBER_SHARING_EVERYBODY" = "Všichni";
 
 /* A user friendly description of the 'everybody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_EVERYBODY_DESCRIPTION" = "Your phone number will be visible to people and groups you message. People who have your number in their phone contacts will also see it on Signal.";
+"PHONE_NUMBER_SHARING_EVERYBODY_DESCRIPTION" = "Vaše telefonní číslo bude viditelné pro všechny lidi a skupiny, kterým pošlete zprávu. Lidé, kteří mají vaše číslo ve svých telefonních kontaktech, jej uvidí v aplikaci Signal.";
 
 /* A user friendly name for the 'nobody' phone number sharing mode. */
 "PHONE_NUMBER_SHARING_NOBODY" = "Nikdo";
 
 /* A user friendly description of the 'nobody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_NOBODY_DESCRIPTION" = "Nobody will see your phone number on Signal.";
+"PHONE_NUMBER_SHARING_NOBODY_DESCRIPTION" = "Nikdo vaše telefonní číslo v aplikaci Signal neuvidí.";
 
 /* Format for phone number label with an index. Embeds {{Phone number label (e.g. 'home')}} and {{index, e.g. 2}}. */
 "PHONE_NUMBER_TYPE_AND_INDEX_NAME_FORMAT" = "%@ %@";
@@ -3077,7 +3482,7 @@
 "PHOTO_PICKER_UNNAMED_COLLECTION" = "Album beze jména";
 
 /* Pressing this button pins a thread */
-"PIN_ACTION" = "Pin";
+"PIN_ACTION" = "Připnout";
 
 /* Label indicating the user must use at least 4 characters */
 "PIN_CREATION_ALPHANUMERIC_HINT" = "PIN musí mít alespoň 4 znaky";
@@ -3140,7 +3545,7 @@
 "PIN_CREATION_REGLOCK_CONFIRMATION_ACTION" = "Vypnout";
 
 /* Message of the 'pin disable' reglock action sheet. */
-"PIN_CREATION_REGLOCK_CONFIRMATION_MESSAGE" = "Pro vypnutí PIN, musíte nejdříve vypnout zámek registrace.";
+"PIN_CREATION_REGLOCK_CONFIRMATION_MESSAGE" = "Pro vypnutí PIN musíte nejdříve vypnout zámek registrace.";
 
 /* Title of the 'pin disable' reglock action sheet. */
 "PIN_CREATION_REGLOCK_CONFIRMATION_TITLE" = "Vypnout zámek registrace?";
@@ -3197,7 +3602,7 @@
 "PIN_REMINDER_TOO_SHORT_ERROR" = "PIN musí být aspoň 4 číslice.";
 
 /* An explanation that you have already pinned the maximum number of conversations. */
-"PINNED_CONVERSATION_LIMIT" = "You can only pin up to 4 chats.";
+"PINNED_CONVERSATION_LIMIT" = "Připnout lze nevýše 4 chaty";
 
 /* The title for pinned conversation section on the conversation list */
 "PINNED_SECTION_TITLE" = "Připnuto";
@@ -3242,7 +3647,7 @@
 "PRIVACY_VERIFICATION_FAILED_I_HAVE_WRONG_KEY_FOR_THEM" = "Tohle nevypadá jako vaše bezpečnostní číslo s %@. Ověřujete správný kontakt?";
 
 /* Alert body */
-"PRIVACY_VERIFICATION_FAILED_MISMATCHED_SAFETY_NUMBERS_IN_CLIPBOARD" = "The number in your clipboard doesn't look like the correct safety number for this chat.";
+"PRIVACY_VERIFICATION_FAILED_MISMATCHED_SAFETY_NUMBERS_IN_CLIPBOARD" = "Číslo ve vaší schránce nevypadá jako správné bezpečnostní číslo této konverzace.";
 
 /* Alert body for user error */
 "PRIVACY_VERIFICATION_FAILED_NO_SAFETY_NUMBERS_IN_CLIPBOARD" = "Signal nemohl ve vaší schránce nalézt žádné bezpečnostní číslo. Zkopíroval(a) jste ho správně?";
@@ -3271,14 +3676,50 @@
 /* No comment provided by engineer. */
 "PROCEED_BUTTON" = "Pokračovat";
 
+/* Placeholder text for the bio field of the profile bio view. */
+"PROFILE_BIO_VIEW_BIO_PLACEHOLDER" = "Napište o sobě několik slov...";
+
+/* The 'Be kind' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_BE_KIND" = "Buďte milí";
+
+/* The 'Coffee lover' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_COFFEE_LOVER" = "Milovník kávy";
+
+/* The 'Encrypted' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_ENCRYPTED" = "Šifrováno";
+
+/* The 'free to chat' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_FREE_TO_CHAT" = "K dispozici pro chatování";
+
+/* The 'Speak Freely' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_SPEAK_FREELY" = "Vyjadřujte se svobodně";
+
+/* The 'Taking a break' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_TAKING_A_BREAK" = "Dávám si pauzu";
+
+/* The 'Working on something new' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_WORKING_ON_SOMETHING_NEW" = "Pracuji na něčem novém";
+
+/* Title for the profile bio view. */
+"PROFILE_BIO_VIEW_TITLE" = "Info";
+
+/* Title for the profile bio view. Embeds {{ the number of characters that can be added to the profile bio without hitting the length limit }}. */
+"PROFILE_BIO_VIEW_TITLE_FORMAT" = "O (%@)";
+
 /* The copy rendered in a conversation when someone in your address book changes their profile name. Embeds {contact name}, {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_CONTACT_FORMAT" = "%@ změnil jméno svého profilu z %@ na %@.";
 
 /* The copy rendered in a conversation when someone not in your address book changes their profile name. Embeds {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_NONCONTACT_FORMAT" = "%@ změnil jméno svého profilu na %@.";
 
+/* Button to add a 'bio' to the user's profile in the profile view. */
+"PROFILE_VIEW_ADD_BIO_TO_PROFILE" = "Přidat do profilu";
+
 /* Action Sheet title prompting the user for a profile avatar */
 "PROFILE_VIEW_AVATAR_ACTIONSHEET_TITLE" = "Nastavit profilový obrázek";
+
+/* Header for the 'bio' section of the profile view. */
+"PROFILE_VIEW_BIO_SECTION_HEADER" = "Info";
 
 /* Label for action that clear's the user's profile avatar */
 "PROFILE_VIEW_CLEAR_AVATAR" = "Odebrat fotografii";
@@ -3296,7 +3737,7 @@
 "PROFILE_VIEW_ERROR_GIVEN_NAME_TOO_LONG" = "Vaše křestní jméno je příliš dlouhé.";
 
 /* Default text for the family name field of the profile view. */
-"PROFILE_VIEW_FAMILY_NAME_DEFAULT_TEXT" = "(Nepovinné)";
+"PROFILE_VIEW_FAMILY_NAME_DEFAULT_TEXT" = "(Volitelné)";
 
 /* Label for the family name field of the profile view. */
 "PROFILE_VIEW_FAMILY_NAME_FIELD" = "Příjmení";
@@ -3311,7 +3752,7 @@
 "PROFILE_VIEW_NO_CONNECTION" = "Profil může být aktualizován jen pokud jste připojeni k internetu. ";
 
 /* Description of the user profile. */
-"PROFILE_VIEW_PROFILE_DESCRIPTION" = "Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts, when you initiate or accept new chats, and when you join new groups.";
+"PROFILE_VIEW_PROFILE_DESCRIPTION" = "Váš profil je koncově (end-to-end) šifrován. Váš profil a jeho změny budou viditelné vašim kontaktům a pokud přijmete nebo začnete nové konverzace.";
 
 /* Button to save the profile view in the profile view. */
 "PROFILE_VIEW_SAVE_BUTTON" = "Uložit";
@@ -3377,37 +3818,37 @@
 "REACTION_INCOMING_NOTIFICATION_BODY_FORMAT" = "Na vaši zprávu zareagoval(a) %@";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_ALBUM_BODY_FORMAT" = "Reagoval %@ na vaše album";
+"REACTION_INCOMING_NOTIFICATION_TO_ALBUM_BODY_FORMAT" = "Reagoval(a) %@ na vaše album";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_AUDIO_BODY_FORMAT" = "Reagoval %@na vaše audio";
+"REACTION_INCOMING_NOTIFICATION_TO_AUDIO_BODY_FORMAT" = "Reagoval(a) %@na vaše audio";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_CONTACT_SHARE_BODY_FORMAT" = "Reagoval %@na vaše sdílení kontaktu";
+"REACTION_INCOMING_NOTIFICATION_TO_CONTACT_SHARE_BODY_FORMAT" = "Reagoval(a) %@na vaše sdílení kontaktu";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_FILE_BODY_FORMAT" = "Reagoval %@ na váš soubor";
+"REACTION_INCOMING_NOTIFICATION_TO_FILE_BODY_FORMAT" = "Reagoval(a) %@ na váš soubor";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_GIF_BODY_FORMAT" = "Reagoval %@ na váš GIF";
+"REACTION_INCOMING_NOTIFICATION_TO_GIF_BODY_FORMAT" = "Reagoval(a) %@ na váš GIF";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_PHOTO_BODY_FORMAT" = "Reagoval %@ na vaši fotku";
+"REACTION_INCOMING_NOTIFICATION_TO_PHOTO_BODY_FORMAT" = "Reagoval(a) %@ na vaši fotku";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_STICKER_MESSAGE_BODY_FORMAT" = "Reagoval %@ na vaši nálepku.";
+"REACTION_INCOMING_NOTIFICATION_TO_STICKER_MESSAGE_BODY_FORMAT" = "Reagoval(a) %@ na vaši nálepku";
 
 /* notification body. Embeds {{reaction emoji}} and {{body text}} */
-"REACTION_INCOMING_NOTIFICATION_TO_TEXT_MESSAGE_BODY_FORMAT" = "Reagoval%@ na \"%@\"";
+"REACTION_INCOMING_NOTIFICATION_TO_TEXT_MESSAGE_BODY_FORMAT" = "Reagoval(a) %@ na \"%@\"";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_VIDEO_BODY_FORMAT" = "Reagoval %@ na vaše video";
+"REACTION_INCOMING_NOTIFICATION_TO_VIDEO_BODY_FORMAT" = "Reagoval(a) %@ na vaše video";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_VIEW_ONCE_MESSAGE_BODY_FORMAT" = "Reagoval %@ na vaši hlasovou zprávu";
+"REACTION_INCOMING_NOTIFICATION_TO_VIEW_ONCE_MESSAGE_BODY_FORMAT" = "Reagoval(a) %@ na vaši jednorázovou zprávu";
 
 /* notification body. Embeds {{reaction emoji}} */
-"REACTION_INCOMING_NOTIFICATION_TO_VOICE_MESSAGE_BODY_FORMAT" = "Reagoval %@ na vaši hlasovou zprávu";
+"REACTION_INCOMING_NOTIFICATION_TO_VOICE_MESSAGE_BODY_FORMAT" = "Reagoval(a) %@ na vaši hlasovou zprávu";
 
 /* Text describing the local user in the reaction details pane. */
 "REACTIONS_DETAIL_YOU" = "Vy";
@@ -3425,13 +3866,13 @@
 "REGISTER_2FA_FORGOT_PIN_ALERT_TITLE" = "Potřebujete pomoc?";
 
 /* Alert body for a forgotten SVR (V2) PIN */
-"REGISTER_2FA_FORGOT_SVR_PIN_ALERT_MESSAGE" = "Váš PIN je kód s 4 a více znaky, které mohou být číselné nebo alfanumerické. Pokud zapomenete váš PIN budete muset čekat 7 dnů na přeregistraci vašeho účtu.";
+"REGISTER_2FA_FORGOT_SVR_PIN_ALERT_MESSAGE" = "Váš PIN je kód s 4 a více znaky, které mohou být číselné nebo alfanumerické. Pokud zapomenete váš PIN, budete muset čekat 7 dnů na přeregistraci vašeho účtu.";
 
 /* Alert body for a forgotten SVR (V2) PIN when the user doesn't have reglock */
-"REGISTER_2FA_FORGOT_SVR_PIN_WITHOUT_REGLOCK_ALERT_MESSAGE" = "Váš PIN je 4+ číselný kód, který jste vytvořili a který může být číselný nebo alfanumerický.\n\nPokud si nepamatujete váš PIN, můžete si vytvořit nový. Můžete se zaregistrovat a používat váš účet, ale ztratíte některá uložená nastavení, jako jsou vaše profilové informace.";
+"REGISTER_2FA_FORGOT_SVR_PIN_WITHOUT_REGLOCK_ALERT_MESSAGE" = "Váš PIN je kód s 4 a více znaky, který jste vytvořili a který může být číselný nebo alfanumerický. Pokud si nepamatujete váš PIN, můžete si vytvořit nový. Můžete se zaregistrovat a používat váš účet, ale ztratíte některá uložená nastavení, jako jsou vaše profilové informace.";
 
 /* Alert body for a forgotten V1 PIN */
-"REGISTER_2FA_FORGOT_V1_PIN_ALERT_MESSAGE" = "Váš PIN je číselný kód s 4 a více ciframi. Pokud zapomenete váš PIN, budete muset čekat 7 dnů na přeregistraci vašeho účtu.";
+"REGISTER_2FA_FORGOT_V1_PIN_ALERT_MESSAGE" = "Váš PIN je číselný kód s 4 a více znaky. Pokud zapomenete váš PIN, budete muset čekat 7 dnů na přeregistraci vašeho účtu.";
 
 /* Alert message explaining what happens if you get your pin wrong and have multiple attempts remaining 'two-factor auth pin' with reglock disabled. */
 "REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_PLURAL_FORMAT" = "Zbývá vám  %lu pokusů. Pokud vám pokusy dojdou, můžete si vytvořit nový PIN. Můžete se registrovat a používat váš účet, ale ztratíte některá nastavení, např. informace v profilu.";
@@ -3481,8 +3922,14 @@
 /* alert body during registration */
 "REGISTRATION_ERROR_BLANK_VERIFICATION_CODE" = "Váš účet nemůžeme aktivovat do té doby, než ověříte kód, který jsme vám poslali.";
 
+/* Alert body for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_BODY" = "Pro pokračování zkontrolujte internetové připojení na vašem telefonu a zkuste to znovu.";
+
+/* Alert title for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_TITLE" = "Zkontrolovat připojení";
+
 /* No comment provided by engineer. */
-"REGISTRATION_NON_VALID_NUMBER" = "Tento formát telefonního čísla není podporován, prosím, kontaktujte podporu.";
+"REGISTRATION_NON_VALID_NUMBER" = "Tento formát telefonního čísla není podporován. Prosím, kontaktujte podporu.";
 
 /* Label for the phone number textfield */
 "REGISTRATION_PHONENUMBER_BUTTON" = "Telefonní číslo";
@@ -3494,7 +3941,7 @@
 "REGISTRATION_VERIFICATION_FAILED_TITLE" = "Ověření selhalo";
 
 /* Error message indicating that registration failed due to a missing or incorrect verification code. */
-"REGISTRATION_VERIFICATION_FAILED_WRONG_CODE_DESCRIPTION" = "Čísla, která jste zadal(a) neodpovídají tomu, co jsme poslali. Nechcete to zkontrolovat?";
+"REGISTRATION_VERIFICATION_FAILED_WRONG_CODE_DESCRIPTION" = "Čísla, která jste zadal(a), neodpovídají tomu, co jsme poslali. Nechcete to zkontrolovat?";
 
 /* Error message indicating that registration failed due to a missing or incorrect 2FA PIN. */
 "REGISTRATION_VERIFICATION_FAILED_WRONG_PIN" = "Neplatný PIN zámku registrace.";
@@ -3511,6 +3958,18 @@
 /* Title of alert indicating that users needs to enter a phone number to register. */
 "REGISTRATION_VIEW_NO_PHONE_NUMBER_ALERT_TITLE" = "Žádné telefonní číslo";
 
+/* Message for confirmation alert during phone number registration. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_MESSAGE" = "Ověřovací kód bude odeslán na toto číslo. Je vaše výše uvedené telefonní číslo správné?";
+
+/* Title for confirmation alert during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_TITLE_FORMAT" = "Ověření čísla: %@";
+
+/* A button allowing user to cancel registration and edit a phone number */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_EDIT_BUTTON" = "Upravit";
+
+/* Label for the progress spinner shown during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_SPINNER_LABEL_FORMAT" = "Ověřuji %@...";
+
 /* notification action */
 "REJECT_CALL_BUTTON_TITLE" = "Odmítnout";
 
@@ -3523,8 +3982,32 @@
 /* No comment provided by engineer. */
 "REREGISTER_FOR_PUSH" = "Znovu zaregistrovat oznámení push";
 
+/* Body for research megaphone */
+"RESEARCH_MEGAPHONE_BODY" = "Aby byl Signal nejlepší aplikací pro zasílání zpráv na planetě, rádi bychom získali vaši zpětnou vazbu.";
+
+/* Title for research megaphone */
+"RESEARCH_MEGAPHONE_TITLE" = "Řekněte Signalu, co si myslíte";
+
+/* Text for the research modal footer */
+"RESEARCH_MODAL_FOOTER" = "Anketu pořádá Surveygizmo na zabezpečené doméně surveys.signalusers.org";
+
+/* Button text for declining the research modal */
+"RESEARCH_MODAL_NO_THANKS" = "Ne, díky";
+
+/* Text explaining why the user should take the survey */
+"RESEARCH_MODAL_PLEA" = "<bold>Věříme v soukromí.</bold>\n\nSignal vás nesleduje ani nesbírá vaše data. Abychom Signal vylepšili pro všechny, spoléháme se na zpětnou vazbu uživatelů, <bold>a rádi bychom ji od vás získali</bold>.\n\nPořádáme anketu, abychom porozuměli, jak Signal používáte. Naše anketa neshromažďuje žádná data, která by vás identifikovala. Pokud byste měli zájem sdílet další zpětnou vazbu, budete mít možnost poskytnout kontaktní informace.\n\nPokud máte několik minut a zpětnou vazbu, kterou byste nám chtěli odeslat, budeme moc rádi.";
+
+/* Button text for taking the research survey */
+"RESEARCH_MODAL_TAKE_SURVEY" = "Zúčastnit se průzkumu";
+
+/* Title for the research megaphone modal */
+"RESEARCH_MODAL_TITLE" = "Průzkum Signalu";
+
 /* Generic text for button that retries whatever the last action was. */
 "RETRY_BUTTON_TEXT" = "Zkusit znovu";
+
+/* Button to return to current group call */
+"RETURN_CALL_PILL_BUTTON" = "Návrat";
 
 /* button title to confirm adding a recipient to a group when their safety number has recently changed */
 "SAFETY_NUMBER_CHANGED_CONFIRM_ADD_TO_GROUP_ACTION" = "Přesto přidat do skupiny";
@@ -3560,7 +4043,7 @@
 "SCAN_QR_CODE_VIEW_TITLE" = "Naskenování QR kódu";
 
 /* Indicates a delay of zero seconds, and that 'screen lock activity' will timeout immediately. */
-"SCREEN_LOCK_ACTIVITY_TIMEOUT_NONE" = "Hned";
+"SCREEN_LOCK_ACTIVITY_TIMEOUT_NONE" = "Ihned";
 
 /* Indicates that an unknown error occurred while using Touch ID/Face ID/Phone Passcode. */
 "SCREEN_LOCK_ENABLE_UNKNOWN_ERROR" = "Autentifikaci nelze zpřístupnit.";
@@ -3569,7 +4052,7 @@
 "SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_FAILED" = "Autentifikace neúspěšná.";
 
 /* Indicates that Touch ID/Face ID/Phone Passcode is 'locked out' on this device due to authentication failures. */
-"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_LOCKOUT" = "Příliš mnoho pokusů o autentifikaci. Prosím zkuste později.";
+"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_LOCKOUT" = "Příliš mnoho pokusů o autentifikaci. Prosím, zkuste později.";
 
 /* Indicates that Touch ID/Face ID/Phone Passcode are not available on this device. */
 "SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_NOT_AVAILABLE" = "Pokud chcete používat zámek displeje, nejprve zapněte kódový zámek v nastavení iOS.";
@@ -3590,55 +4073,55 @@
 "SCREEN_LOCK_UNLOCK_SIGNAL" = "Odemknout Signal";
 
 /* This is a contact's name. Replace the name for a more common name in your locale if this sounds too foreign. This should be a unique non-public figure's name. This will have a female profile photo. */
-"SCREENSHOT_NAME_CONTACT_EIGHT" = "Tina Ukuku";
+"SCREENSHOT_NAME_CONTACT_EIGHT" = "Tina Nováková";
 
 /* This is a contact's name. Please keep the nick name Ali and change the last name to a popular lastname in your language. This will have male profile photo. */
-"SCREENSHOT_NAME_CONTACT_FIVE" = "Ali Smith";
+"SCREENSHOT_NAME_CONTACT_FIVE" = "Ali Svoboda";
 
 /* This is a contact's name. Replace the name for a more common name in your locale if this sounds too foreign. This should be a unique non-public figure's name. This profile photo will be either male or female. Choose a unisex name if possible. */
-"SCREENSHOT_NAME_CONTACT_FOUR" = "Artemis Cheng";
+"SCREENSHOT_NAME_CONTACT_FOUR" = "Artemis Novotná";
 
 /* This is a contact's name. Replace the name for a more common name in your locale if this sounds too foreign. Include two last names if that is represented in your locale. This should be a unique non-public figure's name. This will have a female profile photo. */
-"SCREENSHOT_NAME_CONTACT_NINE" = "Zeus Lehtonen";
+"SCREENSHOT_NAME_CONTACT_NINE" = "Zdeněk Dvořák";
 
 /* This is a contact's name. A male leadership/presidential position + the sound a cat makes. This will have a cat profile photo. */
-"SCREENSHOT_NAME_CONTACT_ONE" = "Chairman Meow";
+"SCREENSHOT_NAME_CONTACT_ONE" = "Předseda Mňau";
 
 /* This is a contact's name. Please keep a similar unisex first name (Kai) if this name isn't common and only post the last initial. This will have a female profile photo. */
-"SCREENSHOT_NAME_CONTACT_SEVEN" = "Jordan B.";
+"SCREENSHOT_NAME_CONTACT_SEVEN" = "Joska B.";
 
 /* This is a contact's name. Replace the name for a more common name in your locale if this sounds too foreign. This will have a male profile photo. */
-"SCREENSHOT_NAME_CONTACT_SIX" = "Michael Kirk";
+"SCREENSHOT_NAME_CONTACT_SIX" = "Michal Černý";
 
 /* This is a contact's name. Replace the name for a more common name in your locale if this sounds too foreign. This should be a unique non-public figure's name. This will have a female profile photo. */
-"SCREENSHOT_NAME_CONTACT_TEN" = "Maya Dorai";
+"SCREENSHOT_NAME_CONTACT_TEN" = "Mája Procházková";
 
 /* This is a contact's name. Please keep a similar nickname for Nikola/Nikita/etc in your language and only post the last initial. This profile photo will be either male or female but mostly female. */
 "SCREENSHOT_NAME_CONTACT_THREE" = "Nikki Romanov";
 
 /* This is a contact's name. Replace the name for a more common name in your locale if this sounds too foreign. This should be a unique non-public figure's name. This profile photo will be either male or female. */
-"SCREENSHOT_NAME_CONTACT_TWO" = "Myles Larson";
+"SCREENSHOT_NAME_CONTACT_TWO" = "Mirek Kučera";
 
 /* This is a group chat of family members. Please keep Kirk or replace with a common last name in your locale. Translate 'Family' */
-"SCREENSHOT_NAME_GROUP_FIVE" = "Kirk Family";
+"SCREENSHOT_NAME_GROUP_FIVE" = "Rodina Veselých";
 
 /* Please include emoji. This is a group name/channel name for pictures of the sun in the sky. */
-"SCREENSHOT_NAME_GROUP_FOUR" = "Sunsets 🌅";
+"SCREENSHOT_NAME_GROUP_FOUR" = "Západy slunce 🌅";
 
 /* This is for a group of people interested in discussing books they've read. */
-"SCREENSHOT_NAME_GROUP_ONE" = "Book Club";
+"SCREENSHOT_NAME_GROUP_ONE" = "Knižní klub";
 
 /* This is group chat name for members talking about cats. Please include the emoji. */
-"SCREENSHOT_NAME_GROUP_SIX" = "Cat Chat 🐈 🐱";
+"SCREENSHOT_NAME_GROUP_SIX" = "O kočkách 🐈 🐱";
 
 /* Please include emoji. This is a group name for people who climb rocks/climb trees/hike mountains/outside mountaineering. */
-"SCREENSHOT_NAME_GROUP_THREE" = "🧗🏽‍♀️ Rock Climbers";
+"SCREENSHOT_NAME_GROUP_THREE" = "🧗🏽‍♀️ Horolezci";
 
 /* This is for a group chat for people who want weather updates. */
 "SCREENSHOT_NAME_GROUP_TWO" = "Předpovědi počasí";
 
 /* This appears in Signal > Settings. A female leadership/presidential/chairwoman position + female name Freyja or similar spelling. This will have a cat profile photo. */
-"SCREENSHOT_NAME_LOCAL_PROFILE" = "Chairwoman Freya";
+"SCREENSHOT_NAME_LOCAL_PROFILE" = "Předsedkyně Freya";
 
 /* This is a message expressing support/happiness/awe/shock. */
 "SCREENSHOT_THREAD_DIRECT_FIVE_MESSAGE_ONE" = "Blahopřeji! To je skvělé!";
@@ -3725,10 +4208,10 @@
 "SCREENSHOT_USERNAME_1" = "SCREENSHOT_USERNAME_1";
 
 /* Placeholder text indicating the user can search for contacts by name, username, or phone number. */
-"SEARCH_BY_NAME_OR_USERNAME_OR_NUMBER_PLACEHOLDER_TEXT" = "Jméno, uživatelské jméno, nebo číslo";
+"SEARCH_BY_NAME_OR_USERNAME_OR_NUMBER_PLACEHOLDER_TEXT" = "Jméno, uživatelské jméno nebo číslo";
 
 /* Placeholder text indicating the user can search for contacts by name or phone number. */
-"SEARCH_BYNAMEORNUMBER_PLACEHOLDER_TEXT" = "Hledat podle telefoního čísla";
+"SEARCH_BYNAMEORNUMBER_PLACEHOLDER_TEXT" = "Hledat podle telefonního čísla";
 
 /* placeholder text in an empty search field */
 "SEARCH_FIELD_PLACE_HOLDER_TEXT" = "Hledat";
@@ -3758,7 +4241,7 @@
 "SECONDARY_LINKING_ERROR_OLD_VERSION_TITLE" = "Aktualizujte propojené zařízení";
 
 /* alert title */
-"SECONDARY_LINKING_ERROR_WAITING_FOR_SCAN" = "Nepodařilo se spárovat vaše zařízení.";
+"SECONDARY_LINKING_ERROR_WAITING_FOR_SCAN" = "Nepodařilo se spárovat vaše zařízení";
 
 /* header text when this device is being added as a secondary */
 "SECONDARY_ONBOARDING_CHOOSE_DEVICE_NAME" = "Zvolte si jméno pro toto zařízení";
@@ -3779,7 +4262,7 @@
 "SECONDARY_ONBOARDING_GET_STARTED_DO_NOT_HAVE_PRIMARY" = "Na mém telefonu nemám Signal...";
 
 /* alert body */
-"SECONDARY_ONBOARDING_INSTALL_PRIMARY_FIRST_BODY" = "Jděte do App Store na vašem telefonu, nainstalujte Signal, dokončete registraci, a poté můžete připojit Váš iPad ke stejnému účtu.";
+"SECONDARY_ONBOARDING_INSTALL_PRIMARY_FIRST_BODY" = "Jděte do App Store na vašem telefonu, nainstalujte Signal, dokončete registraci a poté můžete připojit Váš iPad ke stejnému účtu.";
 
 /* alert title */
 "SECONDARY_ONBOARDING_INSTALL_PRIMARY_FIRST_TITLE" = "Nainstalovat Signal na váš telefon";
@@ -3818,7 +4301,7 @@
 "SEND_INVITE_FAILURE" = "Odeslání pozvánky selhalo, zkuste to později.";
 
 /* Alert body after invite succeeded */
-"SEND_INVITE_SUCCESS" = "Pozval jsi kamaráda/ku do Signalu!";
+"SEND_INVITE_SUCCESS" = "Pozval(a) jsi kamaráda/ku do Signalu!";
 
 /* alert action, confirming the user wants to exit the media flow and abandon any photos they've taken */
 "SEND_MEDIA_CONFIRM_ABANDON_ALBUM" = "Zahodit média";
@@ -3834,6 +4317,21 @@
 
 /* No comment provided by engineer. */
 "SEND_SMS_INVITE_TITLE" = "Chcete pozvat následující číslo do Signalu:";
+
+/* Description for the session refresh alert */
+"SESSION_REFRESH_ALERT_MESSAGE" = "Signal používá end-to-end šifrování a může občas potřebovat aktualizovat sezení chatu. To neovlivní bezpečnost chatu, ale můžete ztratit nějakou zprávu od tohoto kontaktu a může být potřeba kontakt požádat, aby vám zprávu poslal znovu.";
+
+/* Title for the session refresh alert */
+"SESSION_REFRESH_ALERT_TITLE" = "Sezení konverzace aktualizováno";
+
+/* Title for the wallpaper choose from photos option */
+"SET_WALLPAPER_CHOOSE_PHOTO" = "Vybrat z fotografií";
+
+/* Title for the wallpaper presets section */
+"SET_WALLPAPER_PRESETS" = "Přednastavená pozadí";
+
+/* Title for the set wallpaper settings view. */
+"SET_WALLPAPER_TITLE" = "Nastavit tapetu";
 
 /* Navbar title */
 "SETTINGS_ABOUT" = "O aplikaci";
@@ -3892,14 +4390,20 @@
 /* table cell label */
 "SETTINGS_ADVANCED_VIEW_ERROR_LOG" = "Protokoly chyb";
 
+/* Footer for avatar section in appearance settings */
+"SETTINGS_APPEARANCE_AVATAR_FOOTER" = "Zobrazit systémové fotografie kontaktů, pokud jsou k dispozici";
+
+/* Title for switch to toggle preference between contact and profile avatars */
+"SETTINGS_APPEARANCE_AVATAR_PREFERENCE_LABEL" = "Používat systémové fotografie kontaktů";
+
 /* The title for the theme section in the appearance settings. */
 "SETTINGS_APPEARANCE_THEME_TITLE" = "Motiv";
 
 /* The title for the appearance settings. */
-"SETTINGS_APPEARANCE_TITLE" = "Chování";
+"SETTINGS_APPEARANCE_TITLE" = "Vzhled";
 
 /* Format string for the default 'Note' sound. Embeds the system {{sound name}}. */
-"SETTINGS_AUDIO_DEFAULT_TONE_LABEL_FORMAT" = "%@(výchozí)";
+"SETTINGS_AUDIO_DEFAULT_TONE_LABEL_FORMAT" = "%@ (výchozí)";
 
 /* Label for the backup view in app settings. */
 "SETTINGS_BACKUP" = "Záloha";
@@ -3920,7 +4424,7 @@
 "SETTINGS_BACKUP_IMPORT_STATUS_FAILED" = "Chyba obnovy ze zálohy";
 
 /* Indicates that app is not restoring up. */
-"SETTINGS_BACKUP_IMPORT_STATUS_IDLE" = "Neprobíhá obnova ze zálohy";
+"SETTINGS_BACKUP_IMPORT_STATUS_IDLE" = "Obnova zálohy je nečinná";
 
 /* Indicates that app is restoring up. */
 "SETTINGS_BACKUP_IMPORT_STATUS_IN_PROGRESS" = "Probíhá obnova ze zálohy";
@@ -3953,7 +4457,7 @@
 "SETTINGS_BLOCK_LIST_ADD_BUTTON" = "Přidat zablokovaného uživatele";
 
 /* An explanation of the 'blocked' setting */
-"SETTINGS_BLOCK_LIST_FOOTER" = "List of contacts and groups you have blocked.";
+"SETTINGS_BLOCK_LIST_FOOTER" = "Seznam vašich zablokovaných kontaktů a skupin.";
 
 /* A label that indicates the user has no Signal contacts. */
 "SETTINGS_BLOCK_LIST_NO_CONTACTS" = "Nemáte žádné kontakty v Signalu.";
@@ -3971,10 +4475,34 @@
 "SETTINGS_CALLING_HIDES_IP_ADDRESS_PREFERENCE_TITLE_DETAIL" = "Přenášet všechna volání přes server Signal, aby nedošlo k odhalení vaší IP adresy volanému. Povolením dojde ke zhoršení kvality hovoru.";
 
 /* No comment provided by engineer. */
-"SETTINGS_CLEAR_HISTORY" = "Clear Chat History";
+"SETTINGS_CLEAR_HISTORY" = "Smazat historii chatu";
 
 /* No comment provided by engineer. */
 "SETTINGS_COPYRIGHT" = "Copyright Signal Messenger\nLicencované pod GPLv3";
+
+/* Label for the 'data' section of the app settings. */
+"SETTINGS_DATA" = "Využití dat";
+
+/* Item title for the low bandwidth call setting */
+"SETTINGS_DATA_CALL_LOW_BANDWIDTH_ITEM_TITLE" = "Používat méně dat";
+
+/* Section footer for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_FOOTER" = "Úspora dat může vylepšit kvalitu hovoru při špatném signálu";
+
+/* Section header for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_HEADER" = "Volání";
+
+/* Footer for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_FOOTER" = "Hlasové zprávy, jednorázová média a nálepky (pod 100 kb) jsou vždy automaticky stahovány.";
+
+/* Header for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_HEADER" = "Automatické stahování médií";
+
+/* Label for for the 'reset media auto-download settings' button in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_RESET" = "Obnovit nastavení automatického stahování";
+
+/* The title for the data settings. */
+"SETTINGS_DATA_TITLE" = "Využití dat";
 
 /* No comment provided by engineer. */
 "SETTINGS_DELETE_ACCOUNT_BUTTON" = "Smazat účet";
@@ -3995,7 +4523,7 @@
 "SETTINGS_HELP" = "Nápověda";
 
 /* Section header */
-"SETTINGS_HISTORYLOG_TITLE" = "Clear Chat History";
+"SETTINGS_HISTORYLOG_TITLE" = "Smazat historii chatu";
 
 /* No comment provided by engineer. */
 "SETTINGS_INFORMATION_HEADER" = "Informace";
@@ -4009,6 +4537,9 @@
 /* Label for settings view that allows user to change the notification sound. */
 "SETTINGS_ITEM_NOTIFICATION_SOUND" = "Zvuk zprávy";
 
+/* Label for settings view that allows user to change the wallpaper. */
+"SETTINGS_ITEM_WALLPAPER" = "Tapeta konverzace";
+
 /* table cell label */
 "SETTINGS_LEGAL_TERMS_CELL" = "Podmínky & Zásady ochrany osobních údajů";
 
@@ -4018,14 +4549,35 @@
 /* Footer for setting for enabling & disabling link previews. */
 "SETTINGS_LINK_PREVIEWS_FOOTER" = "Pro zprávy, které odesíláte, získat náhledy odkazů přímo z webů.";
 
+/* Label for the 'never' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_NEVER" = "Nikdy";
+
+/* Label for the 'wifi and cellular' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_AND_CELLULAR" = "WiFi a mobilní data";
+
+/* Label for the 'wifi-only' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_ONLY" = "WiFi";
+
+/* Label for the 'audio' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_AUDIO" = "Zvuk";
+
+/* Label for the 'document' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_DOCUMENT" = "Dokumenty";
+
+/* Label for the 'photo' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_PHOTO" = "Fotografie";
+
+/* Label for the 'video' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_VIDEO" = "Videa";
+
 /* Label for the 'messaging' privacy settings. */
-"SETTINGS_MESSAGING" = "Messaging";
+"SETTINGS_MESSAGING" = "Odesílání zpráv";
 
 /* Title for settings activity */
 "SETTINGS_NAV_BAR_TITLE" = "Nastavení";
 
 /* When the local device discovers a contact has recently installed signal, the app can generates a message encouraging the local user to say hello. Turning this switch off disables that feature. */
-"SETTINGS_NOTIFICATION_BADGE_COUNT_INCLUDES_MUTED_CONVERSATIONS" = "Count Muted Chats";
+"SETTINGS_NOTIFICATION_BADGE_COUNT_INCLUDES_MUTED_CONVERSATIONS" = "Počet ztišených konverzací";
 
 /* table section header */
 "SETTINGS_NOTIFICATION_BADGE_COUNT_TITLE" = "Počet zpráv u ikony";
@@ -4046,16 +4598,16 @@
 "SETTINGS_NOTIFICATIONS" = "Oznámení";
 
 /* Label for the 'phone number discoverability' setting. */
-"SETTINGS_PHONE_NUMBER_DISCOVERABILITY" = "Find Me by Phone Number";
+"SETTINGS_PHONE_NUMBER_DISCOVERABILITY" = "Najít mě podle telefonního čísla";
 
 /* The title for the phone number discoverability settings. */
-"SETTINGS_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Find Me by Phone Number";
+"SETTINGS_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Najít mě podle telefonního čísla";
 
 /* Label for the 'phone number sharing' setting. */
-"SETTINGS_PHONE_NUMBER_SHARING" = "See My Phone Number";
+"SETTINGS_PHONE_NUMBER_SHARING" = "Zobrazit telefonní číslo";
 
 /* The title for the phone number sharing settings. */
-"SETTINGS_PHONE_NUMBER_SHARING_TITLE" = "See My Phone Number";
+"SETTINGS_PHONE_NUMBER_SHARING_TITLE" = "Zobrazit telefonní číslo";
 
 /* The button text for the dialog asking user to confirm their PIN to disable reminders */
 "SETTINGS_PIN_REMINDER_DISABLE_CONFIRMATION_ACTION" = "Vypnout připomínky";
@@ -4088,7 +4640,7 @@
 "SETTINGS_PRIVACY_CALLKIT_SYSTEM_CALL_LOG_PREFERENCE_DESCRIPTION" = "Zobrazit hovory v historii v aplikaci Telefon.";
 
 /* Short table cell label */
-"SETTINGS_PRIVACY_CALLKIT_SYSTEM_CALL_LOG_PREFERENCE_TITLE" = "Zobrazit hovory v \"Poslední volané\"";
+"SETTINGS_PRIVACY_CALLKIT_SYSTEM_CALL_LOG_PREFERENCE_TITLE" = "Zobrazit hovory v historii volání";
 
 /* Settings table view cell label */
 "SETTINGS_PRIVACY_TITLE" = "Soukromí";
@@ -4097,7 +4649,7 @@
 "SETTINGS_READ_RECEIPT" = "Potvrzení o přečtení";
 
 /* An explanation of the 'read receipts' setting. */
-"SETTINGS_READ_RECEIPTS_SECTION_FOOTER" = "See and share when messages have been read. This setting is optional and applies to all chats.";
+"SETTINGS_READ_RECEIPTS_SECTION_FOOTER" = "Zobrazte a sdílejte, kdy byly zprávy přečteny. Toto nastavení je volitelné a platí pro všechny konverzace.";
 
 /* Action to turn off registration lock */
 "SETTINGS_REGISTRATION_LOCK_TURN_OFF" = "Vypnout";
@@ -4124,7 +4676,7 @@
 "SETTINGS_SCREEN_LOCK_ACTIVITY_TIMEOUT" = "Čas zamknutí displeje";
 
 /* Footer for the 'screen lock' section of the privacy settings. */
-"SETTINGS_SCREEN_LOCK_SECTION_FOOTER" = "Odemknout obrazovku aplikace Signal pomocí Touch ID, Face ID, nebo kódovým zámkem vašeho zařízení iOS. Příchozí hovory i oznámení o zprávách lze přijímat i když je zapnutý zámek displeje. V nastavení oznámení aplikace Signal můžete určit, které informace budou zobrazeny.";
+"SETTINGS_SCREEN_LOCK_SECTION_FOOTER" = "Odemknout obrazovku aplikace Signal pomocí Touch ID, Face ID nebo kódovým zámkem vašeho zařízení iOS. Příchozí hovory i oznámení o zprávách lze přijímat, i když je zapnutý zámek displeje. V nastavení oznámení aplikace Signal můžete určit, které informace budou zobrazeny.";
 
 /* Title for the 'screen lock' section of the privacy settings. */
 "SETTINGS_SCREEN_LOCK_SECTION_TITLE" = "Zámek displeje";
@@ -4147,6 +4699,12 @@
 /* Section header */
 "SETTINGS_SECURITY_TITLE" = "Zabezpečení obrazovky";
 
+/* Setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS" = "Zobrazit v doporučeních";
+
+/* Footer for setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS_FOOTER" = "Signal konverzace jsou zobrazeny jako doporučení při sdílení z ostatních aplikací.";
+
 /* Label for the 'enable registration lock' switch of the privacy settings. */
 "SETTINGS_TWO_FACTOR_AUTH_SWITCH_LABEL" = "Zámek registrace";
 
@@ -4157,7 +4715,7 @@
 "SETTINGS_TYPING_INDICATORS" = "Indikátory psaní";
 
 /* An explanation of the 'typing indicators' setting. */
-"SETTINGS_TYPING_INDICATORS_FOOTER" = "See and share when messages are being typed. This setting is optional and applies to all chats.";
+"SETTINGS_TYPING_INDICATORS_FOOTER" = "Zobrazte a sdílejte, kdy jsou zprávy psány. Toto nastavení je volitelné a platí pro všechny konverzace.";
 
 /* table section label */
 "SETTINGS_UNIDENTIFIED_DELIVERY_SECTION_TITLE" = "Utajený odesílatel";
@@ -4166,19 +4724,19 @@
 "SETTINGS_UNIDENTIFIED_DELIVERY_SHOW_INDICATORS" = "Zobrazit indikátory";
 
 /* table section footer */
-"SETTINGS_UNIDENTIFIED_DELIVERY_SHOW_INDICATORS_FOOTER" = "Zobrazit ikonu když zvolíte \"Více informací\" u zprávy poslané s použitím funkce utajený odesílatel.";
+"SETTINGS_UNIDENTIFIED_DELIVERY_SHOW_INDICATORS_FOOTER" = "Zobrazit ikonu, když zvolíte \"Více informací\" u zprávy poslané s použitím funkce utajený odesílatel.";
 
 /* switch label */
 "SETTINGS_UNIDENTIFIED_DELIVERY_UNRESTRICTED_ACCESS" = "Povolit od kohokoliv";
 
 /* table section footer */
-"SETTINGS_UNIDENTIFIED_DELIVERY_UNRESTRICTED_ACCESS_FOOTER" = "Povolit utajené odesílatele pro příchozí zprávy od lidíé které nemáte kontaktech nebo se kterými nesdílte váš profil.";
+"SETTINGS_UNIDENTIFIED_DELIVERY_UNRESTRICTED_ACCESS_FOOTER" = "Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech nebo se kterými nesdílíte váš profil.";
 
 /* No comment provided by engineer. */
 "SETTINGS_VERSION" = "Verze";
 
 /* Label for the 'who can' privacy settings. */
-"SETTINGS_WHO_CAN" = "Who can...";
+"SETTINGS_WHO_CAN" = "Kdo může...";
 
 /* action sheet item to open native mail app */
 "SHARE_ACTION_MAIL" = "E-mail";
@@ -4210,6 +4768,9 @@
 /* Alert title */
 "SHARE_EXTENSION_SENDING_FAILURE_TITLE" = "Přílohu nelze odeslat";
 
+/* Send progress for share extension. Embeds {{ %1$@ number of attachments uploaded, %2$@ total number of attachments}} */
+"SHARE_EXTENSION_SENDING_IN_PROGRESS_FORMAT" = "Nahrávám %1$@ z %2$@…";
+
 /* Alert title */
 "SHARE_EXTENSION_SENDING_IN_PROGRESS_TITLE" = "Nahrávám...";
 
@@ -4219,11 +4780,26 @@
 /* Title for the 'share extension' view. */
 "SHARE_EXTENSION_VIEW_TITLE" = "Sdílet do Signalu";
 
+/* Title of alert indicating sharing suggestions failed to deactivate */
+"SHARING_SUGGESTIONS_DISABLE_ERROR" = "Nepodařilo se zakázat doporučení sdílení.";
+
+/* Body for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_BODY" = "Signal konverzace mohou být nyní zobrazeny jako doporučení při sdílení z ostatních aplikací.";
+
+/* Title for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_TITLE" = "Jednodušší sdílení";
+
+/* Disable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_DISABLE" = "Deaktivovat";
+
+/* Enable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_ENABLE" = "Povolit";
+
 /* Action sheet item */
 "SHOW_SAFETY_NUMBER_ACTION" = "Zobrazit bezpečnostní číslo";
 
 /* notification action */
-"SHOW_THREAD_BUTTON_TITLE" = "Show Chat";
+"SHOW_THREAD_BUTTON_TITLE" = "Zobrazit chat";
 
 /* body sent to contacts when inviting to Install Signal */
 "SMS_INVITE_BODY" = "Zvu tě do aplikace Signal! Tady je odkaz:";
@@ -4231,14 +4807,23 @@
 /* Label for the 'no sound' option that allows users to disable sounds for notifications, etc. */
 "SOUNDS_NONE" = "Žádné";
 
+/* Footer for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_FOOTER" = "Existující skupiny tuto aktualizaci automaticky získají v následujících týdnech.";
+
+/* Instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS" = "Nová skupina";
+
+/* Joiner symbol in the instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS_JOINER" = "+";
+
+/* Header for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_TITLE" = "Nové skupiny jsou zde!";
+
+/* Body text for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_SPLASH_BODY" = "Nové skupiny mají funkce jako @zmínky, správce skupin a další. Zkuste je klepnutím na:";
+
 /* Preview text shown in notifications and conversation list for sticker messages. */
 "STICKER_MESSAGE_PREVIEW" = "Zpráva se samolepkou";
-
-/* Tooltip indicating that a sticker pack was installed. */
-"STICKER_PACK_INSTALLED_TOOLTIP" = "Balíček nálepek nainstalován";
-
-/* Label for a sticker that failed to download. */
-"STICKERS_FAILED_DOWNLOAD" = "Nálepka";
 
 /* Label for the 'install sticker pack' button. */
 "STICKERS_INSTALL_BUTTON" = "Instalovat";
@@ -4268,16 +4853,13 @@
 "STICKERS_MANAGE_VIEW_TITLE" = "Nálepky";
 
 /* Default title for sticker packs. */
-"STICKERS_PACK_DEFAULT_TITLE" = "Balík nálepek";
-
-/* Title of the 'share sticker pack' view. */
-"STICKERS_PACK_SHARE_VIEW_TITLE" = "Sdílet sadu samolepek";
+"STICKERS_PACK_DEFAULT_TITLE" = "Sada nálepek";
 
 /* The default title for the 'sticker pack' view. */
-"STICKERS_PACK_VIEW_DEFAULT_TITLE" = "Balík nálepek";
+"STICKERS_PACK_VIEW_DEFAULT_TITLE" = "Sada nálepek";
 
 /* Label indicating that the sticker pack failed to load. */
-"STICKERS_PACK_VIEW_FAILED_TO_LOAD" = "Sadu samolepek se nepodařilo načíst";
+"STICKERS_PACK_VIEW_FAILED_TO_LOAD" = "Sadu nálepek se nepodařilo načíst";
 
 /* Label for the 'uninstall sticker pack' button. */
 "STICKERS_UNINSTALL_BUTTON" = "Odinstalovat";
@@ -4294,8 +4876,35 @@
 /* Placeholder string for support description */
 "SUPPORT_DESCRIPTION_PLACEHOLDER" = "Řekněte nám, co se děje";
 
+/* Default prompt for user description in support email requests */
+"SUPPORT_EMAIL_DEFAULT_DESCRIPTION" = "Řekněte nám o problému: ";
+
 /* Message for alert dialog presented when a support email failed to send */
 "SUPPORT_EMAIL_ERROR_ALERT_DESCRIPTION" = "Zašlete prosím e-mail s vaší žádostí o podporu na support@signal.org";
+
+/* Localized label for support request email filter string. Embeds {{filter text}}. */
+"SUPPORT_EMAIL_FILTER_LABEL_FORMAT" = "Filtr: %@";
+
+/* Localized label for support request email hardware string (e.g. iPhone or iPad). Embeds {{hardware text}}. */
+"SUPPORT_EMAIL_HARDWARE_LABEL_FORMAT" = "Hardware: %@";
+
+/* Localized label for support request email HID string (e.g. 12,1). Embeds {{hid text}}. */
+"SUPPORT_EMAIL_HID_LABEL_FORMAT" = "HID: %@";
+
+/* Localized divider for support request emails internal information */
+"SUPPORT_EMAIL_INFO_DIVIDER" = "--- Informace pro podporu ---";
+
+/* Localized label for support request email iOS Version string (e.g. 13.4). Embeds {{ios version}}. */
+"SUPPORT_EMAIL_IOS_VERSION_LABEL_FORMAT" = "Verze iOS: %@";
+
+/* Localized label for support request email locale string. Embeds {{locale}}. */
+"SUPPORT_EMAIL_LOCALE_LABEL_FORMAT" = "Jazyk: %@";
+
+/* Localized label for support request email debug log URL. Embeds {{debug log url}}. */
+"SUPPORT_EMAIL_LOG_URL_LABEL_FORMAT" = "URL protokolu: %@";
+
+/* Localized label for support request email signal version string. Embeds {{signal version}}. */
+"SUPPORT_EMAIL_SIGNAL_VERSION_LABEL_FORMAT" = "Verze Signalu: %@";
 
 /* Localized subject for support request emails */
 "SUPPORT_EMAIL_SUBJECT" = "Signal iOS Support Request";
@@ -4325,10 +4934,10 @@
 "THIS_MESSAGE_WAS_DELETED" = "Tato zpráva byla smazána.";
 
 /* A string indicating two mutual groups the user shares with this contact and that there are more unlisted. Embeds {{mutual group name}} */
-"THREAD_DETAILS_MORE_MUTUAL_GROUP" = "Člen %@, %@, a %lu dalších skupin";
+"THREAD_DETAILS_MORE_MUTUAL_GROUP" = "Člen %@, %@ a %lu dalších skupin";
 
 /* Subtitle appearing at the top of the users 'note to self' conversation */
-"THREAD_DETAILS_NOTE_TO_SELF_EXPLANATION" = "You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.";
+"THREAD_DETAILS_NOTE_TO_SELF_EXPLANATION" = "V této konverzaci si můžete přidávat poznámky. Pokud váš účet má nějaká propojená zařízení, budou se nové poznámky synchronizovat.";
 
 /* A string indicating a mutual group the user shares with this contact. Embeds {{mutual group name}} */
 "THREAD_DETAILS_ONE_MUTUAL_GROUP" = "Člen %@";
@@ -4373,22 +4982,22 @@
 "TIME_AMOUNT_SINGLE_MINUTE" = "%@ minuta";
 
 /* {{1 second}} embedded in strings, e.g. 'Alice updated disappearing messages expiration to {{1 second}}'. See other *_TIME_AMOUNT strings */
-"TIME_AMOUNT_SINGLE_SECOND" = "%@sekundu";
+"TIME_AMOUNT_SINGLE_SECOND" = "%@ sekundu";
 
 /* {{1 week}} embedded in strings, e.g. 'Alice updated disappearing messages expiration to {{1 week}}'. See other *_TIME_AMOUNT strings */
 "TIME_AMOUNT_SINGLE_WEEK" = "%@ týden";
 
 /* {{1 year}} embedded in strings, e.g. 'Alice updated disappearing messages expiration to {{1 year}}'. See other *_TIME_AMOUNT strings */
-"TIME_AMOUNT_SINGLE_YEAR" = "%@rok";
+"TIME_AMOUNT_SINGLE_YEAR" = "%@ rok";
 
 /* {{number of weeks}}, embedded in strings, e.g. 'Alice updated disappearing messages expiration to {{5 weeks}}'. See other *_TIME_AMOUNT strings */
 "TIME_AMOUNT_WEEKS" = "%@ týdnů";
 
 /* Label text below navbar button, embeds {{number of weeks}}. Must be very short, like 1 or 2 characters, The space is intentionally omitted between the text and the embedded duration so that we get, e.g. '5w' not '5 w'. See other *_TIME_AMOUNT strings */
-"TIME_AMOUNT_WEEKS_SHORT_FORMAT" = "%@w";
+"TIME_AMOUNT_WEEKS_SHORT_FORMAT" = "%@t";
 
 /* {{N years}} embedded in strings, e.g. 'Alice updated disappearing messages expiration to {{5 years}}'. Embeds: {{ the number of years }}.  See other *_TIME_AMOUNT strings */
-"TIME_AMOUNT_YEARS_FORMAT" = "%@let";
+"TIME_AMOUNT_YEARS_FORMAT" = "%@ let";
 
 /* Indicates that a duration of time is zero seconds. See other *_TIME_AMOUNT strings */
 "TIME_AMOUNT_ZERO_SECONDS" = "0 sekund";
@@ -4415,7 +5024,7 @@
 "UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_FROM_LINKED_DEVICE" = "Jedno z vašich zařízení odeslalo zprávu, kterou zde nelze zobrazit, protože používá novější funkci Signal.";
 
 /* Info message recorded in conversation history when local user receives an unknown message and needs to upgrade. Embeds {{user's name or phone number}}. */
-"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITH_NAME_FORMAT" = "%@ Vám zaslal zprávu, kterou zde nelze zobrazit, protože používá novější funkci Signal.";
+"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITH_NAME_FORMAT" = "%@ vám zaslal(a) zprávu, kterou zde nelze zobrazit, protože používá novější funkci Signal.";
 
 /* Info message recorded in conversation history when local user receives an unknown message and needs to upgrade. */
 "UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITHOUT_NAME" = "Obdrželi jste zprávu, kterou zde nelze zobrazit, protože používá novější funkci Signal.";
@@ -4430,7 +5039,7 @@
 "UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_WITH_NAME_FORMAT" = "Můžete %@ požádat o opětovné zaslání předchozí zprávy, jelikož používáte poslední verzi Signal.";
 
 /* Info message recorded in conversation history when local user has received an unknown message and has upgraded. */
-"UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_WITHOUT_NAME" = "Nyní můžete požádat odesilatele o opětovné zaslání předchozí zprávy, jelikož používáte poslední verzi Signal.";
+"UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_WITHOUT_NAME" = "Nyní můžete požádat odesílatele o opětovné zaslání předchozí zprávy, jelikož používáte poslední verzi Signal.";
 
 /* Label indicating an unknown user. */
 "UNKNOWN_USER" = "Neznámý";
@@ -4454,7 +5063,7 @@
 "UNLINK_CONFIRMATION_ALERT_TITLE" = "Odpojit \"%@\"?";
 
 /* Label warning the user that they have been unlinked from their primary device. */
-"UNLINKED_WARNING" = "Vaše zařízení již není propojené s aplikací Signal. Prosím propojte je znovu, abyste mohli odesílat zprávy.";
+"UNLINKED_WARNING" = "Vaše zařízení již není propojené s aplikací Signal. Prosím, propojte je znovu, abyste mohli odesílat zprávy.";
 
 /* Alert title when unlinking device fails */
 "UNLINKING_FAILED_ALERT_TITLE" = "Signalu se nepodařilo odpojit vaše zařízení.";
@@ -4463,7 +5072,7 @@
 "UNNAMED_DEVICE" = "Nepojmenované zařízení";
 
 /* Pressing this button upins a thread */
-"UNPIN_ACTION" = "Unpin";
+"UNPIN_ACTION" = "Odepnout";
 
 /* The title for unpinned conversation section on the conversation list */
 "UNPINNED_SECTION_TITLE" = "Konverzace";
@@ -4583,10 +5192,10 @@
 "VIEW_ONCE_ALREADY_VIEWED_TOAST" = "Tuto zprávu jste už zobrazili";
 
 /* Tooltip highlighting the view once messages button. */
-"VIEW_ONCE_MESSAGES_TOOLTIP" = "Klepněte zde, aby tato zpráva zmizela potom, co bude zobrazena.";
+"VIEW_ONCE_MESSAGES_TOOLTIP" = "Klepněte zde, aby tato zpráva zmizela poté, co bude zobrazena.";
 
 /* Toast alert text shown when tapping on a view-once message that you have sent. */
-"VIEW_ONCE_OUTGOING_TOAST" = "Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny";
+"VIEW_ONCE_OUTGOING_TOAST" = "Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny.";
 
 /* Indicates how to cancel a voice message. */
 "VOICE_MESSAGE_CANCEL_INSTRUCTIONS" = "Pro zrušení přejeďte";
@@ -4602,6 +5211,63 @@
 
 /* Activity indicator title, shown upon returning to the device manager, until you complete the provisioning process on desktop */
 "WAITING_TO_COMPLETE_DEVICE_LINK_TEXT" = "Dokončete nastavení v aplikaci Signal Desktop.";
+
+/* Placeholder text for header of the wallpaper mini preview */
+"WALLPAPER_MINI_PREVIEW_CONTACT_NAME" = "Jméno kontaktu";
+
+/* Blur button on wallpaper preview. */
+"WALLPAPER_PREVIEW_BLUR_BUTTON" = "Rozostřit fotografii";
+
+/* The incoming bubble text when setting a photo */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PHOTO" = "Stažením prstů lze zvětšit, táhnutím lze přizpůsobit.";
+
+/* The incoming bubble text when setting a preset */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PRESET" = "Přejetím zobrazíte náhled dalších tapet";
+
+/* The outgoing bubble text when setting a wallpaper for all chats. */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_ALL_CHATS" = "Nastavit tapetu pro všechny konverzace.";
+
+/* The outgoing bubble text when setting a wallpaper for specific chat. Embeds {{chat name}} */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_FORMAT" = "Nastavit tapetu pro %@.";
+
+/* The text for the set button on wallpaper preview view. */
+"WALLPAPER_PREVIEW_SET_BUTTON" = "Nastavit";
+
+/* Title for the wallpaper preview view. */
+"WALLPAPER_PREVIEW_TITLE" = "Náhled";
+
+/* Clear wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER" = "Vymazat tapetu";
+
+/* Confirmation dialog when clearing the wallpaper for a specific chat. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_CHAT_CONFIRMATION" = "Vymazat tapetu pro tuto konverzaci?";
+
+/* Confirmation dialog when clearing the global wallpaper. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_GLOBAL_CONFIRMATION" = "Vymazat tapetu? Toto nevymaže vlastní tapety, které jste nastavili pro konverzace.";
+
+/* Dim wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_DIM_WALLPAPER" = "Tmavý motiv ztlumí tapetu";
+
+/* An error indicating to the user that we failed to clear the wallpaper. */
+"WALLPAPER_SETTINGS_FAILED_TO_CLEAR" = "Tapetu nebylo možné vymazat. Zkuste to prosím znovu nebo kontaktujte podporu, pokud problém přetrvává.";
+
+/* An error indicating to the user that we failed to reset all wallpapers. */
+"WALLPAPER_SETTINGS_FAILED_TO_RESET" = "Všechny tapety nebylo možné vymazat. Zkuste to prosím znovu nebo kontaktujte podporu, pokud problém přetrvává.";
+
+/* Title for the wallpaper settings preview section. */
+"WALLPAPER_SETTINGS_PREVIEW" = "Náhled";
+
+/* Reset all wallpapers action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_RESET_ALL" = "Obnovit všechny tapety";
+
+/* Confirmation dialog when resetting all wallpapers. */
+"WALLPAPER_SETTINGS_RESET_ALL_WALLPAPERS_CONFIRMATION" = "Obnovit všechny tapety, včetně vlastních, které jste nastavili pro konverzace?";
+
+/* Set wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_SET_WALLPAPER" = "Nastavit tapetu";
+
+/* Title for the wallpaper settings view. */
+"WALLPAPER_SETTINGS_TITLE" = "Tapeta konverzace";
 
 /* text indicating the message was remotely deleted by you */
 "YOU_DELETED_THIS_MESSAGE" = "Smazali jste tuto zprávu.";

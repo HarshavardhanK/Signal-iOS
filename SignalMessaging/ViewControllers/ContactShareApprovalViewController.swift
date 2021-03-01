@@ -229,14 +229,6 @@ class ContactShareFieldView: UIStackView {
 @objc
 public class ContactShareApprovalViewController: OWSViewController, EditContactShareNameViewControllerDelegate, ContactShareFieldViewDelegate {
 
-    // MARK: - Dependencies
-
-    private var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
-    // MARK: -
-
     @objc
     public weak var delegate: ContactShareApprovalViewControllerDelegate?
 
@@ -463,7 +455,7 @@ public class ContactShareApprovalViewController: OWSViewController, EditContactS
         let nameLabel = UILabel()
         self.nameLabel = nameLabel
         nameLabel.text = contactShare.name.displayName
-        nameLabel.font = UIFont.ows_dynamicTypeBody.ows_semibold()
+        nameLabel.font = UIFont.ows_dynamicTypeBody.ows_semibold
         nameLabel.textColor = Theme.primaryTextColor
         nameLabel.lineBreakMode = .byTruncatingTail
         stackView.addArrangedSubview(nameLabel)

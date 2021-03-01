@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "BaseModel.h"
@@ -16,11 +16,7 @@ typedef NS_ENUM(NSUInteger, TSAttachmentType) {
     TSAttachmentTypeBorderless = 2,
 };
 
-@interface TSAttachment : BaseModel {
-
-@protected
-    NSString *_contentType;
-}
+@interface TSAttachment : BaseModel
 
 // TSAttachment is a base class for TSAttachmentPointer (a yet-to-be-downloaded
 // incoming attachment) and TSAttachmentStream (an outgoing or already-downloaded
@@ -140,6 +136,14 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:albumMessageId:atta
 @property (nonatomic, readonly) BOOL isOversizeText;
 
 + (NSString *)emojiForMimeType:(NSString *)contentType;
+
+// This should only ever be used before the attachment is saved,
+// after that point the content type will be already set.
+- (void)setDefaultContentType:(NSString *)contentType;
+
+// This method should only be called on instances which have
+// not yet been inserted into the database.
+- (void)replaceUnsavedContentType:(NSString *)contentType NS_SWIFT_NAME(replaceUnsavedContentType(_:));
 
 #pragma mark - Update With...
 

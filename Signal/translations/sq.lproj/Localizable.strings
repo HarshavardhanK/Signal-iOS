@@ -13,17 +13,23 @@
 /* Accessibility label for contact. */
 "ACCESSIBILITY_LABEL_CONTACT" = "Kontakt";
 
+/* Accessibility label for contact. Embeds: {{ the contact name }}. */
+"ACCESSIBILITY_LABEL_CONTACT_FORMAT" = "Kontakt për %@";
+
 /* Accessibility label for media. */
 "ACCESSIBILITY_LABEL_MEDIA" = "Media";
-
-/* Accessibility label for message. */
-"ACCESSIBILITY_LABEL_MESSAGE" = "Mesazh";
 
 /* Accessibility label for messages sent by you. */
 "ACCESSIBILITY_LABEL_SENDER_SELF" = "Ju";
 
 /* Accessibility label for stickers. */
 "ACCESSIBILITY_LABEL_STICKER" = "Ngjitës";
+
+/* Accessibility label for a voice memo. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO" = "Mesazh zanor";
+
+/* Accessibility label for a voice memo. Embeds: {{ the duration of the voice message }}. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO_FORMAT" = "Mesazh zanor %@ sekonda";
 
 /* Label for 'audio call' button in contact view. */
 "ACTION_AUDIO_CALL" = "Thirrje Signal";
@@ -36,6 +42,9 @@
 
 /* Label for 'share contact' button. */
 "ACTION_SHARE_CONTACT" = "Ndaje Kontaktin";
+
+/* A label for 'tap to download' buttons. */
+"ACTION_TAP_TO_DOWNLOAD" = "Prekeni që të shkarkohet";
 
 /* Label for 'video call' button in contact view. */
 "ACTION_VIDEO_CALL" = "Thirrje Video";
@@ -59,7 +68,7 @@
 "ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_TITLE_N" = "Shtoni Anëtarë të Rinj";
 
 /* The title for the 'add group members' view. */
-"ADD_GROUP_MEMBERS_VIEW_TITLE" = "Shtoni Anëtarë ";
+"ADD_GROUP_MEMBERS_VIEW_TITLE" = "Shtoni Anëtarë";
 
 /* Message shown in conversation view that offers to share your profile with a group. */
 "ADD_GROUP_TO_PROFILE_WHITELIST_OFFER" = "Dëshironi të ndani me këtë grup profilin tuaj?";
@@ -103,7 +112,7 @@
 /* The label for the 'don't save' button in action sheets. */
 "ALERT_DONT_SAVE" = "Mos e Ruaj";
 
-/* No comment provided by engineer. */
+/* Generic error indicator. */
 "ALERT_ERROR_TITLE" = "Gabim";
 
 /* The label for the 'save' button in action sheets. */
@@ -199,9 +208,6 @@
 /* Generic filename for an attachment with no known name */
 "ATTACHMENT_DEFAULT_FILENAME" = "Bashkëngjitje";
 
-/* Status label when an attachment download has failed. */
-"ATTACHMENT_DOWNLOADING_STATUS_FAILED" = "Shkarkimi dështoi. Prekeni që të riprovohet.";
-
 /* The title of the 'attachment error' alert. */
 "ATTACHMENT_ERROR_ALERT_TITLE" = "Gabim Dërgimi Bashkëngjitjeje";
 
@@ -251,10 +257,10 @@
 "ATTACHMENT_KEYBOARD_LOCATION" = "Vendndodhje";
 
 /* A string indicating to the user that they'll be able to send photos from this view once they enable photo access. */
-"ATTACHMENT_KEYBOARD_NO_PHOTO_ACCESS" = "Që t’i dërgoni këtu, akordoni hyrje te fotot tuaja, që nga rregullimet";
+"ATTACHMENT_KEYBOARD_NO_PHOTO_ACCESS" = "Që t’i dërgoni këtu, akordoni hyrje te fotot tuaja, që nga rregullimet.";
 
 /* A string indicating to the user that once they take photos, they'll be able to send them from this view. */
-"ATTACHMENT_KEYBOARD_NO_PHOTOS" = "Pasi të keni bërë foto, do të jeni në gjendje të dërgoni këtu ato të fundit";
+"ATTACHMENT_KEYBOARD_NO_PHOTOS" = "Pasi të keni bërë foto, do të jeni në gjendje të dërgoni këtu ato të fundit.";
 
 /* Accessibility label for attaching photos */
 "ATTACHMENT_LABEL" = "Bashkëngjitje";
@@ -358,6 +364,9 @@
 /* Error shown when backup fails due to an unexpected error. */
 "BACKUP_UNEXPECTED_ERROR" = "Gabim i Papritur Kopjeruajtjeje";
 
+/* Accessibility label for banner close button */
+"BANNER_CLOSE_ACCESSIBILITY_LABEL" = "Mbylle banderolën";
+
 /* An explanation of the consequences of blocking a group. */
 "BLOCK_GROUP_BEHAVIOR_EXPLANATION" = "S’do të merrni më mesazhe apo përditësime nga ky grup.";
 
@@ -410,7 +419,7 @@
 "BLOCK_LIST_VIEW_BLOCKED_ALERT_TITLE" = "Përdoruesi u Bllokua";
 
 /* The title of the 'group blocked' alert. */
-"BLOCK_LIST_VIEW_BLOCKED_GROUP_ALERT_TITLE" = "Bllokim Grupi ";
+"BLOCK_LIST_VIEW_BLOCKED_GROUP_ALERT_TITLE" = "Grupi u Bllokua";
 
 /* The message of the 'You can't block yourself' alert. */
 "BLOCK_LIST_VIEW_CANT_BLOCK_SELF_ALERT_MESSAGE" = "S’mund të bllokoni veten.";
@@ -430,8 +439,8 @@
 /* Tooltip highlighting the blur image editing tool. */
 "BLUR_TOOLTIP" = "E re: Turbulloni fytyra ose vizatoni kudoqoftë që të turbullohet.";
 
-/* browse files option from file sharing menu */
-"BROWSE_FILES_BUTTON" = "Shfletoni";
+/* Label for the 'add' button. */
+"BUTTON_ADD" = "Shtoje";
 
 /* Label for 'continue' button. */
 "BUTTON_CONTINUE" = "Vazhdo";
@@ -444,6 +453,9 @@
 
 /* Label for the 'no' button. */
 "BUTTON_NO" = "Jo";
+
+/* Label for the 'not now' button. */
+"BUTTON_NOT_NOW" = "Jo Tani";
 
 /* Label for the 'okay' button. */
 "BUTTON_OKAY" = "OK";
@@ -474,6 +486,9 @@
 
 /* notification body */
 "CALL_MISSED_BECAUSE_OF_IDENTITY_CHANGE_NOTIFICATION_BODY" = "☎️ Thirrje e humbur, ngaqë numri i sigurisë për thirrësin ka ndryshuar.";
+
+/* Button to return to the current call */
+"CALL_RETURN_BUTTON" = "Kthehuni Te Thirrja";
 
 /* Call setup status label after outgoing call times out */
 "CALL_SCREEN_STATUS_NO_ANSWER" = "Pa Përgjigje";
@@ -506,7 +521,7 @@
 "CALL_VIEW_AUDIO_SOURCE_LABEL" = "Audio";
 
 /* label for declining incoming calls */
-"CALL_VIEW_DECLINE_INCOMING_CALL_LABEL" = "Hidhet tej";
+"CALL_VIEW_DECLINE_INCOMING_CALL_LABEL" = "Hidhe tej";
 
 /* Accessibility label for hang up call */
 "CALL_VIEW_HANGUP_LABEL" = "Përfundoje thirrjen";
@@ -528,6 +543,9 @@
 
 /* notification action */
 "CALLBACK_BUTTON_TITLE" = "Ktheji Thirrjen";
+
+/* Indicates to the user that their camera is currently off. */
+"CALLING_MEMBER_VIEW_YOUR_CAMERA_IS_OFF" = "Kamera juaj është e fikur";
 
 /* The generic name used for calls if CallKit privacy is enabled */
 "CALLKIT_ANONYMOUS_CONTACT_NAME" = "Përdorues Signal-i";
@@ -701,7 +719,7 @@
 "CONTACT_PERMISSION_REMINDER_MEGAPHONE_ACTION" = "Aktivizoje";
 
 /* Body for contact permission reminder megaphone */
-"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "Shihni emra dhe foto kontaktesh në fjalosjet tuaja:";
+"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "Shihni emra dhe foto kontaktesh në fjalosjet tuaja.";
 
 /* Title for contact permission reminder megaphone */
 "CONTACT_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "Të aktivizohen Kontaktet?";
@@ -765,9 +783,6 @@
 
 /* Title for the 'conversation delete confirmation' alert. */
 "CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "Të fshihet Fjalosja?";
-
-/* Indicates that the user can tap to download this image. */
-"CONVERSATION_MEDIA_VIEW_DOWNLOAD_IMAGE" = "Shkarkoje";
 
 /* Momentarily shown to the user when attempting to select more conversations than is allowed. Embeds {{max number of conversations}} that can be selected. */
 "CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "S’mund të përzgjidhni më tepër se %@ fjalosje.";
@@ -835,6 +850,9 @@
 /* Label for table cell which leads to picking a new conversation color */
 "CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "Ngjyrë Fjalosjeje";
 
+/* Label for the 'edit' button in conversation settings view. */
+"CONVERSATION_SETTINGS_EDIT" = "Përpunojeni";
+
 /* Label for 'edit attributes access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS" = "Cilët Mund të Përpunojnë të Dhëna Grupi";
 
@@ -842,13 +860,10 @@
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Vetëm Përgjegjësit";
 
 /* Description for the 'edit group attributes access' alert. */
-"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "Zgjidhni cilët mund të ndryshojnë për grupin emrin, avatarin dhe zhdukje mesazhesh.";
+"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "Zgjidhni cilët mund të ndryshojnë për grupin emrin, avatarin dhe zhdukje mesazhesh:";
 
 /* Label for button that sets 'group attributes access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_MEMBERS_BUTTON" = "Krejt Anëtarët";
-
-/* Label for the 'edit group' button in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_GROUP" = "Përpunojeni";
 
 /* Label for 'edit membership access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "Cilët Mund të Shtojnë Anëtarë";
@@ -857,7 +872,7 @@
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Vetëm Përgjegjësit";
 
 /* Description for the 'edit group membership access' alert. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "Cilët mund të përpunojnë anëtarësi grupi:";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "Zgjidhni cili mund të shtojë anëtarë te ky grup:";
 
 /* Label for button that sets 'group membership access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_MEMBERS_BUTTON" = "Krejt Anëtarët";
@@ -871,6 +886,9 @@
 /* Format for title for 'make group admin' confirmation alert. Embeds {user to make an admin}. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_TITLE_FORMAT" = "1%@ do të jetë në gjendje të përpunojë këtë grup dhe anëtarët e tij.";
 
+/* Label for 'member invites' action in conversation settings view. */
+"CONVERSATION_SETTINGS_MEMBER_INVITES" = "Ftesa Anëtarësh";
+
 /* Label for 'member requests & invites' action in conversation settings view. */
 "CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "Kërkesa & Ftesa Anëtarësh";
 
@@ -879,9 +897,6 @@
 
 /* Format for the section title of the 'members' section in conversation settings view. Embeds: {{ the number of group members }}. */
 "CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "Anëtarë të %@";
-
-/* Footer for the 'membership access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBERSHIP_ACCESS_SECTION_FOOTER" = "Zgjidhni cilët mund të përpunojnë anëtarësi grupi.";
 
 /* label for 'always' option for mention notifications in conversation settings */
 "CONVERSATION_SETTINGS_MENTION_MODE_AlWAYS" = "Njofto Përherë";
@@ -973,6 +988,12 @@
 /* Message shown in conversation view that offers to add an unknown user to your phone's contacts. */
 "CONVERSATION_VIEW_ADD_TO_CONTACTS_OFFER" = "Shtojeni te Kontaktet";
 
+/* Format for sender info for accessibility label for message. Embeds {{ the sender name }}. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_FORMAT" = "%@ dërgoi:";
+
+/* Format for sender info for outgoing messages. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_LOCAL_USER" = "Dërguat:";
+
 /* button text to delete all items in the current conversation */
 "CONVERSATION_VIEW_DELETE_ALL_MESSAGES" = "Fshiji Krejt";
 
@@ -1044,9 +1065,6 @@
 
 /* Title of the debug log alert. */
 "DEBUG_LOG_ALERT_TITLE" = "Edhe Një Hap";
-
-/* Error indicating that the app could not launch the Email app. */
-"DEBUG_LOG_COULD_NOT_EMAIL" = "S’u hap dot aplikacioni Email.";
 
 /* Message of the alert before redirecting to GitHub Issues. */
 "DEBUG_LOG_GITHUB_ISSUE_ALERT_MESSAGE" = "Lidhja gist u kopjua te e papastra juaj. Ju ndan një hap nga ridrejtimi për te lista e problemeve në GitHub.";
@@ -1159,6 +1177,9 @@
 /* The second explanation for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_EXPLANATION2" = "Vendoseni këtë kod QR te kuadrati i pajisjet tuaj tjetër.";
 
+/* A prompt to provide further explanation if the user is not seeing the transfer on both devices. */
+"DEVICE_TRANSFER_QRCODE_NOT_SEEING" = "S’po e shihni kërkesën te pajisja juaj e vjetër?";
+
 /* The title for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_TITLE" = "Po pritet për Pajisje Tjetër…";
 
@@ -1219,8 +1240,8 @@
 /* Error message indicating the a user can't be added to a group. */
 "EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER" = "Ky përdorues s’mund të shtohet te grupi, para se të përmirësojë Signal-in.";
 
-/* Message for 'group full' error alert when a user can't be added to a group. */
-"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL" = "U mbërrit në madhësinë maksimum 100 anëtarë për grup.";
+/* Format for the 'group full' error alert when a user can't be added to a group because the group is full. Embeds {{ the maximum number of members in a group }}. */
+"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL_FORMAT" = "U mbërrit në maksimum madhësie grupi prej anëtarësh %@.";
 
 /* Error message indicating that an avatar image is invalid and cannot be used. */
 "EDIT_GROUP_ERROR_INVALID_AVATAR" = "Foto e pavlefshme.";
@@ -1313,7 +1334,7 @@
 "ERROR_DESCRIPTION_LOG_UPLOAD_FAILED" = "S’u arrit të ngarkohen regjistrat.";
 
 /* Error message indicating that message send is disabled due to prekey update failures */
-"ERROR_DESCRIPTION_MESSAGE_SEND_DISABLED_PREKEY_UPDATE_FAILURES" = "S’arrihet të dërgohet, për shkak të dhënash prekey të vjetruara";
+"ERROR_DESCRIPTION_MESSAGE_SEND_DISABLED_PREKEY_UPDATE_FAILURES" = "S’arrihet të dërgohet, për shkak të dhënash prekey të vjetruara.";
 
 /* Error message indicating that message send failed due to block list */
 "ERROR_DESCRIPTION_MESSAGE_SEND_FAILED_DUE_TO_BLOCK_LIST" = "S’u arrit t’i dërgohej mesazh përdoruesit, ngaqë e keni bllokuar.";
@@ -1358,7 +1379,7 @@
 "ERROR_MESSAGE_INVALID_KEY_EXCEPTION" = "Kyçi i marrësit s’është i vlefshëm.";
 
 /* No comment provided by engineer. */
-"ERROR_MESSAGE_INVALID_MESSAGE" = "Mesazhi i marrë s’qe i njëkohësuar";
+"ERROR_MESSAGE_INVALID_MESSAGE" = "Mesazhi i marrë s’qe i njëkohësuar.";
 
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_INVALID_VERSION" = "U mor një mesazh që s’është i përputhshëm me këtë version.";
@@ -1371,6 +1392,9 @@
 
 /* Shown when signal users safety numbers changed, embeds the user's {{name or phone number}} */
 "ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE_FORMAT" = "Numri juaj i sigurisë me %@ ka ndryshuar.";
+
+/* Text notifying the user that their secure session has been reset */
+"ERROR_MESSAGE_SESSION_REFRESH" = "Sesioni i fjalosjes u rifreskua";
 
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_UNKNOWN_ERROR" = "Ndodhi një gabim i panjohur.";
@@ -1414,7 +1438,7 @@
 /* Button that marks user as verified after a successful fingerprint scan. */
 "FINGERPRINT_SCAN_VERIFY_BUTTON" = "Vëri Shenjë Si i Verifikuar";
 
-/* No comment provided by engineer. */
+/* Label for button to reset a session. */
 "FINGERPRINT_SHRED_KEYMATERIAL_BUTTON" = "Filloje Sesionin Nga e Para";
 
 /* Accessibility label for finishing new group */
@@ -1437,6 +1461,15 @@
 
 /* A label for generic attachments. */
 "GENERIC_ATTACHMENT_LABEL" = "Bashkëngjitje";
+
+/* Title for the 'Get Started' banner */
+"GET_STARTED_BANNER_TITLE" = "Fillojani";
+
+/* 'Get Started' button directing users to invite friends */
+"GET_STARTED_CARD_INVITE_FRIENDS" = "Ftoni shokë";
+
+/* 'Get Started' button directing users to create a group */
+"GET_STARTED_CARD_NEW_GROUP" = "Grup i ri";
 
 /* Error displayed when there is a failure fetching a GIF from the remote service. */
 "GIF_PICKER_ERROR_FETCH_FAILURE" = "S’u arrit të sillej GIF-i i kërkuar. Ju lutemi, verifikoni se jeni i lidhur në internet.";
@@ -1503,6 +1536,135 @@
 
 /* Message indicating that the access to the group's members was changed. Embeds {{new access level}}. */
 "GROUP_ACCESS_MEMBERS_UPDATED_FORMAT" = "Anëtarësia në grup mund të ndryshohet nga “%@“.";
+
+/* Message indicating that a feature can only be used by group admins. */
+"GROUP_ADMIN_ONLY_WARNING" = "Këtë mundësi mund ta ndryshojnë vetëm përgjegjësit.";
+
+/* Message body for alert explaining that a group call participant is blocked */
+"GROUP_CALL_BLOCKED_ALERT_MESSAGE" = "S’do ta merrni audion ose videon e tyre dhe as ata tuajat.";
+
+/* Title for alert explaining that a group call participant is blocked. Embeds {{ user's name }} */
+"GROUP_CALL_BLOCKED_ALERT_TITLE_FORMAT" = "%@ është bllokuar";
+
+/* String displayed in group call grid cell when a user is blocked. Embeds {user's name} */
+"GROUP_CALL_BLOCKED_USER_FORMAT" = "%@ është bllokuar";
+
+/* Button to continue an ongoing group call */
+"GROUP_CALL_CONTINUE_BUTTON" = "Vazhdoje Thirrjen";
+
+/* Text in conversation view for a group call that has since ended */
+"GROUP_CALL_ENDED_MESSAGE" = "Thirrja e grupit përfundoi";
+
+/* A button to receive more info about not seeing a participant in group call grid */
+"GROUP_CALL_ERROR_DETAILS" = "Më Tepër të Dhëna";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. Embeds {{max device count}}. */
+"GROUP_CALL_HAS_MAX_DEVICES_FORMAT" = "Për këtë thirrje është mbërritur në numrin maksimum prej %ld pjesëmarrësish. Riprovoni më vonë.";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. */
+"GROUP_CALL_HAS_MAX_DEVICES_UNKNOWN_COUNT" = "Për këtë thirrje është mbërritur në numrin maksimum pjesëmarrësish. Riprovoni më vonë.";
+
+/* Text explaining the group call is full */
+"GROUP_CALL_IS_FULL" = "Thirrja është Plot";
+
+/* Button to join an ongoing group call */
+"GROUP_CALL_JOIN_BUTTON" = "Hyni në Thirrje";
+
+/* Button to leave a group call */
+"GROUP_CALL_LEAVE_BUTTON" = "Braktise Thirrjen";
+
+/* String indicating how many people are current in the call */
+"GROUP_CALL_MANY_IN_THIS_CALL_FORMAT" = "Në këtë thirrje · %ld vetë";
+
+/* Text explaining that there are more than three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2, %3$@ participantCount-2 }} */
+"GROUP_CALL_MANY_PEOPLE_HERE_FORMAT" = "Në këtë thirrje gjenden %1$@, %2$@, dhe %3$@ të tjerë";
+
+/* String displayed in cell when media from a user can't be displayed in group call grid. Embeds {user's name} */
+"GROUP_CALL_MISSING_MEDIA_KEYS_FORMAT" = "S’mund të merret audio & video prej %@";
+
+/* Message body for alert explaining that a group call participant cannot be displayed because of missing keys */
+"GROUP_CALL_NO_KEYS_ALERT_MESSAGE" = "Kjo mund të vijë ngaqë s’kanë verifikuar ndryshimin e numrit tuaj të sigurisë, ka një problem me pajisjen e tyre, ose ju kanë bllokuar.";
+
+/* Title for alert explaining that a group call participant cannot be displayed because of missing keys. Embeds {{ user's name }} */
+"GROUP_CALL_NO_KEYS_ALERT_TITLE_FORMAT" = "S’mund të merret audio dhe video prej %@";
+
+/* Text explaining that you are the only person currently in the group call */
+"GROUP_CALL_NO_ONE_HERE" = "S’ka tjetër këtu";
+
+/* Text explaining to the user that nobody has joined this call yet. */
+"GROUP_CALL_NOBODY_IS_IN_YET" = "S’ka njeri ende në thirrje.";
+
+/* Copy explaining that many new users have joined the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_JOINED_FORMAT" = "%@, %@, dhe %ld të tjerë u bënë pjesë e thirrjes";
+
+/* Copy explaining that many users have left the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_LEFT_FORMAT" = "%@, %@, dhe %ld të tjerë e lanë thirrjen";
+
+/* Copy explaining that a user has joined the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_JOINED_FORMAT" = "%@ u bë pjesë e thirrjes";
+
+/* Copy explaining that a user has left the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_LEFT_FORMAT" = "%@ e la thirrjen";
+
+/* Copy explaining that two users have joined the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_JOINED_FORMAT" = "%@ dhe %@ u bënë pjesë e thirrjes";
+
+/* Copy explaining that two users have left the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_LEFT_FORMAT" = "%@ dhe %@ e lanë thirrjen";
+
+/* String indicating one person is currently in the call */
+"GROUP_CALL_ONE_IN_THIS_CALL" = "Në këtë thirrje · 1 person";
+
+/* Text explaining that there is one person in the group call. Embeds {member name} */
+"GROUP_CALL_ONE_PERSON_HERE_FORMAT" = "Në këtë thirrje gjendet %@";
+
+/* Text indicating that the user has lost their connection to the call and we are reconnecting. */
+"GROUP_CALL_RECONNECTING" = "Po rilidhet";
+
+/* notification body when a group call participant joins with an untrusted safety number */
+"GROUP_CALL_SAFETY_NUMBER_CHANGE_BODY" = "Dikush ka hyrë në këtë thirrje me një numër sigurie që ka ndryshuar.";
+
+/* Text in conversation view for a group call that someone started. We don't know who */
+"GROUP_CALL_SOMEONE_STARTED_MESSAGE" = "Dikush filloi një thirrje grupi";
+
+/* Toast view text informing user about swiping to speaker view */
+"GROUP_CALL_SPEAKER_VIEW_TOAST" = "Fërkojeni për sipër që të ndryshoni parjet";
+
+/* Button to start a group call */
+"GROUP_CALL_START_BUTTON" = "Nise Thirrjen";
+
+/* Tooltip highlighting group calls. */
+"GROUP_CALL_START_TOOLTIP" = "Prekni këtu që të nisë një thirrje grupi";
+
+/* Text explaining that you started a group call. */
+"GROUP_CALL_STARTED_BY_YOU" = "Nisët një thirrje grupi";
+
+/* Text explaining that someone started a group call. Embeds {{call creator display name}} */
+"GROUP_CALL_STARTED_MESSAGE_FORMAT" = "%@ nisi një thirrje grupi";
+
+/* Text explaining that there are three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_THREE_PEOPLE_HERE_FORMAT" = "Në këtë thirrje është %1$@, %2$@, dhe 1 tjetër";
+
+/* Text explaining that there are two people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_TWO_PEOPLE_HERE_FORMAT" = "Në këtë thirrje është %1$@ dhe %2$@";
+
+/* An error displayed to the user when the group call unexpectedly ends. */
+"GROUP_CALL_UNEXPECTEDLY_ENDED" = "U shkëputët prej thirrjes. Kontrolloni lidhjen tuaj dhe riprovvoni.";
+
+/* Text describing the local user as a participant in a group call. */
+"GROUP_CALL_YOU" = "Ju";
+
+/* Text explaining that you are in the group call. */
+"GROUP_CALL_YOU_ARE_HERE" = "Gjendeni te thirrja e grupit";
+
+/* Text describing the local user in the group call members sheet when connected from another device. */
+"GROUP_CALL_YOU_ON_ANOTHER_DEVICE" = "Ju (në një tjetër pajisje)";
+
+/* Body for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_BODY" = "Që të nisni një thirrje të lirë, të fshehtëzuar, në grup, hapni një Grup të Ri";
+
+/* Title for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_TITLE" = "Ju paraqesim Thirrje Grupi";
 
 /* Message indicating that group was created by the local user. */
 "GROUP_CREATED_BY_LOCAL_USER" = "E krijuat grupin.";
@@ -1580,7 +1742,7 @@
 "GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ aktivizoi lidhjen e grupit me miratim nga përgjegjësi të çaktivizuar.";
 
 /* Message indicating that the group invite link was reset. */
-"GROUP_INVITE_LINK_RESET" = "Lidhja e grupit qe ricaktuar.";
+"GROUP_INVITE_LINK_RESET" = "Lidhja e grupit u ricaktua.";
 
 /* Message indicating that the group invite link was reset by the local user. */
 "GROUP_INVITE_LINK_RESET_BY_LOCAL_USER" = "Rikthyet te parazgjedhjet lidhjen e grupit.";
@@ -1618,6 +1780,9 @@
 /* Message for an alert indicating that some members were invited to a group. */
 "GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "Këta përdorues s’mund të shtohen automatikisht te ky grup nga ju. Janë ftuar të marrin pjesë, dhe s’do të shohin ndonjë mesazh grupi, përpara se të pranojnë ftesat.";
 
+/* The title for the 'group invites' view. */
+"GROUP_INVITES_VIEW_TITLE" = "Ftesa Anëtarësh";
+
 /* Subtitle indicating that the group invite link has expired in the 'group invite link' action sheet. */
 "GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "Kjo lidhje grupi s’është më e vlefshme.";
 
@@ -1648,14 +1813,29 @@
 /* Title for the 'invalid group invite link' alert. */
 "GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "Lidhje e Pavlefshme";
 
-/* Indicator that a group invite link has expired. */
-"GROUP_LINK_INVITE_LINK_IS_EXPIRED" = "Lidhja s’është më e vlefshme";
-
-/* Button to join a group from a group link. */
-"GROUP_LINK_JOIN_GROUP_BUTTON" = "Bëhuni Pjesë e Grupit";
-
 /* Error message indicating that the local user does not support groups v2. */
 "GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "Që të bëheni pjesë e këtij grupi, përditësoni Signal-in në këtë pajisje.";
+
+/* Explanation of the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_EXPLANATION" = "Kërko doemos që një përgjegjës të miratojë anëtarë të rinj që vijnë prej një lidhjeje grupi.";
+
+/* Label for the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_SWITCH" = "Miratoni Anëtarë të Rinj";
+
+/* Label for the 'enable and share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_ENABLE_AND_SHARE_LINK" = "Aktivizoni dhe Jepeni Lidhjen";
+
+/* Label for the 'share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SHARE_LINK" = "Jepeni Lidhjen";
+
+/* Subtitle for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SUBTITLE" = "Jepuani lidhjen shokëve, për t’i lënë të bëhen pjesë e grupit shpejt e shpejt.";
+
+/* Title for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_TITLE" = "Ftoni Shokë";
+
+/* Suggestion to invite more group members via the group invite link. */
+"GROUP_LINK_PROMOTION_UPDATE" = "Ftoni shokë te grupi juaj përmes lidhjes së grupit ";
 
 /* Description text in the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_DESCRIPTION" = "Njerëzit që skanojnë këtë kod, do të jenë në gjendje të bëhen pjesë e grupit tuaj. Përgjegjësve prapë do t’ju duhet të miratojnë anëtarë të rinj, nëse e keni të aktivizuar këtë mundësi.";
@@ -1703,7 +1883,7 @@
 "GROUP_LINK_VIEW_SHARE_LINK_VIA_SIGNAL" = "Ndajeni përmes Signal-i";
 
 /* Message for the 'share group link' action sheet in the 'group link' view. */
-"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "Cilido me këtë lidhje mund të bëhet pjesë e grupit, ose të dërgojë një kërkesë për t’u bërë pjesë. Ndajeni me persona të cilëve u besoni.";
+"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "Cilido me këtë lidhje mund të shohë emrin e këtij grupi dhe anëtarët dhe kërkesat për pjesëmarrje në të. Jepuani njerëzve të cilëve u besoni.";
 
 /* The title for the 'group link' view. */
 "GROUP_LINK_VIEW_TITLE" = "Lidhje Grupi";
@@ -1771,11 +1951,11 @@
 /* Message indicating that the local user had their administrator role revoked by another user. Embeds {{remote user name}}. */
 "GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@ shfuqizoi privilegjet tuaja si përgjegjës.";
 
+/* Message indicating that the local user was added to the group. */
+"GROUP_LOCAL_USER_WAS_ADDED_TO_THE_GROUP" = "Një anëtar ju shtoi te grupi.";
+
 /* Label indicating that a group member is an admin. */
 "GROUP_MEMBER_ADMIN_INDICATOR" = "Përgjegjës";
-
-/* Format string for the group member count indicator. Embeds {{ %1$@ the number of members in the group, %2$@ the maximum number of members in the group. }}. */
-"GROUP_MEMBER_COUNT_FORMAT" = "%1$@/%2$@";
 
 /* The 'group member count' indicator when there are no members in the group. */
 "GROUP_MEMBER_COUNT_LABEL_0" = "Pa anëtarë";
@@ -1786,14 +1966,17 @@
 /* Format for the 'group member count' indicator. Embeds {the number of group members}. */
 "GROUP_MEMBER_COUNT_LABEL_FORMAT" = "%@ anëtarë";
 
+/* Format string for the group member count indicator. Embeds {{ the number of members in the group }}. */
+"GROUP_MEMBER_COUNT_WITHOUT_LIMIT_FORMAT" = "Anëtarë të %@";
+
 /* Label indicating the local user. */
 "GROUP_MEMBER_LOCAL_USER" = "Ju";
 
 /* Accessibility label for the 'call group member' button */
 "GROUP_MEMBERS_CALL" = "Thirrje Audio";
 
-/* Label indicating that a group has no other members. */
-"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "S’ka anëtarë.";
+/* Label indicating that a new group has no other members. */
+"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "Mund të shtoni ose ftoni shokë pas krijimit të këtij grupi.";
 
 /* Title for the 'members' section of the 'group members' view. */
 "GROUP_MEMBERS_SECTION_TITLE_MEMBERS" = "Anëtarë";
@@ -1897,9 +2080,6 @@
 /* Message indicating that a remote user's request to join the group was approved by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
 "GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%2$@ miratoi një kërkesë për t’u bërë pjesë e grupit nga %1$@.";
 
-/* Message indicating that a remote user's request to join the group was approved. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_FORMAT" = "Një kërkesë për t’u bërë pjesë e grupit nga %@ u miratua.";
-
 /* Message indicating that a remote user cancelled their request to join the group. Embeds {{ the name of the requesting user }}. */
 "GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@ anuloi kërkesën e vet për t’u bërë pjesë e grupit.";
 
@@ -1978,6 +2158,27 @@
 /* Message indicating that the group's name was changed. Embeds {{new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_FORMAT" = "Emri i grupit tani është “%@”.";
 
+/* Message indicating that the group was migrated. */
+"GROUP_WAS_MIGRATED" = "Ky grup u përmirësua si Grup i Ri.";
+
+/* Message indicating that 1 user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_1" = "Një anëtar s’u shtua dot te Grupi i Ri dhe u hoq prej grupit.";
+
+/* Message indicating that the local user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_LOCAL_USER" = "S’u shtuat dot te Grupi i Ri dhe u hoqët prej grupit.";
+
+/* Message indicating that N users were dropped while migrating the group. Embeds {{ the number of dropped users }}. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_N_FORMAT" = "%@ anëtarë s’u shtuan dot te Grupi i Ri dhe u hoqën prej grupit.";
+
+/* Message indicating that 1 user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_1" = "Një anëtar s’u shtua dot te Grupi i Ri dhe u ftua të bëhet pjesë";
+
+/* Message indicating that the local user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_LOCAL_USER" = "S’u shtuat dot te Grupi i Ri dhe u ftuat të bëheni pjesë";
+
+/* Message indicating that N users were invited while migrating the group. Embeds {{ the number of invited users }}. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_N_FORMAT" = "%@ anëtarë s’u shtuan dot te Grupi i Ri dhe u ftuan të bëhet pjesë.";
+
 /* Message indicating that the local user left the group. */
 "GROUP_YOU_LEFT" = "E braktisët grupin.";
 
@@ -1999,6 +2200,9 @@
 /* Label for 'block inviter' button in group invite view. Embeds {{name of user who invited you}}. */
 "GROUPS_INVITE_BLOCK_INVITER_FORMAT" = "Blloko %@";
 
+/* Label for 'invite friends to group' button. */
+"GROUPS_INVITE_FRIENDS_BUTTON" = "Ftoni shokë";
+
 /* Body text for the first section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "Grupet e dikurshëm janë grupe që nuk janë të përputhshëm me veçori Grupesh të Rinj, bie fjala, përgjegjës dhe përditësime grupi më përshkruese.";
 
@@ -2006,16 +2210,43 @@
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_TITLE" = "Ç’janë Grupet e Dikurshëm?";
 
 /* Body text for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "Grupet e Dikurshëm s’mund të shndërrohen në Grupe të Rinj, por mund të krijoni një Grup të ri me të njëjtët anëtarë.";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "Grupet e Dikurshme s’mund të përmirësohen në Grupe të Rinj, por mundeni të krijoni një Grup të Ri me të njëjtët anëtarë, nëse gjenden nën versionin më të ri të Signal-it.\n\nSignal-i do të ofrojë një rrugë për përmirësim Grupesh të Dikurshëm në të ardhmen.";
 
 /* Title for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "Si ta “përmirësoj” një Grup të Dikurshëm?";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "A mund të përmirësoj një Grup të Dikurshëm?";
 
 /* Body text for the third section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_3_BODY" = "Që të krijoni një Grup të Ri, krejt anëtarët duhet ta përditësojnë Signal-in me versionin më të ri.";
 
 /* Title for the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_TITLE" = "Grupe të Dikurshëm vs. Grupesh të Rinj";
+
+/* Format for indicator that a group cannot be used until it is migrated. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_BLOCKING_MIGRATION_FORMAT" = "Përmirësojeni grupin, që të aktivizohen veçori të reja, të tilla si @përmendje dhe përgjegjës. Anëtarët që nuk kanë dhënë emrin ose foton e tyre te ky grup, do të ftohen të bëhen pjesë. %@.";
+
+/* Title for the 'can't upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TITLE" = "Nuk Përmirësohet Dot si Grup i Ri";
+
+/* Text indicating that a legacy group can't be upgraded because it has too many members. Embeds {{ The maximum number of members allowed in a group. }}. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TOO_MANY_MEMBERS_FORMAT" = "Ky grup s’mund të përmirësohet si Grup i Ri, ngaqë ka shumë anëtarë. Madhësia maksimum e grupeve që mund të përmirësohen është %@.";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_1" = "Kur krejt anëtarët e tanishëm të grupit të përdorin një version Signal-i të aftë për t’u bërë pjesë e një Grupi të Ri, ky grup do të përmirësohet.";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_2" = "Krejt historiku i mesazheve dhe mediat do të mbahen prej kohës para përmirësimit.";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_1" = "Ky grup s’mund të krijohet, ngaqë 1 anëtar po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të, pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. Embeds {{ the number of members which do not support v2 groups. }} */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_N_FORMAT" = "Ky grup s’mund të krijohet, ngaqë %@ anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta pasi të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.";
+
+/* Indicates that a new group cannot be created because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_1" = "Ky grup s’mund të krijohet, ngaqë 1 anëtar po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të, pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit. %@";
+
+/* Indicates that a new group cannot be created because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_N" = "Ky grup s’mund të krijohet, ngaqë %1$@ anëtarë po përdorin një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me ta pasi të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit. %2$@";
 
 /* Title for alert that explains that a new group will be a legacy group because 1 member does not support v2 groups. */
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_1" = "Do të krijohet një Grup i Dikurshëm, ngaqë 1 anëtar po përdor një version të vjetër të Signal-it. Mund të krijoni një Grup në Stil të Ri me të, pasi të përditësojë Signal-in, ose ta hiqni para krijimit të grupit.";
@@ -2030,13 +2261,106 @@
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "%1$@ anëtarë nuk mbulojnë Grupe të Rinj, ndaj ky grup do të jetë Grup i Dikurshëm. %2$@";
 
 /* Brief explanation of legacy groups. Embeds {{ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "Ky është një Grup i Dikurshëm. Për të përdorur veçori të tilla si përgjegjës grupi, krijoni një Grup të Ri. 1%@";
+"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "Ky është një Grup i Dikurshëm. Veçori të tilla si përgjegjës grupesh, mund të përdoren vetëm në Grupe të Rinj. %@";
+
+/* Indicates that a legacy group can't be upgraded because some members can't be migrated. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_MEMBERS_CANT_BE_MIGRATED_FORMAT" = "Ky Grup i Dikurshëm s’është ende gati për t’u përmirësuar si Grup i Ri. %@.";
+
+/* Indicates that a legacy group can't be upgraded because it has too many members. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_TOO_MANY_MEMBERS_FORMAT" = "Ky Grup i Dikurshëm s’mund të përmirësohet si Grup i Ri, ngaqë është shumë i madh. %@.";
+
+/* Explanation of legacy groups. Embeds {{ an \"upgrade\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_WITH_UPGRADE_OFFER_FORMAT" = "Ky është një Grup i Dikurshëm. Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, %@.";
+
+/* Title for the the 'dropped group member' banner. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_1" = "1 anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?";
+
+/* Format for the title for the the 'dropped group members' banner. Embeds: {{ the number of dropped group members }}. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_N_FORMAT" = "%@ anëtarë s’u rishtuan dot te Grupi i Ri. Doni të shtohen tani?";
 
 /* Label indicating a legacy group. */
 "GROUPS_LEGACY_GROUP_INDICATOR" = "Grup i Dikurshëm";
 
-/* A \"learn more\" link with more information about legacy groups. */
-"GROUPS_LEGACY_GROUP_LEARN_MORE_LINK" = "Mësoni Më Tepër";
+/* Indicates that the local user needs to accept an invitation to rejoin the group after a group migration. */
+"GROUPS_LEGACY_GROUP_LOCAL_USER_INVITED" = "Do t’ju duhet të pranoni një ftesë, ta të ribëheni pjesë e këtij grupi, dhe s’do të merrni mesazhe grupi, pa e pranuar.";
+
+/* Label for the 'migrate' button in the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_MIGRATE_BUTTON" = "Përmirësoje Grupin";
+
+/* Title for the the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_OFFER_BANNER" = "Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.";
+
+/* Title for the 'migrated group' alert view. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_ALERT_TITLE" = "Ç’janë Grupet e Reja?";
+
+/* Explanation of group migration for a migrated group in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_DESCRIPTION" = "Krejt historiku i mesazheve dhe mediat janë mbajtur prej kohës para përmirësimit.";
+
+/* Explanation of new groups in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_NEW_GROUP_DESCRIPTION" = "Grupet e Reja kanë veçori të tilla si @përmendje dhe përgjegjës grupi, dhe në të ardhmen do të mbulojnë më tepër veçori.";
+
+/* Title for the 'new groups' alert view. */
+"GROUPS_LEGACY_GROUP_NEW_GROUPS_ALERT_TITLE" = "Grupe të Rinj";
+
+/* Label for the 'add members' button in the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ADD_MEMBERS_BUTTON" = "Shtoni Anëtarë";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_1" = "Të shtohet Anëtar?";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_N" = "Të shtohen Anëtarë?";
+
+/* Label for the 'add members' button in the 're-add dropped groups members' banner. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_BUTTON" = "Shtoni Anëtarë";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_1" = "Ky anëtar s’u shtua dot automatikisht te Grupi i Ri, kur u përditësua:";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_N" = "Këta anëtarë s’u shtuan dot automatikisht te Grupi i Ri, kur u përditësua:";
+
+/* Body text for the second section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_2_BODY" = "Krejt historiku i mesazheve dhe mediat janë mbajtur prej kohës para përmirësimit.";
+
+/* Body text for the 'dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_1" = "Ky anëtar u hoq prej grupit dhe s’do të jetë në gjendje të ribëhet pjesë e grupit, pa përmirësuar versionin:";
+
+/* Body text for the 'dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_N" = "Këta anëtarë u hoqën prej grupit dhe s’do të jenë në gjendje të ribëhen pjesë e grupit, pa përmirësuar versionin:";
+
+/* Body text for the 'invites member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_1" = "Këtij anëtari do t’i duhet të pranojë një ftesë për t’u bërë pjesë e grupit, dhe s’do të marrë mesazhe grupi, pa pranuar ftesën:";
+
+/* Body text for the 'invites members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_N" = "Këtyre anëtarëve do t’u duhet të pranojnë një ftesë për t’u bërë pjesë e grupit, dhe s’do të marrin mesazhe grupi, pa pranuar ftesën:";
+
+/* Body text for the 'possibly dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_1" = "Ky anëtar s’është në gjendje të bëhet pjesë Grupesh të Rinj, dhe do të hiqet prej grupit:";
+
+/* Body text for the 'possibly dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_N" = "Këta anëtarë s’janë në gjendje të bëhen pjesë Grupesh të Rinj, dhe do të hiqet prej grupit:";
+
+/* Title for the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_TITLE" = "Përmirësoje si Grup të Ri";
+
+/* Label for the 'upgrade this group' button in the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_BUTTON" = "Përmirësoje këtë Grup";
+
+/* Message for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE" = "Ky grup s’mund të përmirësohet si Grupi i Ri tani këtë çast.";
+
+/* Message for error alert indicating the group update failed due to network connectivity. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE_NETWORK" = "Ky grup s’u përmirësua dot si Grupi i Ri, ngaqë s’jeni i lidhur në Internet. Riprovoni më vonë.";
+
+/* Title for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_TITLE" = "S’u Plotësua Dot Përmirësimi";
+
+/* Message indicating the group update succeeded. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_SUCCEEDED" = "U përmirësua si Grup i Ri.";
+
+/* An \"upgrade\" link for upgrading legacy groups to new groups. */
+"GROUPS_LEGACY_GROUP_UPGRADE_LINK" = "përmirësoje këtë grup";
 
 /* Message for the 'replace group admin' alert. */
 "GROUPS_REPLACE_ADMIN_ALERT_MESSAGE" = "Përpara se të ikni, zgjidhni një përgjegjës të ri për këtë grup.";
@@ -2046,6 +2370,21 @@
 
 /* Label for the 'replace group admin' button. */
 "GROUPS_REPLACE_ADMIN_BUTTON" = "Zgjidhni përgjegjës të ri";
+
+/* Format for the alert warning the user that they've reached the recommended limit on how many members can be in a group when creating a new group. Embeds {{ the maximum number of recommended members in a group }}. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_MESSAGE_FORMAT" = "Punimin më të mirë grupet Signal e kanë me %@ anëtarë ose më pak. Shtimi i më shumë anëtarëve do të shkaktojë vonesa në dërgim dhe marrje mesazhesh.";
+
+/* Title for alert warning the user that they've reached the recommended limit on how many members can be in a group. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_TITLE" = "U mbërrit në kufi të rekomanduar anëtaarësh";
+
+/* Message asking the user to confirm that they want to add a member to the group. */
+"GROUPS_TOO_MANY_MEMBERS_CONFIRM" = "Të shtohet anëtari, sido qoftë?";
+
+/* Label for button that lets the user view the request to join the group. */
+"GROUPS_VIEW_REQUEST_BUTTON" = "Shihni Kërkesë";
+
+/* Label for button that lets the user view the requests to join the group. */
+"GROUPS_VIEW_REQUESTS_BUTTON" = "Shihni Kërkesa";
 
 /* Help item allowing the user to file a support request */
 "HELP_CONTACT_US" = "Lidhuni Me Ne";
@@ -2063,7 +2402,7 @@
 "HOME_VIEW_CONVERSATION_SEARCHBAR_PLACEHOLDER" = "Kërko";
 
 /* A prefix indicating that a message preview is a draft */
-"HOME_VIEW_DRAFT_PREFIX" = "Skicë:";
+"HOME_VIEW_DRAFT_PREFIX" = "Skicë: ";
 
 /* Format string for a label offering to start a new conversation with your contacts, if you have 1 Signal contact.  Embeds {{The name of 1 of your Signal contacts}}. */
 "HOME_VIEW_FIRST_CONVERSATION_OFFER_1_CONTACT_FORMAT" = "Disa nga kontaktet tuaja kanë tashmë Signal, përfshi %@.";
@@ -2104,6 +2443,15 @@
 /* Momentarily shown to the user when attempting to select more images than is allowed. Embeds {{max number of items}} that can be shared. */
 "IMAGE_PICKER_CAN_SELECT_NO_MORE_TOAST_FORMAT" = "S’mund të ndani me të tjerët më tepër se %@ objekte.";
 
+/* Button that will present a view for the user to change the photos Signal has access to. */
+"IMAGE_PICKER_CHANGE_PHOTOS" = "Ndryshoni Foto";
+
+/* Explanation showing that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_EXPLANATION" = "Akordoni hyrje të plotë te Rregullimet ose ndryshoni cilat foto mund të përdorë Signal-i.";
+
+/* Title show that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_TITLE" = "S’i shihni fotot tuaja?";
+
 /* alert title */
 "IMAGE_PICKER_FAILED_TO_PROCESS_ATTACHMENTS" = "S’u arrit të përzgjidhej bashkëngjitje.";
 
@@ -2141,7 +2489,7 @@
 "INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "Këto fjalosje janë të arkivuara dhe do të shfaqen te Të marrë vetëm nëse merren mesazhe të rinj.";
 
 /* Message shown in the conversation list when the inbox is empty. */
-"INBOX_VIEW_EMPTY_INBOX" = "Sajoni diçka për shkrim në shtëpi. Fillojani duke shkruar një mesazh për një shok.";
+"INBOX_VIEW_EMPTY_INBOX" = "Ende pa fjalosje.\nFillojani duke i dërguar një mesazh një shoku.";
 
 /* info message text in conversation view. {embeds callee name} */
 "INCOMING_CALL_FORMAT" = "Ju thirri %@";
@@ -2150,7 +2498,7 @@
 "INFO_MESSAGE_SYNCED_THREAD" = "Mund të dërgoni ose merrni mesazhe të njëkohësuar nga telefoni ose iPad-i juaj. ↵Për hir të sigurisë tuaj, historiku i fjalosjeve nuk shpërngulet te pajisje të reja të lidhura.";
 
 /* Shown in inbox and conversation when a user joins Signal, embeds the new user's {{contact name}} */
-"INFO_MESSAGE_USER_JOINED_SIGNAL_BODY_FORMAT" = "%@ është në Signal! ";
+"INFO_MESSAGE_USER_JOINED_SIGNAL_BODY_FORMAT" = "%@ është në Signal!";
 
 /* accessibility label for the button which shows the sticker picker */
 "INPUT_TOOLBAR_STICKER_BUTTON_ACCESSIBILITY_LABEL" = "Ngjitëse";
@@ -2178,6 +2526,9 @@
 
 /* Alert warning that sending an invite to multiple users will create a group message whose recipients will be able to see each other. */
 "INVITE_WARNING_MULTIPLE_INVITES_BY_TEXT" = "Ftimi i shumë përdoruesve njëherësh do t’i japë fill një mesazhi grupi dhe marrësit do të jenë në gjendje të shohin njëri-tjetrin.";
+
+/* Button to join an active group call */
+"JOIN_CALL_PILL_BUTTON" = "Merrni pjesë";
 
 /* Slider label embeds {{TIME_AMOUNT}}, e.g. '2 hours'. See *_TIME_AMOUNT strings for examples. */
 "KEEP_MESSAGES_DURATION" = "Mesazhet zhduken pas %@.";
@@ -2281,6 +2632,24 @@
 /* Title for link previews megaphone */
 "LINKPREVIEWS_MEGAPHONE_TITLE" = "Parashihni Çfarëdo Lidhje";
 
+/* Body for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_BODY" = "Që të mund të shpërngulni llogarinë tuaj Signal, lypset të aktivizoni rrjet vendor në të dyja pajisjet.";
+
+/* A button asking the user if they need further help getting their transfer working. */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_NEED_HELP" = "Ju Duhet Ndihmë?";
+
+/* First step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_ONE" = "Në secilën pajisje, hapni Rregullimet";
+
+/* Third step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_THREE" = "Aktivizoni “Rrjet Vendor”";
+
+/* Second step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_TWO" = "Kaloni te Signal-i";
+
+/* Title for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_TITLE" = "Aktivizoni Hyrje Në Rrjet Vendor";
+
 /* A string indicating that the user can search for a location */
 "LOCATION_PICKER_SEARCH_PLACEHOLDER" = "Kërkoni sipas emrash ose adresash";
 
@@ -2292,6 +2661,9 @@
 
 /* Title for the 'long text message' view. */
 "LONG_TEXT_VIEW_TITLE" = "Mesazh";
+
+/* A string describing that the user has many groups in common with another user. Embeds {{common group count}} */
+"MANY_GROUPS_IN_COMMON" = "%@ grupe të përbashkët";
 
 /* nav bar button item */
 "MEDIA_DETAIL_VIEW_ALL_MEDIA_BUTTON" = "Krejt Mediat";
@@ -2307,6 +2679,12 @@
 
 /* Confirmation button text to delete selected media message from the gallery */
 "MEDIA_GALLERY_DELETE_SINGLE_MESSAGE" = "Fshije Mesazhin";
+
+/* Format for an indicator of the number of image items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_IMAGE_COUNT_FORMAT" = "%@ Foto";
+
+/* Format for an indicator of the number of image or video items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_MIXED_COUNT_FORMAT" = "%@ Objekte";
 
 /* Format for the 'more items' indicator for media galleries. Embeds {{the number of additional items}}. */
 "MEDIA_GALLERY_MORE_ITEMS_FORMAT" = "+%@";
@@ -2330,7 +2708,7 @@
 "MESSAGE_ACTION_DELETE_FOR_EVERYONE" = "Fshije për Gjithkënd";
 
 /* A one-time confirmation that you want to delete for everyone */
-"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "Ky mesazh do të fshihet përgjithnjë për këdo te fjalosja. Anëtarët do të jenë në gjendje të shohin se fshitë një mesazh.";
+"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "Ky mesazh do të fshihet për këdo te fjalosja, nëse gjenden në një version të freskët të Signal-it. Ata do të jenë në gjendje të shohin se fshitë një mesazh.";
 
 /* The title for the action sheet asking who the user wants to delete the message for. */
 "MESSAGE_ACTION_DELETE_FOR_TITLE" = "Për kë do të donit të fshihet ky mesazh?";
@@ -2446,6 +2824,27 @@
 /* Action sheet title to confirm deleting a group via a message request. */
 "MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_TITLE" = "Të fshihet dhe Braktiset Grupi?";
 
+/* Banner label notifying user that a new message is from a user with the same name as an existing contact */
+"MESSAGE_REQUEST_NAME_COLLISON_BANNER_LABEL" = "Kërkesat shqyrtojini me kujdes. Signal-i gjeti një tjetër kontakt me po atë emër.";
+
+/* A header string above a known contact's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_CONTACT_HEADER" = "Kontakti juaj";
+
+/* A header string informing the user about name collisions in a message request */
+"MESSAGE_REQUEST_NAME_COLLISON_HEADER" = "Nëse s’jeni të sigurt se prej nga është kërkesa, shqyrtoni kontaktet më poshtë dhe veproni.";
+
+/* A header string above the requester's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_REQUESTER_HEADER" = "Kërkesë";
+
+/* A title string for a view that allows a user to review name collisions for an incoming message request */
+"MESSAGE_REQUEST_NAME_COLLISON_TITLE" = "Shqyrtoni Kërkesë";
+
+/* A button that updates a known contact's information to resolve a name collision */
+"MESSAGE_REQUEST_NAME_COLLISON_UPDATE_CONTACT_ACTION" = "Përditësoni kontaktin";
+
+/* Button to allow user to review known name collisions with an incoming message request */
+"MESSAGE_REQUEST_REVIEW_NAME_COLLISION" = "Shqyrtoni Kërkesë";
+
 /* A button used to accept a user on an incoming message request. */
 "MESSAGE_REQUEST_VIEW_ACCEPT_BUTTON" = "Pranoje";
 
@@ -2461,17 +2860,17 @@
 /* A prompt notifying that the user must unblock this group to continue. */
 "MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT_V2" = "Të zhbllokohet ky grup? S’do ta dinë se i keni parë mesazhet e tyre, deri sa t’i zhbllokoni.";
 
+/* A button used to continue a conversation and share your profile. */
+"MESSAGE_REQUEST_VIEW_CONTINUE_BUTTON" = "Vazhdo";
+
 /* incoming message request button text which deletes a conversation */
 "MESSAGE_REQUEST_VIEW_DELETE_BUTTON" = "Fshije";
 
 /* A prompt notifying that the user must share their profile with this conversation. Embeds {{contact name}}. */
-"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "Që të vazhdoni fjalosjen tuaj me %@, duhet të ndani me të profilin tuaj.";
+"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "Të vazhdohet kjo fjalosje me %@ dhe të jepet emri dhe fotoja juaj?";
 
 /* A prompt notifying that the user must share their profile with this group. */
-"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "Që të vazhdohet biseda juaj me këtë grup, duhet të ndani me të profilin tuaj.";
-
-/* A prompt for the user to accept or decline an invite to a group. Embeds {{name of user who invited you}}. */
-"MESSAGE_REQUEST_VIEW_GROUP_INVITE_PROMPT_FORMAT" = "Qetë ftuar në këtë grup nga %@. Doni t’i lini anëtarët e këtij grupi t’ju dërgojnë mesazhe?";
+"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "Të vazhdohet fjalosja juaj me këtë grup dhe t’u jepet anëtarëve të tij emri dhe fotoja juaj?";
 
 /* A prompt asking if the user wants to accept a conversation invite. Embeds {{contact name}}. */
 "MESSAGE_REQUEST_VIEW_NEW_CONTACT_PROMPT_FORMAT" = "Të lejohet %@ t’ju dërgojë mesazh dhe të ndajë emrin dhe foton tuaj me të tjerë? S’do ta dijë se e keni parë mesazhin e tij, para se të pranoni këtë.";
@@ -2481,9 +2880,6 @@
 
 /* A prompt asking if the user wants to accept a group invite. */
 "MESSAGE_REQUEST_VIEW_NEW_GROUP_PROMPT_V2" = "Doni të bëheni pjesë e këtij grupi? S’do ta dinë se i keni parë mesazhet e tyre, deri sa të pranoni.";
-
-/* A button used to share your profile with an existing thread. */
-"MESSAGE_REQUEST_VIEW_SHARE_PROFILE_BUTTON" = "Ndaje Profilin Me të Tjerët";
 
 /* A button used to unlock a blocked conversation. */
 "MESSAGE_REQUEST_VIEW_UNBLOCK_BUTTON" = "Zhbllokoje";
@@ -2496,18 +2892,6 @@
 
 /* Indicator that you have requested to join this group. */
 "MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "Kërkesa juaj për t’u bërë pjesë iu dërgua përgjegjësit të grupit. Kur të veprojnë, do t’ju njoftohet.";
-
-/* Header for message requests splash screen */
-"MESSAGE_REQUESTS_NAMES_SPLASH_TITLE" = "Ju prezantojmë Kërkesa Mesazhesh";
-
-/* Button to start a create profile name flow from the one time splash screen that appears after upgrading */
-"MESSAGE_REQUESTS_SPLASH_ADD_PROFILE_NAME_BUTTON" = "Shtoni Emër Profili";
-
-/* Body text for message requests splash screen */
-"MESSAGE_REQUESTS_SPLASH_BODY" = "Tani mund të zgjidhni ”Pranojeni” ose ”Fshijeni“ një fjalosje të re. Emrat u lejojnë njerëzve të dinë se kush po u dërgon mesazhe.";
-
-/* Toast indicating that a profile name has been created. */
-"MESSAGE_REQUESTS_SPLASH_MEGAPHONE_TOAST" = "Emri juaj i profilit u ruajt.";
 
 /* message status for message delivered to their recipient. */
 "MESSAGE_STATUS_DELIVERED" = "Të dorëzuar";
@@ -2602,6 +2986,18 @@
 /* No comment provided by engineer. */
 "NETWORK_ERROR_RECOVERY" = "Ju lutemi, kontrolloni se jeni në linjë dhe riprovoni.";
 
+/* String representing only the cellular interface */
+"NETWORK_INTERFACE_SET_CELLULAR" = "Vetëm Celulare";
+
+/* String representing the 'never' condition of having no supported network interfaces */
+"NETWORK_INTERFACE_SET_NEVER" = "Kurrë";
+
+/* String representing only the wifi interface */
+"NETWORK_INTERFACE_SET_WIFI" = "Vetëm Wi-Fi";
+
+/* String representing both wifi and cellular interfaces */
+"NETWORK_INTERFACE_SET_WIFI_CELLULAR" = "Wi-Fi d Celular";
+
 /* A label the cell that lets you add a new member to a group. */
 "NEW_CONVERSATION_FIND_BY_PHONE_NUMBER" = "Gjeni sipas Numri Telefoni";
 
@@ -2619,6 +3015,9 @@
 
 /* Error indicating that a new group could not be created due to network connectivity problems. */
 "NEW_GROUP_CREATION_FAILED_DUE_TO_NETWORK" = "S’u krijua dot grup i ri. Kontrolloni lidhjen tuaj në internet dhe riprovoni.";
+
+/* Indicates that a group member does not support New Groups. */
+"NEW_GROUP_CREATION_MEMBER_DOES_NOT_SUPPORT_NEW_GROUPS" = "S’mbulon Grupe të Rinj";
 
 /* Message for error alert indicating that a group name is required. */
 "NEW_GROUP_CREATION_MISSING_NAME_ALERT_MESSAGE" = "Emri i grupit është i domosdoshëm.";
@@ -2658,6 +3057,9 @@
 
 /* Label for a button that lets users search for contacts by phone number */
 "NO_CONTACTS_SEARCH_BY_PHONE_NUMBER" = "Gjeni Kontakte sipas Numri Telefoni";
+
+/* A string describing that the user has no groups in common with another user */
+"NO_GROUPS_IN_COMMON" = "S’ka grupe të përbashkët";
 
 /* Explanation of how to see a conversation. */
 "NO_SELECTED_CONVERSATION_DESCRIPTION" = "Përzgjidhni një kontakt ose grup që të filloni të fjaloseni.";
@@ -2716,6 +3118,9 @@
 /* Label for settings UI that allows user to change the notification sound. */
 "NOTIFICATIONS_SECTION_SOUNDS" = "Tinguj";
 
+/* Label for settings UI that allows user to add a new notification sound. */
+"NOTIFICATIONS_SECTION_SOUNDS_ADD_CUSTOM_SOUND" = "Shtoni tingull vetjak…";
+
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SENDER_AND_MESSAGE" = "Emër, Lëndë dhe Veprime";
 
@@ -2725,7 +3130,7 @@
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SHOW" = "Shfaqe";
 
-/* No comment provided by engineer. */
+/* Label for the 'ok' button. */
 "OK" = "OK";
 
 /* Label indicating that the 2fa pin is exhausted in the 'onboarding 2fa' view. */
@@ -2759,7 +3164,7 @@
 "ONBOARDING_2FA_SKIP_PIN_ENTRY_MESSAGE" = "Nëse s’mbani mend PIN-in tuaj, mund të krijoni një të ri. Mund të regjistroni dhe përdorni llogarinë tuaj, por do të humbni disa nga rregullimet e ruajtura, bie fjala, të dhëna të profilit tuaj.";
 
 /* Title for the skip pin entry action sheet during onboarding. */
-"ONBOARDING_2FA_SKIP_PIN_ENTRY_TITLE" = "Të anashkalohet Dhënia e PIN-it";
+"ONBOARDING_2FA_SKIP_PIN_ENTRY_TITLE" = "Të anashkalohet Dhënia e PIN-it?";
 
 /* Title of the 'onboarding Captcha' view. */
 "ONBOARDING_CAPTCHA_TITLE" = "Shtojini një grimë dore njerëzore mesazheve tuaj";
@@ -2789,13 +3194,13 @@
 "ONBOARDING_MODE_SWITCH_WARNING_REGISTERING" = "Lidhja e iPhone-it tuaj nuk këshillohet dhe do të kufizojë funksionet bazë.";
 
 /* Label for the 'give access' button in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "Aktivizoni Leje";
+"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "Jepi Lejet";
 
 /* Explanation in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_EXPLANATION" = "Njoftimet ju lejojnë të shihni kur mbërrijnë mesazhe dhe të merrni përditësime rreth veprimtarie të re në fjalosje.";
+"ONBOARDING_PERMISSIONS_EXPLANATION" = "Lejimi i njoftimeve dhe kontakteve ju bën të mundur të shihni kur mbërrijnë mesazhe dhe ju ndihmon të gjeni njerëz që i njihni. Kontaktet janë të fshehtëzuar, ndaj shërbimi Signal s’mund t’i shohë.";
 
 /* Title of the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_TITLE" = "Merrni mesazhin.";
+"ONBOARDING_PERMISSIONS_TITLE" = "Jepi Lejet";
 
 /* Explanation of the 'onboarding phone number discoverability' view. Embeds {user phone number} */
 "ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "Zgjidhni cilët mund t’ju gjejnë në Signal përmes numrin tuaj të telefonit%@";
@@ -2803,11 +3208,17 @@
 /* Title of the 'onboarding phone number discoverability' view. */
 "ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Cilët mund t’ju gjejnë përmes numrit tuaj?";
 
+/* Placeholder string for phone number field during registration */
+"ONBOARDING_PHONE_NUMBER_PLACEHOLDER" = "Numri juaj i telefonit";
+
+/* Label indicating that registration has been ratelimited. Embeds {{remaining time string}}. */
+"ONBOARDING_PHONE_NUMBER_RATE_LIMIT_WARNING_FORMAT" = "Ju lutemi, pritni pak minuta, para se të riprovoni. (%@)";
+
 /* Title of the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_TITLE" = "Që t’ia filloni, jepni numrin tuaj të telefonit";
+"ONBOARDING_PHONE_NUMBER_TITLE" = "Jepni numrin e telefonit tuaj";
 
 /* Label indicating that the phone number is invalid in the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "Numër i pavlefshëm";
+"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "Numër telefoni i pavlefshëm. Ju lutemi, jepni për regjistrim një numër telefoni të vlefshëm.";
 
 /* Explanation of the 'onboarding pin attempts exhausted' view when reglock is disabled. */
 "ONBOARDING_PIN_ATTEMPTS_EXHAUSTED_EXPLANATION" = "Ju janë mbaruar hamendësimet e PIN-it, por prapë mundë të hyni në llogarinë tuaj Signal duke krijuar një PIN të ri. Për hir të privatësisë dhe sigurisë tuaj, llogaria juaj do të rikthehet pa ndonjë të dhënë profili apo rregullime të ruajtura.";
@@ -2833,6 +3244,15 @@
 /* Title of the 'onboarding PIN' view. */
 "ONBOARDING_PIN_TITLE" = "Jepni PIN-in tuaj";
 
+/* Title label for profile creation step of onboarding */
+"ONBOARDING_PROFILE_CREATION_TITLE" = "Profili juaj";
+
+/* Placeholder text for the family name field of the profile creation view. */
+"ONBOARDING_PROFILE_FAMILY_NAME_FIELD" = "Mbiemër (Në daçi)";
+
+/* Placeholder text for the given name field of the profile creation view. */
+"ONBOARDING_PROFILE_GIVEN_NAME_FIELD" = "Emër (I domosdoshëm)";
+
 /* Link to the 'terms and privacy policy' in the 'onboarding splash' view. */
 "ONBOARDING_SPLASH_TERM_AND_PRIVACY_POLICY" = "Kushte & Rregulla Privatësie";
 
@@ -2842,38 +3262,29 @@
 /* Label for the link that lets users change their phone number in the onboarding views. */
 "ONBOARDING_VERIFICATION_BACK_LINK" = "Numër i gabuar?";
 
-/* Format for the label of the 'sent code' label of the 'onboarding verification' view. Embeds {{the time until the code can be resent}}. */
-"ONBOARDING_VERIFICATION_CODE_COUNTDOWN_FORMAT" = "S’mora kod (i passhëm te %@)";
+/* Label for button to perform verification with a phone call. */
+"ONBOARDING_VERIFICATION_CALL_ME_BUTTON" = "Thirrmëni";
 
-/* action sheet item shown after a number of failures to receive a verificaiton SMS during registration */
-"ONBOARDING_VERIFICATION_EMAIL_SIGNAL_SUPPORT" = "Lidhuni Me Asistencën e Signal-it";
+/* Format string for button counting down time until phone call verification can be performed. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_CALL_ME_COUNTDOWN_FORMAT" = "Thirrmëni pas %@";
+
+/* Label for a progress spinner currently validating code */
+"ONBOARDING_VERIFICATION_CODE_VALIDATION_PROGRESS_LABEL" = "Po vlerësohet Kod…";
 
 /* Label indicating that the verification code is incorrect in the 'onboarding verification' view. */
 "ONBOARDING_VERIFICATION_INVALID_CODE" = "Ky kod është i pasaktë";
 
-/* Label for link that can be used when the original code did not arrive. */
-"ONBOARDING_VERIFICATION_ORIGINAL_CODE_MISSING_LINK" = "S’mora kod";
+/* Label for button to resend SMS verification code. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_BUTTON" = "Ridërgo Kod";
 
-/* Message for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_MESSAGE" = "Ju lutemi, sigurohuni se keni shërbim celular dhe mund të merrni mesazhe SMS.";
-
-/* Title for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_TITLE" = "Pa kod?";
-
-/* Label for the 'resend code by SMS' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_SMS_BUTTON" = "Ridërgo Kod";
-
-/* Label for the 'resend code by voice' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_VOICE_BUTTON" = "Më Mirë Me Thirrje";
-
-/* Label for link that can be used when the resent code did not arrive. */
-"ONBOARDING_VERIFICATION_RESENT_CODE_MISSING_LINK" = "Prapë s’ka kod?";
+/* Format string for button counting down time until SMS code can be resent. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_COUNTDOWN_FORMAT" = "Ridërgoje Kodin pas %@";
 
 /* Format for the title of the 'onboarding verification' view. Embeds {{the user's phone number}}. */
 "ONBOARDING_VERIFICATION_TITLE_DEFAULT_FORMAT" = "Jepni kodin që dërguam te %@";
 
-/* Format for the title of the 'onboarding verification' view after the verification code has been resent. Embeds {{the user's phone number}}. */
-"ONBOARDING_VERIFICATION_TITLE_RESENT_FORMAT" = "Sapo ridërguam një kod te %@";
+/* Title label for the onboarding verification page */
+"ONBOARDING_VERIFICATION_TITLE_LABEL" = "Kod verifikimi";
 
 /* Button text which opens the settings app */
 "OPEN_SETTINGS_BUTTON" = "Rregullime";
@@ -2889,12 +3300,6 @@
 
 /* info message text in conversation view. {embeds callee name} */
 "OUTGOING_CALL_FORMAT" = "Thirrët %@";
-
-/* Error indicating that a PDF could not be displayed. */
-"PDF_VIEW_COULD_NOT_RENDER" = "PDF s\’u shfaq dot";
-
-/* Navbar title for for PDF view. */
-"PDF_VIEW_TITLE" = "PDF";
 
 /* Title of 'accept member request to join group' button. */
 "PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_BUTTON" = "Shtoje te Grup";
@@ -2915,7 +3320,7 @@
 "PENDING_GROUP_MEMBERS_MEMBER_INVITED_N_USERS_FORMAT" = "%1$@ ftoi %2$@ vetë";
 
 /* Label indicating that a group has no pending member requests. */
-"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "S’ka pezull kërkesa anëtarësh";
+"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "S’ka pezull kërkesa anëtarësh.";
 
 /* Label indicating that a group has no pending members. */
 "PENDING_GROUP_MEMBERS_NO_PENDING_MEMBERS" = "S’ka ftesa për shfaqje.";
@@ -3065,10 +3470,10 @@
 "PHONE_NUMBER_TYPE_WORK_FAX" = "Faks Pune";
 
 /* alert title, generic error preventing user from capturing a photo */
-"PHOTO_CAPTURE_GENERIC_ERROR" = "S’arrihet të fotografohet figura";
+"PHOTO_CAPTURE_GENERIC_ERROR" = "S’arrihet të fotografohet figura.";
 
 /* alert title */
-"PHOTO_CAPTURE_UNABLE_TO_CAPTURE_IMAGE" = "S’arrihet të fotografohet figura";
+"PHOTO_CAPTURE_UNABLE_TO_CAPTURE_IMAGE" = "S’arrihet të fotografohet figura.";
 
 /* alert title */
 "PHOTO_CAPTURE_UNABLE_TO_INITIALIZE_CAMERA" = "S’u arrit të formësohej kamera.";
@@ -3179,10 +3584,10 @@
 "PIN_REMINDER_MEGAPHONE_TITLE" = "Verifikoni PIN-in tuaj të Signal-it";
 
 /* Toast indicating that we'll ask you for your PIN again tomorrow. */
-"PIN_REMINDER_MEGAPHONE_TOMORROW_TOAST" = "Do t’jua kujtojmë prapë nesër. ";
+"PIN_REMINDER_MEGAPHONE_TOMORROW_TOAST" = "Do t’jua kujtojmë prapë nesër.";
 
 /* Toast indicating that we'll ask you for your PIN again in 2 weeks. */
-"PIN_REMINDER_MEGAPHONE_TWO_WEEK_TOAST" = "Do t’jua kujtojmë prapë pas dy javësh.";
+"PIN_REMINDER_MEGAPHONE_TWO_WEEK_TOAST" = "Do t’jua kujtojmë sërish pas nja dy javësh.";
 
 /* Toast indicating that we'll ask you for your PIN again in a week. */
 "PIN_REMINDER_MEGAPHONE_WEEK_TOAST" = "Do t’jua kujtojmë prapë pas një jave.";
@@ -3271,14 +3676,50 @@
 /* No comment provided by engineer. */
 "PROCEED_BUTTON" = "Kryeje";
 
+/* Placeholder text for the bio field of the profile bio view. */
+"PROFILE_BIO_VIEW_BIO_PLACEHOLDER" = "Shkruani dy rreshta rreth vetes…";
+
+/* The 'Be kind' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_BE_KIND" = "Jini i sjellshëm";
+
+/* The 'Coffee lover' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_COFFEE_LOVER" = "Dashnor i kafesë";
+
+/* The 'Encrypted' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_ENCRYPTED" = "I fshehtëzuar";
+
+/* The 'free to chat' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_FREE_TO_CHAT" = "I lirshëm në muhabete";
+
+/* The 'Speak Freely' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_SPEAK_FREELY" = "Flisni Lirisht";
+
+/* The 'Taking a break' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_TAKING_A_BREAK" = "Pushoni ca";
+
+/* The 'Working on something new' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_WORKING_ON_SOMETHING_NEW" = "Po merrem me diçka të re";
+
+/* Title for the profile bio view. */
+"PROFILE_BIO_VIEW_TITLE" = "Mbi";
+
+/* Title for the profile bio view. Embeds {{ the number of characters that can be added to the profile bio without hitting the length limit }}. */
+"PROFILE_BIO_VIEW_TITLE_FORMAT" = "Mbi (%@)";
+
 /* The copy rendered in a conversation when someone in your address book changes their profile name. Embeds {contact name}, {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_CONTACT_FORMAT" = "%@ ndryshoi emrin e tij të profilit nga %@ në %@.";
 
 /* The copy rendered in a conversation when someone not in your address book changes their profile name. Embeds {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_NONCONTACT_FORMAT" = "%@ ndryshoi emrin e tij të profilit në %@.";
 
+/* Button to add a 'bio' to the user's profile in the profile view. */
+"PROFILE_VIEW_ADD_BIO_TO_PROFILE" = "Shtoje te Profili";
+
 /* Action Sheet title prompting the user for a profile avatar */
 "PROFILE_VIEW_AVATAR_ACTIONSHEET_TITLE" = "Caktoni Foto Profili";
+
+/* Header for the 'bio' section of the profile view. */
+"PROFILE_VIEW_BIO_SECTION_HEADER" = "Mbi";
 
 /* Label for action that clear's the user's profile avatar */
 "PROFILE_VIEW_CLEAR_AVATAR" = "Hiqe Foton";
@@ -3311,7 +3752,7 @@
 "PROFILE_VIEW_NO_CONNECTION" = "Profili mund të përditësohet vetëm kur jeni të lidhur në internet.";
 
 /* Description of the user profile. */
-"PROFILE_VIEW_PROFILE_DESCRIPTION" = "Profili juaj është i fshehtëzuar skaj-më-skaj. Profili juaj dhe ndryshime në të do të jenë të dukshme për kontaktet tuaj, kur nisni ose pranoni fjalosje të reja, dhe kur bëheni pjesë grupesh të rinj.";
+"PROFILE_VIEW_PROFILE_DESCRIPTION" = "Profili juaj është i fshehtëzuar skaj-më-skaj. Profili juaj dhe ndryshime në të do të jenë të dukshme për kontaktet tuaja, kur nisni ose pranoni fjalosje të reja.";
 
 /* Button to save the profile view in the profile view. */
 "PROFILE_VIEW_SAVE_BUTTON" = "Ruaje";
@@ -3481,6 +3922,12 @@
 /* alert body during registration */
 "REGISTRATION_ERROR_BLANK_VERIFICATION_CODE" = "S’mund ta aktivizojmë llogarinë tuaj para se të verifikoni kodin që ju dërguam.";
 
+/* Alert body for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_BODY" = "Që të vazhdohet, kontrolloni lidhjen në internet të telefonit tuaj dhe riprovoni.";
+
+/* Alert title for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_TITLE" = "Kontrollo Lidhjen";
+
 /* No comment provided by engineer. */
 "REGISTRATION_NON_VALID_NUMBER" = "Ky format numrash telefoni nuk mbulohet, ju lutemi, lidhuni me asistencën.";
 
@@ -3511,6 +3958,18 @@
 /* Title of alert indicating that users needs to enter a phone number to register. */
 "REGISTRATION_VIEW_NO_PHONE_NUMBER_ALERT_TITLE" = "Pa Numër Telefoni";
 
+/* Message for confirmation alert during phone number registration. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_MESSAGE" = "Te ky numër do të dërgohet një kod verifikimi. A është i saktë numri juaj më sipër?";
+
+/* Title for confirmation alert during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_TITLE_FORMAT" = "Ripohim Numri: %@";
+
+/* A button allowing user to cancel registration and edit a phone number */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_EDIT_BUTTON" = "Përpunojeni";
+
+/* Label for the progress spinner shown during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_SPINNER_LABEL_FORMAT" = "Po verifikohet %@...";
+
 /* notification action */
 "REJECT_CALL_BUTTON_TITLE" = "Mos e Prano";
 
@@ -3523,8 +3982,32 @@
 /* No comment provided by engineer. */
 "REREGISTER_FOR_PUSH" = "Riregjistrojeni për njoftime push";
 
+/* Body for research megaphone */
+"RESEARCH_MEGAPHONE_BODY" = "Për ta bërë Signal-in aplikacionin më të mirë në planet për shkëmbim mesazhesh, do të na pëlqente fort të dinim mendimin tuaj.";
+
+/* Title for research megaphone */
+"RESEARCH_MEGAPHONE_TITLE" = "Tregojini Signal-it se çfarë mendoni";
+
+/* Text for the research modal footer */
+"RESEARCH_MODAL_FOOTER" = "Pyetësori strehohet nga Syrveygizmo te përkatësia e sigurt surveys.signalusers.org";
+
+/* Button text for declining the research modal */
+"RESEARCH_MODAL_NO_THANKS" = "Jo, faleminderit";
+
+/* Text explaining why the user should take the survey */
+"RESEARCH_MODAL_PLEA" = "<bold>Besojmë në privatësinë.</bold>\n\nSignal-i nuk ju ndjek, as grumbullon të dhëna tuajat. Që Signal-i të përmirësohet për këdo, bazohemi në mendimet e përdoruesve, <bold>dhe do ta donim edhe tuajin</bold>.\n\nPo kryejmë një pyetësor për të kuptuar se si e përdorni Signal-in. Pyetësori ynë s’grumbullon ndonjë të dhënë që lejon identifikimin tuaj. Nëse ju intereson të jepni përshtypje shtesë, keni mundësinë të jepni të dhëna kontakti.\n\nNëse keni ndoca minuta dhe përshtypje për të dhënë, do të donim fort t’i dëgjonim.";
+
+/* Button text for taking the research survey */
+"RESEARCH_MODAL_TAKE_SURVEY" = "Plotësoni pyetësorin";
+
+/* Title for the research megaphone modal */
+"RESEARCH_MODAL_TITLE" = "Kërkime rreth Signal-it";
+
 /* Generic text for button that retries whatever the last action was. */
 "RETRY_BUTTON_TEXT" = "Riprovoni";
+
+/* Button to return to current group call */
+"RETURN_CALL_PILL_BUTTON" = "Kthehuni";
 
 /* button title to confirm adding a recipient to a group when their safety number has recently changed */
 "SAFETY_NUMBER_CHANGED_CONFIRM_ADD_TO_GROUP_ACTION" = "Shtoje te Grupi, Sido Qoftë";
@@ -3680,7 +4163,7 @@
 "SCREENSHOT_THREAD_DIRECT_TWO_MESSAGE_TWO" = "Ou, ku gjendesh?";
 
 /* This is a message in the group chat of family members. */
-"SCREENSHOT_THREAD_GROUP_FIVE_MESSAGE_ONE" = "Sot është …   ";
+"SCREENSHOT_THREAD_GROUP_FIVE_MESSAGE_ONE" = "Sot është …";
 
 /* This is a message in the group chat of family members. */
 "SCREENSHOT_THREAD_GROUP_FIVE_MESSAGE_TWO" = "Gëzuar ditëlindjen. Gëzuar ditëlindjen!";
@@ -3835,6 +4318,21 @@
 /* No comment provided by engineer. */
 "SEND_SMS_INVITE_TITLE" = "Doni të ftoni në Signal numrin vijues: ";
 
+/* Description for the session refresh alert */
+"SESSION_REFRESH_ALERT_MESSAGE" = "Signal-i përdor fshehtëzim skaj-më-skaj dhe ndonjëherë mund të jetë e nevojshme të rifreskoni sesionin e fjalosjes tuaj. Kjo nuk prek sigurinë e fjalosjes tuaj, por mund të keni humbur një mesazh prej këtij kontakti dhe mund t’i kërkoni ta ridërgojë.";
+
+/* Title for the session refresh alert */
+"SESSION_REFRESH_ALERT_TITLE" = "Sesioni i fjalosjes u rifreskua";
+
+/* Title for the wallpaper choose from photos option */
+"SET_WALLPAPER_CHOOSE_PHOTO" = "Zgjidhni prej Fotosh";
+
+/* Title for the wallpaper presets section */
+"SET_WALLPAPER_PRESETS" = "Paracaktime";
+
+/* Title for the set wallpaper settings view. */
+"SET_WALLPAPER_TITLE" = "Vëre Si Sfond";
+
 /* Navbar title */
 "SETTINGS_ABOUT" = "Mbi";
 
@@ -3891,6 +4389,12 @@
 
 /* table cell label */
 "SETTINGS_ADVANCED_VIEW_ERROR_LOG" = "Regjistra Gabimesh";
+
+/* Footer for avatar section in appearance settings */
+"SETTINGS_APPEARANCE_AVATAR_FOOTER" = "Shfaq foto kontakti të sistemit, në pastë";
+
+/* Title for switch to toggle preference between contact and profile avatars */
+"SETTINGS_APPEARANCE_AVATAR_PREFERENCE_LABEL" = "Shfaq foto kontakti të sistemit";
 
 /* The title for the theme section in the appearance settings. */
 "SETTINGS_APPEARANCE_THEME_TITLE" = "Temë";
@@ -3976,6 +4480,30 @@
 /* No comment provided by engineer. */
 "SETTINGS_COPYRIGHT" = "Të drejta kopjimi: Signal Messenger \n Licencuar sipas termave të GPLv3";
 
+/* Label for the 'data' section of the app settings. */
+"SETTINGS_DATA" = "Përdorim të Dhënash";
+
+/* Item title for the low bandwidth call setting */
+"SETTINGS_DATA_CALL_LOW_BANDWIDTH_ITEM_TITLE" = "Përdor Më Pak të Dhëna";
+
+/* Section footer for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_FOOTER" = "Përdorim i më pak të dhënave mund të përmirësojë thirrjet në rrjete të dobët";
+
+/* Section header for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_HEADER" = "Thirrje";
+
+/* Footer for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_FOOTER" = "Mesazhet zanore, media shiheni-vetëm-njëherë, dhe ngjitësit (nën 100kb) shkarkohen përherë vetvetiu.";
+
+/* Header for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_HEADER" = "VETËSHKARKIM MEDIASH";
+
+/* Label for for the 'reset media auto-download settings' button in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_RESET" = "Rikthe te Parazgjedhjet Rregullimet për Vetëshkarkim";
+
+/* The title for the data settings. */
+"SETTINGS_DATA_TITLE" = "Përdorim të Dhënash";
+
 /* No comment provided by engineer. */
 "SETTINGS_DELETE_ACCOUNT_BUTTON" = "Fshije Llogarinë";
 
@@ -4009,6 +4537,9 @@
 /* Label for settings view that allows user to change the notification sound. */
 "SETTINGS_ITEM_NOTIFICATION_SOUND" = "Tingull Mesazhesh";
 
+/* Label for settings view that allows user to change the wallpaper. */
+"SETTINGS_ITEM_WALLPAPER" = "Sfond Fjalosjesh";
+
 /* table cell label */
 "SETTINGS_LEGAL_TERMS_CELL" = "Kushte & Rregulla Privatësie";
 
@@ -4017,6 +4548,27 @@
 
 /* Footer for setting for enabling & disabling link previews. */
 "SETTINGS_LINK_PREVIEWS_FOOTER" = "Merrni, për mesazhet që dërgoni, paraparje lidhjesh drejt e nga sajtet.";
+
+/* Label for the 'never' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_NEVER" = "Kurrë";
+
+/* Label for the 'wifi and cellular' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_AND_CELLULAR" = "Wi-Fi d Celular";
+
+/* Label for the 'wifi-only' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_ONLY" = "Wi-Fi";
+
+/* Label for the 'audio' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_AUDIO" = "Audio";
+
+/* Label for the 'document' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_DOCUMENT" = "Dokumente";
+
+/* Label for the 'photo' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_PHOTO" = "Foto";
+
+/* Label for the 'video' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_VIDEO" = "Video";
 
 /* Label for the 'messaging' privacy settings. */
 "SETTINGS_MESSAGING" = "Shkëmbim Mesazhesh";
@@ -4147,6 +4699,12 @@
 /* Section header */
 "SETTINGS_SECURITY_TITLE" = "Siguri Ekrani";
 
+/* Setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS" = "Shfaqe në Sugjerime";
+
+/* Footer for setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS_FOOTER" = "Fjalosjet Signal shfaqen si sugjerime, kur bëhen ndarje me të tjerë që nga aplikacione të tjera.";
+
 /* Label for the 'enable registration lock' switch of the privacy settings. */
 "SETTINGS_TWO_FACTOR_AUTH_SWITCH_LABEL" = "Kyçje Regjistrimi";
 
@@ -4154,7 +4712,7 @@
 "SETTINGS_TWO_FACTOR_PINS_AUTH_FOOTER" = "Për siguri më të madhe, aktivizoni kyçje regjistrimesh, çka do të kërkojë PIN-in tuaj Signal për të riregjistruar numrin tuaj të telefonit me Signal-in.";
 
 /* Label for the 'typing indicators' setting. */
-"SETTINGS_TYPING_INDICATORS" = "Indikatorë Shtypjeje ";
+"SETTINGS_TYPING_INDICATORS" = "Indikatorë Shtypjeje";
 
 /* An explanation of the 'typing indicators' setting. */
 "SETTINGS_TYPING_INDICATORS_FOOTER" = "Shihni dhe ndani me të tjerë kur shtypen mesazhe. Ky rregullim është opsional dhe vlen për krejt fjalosjet.";
@@ -4210,6 +4768,9 @@
 /* Alert title */
 "SHARE_EXTENSION_SENDING_FAILURE_TITLE" = "S’arrihet të Dërgohet Bashkëngjitje";
 
+/* Send progress for share extension. Embeds {{ %1$@ number of attachments uploaded, %2$@ total number of attachments}} */
+"SHARE_EXTENSION_SENDING_IN_PROGRESS_FORMAT" = "Po ngarkohen %1$@ nga %2$@…";
+
 /* Alert title */
 "SHARE_EXTENSION_SENDING_IN_PROGRESS_TITLE" = "Po ngarkohet…";
 
@@ -4218,6 +4779,21 @@
 
 /* Title for the 'share extension' view. */
 "SHARE_EXTENSION_VIEW_TITLE" = "Ndajeni Me të Tjerë në Signal";
+
+/* Title of alert indicating sharing suggestions failed to deactivate */
+"SHARING_SUGGESTIONS_DISABLE_ERROR" = "S’u arrit të çaktivizoheshin sugjerime ndarjesh me të tjerët.";
+
+/* Body for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_BODY" = "Fjalosje me Signal tani mund të shfaqen si sugjerime, kur bëhen ndarje me të tjerë që nga aplikacione të tjera.";
+
+/* Title for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_TITLE" = "Ndarje Me të Tjerë Bërë Më e Lehtë";
+
+/* Disable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_DISABLE" = "Çaktivizoje";
+
+/* Enable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_ENABLE" = "Aktivizoje";
 
 /* Action sheet item */
 "SHOW_SAFETY_NUMBER_ACTION" = "Shfaq Numër Sigurie";
@@ -4231,14 +4807,23 @@
 /* Label for the 'no sound' option that allows users to disable sounds for notifications, etc. */
 "SOUNDS_NONE" = "Asnjë";
 
+/* Footer for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_FOOTER" = "Grupet ekzistuese do t’i përfitojnë automatikisht këto veçori në javët pasuese.";
+
+/* Instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS" = "Grup i Ri";
+
+/* Joiner symbol in the instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS_JOINER" = "+";
+
+/* Header for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_TITLE" = "Mbërritën Grupet e Reja!";
+
+/* Body text for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_SPLASH_BODY" = "Veçoria Grup i Ri përfshin @përmendje, përgjegjës, etj. Provojeni duke prekur:";
+
 /* Preview text shown in notifications and conversation list for sticker messages. */
 "STICKER_MESSAGE_PREVIEW" = "Mesazh Ngjitësi";
-
-/* Tooltip indicating that a sticker pack was installed. */
-"STICKER_PACK_INSTALLED_TOOLTIP" = "Paketa e ngjitësve u instalua";
-
-/* Label for a sticker that failed to download. */
-"STICKERS_FAILED_DOWNLOAD" = "Ngjitës";
 
 /* Label for the 'install sticker pack' button. */
 "STICKERS_INSTALL_BUTTON" = "Instaloje";
@@ -4270,9 +4855,6 @@
 /* Default title for sticker packs. */
 "STICKERS_PACK_DEFAULT_TITLE" = "Paketë Ngjitësish";
 
-/* Title of the 'share sticker pack' view. */
-"STICKERS_PACK_SHARE_VIEW_TITLE" = "Ndani Paketë Ngjitësish";
-
 /* The default title for the 'sticker pack' view. */
 "STICKERS_PACK_VIEW_DEFAULT_TITLE" = "Paketë Ngjitësish";
 
@@ -4294,8 +4876,35 @@
 /* Placeholder string for support description */
 "SUPPORT_DESCRIPTION_PLACEHOLDER" = "Tregonani ç’po ndodh";
 
+/* Default prompt for user description in support email requests */
+"SUPPORT_EMAIL_DEFAULT_DESCRIPTION" = "Tregonani diçka rreth problemit:";
+
 /* Message for alert dialog presented when a support email failed to send */
 "SUPPORT_EMAIL_ERROR_ALERT_DESCRIPTION" = "Ju lutemi, kërkesën tuaj për asistencë dërgojeni te support@signal.org";
+
+/* Localized label for support request email filter string. Embeds {{filter text}}. */
+"SUPPORT_EMAIL_FILTER_LABEL_FORMAT" = "Filtër: %@";
+
+/* Localized label for support request email hardware string (e.g. iPhone or iPad). Embeds {{hardware text}}. */
+"SUPPORT_EMAIL_HARDWARE_LABEL_FORMAT" = "Hardware: %@";
+
+/* Localized label for support request email HID string (e.g. 12,1). Embeds {{hid text}}. */
+"SUPPORT_EMAIL_HID_LABEL_FORMAT" = "HID: %@";
+
+/* Localized divider for support request emails internal information */
+"SUPPORT_EMAIL_INFO_DIVIDER" = "--- Informacion Asistence ---";
+
+/* Localized label for support request email iOS Version string (e.g. 13.4). Embeds {{ios version}}. */
+"SUPPORT_EMAIL_IOS_VERSION_LABEL_FORMAT" = "Version iOS-i: %@";
+
+/* Localized label for support request email locale string. Embeds {{locale}}. */
+"SUPPORT_EMAIL_LOCALE_LABEL_FORMAT" = "Vendore: %@";
+
+/* Localized label for support request email debug log URL. Embeds {{debug log url}}. */
+"SUPPORT_EMAIL_LOG_URL_LABEL_FORMAT" = "URL Regjistri: %@";
+
+/* Localized label for support request email signal version string. Embeds {{signal version}}. */
+"SUPPORT_EMAIL_SIGNAL_VERSION_LABEL_FORMAT" = "Version Signal-i: %@";
 
 /* Localized subject for support request emails */
 "SUPPORT_EMAIL_SUBJECT" = "Kërkesë Asistence rreth Signal iOS-it";
@@ -4400,7 +5009,7 @@
 "TXT_DELETE_TITLE" = "Fshije";
 
 /* Label for the unarchive button for conversations list view */
-"UNARCHIVE_ACTION" = "Çarkivoje ";
+"UNARCHIVE_ACTION" = "Çarkivoje";
 
 /* Message shown in conversation view that offers to block an unknown user. */
 "UNKNOWN_CONTACT_BLOCK_OFFER" = "Përdoruesi s’gjendet në kontaktet tuaja. Doni të bllokohet ky përdorues?";
@@ -4580,7 +5189,7 @@
 "VIDEO_CALL_LABEL" = "Thirrje Video";
 
 /* Toast alert text shown when tapping on a view-once message that has already been viewed. */
-"VIEW_ONCE_ALREADY_VIEWED_TOAST" = "E patë tashmë këtë mesazh";
+"VIEW_ONCE_ALREADY_VIEWED_TOAST" = "E patë tashmë këtë mesazh.";
 
 /* Tooltip highlighting the view once messages button. */
 "VIEW_ONCE_MESSAGES_TOOLTIP" = "Prekni këtu që të zhduket ky mesazh pasi të jetë parë.";
@@ -4602,6 +5211,63 @@
 
 /* Activity indicator title, shown upon returning to the device manager, until you complete the provisioning process on desktop */
 "WAITING_TO_COMPLETE_DEVICE_LINK_TEXT" = "Plotësoni rregullimin e Signal-it për Desktop.";
+
+/* Placeholder text for header of the wallpaper mini preview */
+"WALLPAPER_MINI_PREVIEW_CONTACT_NAME" = "Emër Kontakti";
+
+/* Blur button on wallpaper preview. */
+"WALLPAPER_PREVIEW_BLUR_BUTTON" = "Turbulloje Foton";
+
+/* The incoming bubble text when setting a photo */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PHOTO" = "Për zmadhim/zvogëlim, pickojeni, për ta përshtatur, tërhiqeni.";
+
+/* The incoming bubble text when setting a preset */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PRESET" = "Fërkojeni që të bëni paraparje për më tepër sfonde.";
+
+/* The outgoing bubble text when setting a wallpaper for all chats. */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_ALL_CHATS" = "Vini sfond për krejt fjalosjet.";
+
+/* The outgoing bubble text when setting a wallpaper for specific chat. Embeds {{chat name}} */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_FORMAT" = "Vini sfond për %@.";
+
+/* The text for the set button on wallpaper preview view. */
+"WALLPAPER_PREVIEW_SET_BUTTON" = "Vëre";
+
+/* Title for the wallpaper preview view. */
+"WALLPAPER_PREVIEW_TITLE" = "Paraparje";
+
+/* Clear wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER" = "Hiqe Sfondin";
+
+/* Confirmation dialog when clearing the wallpaper for a specific chat. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_CHAT_CONFIRMATION" = "Të hiqet sfondi për këtë fjalosje?";
+
+/* Confirmation dialog when clearing the global wallpaper. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_GLOBAL_CONFIRMATION" = "Të hiqet sfondi? Kjo s’do të spastrojë sfonde vetjake që keni vënë për fjalosjet tuaja.";
+
+/* Dim wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_DIM_WALLPAPER" = "Tema e Errët e Errëson Sfondin";
+
+/* An error indicating to the user that we failed to clear the wallpaper. */
+"WALLPAPER_SETTINGS_FAILED_TO_CLEAR" = "Sfondi s’mund të hiqet, ju lutemi, riprovoni më vonë, ose lidhuni me asistencën, nëse gabimi vazhdon.";
+
+/* An error indicating to the user that we failed to reset all wallpapers. */
+"WALLPAPER_SETTINGS_FAILED_TO_RESET" = "Jo krejt sfondet mundën të kthehen te parazgjedhjet, ju lutemi, riprovoni më vonë, ose lidhuni me asistencën, nëse gabimi vazhdon.";
+
+/* Title for the wallpaper settings preview section. */
+"WALLPAPER_SETTINGS_PREVIEW" = "Paraparje";
+
+/* Reset all wallpapers action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_RESET_ALL" = "Rikthe Te Parazgjedhjet Krejt Sfondet";
+
+/* Confirmation dialog when resetting all wallpapers. */
+"WALLPAPER_SETTINGS_RESET_ALL_WALLPAPERS_CONFIRMATION" = "Të rikthehen te parazgjedhjet krejt sfondet, përfshi sfonde vetjake që keni caktuar për fjalosjet tuaja?";
+
+/* Set wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_SET_WALLPAPER" = "Vëre Si Sfond";
+
+/* Title for the wallpaper settings view. */
+"WALLPAPER_SETTINGS_TITLE" = "Sfond Fjalosjesh";
 
 /* text indicating the message was remotely deleted by you */
 "YOU_DELETED_THIS_MESSAGE" = "E fshitë këtë mesazh.";

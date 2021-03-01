@@ -10,7 +10,7 @@ public class BulkUUIDLookup: NSObject {
     // MARK: - Dependencies
 
     private var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     private var reachabilityManager: SSKReachabilityManager {
@@ -97,10 +97,6 @@ public class BulkUUIDLookup: NSObject {
             return
         }
         guard tsAccountManager.isRegisteredAndReady else {
-            return
-        }
-        guard RemoteConfig.modernContactDiscovery else {
-            // Can't fill in UUIDs using legacy contact intersections.
             return
         }
 

@@ -5,7 +5,7 @@
 "ACCEPT_NEW_IDENTITY_ACTION" = "接受新的安全碼";
 
 /* Accessibility label for attachment. */
-"ACCESSIBILITY_LABEL_ATTACHMENT" = "附件";
+"ACCESSIBILITY_LABEL_ATTACHMENT" = "附檔";
 
 /* Accessibility label for audio. */
 "ACCESSIBILITY_LABEL_AUDIO" = "音訊";
@@ -13,11 +13,11 @@
 /* Accessibility label for contact. */
 "ACCESSIBILITY_LABEL_CONTACT" = "聯絡人";
 
+/* Accessibility label for contact. Embeds: {{ the contact name }}. */
+"ACCESSIBILITY_LABEL_CONTACT_FORMAT" = "聯絡 %@";
+
 /* Accessibility label for media. */
 "ACCESSIBILITY_LABEL_MEDIA" = "媒體";
-
-/* Accessibility label for message. */
-"ACCESSIBILITY_LABEL_MESSAGE" = "訊息";
 
 /* Accessibility label for messages sent by you. */
 "ACCESSIBILITY_LABEL_SENDER_SELF" = "您";
@@ -25,11 +25,17 @@
 /* Accessibility label for stickers. */
 "ACCESSIBILITY_LABEL_STICKER" = "貼圖";
 
+/* Accessibility label for a voice memo. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO" = "語音訊息";
+
+/* Accessibility label for a voice memo. Embeds: {{ the duration of the voice message }}. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO_FORMAT" = "語音訊息 %@ 秒";
+
 /* Label for 'audio call' button in contact view. */
-"ACTION_AUDIO_CALL" = "Signal 電話";
+"ACTION_AUDIO_CALL" = "Signal 語音通話";
 
 /* Label for 'invite' button in contact view. */
-"ACTION_INVITE" = "邀請來使用 Signal";
+"ACTION_INVITE" = "邀請至 Signal";
 
 /* Label for button that lets you send a message to a contact. */
 "ACTION_SEND_MESSAGE" = "傳送訊息";
@@ -37,26 +43,29 @@
 /* Label for 'share contact' button. */
 "ACTION_SHARE_CONTACT" = "分享連絡人資訊";
 
+/* A label for 'tap to download' buttons. */
+"ACTION_TAP_TO_DOWNLOAD" = "點按即可下載";
+
 /* Label for 'video call' button in contact view. */
-"ACTION_VIDEO_CALL" = "影像電話";
+"ACTION_VIDEO_CALL" = "視訊通話";
 
 /* Label for the 'add group member' button. */
-"ADD_GROUP_MEMBERS_ACTION_TITLE_1" = "新增成員";
+"ADD_GROUP_MEMBERS_ACTION_TITLE_1" = "加入成員";
 
 /* Label for the 'add group members' button. */
-"ADD_GROUP_MEMBERS_ACTION_TITLE_N" = "新增成員";
+"ADD_GROUP_MEMBERS_ACTION_TITLE_N" = "加入成員";
 
 /* Format for the message for the 'add group member' confirmation alert.  Embeds {{ the name of the group. }}. */
-"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_1_FORMAT" = "要新增成員到\"%2$@\"嗎？";
+"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_1_FORMAT" = "要新增成員到 \"%2$@\" 嗎？";
 
 /* Format for the message for the 'add group members' confirmation alert.  Embeds {{ %1$@ number of new members, %2$@ name of the group. }}. */
-"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_N_FORMAT" = "新增%1$@成員到\"%2$@\"嗎？";
+"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_MESSAGE_N_FORMAT" = "新增%1$@成員到 \"%2$@\" 嗎？";
 
 /* Title for the 'add group member' confirmation alert. */
-"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_TITLE_1" = "新增新的成員";
+"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_TITLE_1" = "加入新成員";
 
 /* Title for the 'add group members' confirmation alert. */
-"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_TITLE_N" = "新增新成員";
+"ADD_GROUP_MEMBERS_VIEW_CONFIRM_ALERT_TITLE_N" = "加入新成員";
 
 /* The title for the 'add group members' view. */
 "ADD_GROUP_MEMBERS_VIEW_TITLE" = "新增成員";
@@ -83,7 +92,7 @@
 "ADD_TO_GROUP_ALREADY_MEMBER_TOAST_FORMAT" = "%@已經是%@的成員";
 
 /* The title for the 'add to group' view's recents section */
-"ADD_TO_GROUP_RECENTS_TITLE" = "最近的";
+"ADD_TO_GROUP_RECENTS_TITLE" = "最近使用";
 
 /* A toast on the 'add to group' view indicating the user was added. Embeds {contact name} and {group name} */
 "ADD_TO_GROUP_SUCCESS_TOAST_FORMAT" = "%@已被加入到%@";
@@ -103,7 +112,7 @@
 /* The label for the 'don't save' button in action sheets. */
 "ALERT_DONT_SAVE" = "不要儲存";
 
-/* No comment provided by engineer. */
+/* Generic error indicator. */
 "ALERT_ERROR_TITLE" = "錯誤";
 
 /* The label for the 'save' button in action sheets. */
@@ -176,7 +185,7 @@
 "ATTACHMENT_APPROVAL_CAPTION_TITLE" = "标题";
 
 /* Error that outgoing attachments could not be exported. */
-"ATTACHMENT_APPROVAL_FAILED_TO_EXPORT" = "附件匯出失敗。";
+"ATTACHMENT_APPROVAL_FAILED_TO_EXPORT" = "附檔匯出失敗。";
 
 /* alert text when Signal was unable to save a copy of the attachment to the system photo library */
 "ATTACHMENT_APPROVAL_FAILED_TO_SAVE" = "儲存失敗";
@@ -197,13 +206,10 @@
 "ATTACHMENT_APPROVAL_SEND_BUTTON" = "傳送";
 
 /* Generic filename for an attachment with no known name */
-"ATTACHMENT_DEFAULT_FILENAME" = "附件";
-
-/* Status label when an attachment download has failed. */
-"ATTACHMENT_DOWNLOADING_STATUS_FAILED" = "下載失敗。請點擊再試一次。";
+"ATTACHMENT_DEFAULT_FILENAME" = "附檔";
 
 /* The title of the 'attachment error' alert. */
-"ATTACHMENT_ERROR_ALERT_TITLE" = "附件傳送錯誤";
+"ATTACHMENT_ERROR_ALERT_TITLE" = "附檔傳送錯誤";
 
 /* Attachment error message for image attachments which could not be converted to JPEG */
 "ATTACHMENT_ERROR_COULD_NOT_CONVERT_TO_JPEG" = "無法轉換照片。";
@@ -221,7 +227,7 @@
 "ATTACHMENT_ERROR_COULD_NOT_RESIZE_IMAGE" = "無法調整照片尺寸。";
 
 /* Attachment error message for attachments whose data exceed file size limits */
-"ATTACHMENT_ERROR_FILE_SIZE_TOO_LARGE" = "附件太大。";
+"ATTACHMENT_ERROR_FILE_SIZE_TOO_LARGE" = "附檔太大。";
 
 /* Attachment error message for attachments with invalid data */
 "ATTACHMENT_ERROR_INVALID_DATA" = "附檔包含了無效的內容。";
@@ -230,7 +236,7 @@
 "ATTACHMENT_ERROR_INVALID_FILE_FORMAT" = "附檔含有一個無效的檔案格式。";
 
 /* Attachment error message for attachments without any data */
-"ATTACHMENT_ERROR_MISSING_DATA" = "附件是空白的。";
+"ATTACHMENT_ERROR_MISSING_DATA" = "附檔是空白的。";
 
 /* Accessibility hint describing what you can do with the attachment button */
 "ATTACHMENT_HINT" = "選擇媒體來傳送";
@@ -257,7 +263,7 @@
 "ATTACHMENT_KEYBOARD_NO_PHOTOS" = "拍完照片後，你可以在這裡傳送你的最近的照片。";
 
 /* Accessibility label for attaching photos */
-"ATTACHMENT_LABEL" = "附件";
+"ATTACHMENT_LABEL" = "附檔";
 
 /* Alert title when picking a document fails for an unknown reason */
 "ATTACHMENT_PICKER_DOCUMENTS_FAILED_ALERT_TITLE" = "選取文件失敗。";
@@ -358,6 +364,9 @@
 /* Error shown when backup fails due to an unexpected error. */
 "BACKUP_UNEXPECTED_ERROR" = "未預期的備份錯誤";
 
+/* Accessibility label for banner close button */
+"BANNER_CLOSE_ACCESSIBILITY_LABEL" = "關閉橫幅";
+
 /* An explanation of the consequences of blocking a group. */
 "BLOCK_GROUP_BEHAVIOR_EXPLANATION" = "你將無法從此群組收到訊息或更新。";
 
@@ -430,8 +439,8 @@
 /* Tooltip highlighting the blur image editing tool. */
 "BLUR_TOOLTIP" = "新功能：模糊臉部或在任何地方使之模糊。";
 
-/* browse files option from file sharing menu */
-"BROWSE_FILES_BUTTON" = "瀏覽";
+/* Label for the 'add' button. */
+"BUTTON_ADD" = "新增";
 
 /* Label for 'continue' button. */
 "BUTTON_CONTINUE" = "繼續";
@@ -444,6 +453,9 @@
 
 /* Label for the 'no' button. */
 "BUTTON_NO" = "否";
+
+/* Label for the 'not now' button. */
+"BUTTON_NOT_NOW" = "稍後";
 
 /* Label for the 'okay' button. */
 "BUTTON_OKAY" = "Okay";
@@ -474,6 +486,9 @@
 
 /* notification body */
 "CALL_MISSED_BECAUSE_OF_IDENTITY_CHANGE_NOTIFICATION_BODY" = "未接來電，因為來電者的安全碼改變。";
+
+/* Button to return to the current call */
+"CALL_RETURN_BUTTON" = "回電";
 
 /* Call setup status label after outgoing call times out */
 "CALL_SCREEN_STATUS_NO_ANSWER" = "沒有回應";
@@ -528,6 +543,9 @@
 
 /* notification action */
 "CALLBACK_BUTTON_TITLE" = "電話回撥";
+
+/* Indicates to the user that their camera is currently off. */
+"CALLING_MEMBER_VIEW_YOUR_CAMERA_IS_OFF" = "你的相機已關閉";
 
 /* The generic name used for calls if CallKit privacy is enabled */
 "CALLKIT_ANONYMOUS_CONTACT_NAME" = "Signal 使用者";
@@ -766,9 +784,6 @@
 /* Title for the 'conversation delete confirmation' alert. */
 "CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "刪除聊天？";
 
-/* Indicates that the user can tap to download this image. */
-"CONVERSATION_MEDIA_VIEW_DOWNLOAD_IMAGE" = "下載";
-
 /* Momentarily shown to the user when attempting to select more conversations than is allowed. Embeds {{max number of conversations}} that can be selected. */
 "CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "您不能選擇超過%@的聊天。";
 
@@ -835,6 +850,9 @@
 /* Label for table cell which leads to picking a new conversation color */
 "CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "聊天顏色";
 
+/* Label for the 'edit' button in conversation settings view. */
+"CONVERSATION_SETTINGS_EDIT" = "編輯";
+
 /* Label for 'edit attributes access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS" = " 誰可以編輯群組資訊";
 
@@ -847,9 +865,6 @@
 /* Label for button that sets 'group attributes access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_MEMBERS_BUTTON" = "所有成員";
 
-/* Label for the 'edit group' button in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_GROUP" = "編輯";
-
 /* Label for 'edit membership access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "誰可以新增成員";
 
@@ -857,7 +872,7 @@
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "只有管理員";
 
 /* Description for the 'edit group membership access' alert. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "選擇誰可以編輯成員資格：";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "選擇誰可以新增成員到該群組：";
 
 /* Label for button that sets 'group membership access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_MEMBERS_BUTTON" = "所有成員";
@@ -871,6 +886,9 @@
 /* Format for title for 'make group admin' confirmation alert. Embeds {user to make an admin}. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_TITLE_FORMAT" = "%@將能夠編輯該群組及其成員。";
 
+/* Label for 'member invites' action in conversation settings view. */
+"CONVERSATION_SETTINGS_MEMBER_INVITES" = "成員邀請";
+
 /* Label for 'member requests & invites' action in conversation settings view. */
 "CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "成員要求&邀請";
 
@@ -879,9 +897,6 @@
 
 /* Format for the section title of the 'members' section in conversation settings view. Embeds: {{ the number of group members }}. */
 "CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "%@個成員";
-
-/* Footer for the 'membership access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBERSHIP_ACCESS_SECTION_FOOTER" = "選擇誰可以編輯組成員資格。";
 
 /* label for 'always' option for mention notifications in conversation settings */
 "CONVERSATION_SETTINGS_MENTION_MODE_AlWAYS" = "總是通知";
@@ -973,6 +988,12 @@
 /* Message shown in conversation view that offers to add an unknown user to your phone's contacts. */
 "CONVERSATION_VIEW_ADD_TO_CONTACTS_OFFER" = "新增到聯絡資訊";
 
+/* Format for sender info for accessibility label for message. Embeds {{ the sender name }}. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_FORMAT" = "%@ 傳送給:";
+
+/* Format for sender info for outgoing messages. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_LOCAL_USER" = "你傳送給:";
+
 /* button text to delete all items in the current conversation */
 "CONVERSATION_VIEW_DELETE_ALL_MESSAGES" = "刪除全部";
 
@@ -1044,9 +1065,6 @@
 
 /* Title of the debug log alert. */
 "DEBUG_LOG_ALERT_TITLE" = "再一個步驟";
-
-/* Error indicating that the app could not launch the Email app. */
-"DEBUG_LOG_COULD_NOT_EMAIL" = "無法開啟電子郵件軟體。";
 
 /* Message of the alert before redirecting to GitHub Issues. */
 "DEBUG_LOG_GITHUB_ISSUE_ALERT_MESSAGE" = "本連結已複製至剪貼簿。你現在將導至 GitHub 錯誤回報列表。";
@@ -1148,7 +1166,7 @@
 "DEVICE_TRANSFER_ERROR_UNSUPPORTED_VERSION" = "更新到最新版本的 Signal並再試一次";
 
 /* The explanation on the action sheet prompting the user if they want to transfer their device. */
-"DEVICE_TRANSFER_PROMPT_EXPLANATION" = "轉移你的 Signal 帳號到新的 iOS 裝置。請確定你的新裝置在附近並已打開。";
+"DEVICE_TRANSFER_PROMPT_EXPLANATION" = "轉移您的 Signal 帳號到新的 iOS 裝置。請確定您的新裝置在附近並已打開。";
 
 /* The title on the acttion sheet prompting the user if they want to transfer their device. */
 "DEVICE_TRANSFER_PROMPT_TITLE" = "轉移帳號";
@@ -1158,6 +1176,9 @@
 
 /* The second explanation for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_EXPLANATION2" = "將此QR碼放在其他裝置的框框中。";
+
+/* A prompt to provide further explanation if the user is not seeing the transfer on both devices. */
+"DEVICE_TRANSFER_QRCODE_NOT_SEEING" = "在舊裝置上看不到提示?";
 
 /* The title for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_TITLE" = "等待其他的裝置...";
@@ -1219,8 +1240,8 @@
 /* Error message indicating the a user can't be added to a group. */
 "EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER" = "這個使用者無法被新增到此群組直到他們升級 Signal。";
 
-/* Message for 'group full' error alert when a user can't be added to a group. */
-"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL" = "已達到群組人數上限100名。";
+/* Format for the 'group full' error alert when a user can't be added to a group because the group is full. Embeds {{ the maximum number of members in a group }}. */
+"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL_FORMAT" = "成員%@人數上限已達到上限。";
 
 /* Error message indicating that an avatar image is invalid and cannot be used. */
 "EDIT_GROUP_ERROR_INVALID_AVATAR" = "無效的照片。";
@@ -1346,7 +1367,7 @@
 "ERROR_DESCRIPTION_UNREGISTERED_RECIPIENT" = "此聯絡人不是 Signal 使用者。";
 
 /* Error message indicating that attachment download(s) failed. */
-"ERROR_MESSAGE_ATTACHMENT_DOWNLOAD_FAILED" = "附件下載失敗。";
+"ERROR_MESSAGE_ATTACHMENT_DOWNLOAD_FAILED" = "附檔下載失敗。";
 
 /* Error message when unable to receive an attachment because the sending client is too old. */
 "ERROR_MESSAGE_ATTACHMENT_FROM_OLD_CLIENT" = "附檔失敗：請要求此聯絡人更新到Signal最新版本，並再重傳一次。";
@@ -1371,6 +1392,9 @@
 
 /* Shown when signal users safety numbers changed, embeds the user's {{name or phone number}} */
 "ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE_FORMAT" = "你與 %@ 的安全碼已經改變。";
+
+/* Text notifying the user that their secure session has been reset */
+"ERROR_MESSAGE_SESSION_REFRESH" = "聊天會話已刷新";
 
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_UNKNOWN_ERROR" = "未知的錯誤發生。";
@@ -1414,7 +1438,7 @@
 /* Button that marks user as verified after a successful fingerprint scan. */
 "FINGERPRINT_SCAN_VERIFY_BUTTON" = "標記為已驗證";
 
-/* No comment provided by engineer. */
+/* Label for button to reset a session. */
 "FINGERPRINT_SHRED_KEYMATERIAL_BUTTON" = "重設會話";
 
 /* Accessibility label for finishing new group */
@@ -1436,7 +1460,16 @@
 "GALLERY_TILES_LOADING_OLDER_LABEL" = "讀取較舊的媒體檔中...";
 
 /* A label for generic attachments. */
-"GENERIC_ATTACHMENT_LABEL" = "附件";
+"GENERIC_ATTACHMENT_LABEL" = "附檔";
+
+/* Title for the 'Get Started' banner */
+"GET_STARTED_BANNER_TITLE" = "開始使用";
+
+/* 'Get Started' button directing users to invite friends */
+"GET_STARTED_CARD_INVITE_FRIENDS" = "邀請好友";
+
+/* 'Get Started' button directing users to create a group */
+"GET_STARTED_CARD_NEW_GROUP" = "新增群組";
 
 /* Error displayed when there is a failure fetching a GIF from the remote service. */
 "GIF_PICKER_ERROR_FETCH_FAILURE" = "無法讀取所要求的 GIF。請確認你是否在線上。";
@@ -1503,6 +1536,135 @@
 
 /* Message indicating that the access to the group's members was changed. Embeds {{new access level}}. */
 "GROUP_ACCESS_MEMBERS_UPDATED_FORMAT" = "群組成員可以被\"%@\"變更。";
+
+/* Message indicating that a feature can only be used by group admins. */
+"GROUP_ADMIN_ONLY_WARNING" = "只有管理員可以變更此選項。";
+
+/* Message body for alert explaining that a group call participant is blocked */
+"GROUP_CALL_BLOCKED_ALERT_MESSAGE" = "你不會收到他們的聲音或視訊，他們也不會收到你的聲音或視訊。";
+
+/* Title for alert explaining that a group call participant is blocked. Embeds {{ user's name }} */
+"GROUP_CALL_BLOCKED_ALERT_TITLE_FORMAT" = "%@ 被封鎖了";
+
+/* String displayed in group call grid cell when a user is blocked. Embeds {user's name} */
+"GROUP_CALL_BLOCKED_USER_FORMAT" = "%@ 被封鎖了";
+
+/* Button to continue an ongoing group call */
+"GROUP_CALL_CONTINUE_BUTTON" = "繼續通話";
+
+/* Text in conversation view for a group call that has since ended */
+"GROUP_CALL_ENDED_MESSAGE" = "群組通話已結束";
+
+/* A button to receive more info about not seeing a participant in group call grid */
+"GROUP_CALL_ERROR_DETAILS" = "更多資訊";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. Embeds {{max device count}}. */
+"GROUP_CALL_HAS_MAX_DEVICES_FORMAT" = "參與此通話的人數已達到最大%ld個參與人數。 請稍後再試。";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. */
+"GROUP_CALL_HAS_MAX_DEVICES_UNKNOWN_COUNT" = "參與此通話人數已達到最大的參加人數。 請稍後再試。";
+
+/* Text explaining the group call is full */
+"GROUP_CALL_IS_FULL" = "通話人數已滿";
+
+/* Button to join an ongoing group call */
+"GROUP_CALL_JOIN_BUTTON" = "加入通話";
+
+/* Button to leave a group call */
+"GROUP_CALL_LEAVE_BUTTON" = "離開通話";
+
+/* String indicating how many people are current in the call */
+"GROUP_CALL_MANY_IN_THIS_CALL_FORMAT" = "在此通話中·%ld個人";
+
+/* Text explaining that there are more than three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2, %3$@ participantCount-2 }} */
+"GROUP_CALL_MANY_PEOPLE_HERE_FORMAT" = "%1$@, %2$@, 及 %3$@ 其他人正在此通話中";
+
+/* String displayed in cell when media from a user can't be displayed in group call grid. Embeds {user's name} */
+"GROUP_CALL_MISSING_MEDIA_KEYS_FORMAT" = "無法從%@接收聲音和視訊";
+
+/* Message body for alert explaining that a group call participant cannot be displayed because of missing keys */
+"GROUP_CALL_NO_KEYS_ALERT_MESSAGE" = "這可能是因為他們尚未驗證你的變更的安全號碼，他們的裝置有問題或已封鎖了你。";
+
+/* Title for alert explaining that a group call participant cannot be displayed because of missing keys. Embeds {{ user's name }} */
+"GROUP_CALL_NO_KEYS_ALERT_TITLE_FORMAT" = "無法從%@接收聲音和視訊";
+
+/* Text explaining that you are the only person currently in the group call */
+"GROUP_CALL_NO_ONE_HERE" = "沒有人在這裡";
+
+/* Text explaining to the user that nobody has joined this call yet. */
+"GROUP_CALL_NOBODY_IS_IN_YET" = "尚無人在通話中。";
+
+/* Copy explaining that many new users have joined the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_JOINED_FORMAT" = "%@, %@, 及%ld 其他人加入了通話";
+
+/* Copy explaining that many users have left the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_LEFT_FORMAT" = "%@, %@, 及 %ld 離開了通話";
+
+/* Copy explaining that a user has joined the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_JOINED_FORMAT" = "%@ 加入通話";
+
+/* Copy explaining that a user has left the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_LEFT_FORMAT" = "%@ 離開了通話";
+
+/* Copy explaining that two users have joined the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_JOINED_FORMAT" = "%@ 及 %@ 加入了通話";
+
+/* Copy explaining that two users have left the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_LEFT_FORMAT" = "%@ 及 %@ 離開了通話";
+
+/* String indicating one person is currently in the call */
+"GROUP_CALL_ONE_IN_THIS_CALL" = "在此通話中·1 個人";
+
+/* Text explaining that there is one person in the group call. Embeds {member name} */
+"GROUP_CALL_ONE_PERSON_HERE_FORMAT" = "%@正在通話中";
+
+/* Text indicating that the user has lost their connection to the call and we are reconnecting. */
+"GROUP_CALL_RECONNECTING" = "重新連接中";
+
+/* notification body when a group call participant joins with an untrusted safety number */
+"GROUP_CALL_SAFETY_NUMBER_CHANGE_BODY" = "有人加入了此通話，並更改了一個安全碼。";
+
+/* Text in conversation view for a group call that someone started. We don't know who */
+"GROUP_CALL_SOMEONE_STARTED_MESSAGE" = "有人發起了群組通話";
+
+/* Toast view text informing user about swiping to speaker view */
+"GROUP_CALL_SPEAKER_VIEW_TOAST" = "向上滑動即可變更顯示";
+
+/* Button to start a group call */
+"GROUP_CALL_START_BUTTON" = "開始通話";
+
+/* Tooltip highlighting group calls. */
+"GROUP_CALL_START_TOOLTIP" = "點按此處發起群組聊天";
+
+/* Text explaining that you started a group call. */
+"GROUP_CALL_STARTED_BY_YOU" = "你發起了群組通話";
+
+/* Text explaining that someone started a group call. Embeds {{call creator display name}} */
+"GROUP_CALL_STARTED_MESSAGE_FORMAT" = "%@ 發起了群組通話";
+
+/* Text explaining that there are three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_THREE_PEOPLE_HERE_FORMAT" = "%1$@, %2$@, 還有另外1人在通話中";
+
+/* Text explaining that there are two people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_TWO_PEOPLE_HERE_FORMAT" = "%1$@ 及 %2$@ 正在通話中";
+
+/* An error displayed to the user when the group call unexpectedly ends. */
+"GROUP_CALL_UNEXPECTEDLY_ENDED" = "你已中斷通話。 檢查你的網路連結，然後重試。";
+
+/* Text describing the local user as a participant in a group call. */
+"GROUP_CALL_YOU" = "您";
+
+/* Text explaining that you are in the group call. */
+"GROUP_CALL_YOU_ARE_HERE" = "你正在群組通話中";
+
+/* Text describing the local user in the group call members sheet when connected from another device. */
+"GROUP_CALL_YOU_ON_ANOTHER_DEVICE" = "你 (在其他的裝置上)";
+
+/* Body for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_BODY" = "開啟新版群組以發起免費的加密的群組通話";
+
+/* Title for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_TITLE" = "群組通話簡介";
 
 /* Message indicating that group was created by the local user. */
 "GROUP_CREATED_BY_LOCAL_USER" = "你建立了一個群組。";
@@ -1618,6 +1780,9 @@
 /* Message for an alert indicating that some members were invited to a group. */
 "GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "你無法將這些使用者自動新增到該群組中。 他們已受邀加入，直到被接受為止，他們不會看到任何群組訊息。";
 
+/* The title for the 'group invites' view. */
+"GROUP_INVITES_VIEW_TITLE" = "成員邀請";
+
 /* Subtitle indicating that the group invite link has expired in the 'group invite link' action sheet. */
 "GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "該群組連結不再有效。";
 
@@ -1648,14 +1813,29 @@
 /* Title for the 'invalid group invite link' alert. */
 "GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "無效的連結";
 
-/* Indicator that a group invite link has expired. */
-"GROUP_LINK_INVITE_LINK_IS_EXPIRED" = "連結不再是有效的";
-
-/* Button to join a group from a group link. */
-"GROUP_LINK_JOIN_GROUP_BUTTON" = "加入群組";
-
 /* Error message indicating that the local user does not support groups v2. */
 "GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "在此裝置上更新 Signal 以加入該群組。";
+
+/* Explanation of the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_EXPLANATION" = "需要管理員批准通過群組連結加入新成員。";
+
+/* Label for the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_SWITCH" = "批准新成員";
+
+/* Label for the 'enable and share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_ENABLE_AND_SHARE_LINK" = "啟用和共享連結";
+
+/* Label for the 'share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SHARE_LINK" = "分享連結";
+
+/* Subtitle for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SUBTITLE" = "與朋友分享此連結，以使他們可迅速加入此群組。";
+
+/* Title for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_TITLE" = "邀請朋友";
+
+/* Suggestion to invite more group members via the group invite link. */
+"GROUP_LINK_PROMOTION_UPDATE" = "透過群組連結邀請朋友加入群組";
 
 /* Description text in the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_DESCRIPTION" = "掃描此代碼的人將可以加入你的群組。 如果你啟用了該裝置，則管理員仍需要批准新成員。";
@@ -1703,7 +1883,7 @@
 "GROUP_LINK_VIEW_SHARE_LINK_VIA_SIGNAL" = "透過 Signal 分享";
 
 /* Message for the 'share group link' action sheet in the 'group link' view. */
-"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "知道此連結的任何人都可以加入群組，或傳送加入要求。 與你信任的人分享。";
+"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "知道此連結的任何人都可以查看該群組的名稱和成員，並請求加入。 與你信任的人分享。";
 
 /* The title for the 'group link' view. */
 "GROUP_LINK_VIEW_TITLE" = "群組連結";
@@ -1771,11 +1951,11 @@
 /* Message indicating that the local user had their administrator role revoked by another user. Embeds {{remote user name}}. */
 "GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@撤銷你的管理權限。";
 
+/* Message indicating that the local user was added to the group. */
+"GROUP_LOCAL_USER_WAS_ADDED_TO_THE_GROUP" = "一位成員新增你到此群組。";
+
 /* Label indicating that a group member is an admin. */
 "GROUP_MEMBER_ADMIN_INDICATOR" = "管理員";
-
-/* Format string for the group member count indicator. Embeds {{ %1$@ the number of members in the group, %2$@ the maximum number of members in the group. }}. */
-"GROUP_MEMBER_COUNT_FORMAT" = "%1$@/%2$@";
 
 /* The 'group member count' indicator when there are no members in the group. */
 "GROUP_MEMBER_COUNT_LABEL_0" = "沒有成員";
@@ -1786,14 +1966,17 @@
 /* Format for the 'group member count' indicator. Embeds {the number of group members}. */
 "GROUP_MEMBER_COUNT_LABEL_FORMAT" = "%@個成員";
 
+/* Format string for the group member count indicator. Embeds {{ the number of members in the group }}. */
+"GROUP_MEMBER_COUNT_WITHOUT_LIMIT_FORMAT" = "%@個成員";
+
 /* Label indicating the local user. */
 "GROUP_MEMBER_LOCAL_USER" = "您";
 
 /* Accessibility label for the 'call group member' button */
 "GROUP_MEMBERS_CALL" = "語音電話";
 
-/* Label indicating that a group has no other members. */
-"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "沒有成員。";
+/* Label indicating that a new group has no other members. */
+"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "建立此群組後，你可以新增或邀請朋友。";
 
 /* Title for the 'members' section of the 'group members' view. */
 "GROUP_MEMBERS_SECTION_TITLE_MEMBERS" = "成員";
@@ -1897,9 +2080,6 @@
 /* Message indicating that a remote user's request to join the group was approved by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
 "GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%2$@批准了從%1$@加入群組的要求。";
 
-/* Message indicating that a remote user's request to join the group was approved. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_FORMAT" = "從%@批准加入該群組的要求。";
-
 /* Message indicating that a remote user cancelled their request to join the group. Embeds {{ the name of the requesting user }}. */
 "GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@取消了他們加入群組的要求。";
 
@@ -1978,6 +2158,27 @@
 /* Message indicating that the group's name was changed. Embeds {{new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_FORMAT" = "群組名稱現在是\"%@\"。";
 
+/* Message indicating that the group was migrated. */
+"GROUP_WAS_MIGRATED" = "該群組已升級為新版群組。";
+
+/* Message indicating that 1 user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_1" = "無法將成員新增到新群組中，並且該成員已從該群組中刪除。";
+
+/* Message indicating that the local user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_LOCAL_USER" = "你無法被新增到新群組中，並且已從該群組中刪除。";
+
+/* Message indicating that N users were dropped while migrating the group. Embeds {{ the number of dropped users }}. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_N_FORMAT" = "%@ 個成員無法新增到新群組中，並且已從該群組中刪除。";
+
+/* Message indicating that 1 user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_1" = "無法將一位成員新增到新群組中，並已被邀請加入";
+
+/* Message indicating that the local user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_LOCAL_USER" = "你無法被新增到新群組中，及被邀請加入";
+
+/* Message indicating that N users were invited while migrating the group. Embeds {{ the number of invited users }}. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_N_FORMAT" = "%@ 位成員無法被新增到新群組中，並已被邀請加入。";
+
 /* Message indicating that the local user left the group. */
 "GROUP_YOU_LEFT" = "你已退出了群組。";
 
@@ -1999,6 +2200,9 @@
 /* Label for 'block inviter' button in group invite view. Embeds {{name of user who invited you}}. */
 "GROUPS_INVITE_BLOCK_INVITER_FORMAT" = "封鎖%@";
 
+/* Label for 'invite friends to group' button. */
+"GROUPS_INVITE_FRIENDS_BUTTON" = "邀請好友";
+
 /* Body text for the first section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "舊版群組是與新群組功能，例如管理員和更具描述性的群組更新，不相容的群組。";
 
@@ -2006,16 +2210,43 @@
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_TITLE" = "什麼是舊版的群組?";
 
 /* Body text for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "舊版群組無法轉換為新群組，但是你可以建立具有相同成員的新群組。";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "舊版群組尚不能升級到新群組，但是如果最新版本的Signal上有相同的成員，則可以建立一個新群組。\n\nSignal將來將提供一種升級舊版群組的方法。";
 
 /* Title for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "如何“升級”舊版群組?";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "我可以升級舊版群組嗎？";
 
 /* Body text for the third section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_3_BODY" = "要建立新群組，所有成員都應更新到Signal的最新版本。";
 
 /* Title for the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_TITLE" = "舊版 vs. 新群組";
+
+/* Format for indicator that a group cannot be used until it is migrated. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_BLOCKING_MIGRATION_FORMAT" = "升級該群組以啟動新功能，例如@提及和管理員功能。 未在此群組中分享姓名或照片的成員將被邀請加入。%@ 。";
+
+/* Title for the 'can't upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TITLE" = "無法升級到新版群組";
+
+/* Text indicating that a legacy group can't be upgraded because it has too many members. Embeds {{ The maximum number of members allowed in a group. }}. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TOO_MANY_MEMBERS_FORMAT" = "該群組成員過多，因此無法升級為新版群組。 可以升級的最大群組大小為 %@。";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_1" = "目前所有群組成員都使用能夠加入新版群組的Signal版本時，該群組將被升級。";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_2" = "升級之前，所有訊息歷史記錄和媒體檔案都將保留。";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_1" = "無法建立此群組，因為1位成員正在使用舊版本的Signal。你可以在他們更新Signal之後用他們建立一個新版群組，或者在建立群組之前將他們刪除。";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. Embeds {{ the number of members which do not support v2 groups. }} */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_N_FORMAT" = "無法建立此群組，因為%@個成員正在使用舊版本的Signal。你可以在他們更新Signal之後用他們建立一個新版群組，或者在建立群組之前將他們刪除。";
+
+/* Indicates that a new group cannot be created because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_1" = "無法建立此群組，因為1位成員正在使用舊版本的Signal。你可以在他們更新Signal之後用他們建立一個新版群組，或者在建立群組之前將它們刪除。%@";
+
+/* Indicates that a new group cannot be created because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_N" = "無法建立此群組，因為%1$@個成員正在使用舊版本的Signal。你可以在他們更新Signal之後用他們建立一個新版群組，或者在建立群組之前將他們刪除。%2$@";
 
 /* Title for alert that explains that a new group will be a legacy group because 1 member does not support v2 groups. */
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_1" = "舊版群組將被建立，因為1位成員正在使用舊版本的Signal。你可以在他們更新Signal之後用他們建立一個新樣式群組，或者在建立群組之前將他們刪除。";
@@ -2030,13 +2261,106 @@
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "%1$@個成員不支援新群組，所以此群組將變更為舊版群組。%2$@";
 
 /* Brief explanation of legacy groups. Embeds {{ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "這是舊版群組。要連結如群組管理員等功能，請建立一個新群組。%@";
+"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "這是一個舊版群組。群組管理員之類的功能僅適用於新群組。%@";
+
+/* Indicates that a legacy group can't be upgraded because some members can't be migrated. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_MEMBERS_CANT_BE_MIGRATED_FORMAT" = "此舊版群組尚未準備好升級到新版群組。%@。";
+
+/* Indicates that a legacy group can't be upgraded because it has too many members. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_TOO_MANY_MEMBERS_FORMAT" = "這個舊版群組太大，因此無法升級為新版群組。%@。";
+
+/* Explanation of legacy groups. Embeds {{ an \"upgrade\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_WITH_UPGRADE_OFFER_FORMAT" = "這是一個舊版群組。 要連結@提及和管理員等新功能，%@。";
+
+/* Title for the the 'dropped group member' banner. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_1" = "1個成員無法重新新增到新群組中。你要立即新增他們嗎？";
+
+/* Format for the title for the the 'dropped group members' banner. Embeds: {{ the number of dropped group members }}. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_N_FORMAT" = "%@ 成員無法被重新新增到新版群組中。你要立即新增他們嗎？";
 
 /* Label indicating a legacy group. */
 "GROUPS_LEGACY_GROUP_INDICATOR" = "舊版群組";
 
-/* A \"learn more\" link with more information about legacy groups. */
-"GROUPS_LEGACY_GROUP_LEARN_MORE_LINK" = "了解更多";
+/* Indicates that the local user needs to accept an invitation to rejoin the group after a group migration. */
+"GROUPS_LEGACY_GROUP_LOCAL_USER_INVITED" = "你將需要接受邀請才能再次加入該群組，並且在你接受之前，你將不會收到群組訊息。";
+
+/* Label for the 'migrate' button in the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_MIGRATE_BUTTON" = "升級群組";
+
+/* Title for the the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_OFFER_BANNER" = "要連結@提及和管理員等新功能，請升級此群組。";
+
+/* Title for the 'migrated group' alert view. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_ALERT_TITLE" = "什麼是新群組？";
+
+/* Explanation of group migration for a migrated group in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_DESCRIPTION" = "升級之前，所有訊息歷史記錄和媒體均已保留。";
+
+/* Explanation of new groups in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_NEW_GROUP_DESCRIPTION" = "新群組具有@提及和群組管理員等功能，並且將來會支援更多功能。";
+
+/* Title for the 'new groups' alert view. */
+"GROUPS_LEGACY_GROUP_NEW_GROUPS_ALERT_TITLE" = "新版群組";
+
+/* Label for the 'add members' button in the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ADD_MEMBERS_BUTTON" = "新增成員";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_1" = "要新增成員嗎？";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_N" = "要新增成員嗎？";
+
+/* Label for the 'add members' button in the 're-add dropped groups members' banner. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_BUTTON" = "新增成員";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_1" = "升級後，該成員無法自動被新增到新版群組中：";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_N" = "這些成員在升級後無法自動被新增到新版群組中：";
+
+/* Body text for the second section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_2_BODY" = "升級之前，所有訊息歷史記錄和媒體均已保留。";
+
+/* Body text for the 'dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_1" = "該成員已從群組中刪除，並且在他們升級之前將無法重新加入該群組：";
+
+/* Body text for the 'dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_N" = "這些成員已從群組中刪除，並且只有在升級後才能重新加入該群組：";
+
+/* Body text for the 'invites member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_1" = "該成員將須要接受邀請才能再次加入該群組，並且在他們接受以下訊息之前將不會收到群組訊息：";
+
+/* Body text for the 'invites members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_N" = "這些成員將須要接受邀請才能再次加入該群組，並且在他們接受以下內容之前將不會收到群組訊息：";
+
+/* Body text for the 'possibly dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_1" = "該成員無法加入新版群組，因此將從該群組中刪除：";
+
+/* Body text for the 'possibly dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_N" = "這些成員無法加入新版群組，因此將從該群組中刪除：";
+
+/* Title for the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_TITLE" = "升級為新版群組";
+
+/* Label for the 'upgrade this group' button in the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_BUTTON" = "升級此群組";
+
+/* Message for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE" = "該群組目前無法升級為新版群組。";
+
+/* Message for error alert indicating the group update failed due to network connectivity. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE_NETWORK" = "該群組無法升級到新版群組，因為你尚未連接到網路。請稍後再試。";
+
+/* Title for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_TITLE" = "無法完成升級";
+
+/* Message indicating the group update succeeded. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_SUCCEEDED" = "升級到新版群組。";
+
+/* An \"upgrade\" link for upgrading legacy groups to new groups. */
+"GROUPS_LEGACY_GROUP_UPGRADE_LINK" = "升級此群組";
 
 /* Message for the 'replace group admin' alert. */
 "GROUPS_REPLACE_ADMIN_ALERT_MESSAGE" = "在你離開之前，為此群組選擇一位新的管理員。";
@@ -2046,6 +2370,21 @@
 
 /* Label for the 'replace group admin' button. */
 "GROUPS_REPLACE_ADMIN_BUTTON" = "選擇新的管理者";
+
+/* Format for the alert warning the user that they've reached the recommended limit on how many members can be in a group when creating a new group. Embeds {{ the maximum number of recommended members in a group }}. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_MESSAGE_FORMAT" = "Signal 群組在%@個成員或更少的情況下表現最佳。 新增更多成員將導致傳送和接收訊息的延遲。";
+
+/* Title for alert warning the user that they've reached the recommended limit on how many members can be in a group. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_TITLE" = "已達到推薦成員數上限";
+
+/* Message asking the user to confirm that they want to add a member to the group. */
+"GROUPS_TOO_MANY_MEMBERS_CONFIRM" = "還是要新增成員嗎？";
+
+/* Label for button that lets the user view the request to join the group. */
+"GROUPS_VIEW_REQUEST_BUTTON" = "查看要求";
+
+/* Label for button that lets the user view the requests to join the group. */
+"GROUPS_VIEW_REQUESTS_BUTTON" = "查看要求";
 
 /* Help item allowing the user to file a support request */
 "HELP_CONTACT_US" = "聯絡我們";
@@ -2104,6 +2443,15 @@
 /* Momentarily shown to the user when attempting to select more images than is allowed. Embeds {{max number of items}} that can be shared. */
 "IMAGE_PICKER_CAN_SELECT_NO_MORE_TOAST_FORMAT" = "你無法分享超過%@個項目。";
 
+/* Button that will present a view for the user to change the photos Signal has access to. */
+"IMAGE_PICKER_CHANGE_PHOTOS" = "變更照片";
+
+/* Explanation showing that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_EXPLANATION" = "在“設定”中授予完全控制權限，或更改Signal可以連結的照片。";
+
+/* Title show that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_TITLE" = "看不到你的照片?";
+
 /* alert title */
 "IMAGE_PICKER_FAILED_TO_PROCESS_ATTACHMENTS" = "無法選擇附檔。";
 
@@ -2141,7 +2489,7 @@
 "INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "這些聊天記錄已封存，僅在收到新訊息時才會顯示在收件夾中。";
 
 /* Message shown in the conversation list when the inbox is empty. */
-"INBOX_VIEW_EMPTY_INBOX" = "何不給你的收件夾寫些東西呢？從發個訊息給好友開始吧！";
+"INBOX_VIEW_EMPTY_INBOX" = "尚未有聊天。\n透過與朋友聊天開始。";
 
 /* info message text in conversation view. {embeds callee name} */
 "INCOMING_CALL_FORMAT" = "%@曾撥電話給你";
@@ -2179,6 +2527,9 @@
 /* Alert warning that sending an invite to multiple users will create a group message whose recipients will be able to see each other. */
 "INVITE_WARNING_MULTIPLE_INVITES_BY_TEXT" = "同時邀請多個使用者降啟動群組訊息功能，接收者將因此可以見到對方。";
 
+/* Button to join an active group call */
+"JOIN_CALL_PILL_BUTTON" = "加入";
+
 /* Slider label embeds {{TIME_AMOUNT}}, e.g. '2 hours'. See *_TIME_AMOUNT strings for examples. */
 "KEEP_MESSAGES_DURATION" = "訊息在%@後消毀。";
 
@@ -2192,7 +2543,7 @@
 "KEY_COMMAND_ARCHIVE" = "封存聊天";
 
 /* A keyboard command to open the current conversation's attachment picker. */
-"KEY_COMMAND_ATTACHMENTS" = "顯示附件";
+"KEY_COMMAND_ATTACHMENTS" = "顯示附檔";
 
 /* A keyboard command to open the current conversation's settings. */
 "KEY_COMMAND_CONVERSATION_INFO" = "轉到聊天資訊";
@@ -2281,6 +2632,24 @@
 /* Title for link previews megaphone */
 "LINKPREVIEWS_MEGAPHONE_TITLE" = "預覽任何連結";
 
+/* Body for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_BODY" = "為了移轉你的Signal帳號，你需要在兩個裝置上啟用區域網路連結。";
+
+/* A button asking the user if they need further help getting their transfer working. */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_NEED_HELP" = "需要幫助嗎？";
+
+/* First step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_ONE" = "在每台裝置上，開啟“設定”";
+
+/* Third step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_THREE" = "開啟“區域網路”";
+
+/* Second step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_TWO" = "找到到Signal";
+
+/* Title for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_TITLE" = "開啟區域網路連結";
+
 /* A string indicating that the user can search for a location */
 "LOCATION_PICKER_SEARCH_PLACEHOLDER" = "以名字或地址來搜尋";
 
@@ -2292,6 +2661,9 @@
 
 /* Title for the 'long text message' view. */
 "LONG_TEXT_VIEW_TITLE" = "訊息";
+
+/* A string describing that the user has many groups in common with another user. Embeds {{common group count}} */
+"MANY_GROUPS_IN_COMMON" = "%@ 個共同的群組";
 
 /* nav bar button item */
 "MEDIA_DETAIL_VIEW_ALL_MEDIA_BUTTON" = "所有的多媒體檔案";
@@ -2307,6 +2679,12 @@
 
 /* Confirmation button text to delete selected media message from the gallery */
 "MEDIA_GALLERY_DELETE_SINGLE_MESSAGE" = "刪除訊息";
+
+/* Format for an indicator of the number of image items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_IMAGE_COUNT_FORMAT" = "%@ 照片";
+
+/* Format for an indicator of the number of image or video items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_MIXED_COUNT_FORMAT" = "%@ 項目";
 
 /* Format for the 'more items' indicator for media galleries. Embeds {{the number of additional items}}. */
 "MEDIA_GALLERY_MORE_ITEMS_FORMAT" = "+%@";
@@ -2330,7 +2708,7 @@
 "MESSAGE_ACTION_DELETE_FOR_EVERYONE" = "為所有人刪除";
 
 /* A one-time confirmation that you want to delete for everyone */
-"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "該訊息將被聊天中的每個人永久刪除。 成員將能夠看到你刪除了一則訊息。";
+"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "如果聊天中的每個人都使用最新版本的Signal，則該訊息將被刪除。 他們將能夠看到你刪除了一則訊息。";
 
 /* The title for the action sheet asking who the user wants to delete the message for. */
 "MESSAGE_ACTION_DELETE_FOR_TITLE" = "你想為誰刪除此訊息？";
@@ -2393,7 +2771,7 @@
 "MESSAGE_METADATA_VIEW_MESSAGE_STATUS_UPLOADING" = "上傳中";
 
 /* Label for messages without a body or attachment in the 'message metadata' view. */
-"MESSAGE_METADATA_VIEW_NO_ATTACHMENT_OR_BODY" = "該訊息沒有內容或附件。";
+"MESSAGE_METADATA_VIEW_NO_ATTACHMENT_OR_BODY" = "該訊息沒有內容或附檔。";
 
 /* Label for the 'received date & time' field of the 'message metadata' view. */
 "MESSAGE_METADATA_VIEW_RECEIVED_DATE_TIME" = "已接收";
@@ -2446,6 +2824,27 @@
 /* Action sheet title to confirm deleting a group via a message request. */
 "MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_TITLE" = "刪除及離開群組？";
 
+/* Banner label notifying user that a new message is from a user with the same name as an existing contact */
+"MESSAGE_REQUEST_NAME_COLLISON_BANNER_LABEL" = "仔細檢查請求。 Signal找到了另一個同名的聯絡人。";
+
+/* A header string above a known contact's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_CONTACT_HEADER" = "你的聯絡人";
+
+/* A header string informing the user about name collisions in a message request */
+"MESSAGE_REQUEST_NAME_COLLISON_HEADER" = "如果你不確定請求來自誰，請查看下面的聯絡人並採取措施。";
+
+/* A header string above the requester's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_REQUESTER_HEADER" = "要求";
+
+/* A title string for a view that allows a user to review name collisions for an incoming message request */
+"MESSAGE_REQUEST_NAME_COLLISON_TITLE" = "審查要求";
+
+/* A button that updates a known contact's information to resolve a name collision */
+"MESSAGE_REQUEST_NAME_COLLISON_UPDATE_CONTACT_ACTION" = "更新聯絡人";
+
+/* Button to allow user to review known name collisions with an incoming message request */
+"MESSAGE_REQUEST_REVIEW_NAME_COLLISION" = "審查要求";
+
 /* A button used to accept a user on an incoming message request. */
 "MESSAGE_REQUEST_VIEW_ACCEPT_BUTTON" = "接受";
 
@@ -2461,17 +2860,17 @@
 /* A prompt notifying that the user must unblock this group to continue. */
 "MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT_V2" = "解除封鎖該群組? 他們不會知道你已看過他們的訊息。除非你解除封鎖他們。";
 
+/* A button used to continue a conversation and share your profile. */
+"MESSAGE_REQUEST_VIEW_CONTINUE_BUTTON" = "繼續";
+
 /* incoming message request button text which deletes a conversation */
 "MESSAGE_REQUEST_VIEW_DELETE_BUTTON" = "刪除";
 
 /* A prompt notifying that the user must share their profile with this conversation. Embeds {{contact name}}. */
-"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "你必須與%@分享你的個人資訊才能繼續。";
+"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "繼續與%@聊天，並與他們分享你的名字和照片嗎？";
 
 /* A prompt notifying that the user must share their profile with this group. */
-"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "你必須分享你的個人資訊才能繼續與此群組的聊天。";
-
-/* A prompt for the user to accept or decline an invite to a group. Embeds {{name of user who invited you}}. */
-"MESSAGE_REQUEST_VIEW_GROUP_INVITE_PROMPT_FORMAT" = "你被%@邀請至此群組。 您想讓該群組的成員向你傳送訊息嗎？";
+"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "繼續與該群群組聊天，並與其成員分享你的名字和照片嗎？";
 
 /* A prompt asking if the user wants to accept a conversation invite. Embeds {{contact name}}. */
 "MESSAGE_REQUEST_VIEW_NEW_CONTACT_PROMPT_FORMAT" = "讓%@可以傳訊息給你並與他們分享你的名字和照片嗎？ 在你接受之前，他們不會知道你已看到他們的訊息。";
@@ -2481,9 +2880,6 @@
 
 /* A prompt asking if the user wants to accept a group invite. */
 "MESSAGE_REQUEST_VIEW_NEW_GROUP_PROMPT_V2" = "要加入這個群組？ 在你接受之前，他們不會知道你已看過他們的訊息。";
-
-/* A button used to share your profile with an existing thread. */
-"MESSAGE_REQUEST_VIEW_SHARE_PROFILE_BUTTON" = "分享資訊";
 
 /* A button used to unlock a blocked conversation. */
 "MESSAGE_REQUEST_VIEW_UNBLOCK_BUTTON" = "解除封鎖";
@@ -2496,18 +2892,6 @@
 
 /* Indicator that you have requested to join this group. */
 "MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "你的加入要求已傳送到網上群組管理員。 他們採取動作時會通知你。";
-
-/* Header for message requests splash screen */
-"MESSAGE_REQUESTS_NAMES_SPLASH_TITLE" = "介紹訊息請求";
-
-/* Button to start a create profile name flow from the one time splash screen that appears after upgrading */
-"MESSAGE_REQUESTS_SPLASH_ADD_PROFILE_NAME_BUTTON" = "新增個人資訊名稱";
-
-/* Body text for message requests splash screen */
-"MESSAGE_REQUESTS_SPLASH_BODY" = "你現在可以選擇 “接受” 或 “刪除” 新的聊天。 名稱使人們知道誰在向他們傳送訊息。";
-
-/* Toast indicating that a profile name has been created. */
-"MESSAGE_REQUESTS_SPLASH_MEGAPHONE_TOAST" = "你的個人資料名稱已被儲存。";
 
 /* message status for message delivered to their recipient. */
 "MESSAGE_STATUS_DELIVERED" = "已傳送";
@@ -2602,6 +2986,18 @@
 /* No comment provided by engineer. */
 "NETWORK_ERROR_RECOVERY" = "請確認是否在線上，並再重試。";
 
+/* String representing only the cellular interface */
+"NETWORK_INTERFACE_SET_CELLULAR" = "僅限行動網路";
+
+/* String representing the 'never' condition of having no supported network interfaces */
+"NETWORK_INTERFACE_SET_NEVER" = "永不";
+
+/* String representing only the wifi interface */
+"NETWORK_INTERFACE_SET_WIFI" = "僅限 Wi-Fi";
+
+/* String representing both wifi and cellular interfaces */
+"NETWORK_INTERFACE_SET_WIFI_CELLULAR" = "Wi-Fi和行動網路";
+
 /* A label the cell that lets you add a new member to a group. */
 "NEW_CONVERSATION_FIND_BY_PHONE_NUMBER" = "以電話號碼搜尋";
 
@@ -2619,6 +3015,9 @@
 
 /* Error indicating that a new group could not be created due to network connectivity problems. */
 "NEW_GROUP_CREATION_FAILED_DUE_TO_NETWORK" = "無法建立新群組。 檢查你的網際網路連接，然後重試。";
+
+/* Indicates that a group member does not support New Groups. */
+"NEW_GROUP_CREATION_MEMBER_DOES_NOT_SUPPORT_NEW_GROUPS" = "不支援新版群組";
 
 /* Message for error alert indicating that a group name is required. */
 "NEW_GROUP_CREATION_MISSING_NAME_ALERT_MESSAGE" = "需要一個群組名稱";
@@ -2658,6 +3057,9 @@
 
 /* Label for a button that lets users search for contacts by phone number */
 "NO_CONTACTS_SEARCH_BY_PHONE_NUMBER" = "透過手機號碼搜尋聯絡人";
+
+/* A string describing that the user has no groups in common with another user */
+"NO_GROUPS_IN_COMMON" = "沒有共同的群組";
 
 /* Explanation of how to see a conversation. */
 "NO_SELECTED_CONVERSATION_DESCRIPTION" = "選擇一個聯絡人或群組開始聊天。";
@@ -2716,6 +3118,9 @@
 /* Label for settings UI that allows user to change the notification sound. */
 "NOTIFICATIONS_SECTION_SOUNDS" = "音效";
 
+/* Label for settings UI that allows user to add a new notification sound. */
+"NOTIFICATIONS_SECTION_SOUNDS_ADD_CUSTOM_SOUND" = "新增自定義聲音…";
+
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SENDER_AND_MESSAGE" = "姓名，內容和操作        ";
 
@@ -2725,7 +3130,7 @@
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SHOW" = " 顯示";
 
-/* No comment provided by engineer. */
+/* Label for the 'ok' button. */
 "OK" = "OK";
 
 /* Label indicating that the 2fa pin is exhausted in the 'onboarding 2fa' view. */
@@ -2789,13 +3194,13 @@
 "ONBOARDING_MODE_SWITCH_WARNING_REGISTERING" = "不建議你連結 iPhone，這會限制核心功能。";
 
 /* Label for the 'give access' button in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "開啟權限";
+"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "允許權限";
 
 /* Explanation in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_EXPLANATION" = "通知可讓你查看訊息何時到達並接收有關新聊天活動的更新。";
+"ONBOARDING_PERMISSIONS_EXPLANATION" = "允許通知和聯絡人可讓你查看訊息何時抵達，並幫助你找到認識的人。 聯絡人已加密，因此Signal服務無法看到他們。";
 
 /* Title of the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_TITLE" = "接收訊息    ";
+"ONBOARDING_PERMISSIONS_TITLE" = "允許權限";
 
 /* Explanation of the 'onboarding phone number discoverability' view. Embeds {user phone number} */
 "ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "選擇誰可以使用您的電話號碼%@在Signal上找到你";
@@ -2803,11 +3208,17 @@
 /* Title of the 'onboarding phone number discoverability' view. */
 "ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "誰可以找到你的電話號碼？";
 
+/* Placeholder string for phone number field during registration */
+"ONBOARDING_PHONE_NUMBER_PLACEHOLDER" = "你的電話號碼";
+
+/* Label indicating that registration has been ratelimited. Embeds {{remaining time string}}. */
+"ONBOARDING_PHONE_NUMBER_RATE_LIMIT_WARNING_FORMAT" = "請等待幾分鐘，然後重試。(%@)";
+
 /* Title of the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_TITLE" = "輸入你的電話號碼即可開始使用。";
+"ONBOARDING_PHONE_NUMBER_TITLE" = "輸入你的電話號碼";
 
 /* Label indicating that the phone number is invalid in the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "無效號碼";
+"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "無效的電話號碼。 請輸入有效的電話號碼進行註冊。";
 
 /* Explanation of the 'onboarding pin attempts exhausted' view when reglock is disabled. */
 "ONBOARDING_PIN_ATTEMPTS_EXHAUSTED_EXPLANATION" = "你的PIN碼猜測用完了，但是你仍然可以通透建立新的PIN碼來連結Signal帳號。 為了你的隱私和安全，你的帳號將被回復，而不會保存任何個人訊息資訊或設定。";
@@ -2833,6 +3244,15 @@
 /* Title of the 'onboarding PIN' view. */
 "ONBOARDING_PIN_TITLE" = "輸入你的 PIN 碼";
 
+/* Title label for profile creation step of onboarding */
+"ONBOARDING_PROFILE_CREATION_TITLE" = "你的個人資料";
+
+/* Placeholder text for the family name field of the profile creation view. */
+"ONBOARDING_PROFILE_FAMILY_NAME_FIELD" = "姓氏（可選）";
+
+/* Placeholder text for the given name field of the profile creation view. */
+"ONBOARDING_PROFILE_GIVEN_NAME_FIELD" = "名（必填）";
+
 /* Link to the 'terms and privacy policy' in the 'onboarding splash' view. */
 "ONBOARDING_SPLASH_TERM_AND_PRIVACY_POLICY" = "服務條款與隱私政策";
 
@@ -2842,38 +3262,29 @@
 /* Label for the link that lets users change their phone number in the onboarding views. */
 "ONBOARDING_VERIFICATION_BACK_LINK" = "錯誤的號碼？";
 
-/* Format for the label of the 'sent code' label of the 'onboarding verification' view. Embeds {{the time until the code can be resent}}. */
-"ONBOARDING_VERIFICATION_CODE_COUNTDOWN_FORMAT" = "我沒有收到驗證碼(由%@提供)";
+/* Label for button to perform verification with a phone call. */
+"ONBOARDING_VERIFICATION_CALL_ME_BUTTON" = "打電話給我";
 
-/* action sheet item shown after a number of failures to receive a verificaiton SMS during registration */
-"ONBOARDING_VERIFICATION_EMAIL_SIGNAL_SUPPORT" = "聯絡 Signal 支援";
+/* Format string for button counting down time until phone call verification can be performed. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_CALL_ME_COUNTDOWN_FORMAT" = "在%@ 後打電話給我";
+
+/* Label for a progress spinner currently validating code */
+"ONBOARDING_VERIFICATION_CODE_VALIDATION_PROGRESS_LABEL" = "驗證碼中...";
 
 /* Label indicating that the verification code is incorrect in the 'onboarding verification' view. */
 "ONBOARDING_VERIFICATION_INVALID_CODE" = "這個驗證碼是不正確的。";
 
-/* Label for link that can be used when the original code did not arrive. */
-"ONBOARDING_VERIFICATION_ORIGINAL_CODE_MISSING_LINK" = "我沒有收到驗證碼。";
+/* Label for button to resend SMS verification code. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_BUTTON" = "重新傳送認證碼";
 
-/* Message for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_MESSAGE" = "請確認你的手機網路服務可以收到 SMS訊息。";
-
-/* Title for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_TITLE" = "沒有收到驗證碼？";
-
-/* Label for the 'resend code by SMS' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_SMS_BUTTON" = "重新傳送認證碼";
-
-/* Label for the 'resend code by voice' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_VOICE_BUTTON" = "改用電話撥給我";
-
-/* Label for link that can be used when the resent code did not arrive. */
-"ONBOARDING_VERIFICATION_RESENT_CODE_MISSING_LINK" = "還是沒有收到驗證碼？";
+/* Format string for button counting down time until SMS code can be resent. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_COUNTDOWN_FORMAT" = "在%@之後重新傳送代碼";
 
 /* Format for the title of the 'onboarding verification' view. Embeds {{the user's phone number}}. */
 "ONBOARDING_VERIFICATION_TITLE_DEFAULT_FORMAT" = "請輸入我們傳送給 %@ 的驗證碼。";
 
-/* Format for the title of the 'onboarding verification' view after the verification code has been resent. Embeds {{the user's phone number}}. */
-"ONBOARDING_VERIFICATION_TITLE_RESENT_FORMAT" = "我們剛重傳一個驗證碼給 %@";
+/* Title label for the onboarding verification page */
+"ONBOARDING_VERIFICATION_TITLE_LABEL" = "驗證碼";
 
 /* Button text which opens the settings app */
 "OPEN_SETTINGS_BUTTON" = "設定";
@@ -2889,12 +3300,6 @@
 
 /* info message text in conversation view. {embeds callee name} */
 "OUTGOING_CALL_FORMAT" = "你曾撥電話給%@";
-
-/* Error indicating that a PDF could not be displayed. */
-"PDF_VIEW_COULD_NOT_RENDER" = "PDF 無法顯示";
-
-/* Navbar title for for PDF view. */
-"PDF_VIEW_TITLE" = "PDF";
 
 /* Title of 'accept member request to join group' button. */
 "PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_BUTTON" = "新增到群組";
@@ -3271,14 +3676,50 @@
 /* No comment provided by engineer. */
 "PROCEED_BUTTON" = "繼續";
 
+/* Placeholder text for the bio field of the profile bio view. */
+"PROFILE_BIO_VIEW_BIO_PLACEHOLDER" = "寫一些關於你自己的話……";
+
+/* The 'Be kind' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_BE_KIND" = "友善點";
+
+/* The 'Coffee lover' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_COFFEE_LOVER" = "咖啡愛好者";
+
+/* The 'Encrypted' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_ENCRYPTED" = "已加密";
+
+/* The 'free to chat' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_FREE_TO_CHAT" = "有空聊天";
+
+/* The 'Speak Freely' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_SPEAK_FREELY" = "暢所欲言";
+
+/* The 'Taking a break' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_TAKING_A_BREAK" = "正在休息中";
+
+/* The 'Working on something new' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_WORKING_ON_SOMETHING_NEW" = "從事新事物";
+
+/* Title for the profile bio view. */
+"PROFILE_BIO_VIEW_TITLE" = "關於";
+
+/* Title for the profile bio view. Embeds {{ the number of characters that can be added to the profile bio without hitting the length limit }}. */
+"PROFILE_BIO_VIEW_TITLE_FORMAT" = "有關 (%@)";
+
 /* The copy rendered in a conversation when someone in your address book changes their profile name. Embeds {contact name}, {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_CONTACT_FORMAT" = "%@變更他們的個人資料名稱從%@改為%@。";
 
 /* The copy rendered in a conversation when someone not in your address book changes their profile name. Embeds {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_NONCONTACT_FORMAT" = "%@將他們的個人資料名稱更改為%@。";
 
+/* Button to add a 'bio' to the user's profile in the profile view. */
+"PROFILE_VIEW_ADD_BIO_TO_PROFILE" = "新增到個人資訊";
+
 /* Action Sheet title prompting the user for a profile avatar */
 "PROFILE_VIEW_AVATAR_ACTIONSHEET_TITLE" = "設定個人資訊照片";
+
+/* Header for the 'bio' section of the profile view. */
+"PROFILE_VIEW_BIO_SECTION_HEADER" = "關於";
 
 /* Label for action that clear's the user's profile avatar */
 "PROFILE_VIEW_CLEAR_AVATAR" = "移除照片";
@@ -3311,7 +3752,7 @@
 "PROFILE_VIEW_NO_CONNECTION" = "當連接到網際網路，你的個人資料可以上傳。";
 
 /* Description of the user profile. */
-"PROFILE_VIEW_PROFILE_DESCRIPTION" = "你的個人資訊已點對點加密。 當你發起或接受新聊天，以及加入新群組時，你的個人資訊及變更只有你的聯絡人可看見。";
+"PROFILE_VIEW_PROFILE_DESCRIPTION" = "你的個人資料已點對點加密。 當你開始或接受新的聊天時，你的個人資料及其更改可被你的聯絡人看見。";
 
 /* Button to save the profile view in the profile view. */
 "PROFILE_VIEW_SAVE_BUTTON" = "儲存";
@@ -3356,7 +3797,7 @@
 "QUOTED_REPLY_ORIGINAL_MESSAGE_REMOTELY_SOURCED" = "找不到原始訊息。";
 
 /* Indicates this message is a quoted reply to an attachment of unknown type. */
-"QUOTED_REPLY_TYPE_ATTACHMENT" = "附件";
+"QUOTED_REPLY_TYPE_ATTACHMENT" = "附檔";
 
 /* Indicates this message is a quoted reply to an audio file. */
 "QUOTED_REPLY_TYPE_AUDIO" = "聲音";
@@ -3481,6 +3922,12 @@
 /* alert body during registration */
 "REGISTRATION_ERROR_BLANK_VERIFICATION_CODE" = "我們無法啟用你的帳號直到驗證我們寄送給你的驗證碼。";
 
+/* Alert body for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_BODY" = "若要繼續，請檢查手機的行動網路連接，然後重試。";
+
+/* Alert title for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_TITLE" = "檢查網路連接";
+
 /* No comment provided by engineer. */
 "REGISTRATION_NON_VALID_NUMBER" = "不支援這個電話號碼的格式，請聯繫支援部門。";
 
@@ -3511,6 +3958,18 @@
 /* Title of alert indicating that users needs to enter a phone number to register. */
 "REGISTRATION_VIEW_NO_PHONE_NUMBER_ALERT_TITLE" = "電話號碼無效";
 
+/* Message for confirmation alert during phone number registration. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_MESSAGE" = "驗證碼將傳送到該電話號碼。你的電話號碼正確嗎？";
+
+/* Title for confirmation alert during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_TITLE_FORMAT" = "電話號碼確認：%@";
+
+/* A button allowing user to cancel registration and edit a phone number */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_EDIT_BUTTON" = "編輯";
+
+/* Label for the progress spinner shown during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_SPINNER_LABEL_FORMAT" = "驗證中 %@...";
+
 /* notification action */
 "REJECT_CALL_BUTTON_TITLE" = "拒絕";
 
@@ -3523,8 +3982,32 @@
 /* No comment provided by engineer. */
 "REREGISTER_FOR_PUSH" = "重新註冊推播通知";
 
+/* Body for research megaphone */
+"RESEARCH_MEGAPHONE_BODY" = "為了使Signal成為地球上最好的訊息傳遞應用程式，我們很想聽聽你的意見。";
+
+/* Title for research megaphone */
+"RESEARCH_MEGAPHONE_TITLE" = "告訴Signal你的想法";
+
+/* Text for the research modal footer */
+"RESEARCH_MODAL_FOOTER" = "該問卷由Surveygizmo託管在安全域Surveys.signalusers.org中";
+
+/* Button text for declining the research modal */
+"RESEARCH_MODAL_NO_THANKS" = "不，謝謝。";
+
+/* Text explaining why the user should take the survey */
+"RESEARCH_MODAL_PLEA" = "<bold>我們相信隱私。</bold>\n\nSignal無法追踪你或收集你的資料。 為了改善所有人的Signal，我們依靠使用者的回應，<bold>我們希望能收到你的反映。</bold>\n\n我們正在進行一項調查，以了解你如何使用Signal。 我們的調查不會收集任何可以識別你身份的資料。 如果你有興趣分享其他反映，則可以選擇提供聯絡資訊。\n\n如果你有幾分鐘的時間要提供反映意見，我們很高興收到你的來信。";
+
+/* Button text for taking the research survey */
+"RESEARCH_MODAL_TAKE_SURVEY" = "參加問卷";
+
+/* Title for the research megaphone modal */
+"RESEARCH_MODAL_TITLE" = "Signal 研究";
+
 /* Generic text for button that retries whatever the last action was. */
 "RETRY_BUTTON_TEXT" = "重試";
+
+/* Button to return to current group call */
+"RETURN_CALL_PILL_BUTTON" = "返回";
 
 /* button title to confirm adding a recipient to a group when their safety number has recently changed */
 "SAFETY_NUMBER_CHANGED_CONFIRM_ADD_TO_GROUP_ACTION" = "依然加入群組";
@@ -3835,6 +4318,21 @@
 /* No comment provided by engineer. */
 "SEND_SMS_INVITE_TITLE" = "你是否希望邀請以下號碼加入Signal：";
 
+/* Description for the session refresh alert */
+"SESSION_REFRESH_ALERT_MESSAGE" = "Signal使用點對點加密，有時可能需要刷新你的聊天會話。 這不會影響你聊天的安全性，但是你可能錯過了此聯絡人的訊息，可以要求他們重新傳送。";
+
+/* Title for the session refresh alert */
+"SESSION_REFRESH_ALERT_TITLE" = "聊天會話已刷新";
+
+/* Title for the wallpaper choose from photos option */
+"SET_WALLPAPER_CHOOSE_PHOTO" = "從照片中選擇";
+
+/* Title for the wallpaper presets section */
+"SET_WALLPAPER_PRESETS" = "預設值";
+
+/* Title for the set wallpaper settings view. */
+"SET_WALLPAPER_TITLE" = "設定桌布";
+
 /* Navbar title */
 "SETTINGS_ABOUT" = "關於";
 
@@ -3891,6 +4389,12 @@
 
 /* table cell label */
 "SETTINGS_ADVANCED_VIEW_ERROR_LOG" = "錯誤日誌";
+
+/* Footer for avatar section in appearance settings */
+"SETTINGS_APPEARANCE_AVATAR_FOOTER" = "耴果有的話，顯示系統聯絡人照片";
+
+/* Title for switch to toggle preference between contact and profile avatars */
+"SETTINGS_APPEARANCE_AVATAR_PREFERENCE_LABEL" = "使用系統聯絡人照片";
 
 /* The title for the theme section in the appearance settings. */
 "SETTINGS_APPEARANCE_THEME_TITLE" = "主題";
@@ -3976,6 +4480,30 @@
 /* No comment provided by engineer. */
 "SETTINGS_COPYRIGHT" = "Copyright Signal Messenger\n Licensed under the GPLv3";
 
+/* Label for the 'data' section of the app settings. */
+"SETTINGS_DATA" = "資料使用量";
+
+/* Item title for the low bandwidth call setting */
+"SETTINGS_DATA_CALL_LOW_BANDWIDTH_ITEM_TITLE" = "使用較少的數據";
+
+/* Section footer for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_FOOTER" = "使用較少的數據可能改善不良網路上的通話";
+
+/* Section header for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_HEADER" = "通話";
+
+/* Footer for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_FOOTER" = "語音訊息，一次性多媒體和貼圖（小於100kb）會自動下載。";
+
+/* Header for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_HEADER" = "媒體自動下載";
+
+/* Label for for the 'reset media auto-download settings' button in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_RESET" = "重置自動下載設定";
+
+/* The title for the data settings. */
+"SETTINGS_DATA_TITLE" = "資料使用量";
+
 /* No comment provided by engineer. */
 "SETTINGS_DELETE_ACCOUNT_BUTTON" = "刪除帳戶";
 
@@ -4009,6 +4537,9 @@
 /* Label for settings view that allows user to change the notification sound. */
 "SETTINGS_ITEM_NOTIFICATION_SOUND" = "訊息音效";
 
+/* Label for settings view that allows user to change the wallpaper. */
+"SETTINGS_ITEM_WALLPAPER" = "聊天桌布";
+
 /* table cell label */
 "SETTINGS_LEGAL_TERMS_CELL" = "條款和隱私政策";
 
@@ -4017,6 +4548,27 @@
 
 /* Footer for setting for enabling & disabling link previews. */
 "SETTINGS_LINK_PREVIEWS_FOOTER" = "直接從網站上檢索你傳送的訊息的連結預覽。";
+
+/* Label for the 'never' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_NEVER" = "永不";
+
+/* Label for the 'wifi and cellular' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_AND_CELLULAR" = "Wi-Fi和行動網路";
+
+/* Label for the 'wifi-only' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_ONLY" = "Wi-Fi";
+
+/* Label for the 'audio' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_AUDIO" = "音訊";
+
+/* Label for the 'document' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_DOCUMENT" = "文件";
+
+/* Label for the 'photo' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_PHOTO" = "照片";
+
+/* Label for the 'video' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_VIDEO" = "影片";
 
 /* Label for the 'messaging' privacy settings. */
 "SETTINGS_MESSAGING" = "傳送訊息中";
@@ -4147,6 +4699,12 @@
 /* Section header */
 "SETTINGS_SECURITY_TITLE" = "螢幕安全";
 
+/* Setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS" = "在建議中顯示";
+
+/* Footer for setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS_FOOTER" = "從其他應用程式共享時，Signal聊天會顯示為建議。";
+
 /* Label for the 'enable registration lock' switch of the privacy settings. */
 "SETTINGS_TWO_FACTOR_AUTH_SWITCH_LABEL" = "註冊鎖";
 
@@ -4208,16 +4766,34 @@
 "SHARE_EXTENSION_NOT_YET_MIGRATED_TITLE" = "還沒準備好";
 
 /* Alert title */
-"SHARE_EXTENSION_SENDING_FAILURE_TITLE" = "無法寄出附件";
+"SHARE_EXTENSION_SENDING_FAILURE_TITLE" = "無法寄出附檔";
+
+/* Send progress for share extension. Embeds {{ %1$@ number of attachments uploaded, %2$@ total number of attachments}} */
+"SHARE_EXTENSION_SENDING_IN_PROGRESS_FORMAT" = "上傳 %2$@分之%1$@...";
 
 /* Alert title */
 "SHARE_EXTENSION_SENDING_IN_PROGRESS_TITLE" = "上傳中...";
 
 /* Shown when trying to share content to a Signal user for the share extension. Followed by failure details. */
-"SHARE_EXTENSION_UNABLE_TO_BUILD_ATTACHMENT_ALERT_TITLE" = "無法準備附件";
+"SHARE_EXTENSION_UNABLE_TO_BUILD_ATTACHMENT_ALERT_TITLE" = "無法準備附檔";
 
 /* Title for the 'share extension' view. */
 "SHARE_EXTENSION_VIEW_TITLE" = "分享至 Signal";
+
+/* Title of alert indicating sharing suggestions failed to deactivate */
+"SHARING_SUGGESTIONS_DISABLE_ERROR" = "無法關閉共享建議。";
+
+/* Body for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_BODY" = "從其他應用程式共享時，Signal聊天現在可以顯示為建議。";
+
+/* Title for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_TITLE" = "共享更加容易";
+
+/* Disable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_DISABLE" = "關閉";
+
+/* Enable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_ENABLE" = "啟動";
 
 /* Action sheet item */
 "SHOW_SAFETY_NUMBER_ACTION" = "顯示安全碼";
@@ -4231,14 +4807,23 @@
 /* Label for the 'no sound' option that allows users to disable sounds for notifications, etc. */
 "SOUNDS_NONE" = "靜音";
 
+/* Footer for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_FOOTER" = "現有群組將在未來幾週內自動取得這些功能。";
+
+/* Instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS" = "新群組";
+
+/* Joiner symbol in the instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS_JOINER" = "+";
+
+/* Header for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_TITLE" = "新版群組在這裡！";
+
+/* Body text for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_SPLASH_BODY" = "新版群組的新功能包括@提及，管理員等。 透過點擊嘗試一下：";
+
 /* Preview text shown in notifications and conversation list for sticker messages. */
 "STICKER_MESSAGE_PREVIEW" = "貼圖訊息";
-
-/* Tooltip indicating that a sticker pack was installed. */
-"STICKER_PACK_INSTALLED_TOOLTIP" = "貼圖包已安裝";
-
-/* Label for a sticker that failed to download. */
-"STICKERS_FAILED_DOWNLOAD" = "貼圖";
 
 /* Label for the 'install sticker pack' button. */
 "STICKERS_INSTALL_BUTTON" = "安裝";
@@ -4270,9 +4855,6 @@
 /* Default title for sticker packs. */
 "STICKERS_PACK_DEFAULT_TITLE" = "貼圖包";
 
-/* Title of the 'share sticker pack' view. */
-"STICKERS_PACK_SHARE_VIEW_TITLE" = "分享貼圖包";
-
 /* The default title for the 'sticker pack' view. */
 "STICKERS_PACK_VIEW_DEFAULT_TITLE" = "貼圖包";
 
@@ -4294,8 +4876,35 @@
 /* Placeholder string for support description */
 "SUPPORT_DESCRIPTION_PLACEHOLDER" = "告訴我們發生什麼問題";
 
+/* Default prompt for user description in support email requests */
+"SUPPORT_EMAIL_DEFAULT_DESCRIPTION" = "告訴我們這個問題：";
+
 /* Message for alert dialog presented when a support email failed to send */
 "SUPPORT_EMAIL_ERROR_ALERT_DESCRIPTION" = "請透過傳電子郵件將你的支援請求到 support@signal.org";
+
+/* Localized label for support request email filter string. Embeds {{filter text}}. */
+"SUPPORT_EMAIL_FILTER_LABEL_FORMAT" = "過濾：%@";
+
+/* Localized label for support request email hardware string (e.g. iPhone or iPad). Embeds {{hardware text}}. */
+"SUPPORT_EMAIL_HARDWARE_LABEL_FORMAT" = "硬體：%@";
+
+/* Localized label for support request email HID string (e.g. 12,1). Embeds {{hid text}}. */
+"SUPPORT_EMAIL_HID_LABEL_FORMAT" = "HID: %@";
+
+/* Localized divider for support request emails internal information */
+"SUPPORT_EMAIL_INFO_DIVIDER" = "---支援資訊---";
+
+/* Localized label for support request email iOS Version string (e.g. 13.4). Embeds {{ios version}}. */
+"SUPPORT_EMAIL_IOS_VERSION_LABEL_FORMAT" = "iOS版本：%@";
+
+/* Localized label for support request email locale string. Embeds {{locale}}. */
+"SUPPORT_EMAIL_LOCALE_LABEL_FORMAT" = "語系：%@";
+
+/* Localized label for support request email debug log URL. Embeds {{debug log url}}. */
+"SUPPORT_EMAIL_LOG_URL_LABEL_FORMAT" = "記錄網址：%@";
+
+/* Localized label for support request email signal version string. Embeds {{signal version}}. */
+"SUPPORT_EMAIL_SIGNAL_VERSION_LABEL_FORMAT" = "Signal版本：%@";
 
 /* Localized subject for support request emails */
 "SUPPORT_EMAIL_SUBJECT" = "Signal iOS支援請求";
@@ -4454,7 +5063,7 @@
 "UNLINK_CONFIRMATION_ALERT_TITLE" = "取消和「%@」的連結？";
 
 /* Label warning the user that they have been unlinked from their primary device. */
-"UNLINKED_WARNING" = "裝置在被連結。請將手機重新連結 Signal 以繼續傳送訊息。";
+"UNLINKED_WARNING" = "本裝置的 Signal 連結失效，請重新與您的手機連結";
 
 /* Alert title when unlinking device fails */
 "UNLINKING_FAILED_ALERT_TITLE" = "Signal無法取消裝置連結";
@@ -4475,7 +5084,7 @@
 "UNREGISTER_SIGNAL_FAIL" = "無法從 Signal註銷。";
 
 /* No comment provided by engineer. */
-"UNSUPPORTED_ATTACHMENT" = "接收到不支援的附件類型。";
+"UNSUPPORTED_ATTACHMENT" = "接收到不支援的附檔類型。";
 
 /* No comment provided by engineer. */
 "UNSUPPORTED_FEATURE_ERROR" = "你的裝置不支援這項功能。";
@@ -4602,6 +5211,63 @@
 
 /* Activity indicator title, shown upon returning to the device manager, until you complete the provisioning process on desktop */
 "WAITING_TO_COMPLETE_DEVICE_LINK_TEXT" = "Signal 電腦版安裝成功。";
+
+/* Placeholder text for header of the wallpaper mini preview */
+"WALLPAPER_MINI_PREVIEW_CONTACT_NAME" = "聯絡人姓名";
+
+/* Blur button on wallpaper preview. */
+"WALLPAPER_PREVIEW_BLUR_BUTTON" = "模糊照片";
+
+/* The incoming bubble text when setting a photo */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PHOTO" = "雙指滑動放大，拖動以調整。";
+
+/* The incoming bubble text when setting a preset */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PRESET" = "滑動即可預覽更多桌布。";
+
+/* The outgoing bubble text when setting a wallpaper for all chats. */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_ALL_CHATS" = "為所有聊天設定桌布。";
+
+/* The outgoing bubble text when setting a wallpaper for specific chat. Embeds {{chat name}} */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_FORMAT" = "為%@設定桌布。";
+
+/* The text for the set button on wallpaper preview view. */
+"WALLPAPER_PREVIEW_SET_BUTTON" = "設定";
+
+/* Title for the wallpaper preview view. */
+"WALLPAPER_PREVIEW_TITLE" = "預覽";
+
+/* Clear wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER" = "清除桌布";
+
+/* Confirmation dialog when clearing the wallpaper for a specific chat. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_CHAT_CONFIRMATION" = "清除此聊天的桌布嗎?";
+
+/* Confirmation dialog when clearing the global wallpaper. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_GLOBAL_CONFIRMATION" = "清除桌布嗎? 這不會清除你為聊天設定的自定義桌布。";
+
+/* Dim wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_DIM_WALLPAPER" = "黑暗主題暗淡桌布";
+
+/* An error indicating to the user that we failed to clear the wallpaper. */
+"WALLPAPER_SETTINGS_FAILED_TO_CLEAR" = "無法清除桌布，如果錯誤仍然存在，請稍後再試或聯絡技術支援。";
+
+/* An error indicating to the user that we failed to reset all wallpapers. */
+"WALLPAPER_SETTINGS_FAILED_TO_RESET" = "無法重置所有桌布，如果錯誤仍然存在，請稍後再試或聯絡技術支援。";
+
+/* Title for the wallpaper settings preview section. */
+"WALLPAPER_SETTINGS_PREVIEW" = "預覽";
+
+/* Reset all wallpapers action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_RESET_ALL" = "重製所有制桌布";
+
+/* Confirmation dialog when resetting all wallpapers. */
+"WALLPAPER_SETTINGS_RESET_ALL_WALLPAPERS_CONFIRMATION" = "重設所有桌布，包括為聊天設定的自定義桌布?";
+
+/* Set wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_SET_WALLPAPER" = "設定桌布";
+
+/* Title for the wallpaper settings view. */
+"WALLPAPER_SETTINGS_TITLE" = "聊天桌布";
 
 /* text indicating the message was remotely deleted by you */
 "YOU_DELETED_THIS_MESSAGE" = "你刪除了此訊息。";

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -36,7 +36,7 @@ public class StorageServiceManager: NSObject, StorageServiceManagerProtocol {
             self.cleanUpUnknownData()
         }
 
-        AppReadiness.runNowOrWhenAppDidBecomeReady {
+        AppReadiness.runNowOrWhenAppDidBecomeReadySync {
             NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(self.willResignActive),
@@ -45,7 +45,7 @@ public class StorageServiceManager: NSObject, StorageServiceManagerProtocol {
             )
         }
 
-        AppReadiness.runNowOrWhenAppDidBecomeReadyPolite {
+        AppReadiness.runNowOrWhenAppDidBecomeReadyAsync {
             guard self.tsAccountManager.isRegisteredAndReady else { return }
 
             // Schedule a restore. This will do nothing unless we've never
@@ -321,7 +321,7 @@ class StorageServiceOperation: OWSOperation {
         return BlockOperation {
             databaseStorage.write { transaction in
                 let updatedAccountIds = updatedAddresses.map { address in
-                    OWSAccountIdFinder().ensureAccountId(forAddress: address, transaction: transaction)
+                    OWSAccountIdFinder.ensureAccountId(forAddress: address, transaction: transaction)
                 }
 
                 recordPendingUpdates(updatedAccountIds: updatedAccountIds, transaction: transaction)
@@ -342,7 +342,7 @@ class StorageServiceOperation: OWSOperation {
 
         var state = State.current(transaction: transaction)
 
-        let localAccountId = TSAccountManager.sharedInstance().localAccountId(transaction: transaction)
+        let localAccountId = TSAccountManager.shared().localAccountId(transaction: transaction)
 
         for accountId in updatedAccountIds {
             if accountId == localAccountId {
@@ -360,7 +360,7 @@ class StorageServiceOperation: OWSOperation {
         return BlockOperation {
             databaseStorage.write { transaction in
                 let deletedAccountIds = deletedAddresses.map { address in
-                    OWSAccountIdFinder().ensureAccountId(forAddress: address, transaction: transaction)
+                    OWSAccountIdFinder.ensureAccountId(forAddress: address, transaction: transaction)
                 }
 
                 recordPendingDeletions(deletedAccountIds: deletedAccountIds, transaction: transaction)
@@ -381,7 +381,7 @@ class StorageServiceOperation: OWSOperation {
 
         var state = State.current(transaction: transaction)
 
-        let localAccountId = TSAccountManager.sharedInstance().localAccountId(transaction: transaction)
+        let localAccountId = TSAccountManager.shared().localAccountId(transaction: transaction)
 
         for accountId in deletedAccountIds {
             if accountId == localAccountId {
@@ -811,7 +811,7 @@ class StorageServiceOperation: OWSOperation {
     private func buildManifestRecord(manifestVersion: UInt64,
                                      identifiers identifiersParam: [StorageService.StorageIdentifier]) throws -> StorageServiceProtoManifestRecord {
         let identifiers = StorageService.StorageIdentifier.deduplicate(identifiersParam)
-        let manifestBuilder = StorageServiceProtoManifestRecord.builder(version: manifestVersion)
+        var manifestBuilder = StorageServiceProtoManifestRecord.builder(version: manifestVersion)
         manifestBuilder.setKeys(try identifiers.map { try $0.buildRecord() })
         return try manifestBuilder.build()
     }
@@ -850,7 +850,7 @@ class StorageServiceOperation: OWSOperation {
                 if case .manifestDecryptionFailed(let previousManifestVersion) = storageError {
                     // If this is the primary device, throw everything away and re-encrypt
                     // the social graph with the keys we have locally.
-                    if TSAccountManager.sharedInstance().isPrimaryDevice {
+                    if TSAccountManager.shared().isPrimaryDevice {
                         Logger.info("Manifest decryption failed, recreating manifest.")
                         return self.createNewManifest(version: previousManifestVersion + 1)
                     }
@@ -1170,7 +1170,7 @@ class StorageServiceOperation: OWSOperation {
                 if case .itemDecryptionFailed = storageError {
                     // If this is the primary device, throw everything away and re-encrypt
                     // the social graph with the keys we have locally.
-                    if TSAccountManager.sharedInstance().isPrimaryDevice {
+                    if TSAccountManager.shared().isPrimaryDevice {
                         Logger.info("Item decryption failed, recreating manifest.")
                         return self.createNewManifest(version: manifest.version + 1)
                     }
@@ -1209,13 +1209,12 @@ class StorageServiceOperation: OWSOperation {
     private func cleanUpUnknownIdentifiers(transaction: SDSAnyWriteTransaction) {
         // We may have learned of new record types; if so we should
         // cull them from the unknownIdentifiersTypeMap on launch.
-        var knownTypes: [StorageServiceProtoManifestRecordKeyType] = [
+        let knownTypes: [StorageServiceProtoManifestRecordKeyType] = [
             .contact,
             .groupv1,
+            .groupv2,
             .account
         ]
-
-        if RemoteConfig.groupsV2GoodCitizen { knownTypes.append(.groupv2) }
 
         var state = State.current(transaction: transaction)
 
@@ -1356,7 +1355,7 @@ class StorageServiceOperation: OWSOperation {
             .accountIdToIdentifierMap
             .forwardKeys
             .filter { accountId in
-                guard let address = OWSAccountIdFinder().address(
+                guard let address = OWSAccountIdFinder.address(
                     forAccountId: accountId,
                     transaction: transaction
                     ) else { return true }
@@ -1457,6 +1456,10 @@ class StorageServiceOperation: OWSOperation {
             break
 
         case .needsUpdate(let groupId):
+            // We might be learning of a v1 group id for the first time that
+            // corresponds to a v2 group without a v1-to-v2 group id mapping.
+            TSGroupThread.ensureGroupIdMapping(forGroupId: groupId, transaction: transaction)
+
             // If the record has unknown fields, we need to hold on to it, so that
             // when we later update this record, we can preserve the unknown fields
             state.groupV1IdToRecordWithUnknownFields[groupId]
@@ -1469,6 +1472,10 @@ class StorageServiceOperation: OWSOperation {
             state.groupV1IdToIdentifierMap[groupId] = identifier
 
         case .resolved(let groupId):
+            // We might be learning of a v1 group id for the first time that
+            // corresponds to a v2 group without a v1-to-v2 group id mapping.
+            TSGroupThread.ensureGroupIdMapping(forGroupId: groupId, transaction: transaction)
+
             // If the record has unknown fields, we need to hold on to it, so that
             // when we later update this record, we can preserve the unknown fields
             state.groupV1IdToRecordWithUnknownFields[groupId]
@@ -1488,15 +1495,6 @@ class StorageServiceOperation: OWSOperation {
         state: inout State,
         transaction: SDSAnyWriteTransaction
     ) {
-        // If groups v2 isn't enabled, treat this record as unknown.
-        // We'll parse it when groups v2 is enabled.
-        guard RemoteConfig.groupsV2GoodCitizen else {
-            var unknownIdentifiersOfType = state.unknownIdentifiersTypeMap[identifier.type] ?? []
-            unknownIdentifiersOfType.append(identifier)
-            state.unknownIdentifiersTypeMap[identifier.type] = unknownIdentifiersOfType
-            return
-        }
-
         switch groupV2Record.mergeWithLocalGroup(transaction: transaction) {
         case .invalid:
             // This record was invalid, ignore it.

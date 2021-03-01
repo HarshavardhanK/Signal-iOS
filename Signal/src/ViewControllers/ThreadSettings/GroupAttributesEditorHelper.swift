@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ class GroupAttributesEditorHelper: NSObject {
     }
 
     fileprivate var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     // MARK: -
@@ -211,6 +211,10 @@ struct GroupAvatar {
             owsFailDebug("Invalid image data.")
             return nil
         }
+        guard TSGroupModel.isValidGroupAvatarData(imageData) else {
+            owsFailDebug("Invalid group avatar.")
+            return nil
+        }
         guard let image = UIImage(data: imageData) else {
             owsFailDebug("Could not load image.")
             return nil
@@ -226,7 +230,7 @@ struct GroupAvatar {
             owsFailDebug("Invalid image.")
             return nil
         }
-        return GroupAvatar(imageData: imageData, image: image)
+        return build(imageData: imageData)
     }
 }
 
@@ -239,7 +243,7 @@ extension GroupAttributesEditorHelper: UITextFieldDelegate {
             textField,
             shouldChangeCharactersInRange: range,
             replacementString: replacementString.withoutBidiControlCharacters,
-            byteLimit: UInt(GroupManager.maxGroupNameLength)
+            maxGlyphCount: GroupManager.maxGroupNameGlyphCount
         )
     }
 }

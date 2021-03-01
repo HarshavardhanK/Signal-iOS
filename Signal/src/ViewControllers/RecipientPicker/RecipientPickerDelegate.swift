@@ -192,13 +192,12 @@ extension RecipientPickerViewController {
                         }
                     }
 
-                    cell.configure(withRecipientAddress: address)
+                    cell.configureWithSneakyTransaction(recipientAddress: address)
 
                     self.delegate?.recipientPicker(self, willRenderRecipient: recipient)
 
                     return cell
                 },
-                customRowHeight: UITableView.automaticDimension,
                 actionBlock: { [weak self] in
                     self?.tryToSelectRecipient(recipient)
                 }
@@ -221,7 +220,6 @@ extension RecipientPickerViewController {
 
                     return cell
                 },
-                customRowHeight: UITableView.automaticDimension,
                 actionBlock: { [weak self] in
                     self?.tryToSelectRecipient(recipient)
                 }

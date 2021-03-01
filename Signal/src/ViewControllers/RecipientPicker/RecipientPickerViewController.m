@@ -1,17 +1,17 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "RecipientPickerViewController.h"
-#import "ContactTableViewCell.h"
 #import "ContactsViewHelper.h"
-#import "OWSTableViewController.h"
 #import "Signal-Swift.h"
 #import "SignalApp.h"
 #import "UIView+OWS.h"
 #import <MessageUI/MessageUI.h>
 #import <PromiseKit/AnyPromise.h>
+#import <SignalMessaging/ContactTableViewCell.h>
 #import <SignalMessaging/Environment.h>
+#import <SignalMessaging/OWSTableViewController.h>
 #import <SignalMessaging/UIUtil.h>
 #import <SignalServiceKit/AppVersion.h>
 #import <SignalServiceKit/PhoneNumberUtil.h>
@@ -45,8 +45,6 @@ const NSUInteger kMinimumSearchLength = 2;
     FindByPhoneNumberDelegate,
     MFMessageComposeViewControllerDelegate>
 
-@property (nonatomic, readonly) FullTextSearcher *fullTextSearcher;
-
 @property (nonatomic, readonly) UIStackView *signalContactsStackView;
 
 @property (nonatomic, readonly) UIView *noSignalContactsView;
@@ -77,35 +75,6 @@ const NSUInteger kMinimumSearchLength = 2;
 @implementation RecipientPickerViewController
 
 @synthesize pickedRecipients = _pickedRecipients;
-
-#pragma mark - Dependencies
-
-- (FullTextSearcher *)fullTextSearcher
-{
-    return FullTextSearcher.shared;
-}
-
-- (OWSContactsManager *)contactsManager
-{
-    return Environment.shared.contactsManager;
-}
-
-- (SDSDatabaseStorage *)databaseStorage
-{
-    return SDSDatabaseStorage.shared;
-}
-
-- (OWSProfileManager *)profileManager
-{
-    return [OWSProfileManager sharedManager];
-}
-
-- (ContactsViewHelper *)contactsViewHelper
-{
-    return Environment.shared.contactsViewHelper;
-}
-
-#pragma mark -
 
 - (instancetype)init
 {
@@ -212,7 +181,7 @@ const NSUInteger kMinimumSearchLength = 2;
 
     [self.contactsManager userRequestedSystemContactsRefresh]
         .then(^{
-            if (TSAccountManager.sharedInstance.isRegisteredPrimaryDevice) {
+            if (TSAccountManager.shared.isRegisteredPrimaryDevice) {
                 return [AnyPromise promiseWithValue:nil];
             }
 
@@ -414,7 +383,6 @@ const NSUInteger kMinimumSearchLength = 2;
 
                 return cell;
             }
-                    customRowHeight:UITableViewAutomaticDimension
                         actionBlock:nil];
 
         OWSTableSection *reminderSection = [OWSTableSection new];
@@ -444,7 +412,6 @@ const NSUInteger kMinimumSearchLength = 2;
 
                             return cell;
                         }
-                        customRowHeight:UITableViewAutomaticDimension
                         actionBlock:^{
                             [weakSelf newGroupButtonPressed];
                         }]];
@@ -469,7 +436,6 @@ const NSUInteger kMinimumSearchLength = 2;
 
                             return cell;
                         }
-                        customRowHeight:UITableViewAutomaticDimension
                         actionBlock:^{
                             FindByPhoneNumberViewController *viewController = [[FindByPhoneNumberViewController alloc]
                                         initWithDelegate:self
@@ -497,7 +463,6 @@ const NSUInteger kMinimumSearchLength = 2;
 
                             return cell;
                         }
-                        customRowHeight:UITableViewAutomaticDimension
                         actionBlock:^{
                             [weakSelf presentInviteFlow];
                         }]];
@@ -820,7 +785,6 @@ const NSUInteger kMinimumSearchLength = 2;
 
                                 return cell;
                             }
-                            customRowHeight:UITableViewAutomaticDimension
                             actionBlock:^{
                                 [weakSelf tryToSelectRecipient:recipient];
                             }]];
@@ -880,7 +844,6 @@ const NSUInteger kMinimumSearchLength = 2;
 
                                              return cell;
                                          }
-                                         customRowHeight:UITableViewAutomaticDimension
                                          actionBlock:^{
                                              [weakSelf lookupUsername:usernameMatch];
                                          }]];
@@ -1000,7 +963,7 @@ const NSUInteger kMinimumSearchLength = 2;
                                              message:confirmMessage];
 
     ActionSheetAction *okAction = [[ActionSheetAction alloc]
-                  initWithTitle:NSLocalizedString(@"OK", @"")
+                  initWithTitle:CommonStrings.okButton
         accessibilityIdentifier:ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"ok")
                           style:ActionSheetActionStyleDefault
                         handler:^(ActionSheetAction *action) {
@@ -1071,47 +1034,50 @@ const NSUInteger kMinimumSearchLength = 2;
                   backgroundBlock:^(ModalActivityIndicatorViewController *modal) {
                       [self.profileManager fetchProfileForUsername:username
                           success:^(SignalServiceAddress *address) {
-                              OWSAssertIsOnMainThread();
                               if (modal.wasCancelled) {
                                   return;
                               }
 
-                              [modal dismissWithCompletion:^{
-                                  [weakSelf tryToSelectRecipient:[PickedRecipient forAddress:address]];
-                              }];
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [modal dismissWithCompletion:^{
+                                      [weakSelf tryToSelectRecipient:[PickedRecipient forAddress:address]];
+                                  }];
+                              });
                           }
                           notFound:^{
-                              OWSAssertIsOnMainThread();
                               if (modal.wasCancelled) {
                                   return;
                               }
 
-                              [modal dismissWithCompletion:^{
-                                  NSString *usernameNotFoundFormat = NSLocalizedString(@"USERNAME_NOT_FOUND_FORMAT",
-                                      @"A message indicating that the given username is not a registered signal "
-                                      @"account. Embeds "
-                                      @"{{username}}");
-                                  [OWSActionSheets
-                                      showActionSheetWithTitle:
-                                          NSLocalizedString(@"USERNAME_NOT_FOUND_TITLE",
-                                              @"A message indicating that the given username was not "
-                                              @"registered with signal.")
-                                                       message:[[NSString alloc]
-                                                                   initWithFormat:usernameNotFoundFormat,
-                                                                   [CommonFormats formatUsername:username]]];
-                              }];
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [modal dismissWithCompletion:^{
+                                      NSString *usernameNotFoundFormat = NSLocalizedString(@"USERNAME_NOT_FOUND_FORMAT",
+                                          @"A message indicating that the given username is not a registered signal "
+                                          @"account. Embeds "
+                                          @"{{username}}");
+                                      [OWSActionSheets
+                                          showActionSheetWithTitle:
+                                              NSLocalizedString(@"USERNAME_NOT_FOUND_TITLE",
+                                                  @"A message indicating that the given username was not "
+                                                  @"registered with signal.")
+                                                           message:[[NSString alloc]
+                                                                       initWithFormat:usernameNotFoundFormat,
+                                                                       [CommonFormats formatUsername:username]]];
+                                  }];
+                              });
                           }
                           failure:^(NSError *error) {
-                              OWSAssertIsOnMainThread();
                               if (modal.wasCancelled) {
                                   return;
                               }
 
-                              [modal dismissWithCompletion:^{
-                                  [OWSActionSheets showErrorAlertWithMessage:
-                                                       NSLocalizedString(@"USERNAME_LOOKUP_ERROR",
-                                                           @"A message indicating that username lookup failed.")];
-                              }];
+                              dispatch_async(dispatch_get_main_queue(), ^{
+                                  [modal dismissWithCompletion:^{
+                                      [OWSActionSheets showErrorAlertWithMessage:
+                                                           NSLocalizedString(@"USERNAME_LOOKUP_ERROR",
+                                                               @"A message indicating that username lookup failed.")];
+                                  }];
+                              });
                           }];
                   }];
 }

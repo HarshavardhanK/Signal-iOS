@@ -1,18 +1,18 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "BlockListViewController.h"
 #import "BlockListUIUtils.h"
-#import "ContactTableViewCell.h"
 #import "ContactsViewHelper.h"
-#import "OWSTableViewController.h"
 #import "PhoneNumber.h"
 #import "Signal-Swift.h"
 #import "UIFont+OWS.h"
 #import "UIView+OWS.h"
+#import <SignalMessaging/ContactTableViewCell.h>
 #import <SignalMessaging/Environment.h>
 #import <SignalMessaging/OWSContactsManager.h>
+#import <SignalMessaging/OWSTableViewController.h>
 #import <SignalServiceKit/OWSBlockingManager.h>
 #import <SignalServiceKit/TSGroupThread.h>
 
@@ -27,20 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 
 @implementation BlockListViewController
-
-#pragma mark - Dependencies
-
-- (OWSBlockingManager *)blockingManager
-{
-    return OWSBlockingManager.sharedManager;
-}
-
-- (ContactsViewHelper *)contactsViewHelper
-{
-    return Environment.shared.contactsViewHelper;
-}
-
-#pragma mark -
 
 - (void)loadView
 {
@@ -113,12 +99,11 @@ NS_ASSUME_NONNULL_BEGIN
                 addItem:[OWSTableItem
                             itemWithCustomCellBlock:^{
                                 ContactTableViewCell *cell = [ContactTableViewCell new];
-                                [cell configureWithRecipientAddress:address];
+                                [cell configureWithRecipientAddressWithSneakyTransaction:address];
                                 cell.accessibilityIdentifier
                                     = ACCESSIBILITY_IDENTIFIER_WITH_NAME(BlockListViewController, @"user");
                                 return cell;
                             }
-                            customRowHeight:UITableViewAutomaticDimension
                             actionBlock:^{
                                 [BlockListUIUtils showUnblockAddressActionSheet:address
                                                              fromViewController:weakSelf
@@ -153,7 +138,6 @@ NS_ASSUME_NONNULL_BEGIN
                                                                 detailText:nil];
                                                   return cell;
                                               }
-                                              customRowHeight:UITableViewAutomaticDimension
                                               actionBlock:^{
                                                   [BlockListUIUtils showUnblockGroupActionSheet:blockedGroup
                                                                              fromViewController:weakSelf

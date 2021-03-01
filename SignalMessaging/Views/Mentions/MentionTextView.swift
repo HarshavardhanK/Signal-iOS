@@ -174,14 +174,14 @@ open class MentionTextView: OWSTextView {
         set {
             guard let newValue = newValue else {
                 replaceCharacters(
-                    in: NSRange(location: 0, length: textStorage.length),
+                    in: textStorage.entireRange,
                     with: ""
                 )
                 typingAttributes = defaultAttributes
                 return
             }
             replaceCharacters(
-                in: NSRange(location: 0, length: textStorage.length),
+                in: textStorage.entireRange,
                 with: newValue
             )
         }
@@ -345,7 +345,7 @@ open class MentionTextView: OWSTextView {
                     .mention,
                     at: subrange.location,
                     longestEffectiveRange: &uniqueMentionRange,
-                    in: NSRange(location: 0, length: textStorage.length)
+                    in: textStorage.entireRange
                 ) != nil else {
                     return owsFailDebug("Unexpectedly missing mention for subrange")
                 }
@@ -372,7 +372,7 @@ open class MentionTextView: OWSTextView {
                     .mention,
                     at: range.location,
                     longestEffectiveRange: &uniqueMentionRange,
-                    in: NSRange(location: 0, length: textStorage.length)
+                    in: textStorage.entireRange
                 ) as? Mention,
                 leftMention == rightMention {
                 deletedMentions[uniqueMentionRange] = leftMention
@@ -470,7 +470,7 @@ open class MentionTextView: OWSTextView {
 
 extension MentionTextView {
     open override var keyCommands: [UIKeyCommand]? {
-        guard let pickerView = pickerView else { return nil }
+        guard pickerView != nil else { return nil }
 
         return [
             UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [], action: #selector(upArrowPressed(_:))),
@@ -590,11 +590,5 @@ extension MentionTextView: UITextViewDelegate {
 
     open func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
         return mentionDelegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange) ?? true
-    }
-}
-
-extension MentionTextView: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

@@ -2,7 +2,7 @@
 "AB_PERMISSION_MISSING_ACTION_NOT_NOW" = "今はしない";
 
 /* Action sheet item */
-"ACCEPT_NEW_IDENTITY_ACTION" = "新しい安全番号を承諾";
+"ACCEPT_NEW_IDENTITY_ACTION" = "新しい安全番号を受け入れる";
 
 /* Accessibility label for attachment. */
 "ACCESSIBILITY_LABEL_ATTACHMENT" = "添付ファイル";
@@ -13,17 +13,23 @@
 /* Accessibility label for contact. */
 "ACCESSIBILITY_LABEL_CONTACT" = "連絡先";
 
+/* Accessibility label for contact. Embeds: {{ the contact name }}. */
+"ACCESSIBILITY_LABEL_CONTACT_FORMAT" = "%@ の連絡先";
+
 /* Accessibility label for media. */
 "ACCESSIBILITY_LABEL_MEDIA" = "メディア";
-
-/* Accessibility label for message. */
-"ACCESSIBILITY_LABEL_MESSAGE" = "メッセージ";
 
 /* Accessibility label for messages sent by you. */
 "ACCESSIBILITY_LABEL_SENDER_SELF" = "あなた";
 
 /* Accessibility label for stickers. */
 "ACCESSIBILITY_LABEL_STICKER" = "ステッカー";
+
+/* Accessibility label for a voice memo. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO" = "音声メッセージ";
+
+/* Accessibility label for a voice memo. Embeds: {{ the duration of the voice message }}. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO_FORMAT" = "音声メッセージ %@秒";
 
 /* Label for 'audio call' button in contact view. */
 "ACTION_AUDIO_CALL" = "Signal通話";
@@ -36,6 +42,9 @@
 
 /* Label for 'share contact' button. */
 "ACTION_SHARE_CONTACT" = "連絡先を共有";
+
+/* A label for 'tap to download' buttons. */
+"ACTION_TAP_TO_DOWNLOAD" = "タップしてダウンロード";
 
 /* Label for 'video call' button in contact view. */
 "ACTION_VIDEO_CALL" = "ビデオ通話";
@@ -92,10 +101,10 @@
 "ADD_TO_GROUP_TITLE" = "別のグループに追加";
 
 /* Message shown in conversation view that offers to share your profile with a user. */
-"ADD_USER_TO_PROFILE_WHITELIST_OFFER" = "このユーザにプロフィールを公開しますか？";
+"ADD_USER_TO_PROFILE_WHITELIST_OFFER" = "あなたのプロフィールをこのユーザと共有しますか？";
 
 /* generic button text to acknowledge that the corresponding text was read. */
-"ALERT_ACTION_ACKNOWLEDGE" = "了解";
+"ALERT_ACTION_ACKNOWLEDGE" = "わかりました";
 
 /* The label for the 'discard' button in alerts and action sheets. */
 "ALERT_DISCARD_BUTTON" = "破棄する";
@@ -103,7 +112,7 @@
 /* The label for the 'don't save' button in action sheets. */
 "ALERT_DONT_SAVE" = "保存しない";
 
-/* No comment provided by engineer. */
+/* Generic error indicator. */
 "ALERT_ERROR_TITLE" = "エラー";
 
 /* The label for the 'save' button in action sheets. */
@@ -116,7 +125,7 @@
 "APN_Message" = "新着メッセージ！";
 
 /* Message for the 'app launch failed' alert. */
-"APP_LAUNCH_FAILURE_ALERT_MESSAGE" = "Signalを起動できません。解決のため、デバッグ用ログを support@signal.org にお送りください。";
+"APP_LAUNCH_FAILURE_ALERT_MESSAGE" = "Signalを起動できません。解決のため、デバッグログを support@signal.org にお送りください。";
 
 /* Title for the 'app launch failed' alert. */
 "APP_LAUNCH_FAILURE_ALERT_TITLE" = "エラー";
@@ -167,7 +176,7 @@
 "ARCHIVE_ACTION" = "アーカイブ";
 
 /* One-line label indicating the user can add no more text to the attachment caption. */
-"ATTACHMENT_APPROVAL_CAPTION_LENGTH_LIMIT_REACHED" = "添付キャプションが長すぎます。";
+"ATTACHMENT_APPROVAL_CAPTION_LENGTH_LIMIT_REACHED" = "キャプションが長すぎます。";
 
 /* placeholder text for an empty captioning field */
 "ATTACHMENT_APPROVAL_CAPTION_PLACEHOLDER" = "キャプションを追加…";
@@ -199,9 +208,6 @@
 /* Generic filename for an attachment with no known name */
 "ATTACHMENT_DEFAULT_FILENAME" = "添付ファイル";
 
-/* Status label when an attachment download has failed. */
-"ATTACHMENT_DOWNLOADING_STATUS_FAILED" = "ダウンロードに失敗しました。タップして再試行します。";
-
 /* The title of the 'attachment error' alert. */
 "ATTACHMENT_ERROR_ALERT_TITLE" = "添付ファイルの送信でエラー";
 
@@ -218,7 +224,7 @@
 "ATTACHMENT_ERROR_COULD_NOT_REMOVE_METADATA" = "画像からメタデータを消去できませんでした。";
 
 /* Attachment error message for image attachments which could not be resized */
-"ATTACHMENT_ERROR_COULD_NOT_RESIZE_IMAGE" = "画像のサイズを変換できません。";
+"ATTACHMENT_ERROR_COULD_NOT_RESIZE_IMAGE" = "画像のサイズを変更できません。";
 
 /* Attachment error message for attachments whose data exceed file size limits */
 "ATTACHMENT_ERROR_FILE_SIZE_TOO_LARGE" = "添付ファイルが大きすぎます。";
@@ -344,7 +350,7 @@
 "BACKUP_IMPORT_PHASE_RESTORING_FILES" = "ファイルを復元しています";
 
 /* Label for the backup restore decision section. */
-"BACKUP_RESTORE_DECISION_TITLE" = "バックアップが利用可能";
+"BACKUP_RESTORE_DECISION_TITLE" = "バックアップがあります";
 
 /* Label for the backup restore description. */
 "BACKUP_RESTORE_DESCRIPTION" = "バックアップを復元しています";
@@ -357,6 +363,9 @@
 
 /* Error shown when backup fails due to an unexpected error. */
 "BACKUP_UNEXPECTED_ERROR" = "バックアップ中にエラーが発生しました";
+
+/* Accessibility label for banner close button */
+"BANNER_CLOSE_ACCESSIBILITY_LABEL" = "バナーを閉じる";
 
 /* An explanation of the consequences of blocking a group. */
 "BLOCK_GROUP_BEHAVIOR_EXPLANATION" = "このグループからメッセージや通知を受け取ることはなくなります。";
@@ -389,10 +398,10 @@
 "BLOCK_LIST_UNBLOCK_CONTACT_MESSAGE" = "お互いにメッセージや通話ができるようになります。";
 
 /* Action sheet body when confirming you want to unblock a group */
-"BLOCK_LIST_UNBLOCK_GROUP_BODY" = "既存のメンバーは、あなたをグループに再加入させることができるようになります。";
+"BLOCK_LIST_UNBLOCK_GROUP_BODY" = "既存のメンバーは、あなたをグループに再参加させることができるようになります。";
 
 /* An explanation of what unblocking a group means. */
-"BLOCK_LIST_UNBLOCK_GROUP_MESSAGE" = "グループのメンバーはあなたをもう一度このグループに加えることができます。";
+"BLOCK_LIST_UNBLOCK_GROUP_MESSAGE" = "グループメンバーは、あなたを再参加させることができるようになります。";
 
 /* Action sheet title when confirming you want to unblock a group. */
 "BLOCK_LIST_UNBLOCK_GROUP_TITLE" = "このグループのブロックを解除しますか？";
@@ -430,8 +439,8 @@
 /* Tooltip highlighting the blur image editing tool. */
 "BLUR_TOOLTIP" = "新機能: 顔や任意の場所をぼかすことができます";
 
-/* browse files option from file sharing menu */
-"BROWSE_FILES_BUTTON" = "閲覧";
+/* Label for the 'add' button. */
+"BUTTON_ADD" = "追加する";
 
 /* Label for 'continue' button. */
 "BUTTON_CONTINUE" = "続ける";
@@ -444,6 +453,9 @@
 
 /* Label for the 'no' button. */
 "BUTTON_NO" = "いいえ";
+
+/* Label for the 'not now' button. */
+"BUTTON_NOT_NOW" = "今はしない";
 
 /* Label for the 'okay' button. */
 "BUTTON_OKAY" = "OK";
@@ -467,13 +479,16 @@
 "CALL_AUDIO_MISSED_NOTIFICATION_BODY" = "📞 音声通話着信あり";
 
 /* Alert message when calling and permissions for microphone are missing */
-"CALL_AUDIO_PERMISSION_MESSAGE" = "iOSの設定でマイクを有効にすると、Signalで電話や録音ができます。";
+"CALL_AUDIO_PERMISSION_MESSAGE" = "iOSの設定でマイクへのアクセスを有効にすると、Signalで通話や音声メッセージの録音ができます。";
 
 /* Alert title when calling and permissions for microphone are missing */
 "CALL_AUDIO_PERMISSION_TITLE" = "マイクへのアクセス許可が必要です";
 
 /* notification body */
 "CALL_MISSED_BECAUSE_OF_IDENTITY_CHANGE_NOTIFICATION_BODY" = "☎️ 発信者の安全番号が変更されたことによる不在着信";
+
+/* Button to return to the current call */
+"CALL_RETURN_BUTTON" = "通話に戻る";
 
 /* Call setup status label after outgoing call times out */
 "CALL_SCREEN_STATUS_NO_ANSWER" = "応答なし";
@@ -515,7 +530,7 @@
 "CALL_VIEW_MUTE_LABEL" = "ミュートする";
 
 /* Error displayed on the 'call' view when the callee needs to grant permission before we can call them. Embeds {callee short name}. */
-"CALL_VIEW_NEED_PERMISSION_ERROR_FORMAT" = "%@があなたからメッセージ申請を受け取ります。あなたのメッセージ申請が承認されると、通話ができるようになります。";
+"CALL_VIEW_NEED_PERMISSION_ERROR_FORMAT" = "%@ があなたからのメッセージ申請を受け取ります。承認されると通話できるようになります。";
 
 /* Accessibility label to toggle front- vs. rear-facing camera */
 "CALL_VIEW_SWITCH_CAMERA_DIRECTION" = "カメラを切り替える";
@@ -529,17 +544,20 @@
 /* notification action */
 "CALLBACK_BUTTON_TITLE" = "折り返す";
 
+/* Indicates to the user that their camera is currently off. */
+"CALLING_MEMBER_VIEW_YOUR_CAMERA_IS_OFF" = "カメラがオフになっています";
+
 /* The generic name used for calls if CallKit privacy is enabled */
 "CALLKIT_ANONYMOUS_CONTACT_NAME" = "Signalユーザ";
 
 /* Accessibility hint describing what you can do with the camera button */
-"CAMERA_BUTTON_HINT" = "写真を撮影して送信";
+"CAMERA_BUTTON_HINT" = "写真を撮影して送信する";
 
 /* Accessibility label for camera button. */
 "CAMERA_BUTTON_LABEL" = "カメラ";
 
 /* Message for alert explaining that a user cannot be verified. */
-"CANT_VERIFY_IDENTITY_ALERT_MESSAGE" = "メッセージをやり取りするまではこのユーザを確認できません。";
+"CANT_VERIFY_IDENTITY_ALERT_MESSAGE" = "メッセージを交換するまでは、このユーザを検証済みにできません。";
 
 /* Title for alert explaining that a user cannot be verified. */
 "CANT_VERIFY_IDENTITY_ALERT_TITLE" = "エラー";
@@ -551,7 +569,7 @@
 "CHECK_FOR_BACKUP_DO_NOT_RESTORE" = "復元しない";
 
 /* Message for alert shown when the app failed to check for an existing backup. */
-"CHECK_FOR_BACKUP_FAILED_MESSAGE" = "バックアップが使用可能かどうかが分かりませんでした。";
+"CHECK_FOR_BACKUP_FAILED_MESSAGE" = "復元可能なバックアップの存在が不明です。";
 
 /* Title for alert shown when the app failed to check for an existing backup. */
 "CHECK_FOR_BACKUP_FAILED_TITLE" = "エラー";
@@ -560,28 +578,28 @@
 "CHECK_FOR_BACKUP_RESTORE" = "復元する";
 
 /* Error indicating that the app could not determine that user's iCloud account status */
-"CLOUDKIT_STATUS_COULD_NOT_DETERMINE" = "SignalはあなたのiCloudの状態を確認することができませんでした。iOSの設定からiCloudアカウントにサインインし、Signalデータをバックアップします。";
+"CLOUDKIT_STATUS_COULD_NOT_DETERMINE" = "SignalはあなたのiCloudアカウントの状態を確認できませんでした。Signalデータをバックアップするには、iOSの設定でiCloudアカウントにサインインしてください。";
 
 /* Error indicating that user does not have an iCloud account. */
-"CLOUDKIT_STATUS_NO_ACCOUNT" = "iCloudアカウントがありません。iOSの設定からiCloudアカウントにサインインし、Signalデータをバックアップします。";
+"CLOUDKIT_STATUS_NO_ACCOUNT" = "iCloudアカウントがありません。Signalデータをバックアップするには、iOSの設定でiCloudアカウントにサインインしてください。";
 
 /* Error indicating that the app was prevented from accessing the user's iCloud account. */
 "CLOUDKIT_STATUS_RESTRICTED" = "iCloudのアクセスが拒否されました。iOSの設定からiCloudのアカウントにサインインしてください。";
 
 /* The first of two messages demonstrating the chosen conversation color, by rendering this message in an outgoing message bubble. */
-"COLOR_PICKER_DEMO_MESSAGE_1" = "自分のメッセージの色を選んでください。";
+"COLOR_PICKER_DEMO_MESSAGE_1" = "このチャットでの自分のメッセージの色を選んでください。";
 
 /* The second of two messages demonstrating the chosen conversation color, by rendering this message in an incoming message bubble. */
 "COLOR_PICKER_DEMO_MESSAGE_2" = "選択した色だけが使われます。";
 
 /* Modal Sheet title when picking a conversation color. */
-"COLOR_PICKER_SHEET_TITLE" = "会話の色";
+"COLOR_PICKER_SHEET_TITLE" = "チャットの色";
 
 /* Activity Sheet label */
 "COMPARE_SAFETY_NUMBER_ACTION" = "クリップボードと比較する";
 
 /* Accessibility hint describing what you can do with the compose button */
-"COMPOSE_BUTTON_HINT" = "会話相手のSignal利用者を選択・検索します。";
+"COMPOSE_BUTTON_HINT" = "チャットを始めるSignalユーザを選択または検索します。";
 
 /* Accessibility label from compose button. */
 "COMPOSE_BUTTON_LABEL" = "作成";
@@ -599,25 +617,25 @@
 "COMPOSE_MESSAGE_USERNAME_SEARCH_SECTION_TITLE" = "ユーザ名検索";
 
 /* Multi-line label explaining why compose-screen contact picker is empty. */
-"COMPOSE_SCREEN_MISSING_CONTACTS_PERMISSION" = "iOSの設定で連絡先へのアクセスを有効にして、連絡先の誰がSignalを利用しているか確認できます。";
+"COMPOSE_SCREEN_MISSING_CONTACTS_PERMISSION" = "iOSの設定で連絡先へのアクセス権限を有効にして、連絡先の誰がSignalを利用しているか確認できます。";
 
 /* No comment provided by engineer. */
 "CONFIRM_ACCOUNT_DESTRUCTION_TEXT" = "メッセージとサーバ登録を消去し、アプリケーションをリセットします。処理が完了するとアプリを閉じます。";
 
 /* No comment provided by engineer. */
-"CONFIRM_ACCOUNT_DESTRUCTION_TITLE" = "アカウントを削除してよろしいですか?";
+"CONFIRM_ACCOUNT_DESTRUCTION_TITLE" = "本当にアカウントを削除しますか？";
 
 /* No comment provided by engineer. */
-"CONFIRM_DELETE_LINKED_DATA_TEXT" = "この端末上のメッセージをすべて消去し、アプリケーションをリセットします。電話番号を使ってリンクし直すことができますが、削除されたメッセージは復元できません。処理が済むとアプリが終了します。";
+"CONFIRM_DELETE_LINKED_DATA_TEXT" = "この端末上のメッセージをすべて消去し、アプリケーションをリセットします。いつでもリンクし直すことはできますが、削除されたメッセージは復元できません。処理が完了するとアプリを閉じます。";
 
 /* No comment provided by engineer. */
-"CONFIRM_DELETE_LINKED_DATA_TITLE" = "本当にすべてのデータを削除しますか?";
+"CONFIRM_DELETE_LINKED_DATA_TITLE" = "本当にすべてのデータを削除しますか？";
 
 /* Alert body */
-"CONFIRM_LEAVE_GROUP_DESCRIPTION" = "このグループとの会話が出来なくなりますがよろしいでしょうか。";
+"CONFIRM_LEAVE_GROUP_DESCRIPTION" = "このグループでのメッセージ送受信が出来なくなります。";
 
 /* Alert title */
-"CONFIRM_LEAVE_GROUP_TITLE" = "本当に抜けますか?";
+"CONFIRM_LEAVE_GROUP_TITLE" = "本当に抜けますか？";
 
 /* Button text */
 "CONFIRM_LINK_NEW_DEVICE_ACTION" = "新しい端末をリンクする";
@@ -644,7 +662,7 @@
 "CONTACT_EMAIL" = "メールアドレス";
 
 /* Label for the 'city' field of a contact's address. */
-"CONTACT_FIELD_ADDRESS_CITY" = "市";
+"CONTACT_FIELD_ADDRESS_CITY" = "市区郡";
 
 /* Label for the 'country' field of a contact's address. */
 "CONTACT_FIELD_ADDRESS_COUNTRY" = "国";
@@ -683,7 +701,7 @@
 "CONTACT_FIELD_ORGANIZATION" = "組織";
 
 /* Body for contact permission action sheet */
-"CONTACT_PERMISSION_ACTION_SHEET_BODY" = "会話中の名前や写真を見るには:";
+"CONTACT_PERMISSION_ACTION_SHEET_BODY" = "チャットで連絡先の名前と写真を見るには:";
 
 /* First step for contact permission action sheet */
 "CONTACT_PERMISSION_ACTION_SHEET_STEP_ONE" = "下の「設定へ」をタップ";
@@ -701,10 +719,10 @@
 "CONTACT_PERMISSION_REMINDER_MEGAPHONE_ACTION" = "オン";
 
 /* Body for contact permission reminder megaphone */
-"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "会話中の名前や写真を見る。";
+"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "チャットで連絡先の名前と写真を見る。";
 
 /* Title for contact permission reminder megaphone */
-"CONTACT_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "「連絡先」をオンにしますか?";
+"CONTACT_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "「連絡先」をオンにしますか？";
 
 /* Label for a contact's phone number. */
 "CONTACT_PHONE" = "電話番号";
@@ -722,7 +740,7 @@
 "CONTACT_SHARE_APPROVAL_VIEW_TITLE" = "連絡先を共有";
 
 /* Title for the 'edit contact share name' view. */
-"CONTACT_SHARE_EDIT_NAME_VIEW_TITLE" = "名前を編集";
+"CONTACT_SHARE_EDIT_NAME_VIEW_TITLE" = "名前の編集";
 
 /* Error indicating that an invalid contact cannot be shared. */
 "CONTACT_SHARE_INVALID_CONTACT" = "連絡先が不正です。";
@@ -734,16 +752,16 @@
 "CONTACT_SUPPORT" = "サポートに問い合わせる";
 
 /* Alert body */
-"CONTACT_SUPPORT_PROMPT_ERROR_ALERT_BODY" = "Signalは、サポートリクエストを実行できませんでした。";
+"CONTACT_SUPPORT_PROMPT_ERROR_ALERT_BODY" = "Signalは、サポートリクエストを完了できませんでした。";
 
 /* button text */
-"CONTACT_SUPPORT_PROMPT_ERROR_TRY_AGAIN" = "再試行";
+"CONTACT_SUPPORT_PROMPT_ERROR_TRY_AGAIN" = "再度試す";
 
 /* Alert body */
 "CONTACT_SUPPORT_PROMPT_TO_INCLUDE_DEBUG_LOG_MESSAGE" = "デバッグログがあると、問題点を早く解消できます。ログを送信するかどうかは、オプションです。";
 
 /* Alert title */
-"CONTACT_SUPPORT_PROMPT_TO_INCLUDE_DEBUG_LOG_TITLE" = "デバッグログを送信しますか?";
+"CONTACT_SUPPORT_PROMPT_TO_INCLUDE_DEBUG_LOG_TITLE" = "デバッグログを送信しますか？";
 
 /* Button text */
 "CONTACT_SUPPORT_SUBMIT_WITH_LOG" = "ログを添付して送信";
@@ -761,16 +779,13 @@
 "CONTACT_WITHOUT_NAME" = "無名の連絡先";
 
 /* Message for the 'conversation delete confirmation' alert. */
-"CONVERSATION_DELETE_CONFIRMATION_ALERT_MESSAGE" = "この会話がこのデバイスから削除されます。";
+"CONVERSATION_DELETE_CONFIRMATION_ALERT_MESSAGE" = "このチャットはこの端末から削除されます。";
 
 /* Title for the 'conversation delete confirmation' alert. */
-"CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "会話を削除しますか？";
-
-/* Indicates that the user can tap to download this image. */
-"CONVERSATION_MEDIA_VIEW_DOWNLOAD_IMAGE" = "ダウンロード";
+"CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "チャットを削除しますか？";
 
 /* Momentarily shown to the user when attempting to select more conversations than is allowed. Embeds {{max number of conversations}} that can be selected. */
-"CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "会話の選択は%@件までです。";
+"CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "チャットの選択は%@件までです。";
 
 /* table section header for section containing groups */
 "CONVERSATION_PICKER_SECTION_GROUPS" = "グループ";
@@ -779,7 +794,7 @@
 "CONVERSATION_PICKER_SECTION_RECENTS" = "最近のチャット";
 
 /* table section header for section containing contacts */
-"CONVERSATION_PICKER_SECTION_SIGNAL_CONTACTS" = "連絡相手";
+"CONVERSATION_PICKER_SECTION_SIGNAL_CONTACTS" = "連絡先";
 
 /* navbar header */
 "CONVERSATION_PICKER_TITLE" = "送信先を選択";
@@ -794,7 +809,7 @@
 "CONVERSATION_SEARCH_RESULTS_FORMAT" = "%d (%d件中)";
 
 /* title for conversation settings screen */
-"CONVERSATION_SETTINGS" = "会話の設定";
+"CONVERSATION_SETTINGS" = "チャットの設定";
 
 /* Label for 'add members' button in conversation settings view. */
 "CONVERSATION_SETTINGS_ADD_MEMBERS" = "メンバーを追加";
@@ -815,7 +830,7 @@
 "CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_NONE" = "無効";
 
 /* Footer for the 'attributes access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER" = "グループ名、アイコン、メッセージ消去時間を編集できる人を選択してください。";
+"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER" = "グループ名、アイコン、消えるメッセージのタイマーを編集できる人を選択してください。";
 
 /* Footer text for the 'block and leave' section of contact conversation settings view. */
 "CONVERSATION_SETTINGS_BLOCK_AND_LEAVE_SECTION_CONTACT_FOOTER" = "今後、このユーザからはメッセージや更新を受信しなくなります。";
@@ -833,7 +848,10 @@
 "CONVERSATION_SETTINGS_CONTACT_INFO_TITLE" = "連絡先情報";
 
 /* Label for table cell which leads to picking a new conversation color */
-"CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "会話の色";
+"CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "チャットの色";
+
+/* Label for the 'edit' button in conversation settings view. */
+"CONVERSATION_SETTINGS_EDIT" = "編集";
 
 /* Label for 'edit attributes access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS" = "グループ情報を編集できるユーザ";
@@ -842,13 +860,10 @@
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "管理者のみ";
 
 /* Description for the 'edit group attributes access' alert. */
-"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "グループ名、アイコン、メッセージ消去時間を変更できる人を選択してください:";
+"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "グループ名、アイコン、消えるメッセージのタイマーを編集できる人を選択してください:";
 
 /* Label for button that sets 'group attributes access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_MEMBERS_BUTTON" = "すべてのメンバー";
-
-/* Label for the 'edit group' button in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_GROUP" = "編集";
 
 /* Label for 'edit membership access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "メンバーを追加できるユーザ";
@@ -857,7 +872,7 @@
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "管理者のみ";
 
 /* Description for the 'edit group membership access' alert. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "グループメンバーシップを編集できるメンバーを選択:";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "新しいメンバーを追加できるメンバーを選択:";
 
 /* Label for button that sets 'group membership access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_MEMBERS_BUTTON" = "すべてのメンバー";
@@ -866,10 +881,13 @@
 "CONVERSATION_SETTINGS_GROUP_LINK" = "グループリンク";
 
 /* Label for 'make group admin' button in conversation settings view. */
-"CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_BUTTON" = "管理者を作成";
+"CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_BUTTON" = "管理者にする";
 
 /* Format for title for 'make group admin' confirmation alert. Embeds {user to make an admin}. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_TITLE_FORMAT" = "%@がこのグループの設定やメンバーを編集できるようになります";
+
+/* Label for 'member invites' action in conversation settings view. */
+"CONVERSATION_SETTINGS_MEMBER_INVITES" = "メンバーを招待";
 
 /* Label for 'member requests & invites' action in conversation settings view. */
 "CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "メンバー申請と招待";
@@ -878,10 +896,7 @@
 "CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE" = "メンバー";
 
 /* Format for the section title of the 'members' section in conversation settings view. Embeds: {{ the number of group members }}. */
-"CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "%@人のメンバー";
-
-/* Footer for the 'membership access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBERSHIP_ACCESS_SECTION_FOOTER" = "グループメンバーシップを編集できるメンバーを選択します。";
+"CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "メンバー %@人";
 
 /* label for 'always' option for mention notifications in conversation settings */
 "CONVERSATION_SETTINGS_MENTION_MODE_AlWAYS" = "常に通知する";
@@ -890,7 +905,7 @@
 "CONVERSATION_SETTINGS_MENTION_MODE_NEVER" = "ミュート中は通知しない";
 
 /* Title of the 'mention notification mode' action sheet. */
-"CONVERSATION_SETTINGS_MENTION_NOTIFICATION_MODE_ACTION_SHEET_TITLE" = "ミュートした会話でメンションがあった際に通知を受け取りますか？";
+"CONVERSATION_SETTINGS_MENTION_NOTIFICATION_MODE_ACTION_SHEET_TITLE" = "ミュートしたチャットでメンションがあった際に通知を受け取りますか？";
 
 /* label for 'mentions' cell in conversation settings */
 "CONVERSATION_SETTINGS_MENTIONS_LABEL" = "メンション";
@@ -926,19 +941,19 @@
 "CONVERSATION_SETTINGS_NEW_CONTACT" = "新規の連絡先を作成";
 
 /* Label for 'remove from group' button in conversation settings view. */
-"CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_BUTTON" = "グループから削除";
+"CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_BUTTON" = "グループから削除する";
 
 /* Format for title for 'remove from group' confirmation alert. Embeds {user to remove from the group}. */
-"CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_TITLE_FORMAT" = "グループから%@を削除しますか?";
+"CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_TITLE_FORMAT" = "このグループから %@ を削除しますか？";
 
 /* Label for 'revoke group admin' button in conversation settings view. */
-"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_BUTTON" = "管理者から削除";
+"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_BUTTON" = "管理者から外す";
 
 /* Format for title for 'revoke group admin' confirmation alert. Embeds {user to revoke admin status from}. */
-"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_TITLE_FORMAT" = "%@をグループ管理者から削除しますか?";
+"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_TITLE_FORMAT" = "%@ をグループ管理者から外しますか？";
 
 /* Table cell label in conversation settings which returns the user to the conversation with 'search mode' activated */
-"CONVERSATION_SETTINGS_SEARCH" = "最近の会話";
+"CONVERSATION_SETTINGS_SEARCH" = "チャットを検索";
 
 /* Label for 'unblock group' action in conversation settings view. */
 "CONVERSATION_SETTINGS_UNBLOCK_GROUP" = "グループのブロック解除";
@@ -950,7 +965,7 @@
 "CONVERSATION_SETTINGS_UNMUTE_ACTION" = "ミュートを解除";
 
 /* The alert message if user tries to exit conversation settings view without saving changes. */
-"CONVERSATION_SETTINGS_UNSAVED_CHANGES_MESSAGE" = "この会話に加えた変更を保存しますか?";
+"CONVERSATION_SETTINGS_UNSAVED_CHANGES_MESSAGE" = "このチャットの設定変更を保存しますか？";
 
 /* The alert title if user tries to exit conversation settings view without saving changes. */
 "CONVERSATION_SETTINGS_UNSAVED_CHANGES_TITLE" = "未保存の変更";
@@ -973,17 +988,23 @@
 /* Message shown in conversation view that offers to add an unknown user to your phone's contacts. */
 "CONVERSATION_VIEW_ADD_TO_CONTACTS_OFFER" = "連絡先に追加";
 
+/* Format for sender info for accessibility label for message. Embeds {{ the sender name }}. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_FORMAT" = "%@ から送信:";
+
+/* Format for sender info for outgoing messages. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_LOCAL_USER" = "あなたから送信:";
+
 /* button text to delete all items in the current conversation */
 "CONVERSATION_VIEW_DELETE_ALL_MESSAGES" = "すべて削除する";
 
 /* Indicates that the app is loading more messages in this conversation. */
-"CONVERSATION_VIEW_LOADING_MORE_MESSAGES" = "メッセージを読み取っています...";
+"CONVERSATION_VIEW_LOADING_MORE_MESSAGES" = "メッセージを読み込んでいます…";
 
 /* Indicator on truncated text messages that they can be tapped to see the entire text message. */
 "CONVERSATION_VIEW_OVERSIZE_TEXT_TAP_FOR_MORE" = "さらに表示";
 
 /* ActionSheet title */
-"CORRUPTED_SESSION_DESCRIPTION" = "セッションをリセットすると、今後%@からのメッセージは受信しますが、破損した過去のメッセージは回復しません。";
+"CORRUPTED_SESSION_DESCRIPTION" = "セッションをリセットすると、それ以後の %@ からのメッセージは受信しますが、破損した過去のメッセージは回復しません。";
 
 /* No comment provided by engineer. */
 "COUNTRYCODE_SELECT_TITLE" = "国番号を選択してください";
@@ -992,7 +1013,7 @@
 "CROP_SCALE_IMAGE_VIEW_TITLE" = "編集";
 
 /* Subtitle shown while the app is updating its database. */
-"DATABASE_VIEW_OVERLAY_SUBTITLE" = "数分掛かるかも知れません";
+"DATABASE_VIEW_OVERLAY_SUBTITLE" = "数分かかるかも知れません。";
 
 /* Title shown while the app is updating its database. */
 "DATABASE_VIEW_OVERLAY_TITLE" = "データベースを最適化中";
@@ -1016,16 +1037,16 @@
 "DEBUG_LOG_ALERT_COULD_NOT_COPY_LOGS" = "ログのコピーに失敗しました。";
 
 /* Error indicating that the debug logs could not be packaged. */
-"DEBUG_LOG_ALERT_COULD_NOT_PACKAGE_LOGS" = "ログファイルの作成に失敗しました。";
+"DEBUG_LOG_ALERT_COULD_NOT_PACKAGE_LOGS" = "ログパッケージの作成に失敗しました。";
 
 /* Error indicating that a debug log could not be uploaded. */
 "DEBUG_LOG_ALERT_ERROR_UPLOADING_LOG" = "ログのアップロードに失敗しました。";
 
 /* Message of the debug log alert. */
-"DEBUG_LOG_ALERT_MESSAGE" = "デバッグログへのリンクをどうしますか?";
+"DEBUG_LOG_ALERT_MESSAGE" = "デバッグログへのリンクをどのようにしますか？";
 
 /* Error indicating that no debug logs could be found. */
-"DEBUG_LOG_ALERT_NO_LOGS" = "ログが見つかりません";
+"DEBUG_LOG_ALERT_NO_LOGS" = "ログが見つかりません。";
 
 /* Label for the 'Open a Bug Report' option of the debug log alert. */
 "DEBUG_LOG_ALERT_OPTION_BUG_REPORT" = "バグ報告を開く";
@@ -1045,9 +1066,6 @@
 /* Title of the debug log alert. */
 "DEBUG_LOG_ALERT_TITLE" = "あと1ステップ";
 
-/* Error indicating that the app could not launch the Email app. */
-"DEBUG_LOG_COULD_NOT_EMAIL" = "メールアプリを開けませんでした。";
-
 /* Message of the alert before redirecting to GitHub Issues. */
 "DEBUG_LOG_GITHUB_ISSUE_ALERT_MESSAGE" = "リンクをクリップボードにコピーしました。まもなくGItHubのバグリストへ誘導します。";
 
@@ -1058,10 +1076,10 @@
 "DEBUG_LOG_INFO_BUTTON" = "デバッグログについて";
 
 /* action sheet body */
-"DELETE_ALL_MESSAGES_IN_CONVERSATION_ALERT_BODY" = "この会話のメッセージをすべて削除しますか？";
+"DELETE_ALL_MESSAGES_IN_CONVERSATION_ALERT_BODY" = "このチャットのメッセージをすべて削除しますか？";
 
 /* button text */
-"DELETE_ALL_MESSAGES_IN_CONVERSATION_BUTTON" = "全てのメッセージを削除";
+"DELETE_ALL_MESSAGES_IN_CONVERSATION_BUTTON" = "すべてのメッセージを削除する";
 
 /* action sheet body. Embeds {{number of selected messages}} which will be deleted. */
 "DELETE_SELECTED_MESSAGES_IN_CONVERSATION_ALERT_FORMAT" = "%ld件のメッセージを削除しますか？";
@@ -1106,7 +1124,7 @@
 "DEVICE_TRANSFER_CHOICE_REGISTER_LINKED_BODY" = "このiPadを新規のリンク済み端末として追加し、メッセージ履歴の移行は行わない";
 
 /* The title for the device transfer 'choice' view 'register' option when linking a device */
-"DEVICE_TRANSFER_CHOICE_REGISTER_LINKED_TITLE" = "新規端末として追加する";
+"DEVICE_TRANSFER_CHOICE_REGISTER_LINKED_TITLE" = "新しい端末として設定";
 
 /* The title for the device transfer 'choice' view 'register' option */
 "DEVICE_TRANSFER_CHOICE_REGISTER_TITLE" = "移行せずに登録する";
@@ -1136,7 +1154,7 @@
 "DEVICE_TRANSFER_ERROR_GENERIC" = "移行を完了できませんでした。両端末が近くにあることを確認して、もう一度試してください";
 
 /* An error indicating the user must scan this code with a linked device to transfer. */
-"DEVICE_TRANSFER_ERROR_MODE_MISMATCH_LINKED" = "このiPadを接続端末に設定するには、古いiPadでスキャンする必要があります";
+"DEVICE_TRANSFER_ERROR_MODE_MISMATCH_LINKED" = "このiPadをリンク済み端末にするには、古いiPadでスキャンする必要があります";
 
 /* An error indicating the user must scan this code with a primary device to transfer. */
 "DEVICE_TRANSFER_ERROR_MODE_MISMATCH_PRIMARY" = "アカウントを移行するには、iPhoneでスキャンする必要があります";
@@ -1154,13 +1172,16 @@
 "DEVICE_TRANSFER_PROMPT_TITLE" = "アカウントの移行";
 
 /* The explanation for the device transfer qr code view */
-"DEVICE_TRANSFER_QRCODE_EXPLANATION" = "旧端末でSignalを開き、近くに置いて、Wi-FiとBluetoothを両方の端末で有効にしてください。";
+"DEVICE_TRANSFER_QRCODE_EXPLANATION" = "旧端末でSignalを開き、近くに置いて、両方の端末でWi-FiとBluetoothを有効にしてください。";
 
 /* The second explanation for the device transfer qr code view */
-"DEVICE_TRANSFER_QRCODE_EXPLANATION2" = "このQRコードを他の端末の枠の中に置いてください。";
+"DEVICE_TRANSFER_QRCODE_EXPLANATION2" = "このQRコードを他の端末のフレームの中に入れてください。";
+
+/* A prompt to provide further explanation if the user is not seeing the transfer on both devices. */
+"DEVICE_TRANSFER_QRCODE_NOT_SEEING" = "旧端末側で表示がありせんか？";
 
 /* The title for the device transfer qr code view */
-"DEVICE_TRANSFER_QRCODE_TITLE" = "他の端末を待っています...";
+"DEVICE_TRANSFER_QRCODE_TITLE" = "他の端末を待っています…";
 
 /* The explanation on the view that shows receiving progress */
 "DEVICE_TRANSFER_RECEIVING_EXPLANATION" = "端末同士を近づけてください。どちらの端末も電源を切らず、Signalを開いたままにしてください。転送はエンドツーエンドで暗号化されます。";
@@ -1187,10 +1208,10 @@
 "DISAPPEARING_MESSAGES" = "消えるメッセージ";
 
 /* Info Message when added to a group which has enabled disappearing messages. Embeds {{time amount}} before messages disappear. See the *_TIME_AMOUNT strings for context. */
-"DISAPPEARING_MESSAGES_CONFIGURATION_GROUP_EXISTING_FORMAT" = "この会話のメッセージは%@後に消えます。";
+"DISAPPEARING_MESSAGES_CONFIGURATION_GROUP_EXISTING_FORMAT" = "このチャットのメッセージは%@後に消えます。";
 
 /* subheading in conversation settings */
-"DISAPPEARING_MESSAGES_DESCRIPTION" = "有効にすると、この会話内で送受信されるメッセージは、閲覧後に消えます。";
+"DISAPPEARING_MESSAGES_DESCRIPTION" = "有効にすると、このチャット内で送受信されるメッセージは、閲覧後に消えます。";
 
 /* Accessibility hint that contains current timeout information */
 "DISAPPEARING_MESSAGES_HINT" = "現在のメッセージは%@後に消えます";
@@ -1205,13 +1226,13 @@
 "DOMAIN_FRONTING_COUNTRY_VIEW_SECTION_HEADER" = "検閲回避場所";
 
 /* Alert body for when the user has just tried to edit a contacts after declining to give Signal contacts permissions */
-"EDIT_CONTACT_WITHOUT_CONTACTS_PERMISSION_ALERT_BODY" = "iOSの設定でアクセスを制御できます。";
+"EDIT_CONTACT_WITHOUT_CONTACTS_PERMISSION_ALERT_BODY" = "iOSの設定でアクセス権限を制御できます。";
 
 /* Alert title for when the user has just tried to edit a contacts after declining to give Signal contacts permissions */
-"EDIT_CONTACT_WITHOUT_CONTACTS_PERMISSION_ALERT_TITLE" = "連絡先を編集するには連絡先へのアクセスが必要です。";
+"EDIT_CONTACT_WITHOUT_CONTACTS_PERMISSION_ALERT_TITLE" = "連絡先を編集するには連絡先へのアクセス権限が必要です。";
 
 /* The 'clear avatar' button in the 'edit group' view. */
-"EDIT_GROUP_CLEAR_AVATAR" = "写真を消去";
+"EDIT_GROUP_CLEAR_AVATAR" = "アイコンを削除";
 
 /* The navbar title for the 'update group' view. */
 "EDIT_GROUP_DEFAULT_TITLE" = "グループを編集";
@@ -1219,20 +1240,20 @@
 /* Error message indicating the a user can't be added to a group. */
 "EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER" = "このユーザはまだSignalをアップグレードしていないのでグループに追加できません。";
 
-/* Message for 'group full' error alert when a user can't be added to a group. */
-"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL" = "グループメンバーが最大の100人に達しました。";
+/* Format for the 'group full' error alert when a user can't be added to a group because the group is full. Embeds {{ the maximum number of members in a group }}. */
+"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL_FORMAT" = "グループメンバーが上限の%@人に達しました。";
 
 /* Error message indicating that an avatar image is invalid and cannot be used. */
-"EDIT_GROUP_ERROR_INVALID_AVATAR" = "無効な写真";
+"EDIT_GROUP_ERROR_INVALID_AVATAR" = "無効なアイコンです。";
 
 /* Label for the group name in the 'edit group' view. */
 "EDIT_GROUP_GROUP_NAME" = "グループ名";
 
 /* The title for the 'update group' button. */
-"EDIT_GROUP_UPDATE_BUTTON" = "更新";
+"EDIT_GROUP_UPDATE_BUTTON" = "アップデートする";
 
 /* The alert message if user tries to exit update group view without saving changes. */
-"EDIT_GROUP_VIEW_UNSAVED_CHANGES_MESSAGE" = "このグループの設定変更を保存しなくてもよいですか?";
+"EDIT_GROUP_VIEW_UNSAVED_CHANGES_MESSAGE" = "このグループの設定変更を保存しますか？";
 
 /* The alert title if user tries to exit update group view without saving changes. */
 "EDIT_GROUP_VIEW_UNSAVED_CHANGES_TITLE" = "未保存の変更";
@@ -1244,10 +1265,10 @@
 "EMAIL_INVITE_BODY" = "こんにちは\n\n最近、私はiPhoneでの会話・チャットにSignal（シグナル）というアプリを使っています。このアプリを使うと、会話内容が他人に傍受されません。あなたもインストールしてみませんか？\n\nSignalはiPhoneでもAndroidでも使えます。ここからインストールできます: %@\n\nSignalは、普通のメッセージアプリと同じように使えます。写真や動画も送れますし、電話もできますし、３人以上でのチャットもできます。一番いいところは、通信内容が暗号化されていることです。Signalの開発者でさえ傍受できない仕組みになっており、非常に安全です。\n\nSignalの開発者であるOpen Whisper Systemsについての詳細はここをご覧ください: %@";
 
 /* subject of email sent to contacts when inviting to install Signal */
-"EMAIL_INVITE_SUBJECT" = "Signalに切り替えましょう";
+"EMAIL_INVITE_SUBJECT" = "メッセージアプリをSignalにしましょう";
 
 /* Description for the fallback support sheet if user cannot send email */
-"EMAIL_SIGNAL_MESSAGE" = "このスマートフォンはメールを送信できるようになっていません。サポートリクエストを送るにはこのスマートフォンでメールを送ることができるように設定するか、または support@signal.org まで別の場所からメールを送ってください。";
+"EMAIL_SIGNAL_MESSAGE" = "この端末はメールを送信できるようになっていません。サポートリクエストを送るには、この端末でメールを設定するか、support@signal.org にメールしてください。";
 
 /* Title for the fallback support sheet if user cannot send email */
 "EMAIL_SIGNAL_TITLE" = "メール利用不可";
@@ -1265,7 +1286,7 @@
 "EMOJI_CATEGORY_FOOD_NAME" = "食品";
 
 /* The name for the emoji category 'Objects' */
-"EMOJI_CATEGORY_OBJECTS_NAME" = "オブジェ";
+"EMOJI_CATEGORY_OBJECTS_NAME" = "オブジェクト";
 
 /* The name for the emoji category 'Recents' */
 "EMOJI_CATEGORY_RECENTS_NAME" = "最近使った絵文字";
@@ -1295,49 +1316,49 @@
 "END_CALL_UNCATEGORIZED_FAILURE" = "通話に失敗しました。";
 
 /* Error indicating that the phone's contacts could not be retrieved. */
-"ERROR_COULD_NOT_FETCH_CONTACTS" = "連絡先リストのアクセスに失敗しました";
+"ERROR_COULD_NOT_FETCH_CONTACTS" = "連絡先にアクセスできませんでした。";
 
 /* Error indicating that 'save video' failed. */
 "ERROR_COULD_NOT_SAVE_VIDEO" = "動画を保存できませんでした。";
 
 /* Generic notice when message failed to send. */
-"ERROR_DESCRIPTION_CLIENT_SENDING_FAILURE" = "メッセージの送信に失敗しました";
+"ERROR_DESCRIPTION_CLIENT_SENDING_FAILURE" = "メッセージの送信に失敗しました。";
 
 /* Error indicating that openURL for a mailto: URL failed. */
-"ERROR_DESCRIPTION_COULD_NOT_LAUNCH_EMAIL" = "メールアプリを開けません";
+"ERROR_DESCRIPTION_COULD_NOT_LAUNCH_EMAIL" = "メールアプリを開けませんでした";
 
 /* Error indicating that a support mailto link could not be created. */
-"ERROR_DESCRIPTION_INVALID_SUPPORT_EMAIL" = "サポートリクエストを作成できませんでした。";
+"ERROR_DESCRIPTION_INVALID_SUPPORT_EMAIL" = "サポートリクエストを作成できませんでした";
 
 /* Generic error indicating that log upload failed */
 "ERROR_DESCRIPTION_LOG_UPLOAD_FAILED" = "ログをアップロードできませんでした。";
 
 /* Error message indicating that message send is disabled due to prekey update failures */
-"ERROR_DESCRIPTION_MESSAGE_SEND_DISABLED_PREKEY_UPDATE_FAILURES" = "プレキーが更新できず、送信できません。";
+"ERROR_DESCRIPTION_MESSAGE_SEND_DISABLED_PREKEY_UPDATE_FAILURES" = "事前キーが古いため、送信できません。";
 
 /* Error message indicating that message send failed due to block list */
-"ERROR_DESCRIPTION_MESSAGE_SEND_FAILED_DUE_TO_BLOCK_LIST" = "このユーザをブロックしているのでメッセージを送れませんでした。";
+"ERROR_DESCRIPTION_MESSAGE_SEND_FAILED_DUE_TO_BLOCK_LIST" = "このユーザをブロックしているため、メッセージを送信できませんでした。";
 
 /* Generic error used whenever Signal can't contact the server */
-"ERROR_DESCRIPTION_NO_INTERNET" = "Signalがネットに接続できませんでした。再試行してください。";
+"ERROR_DESCRIPTION_NO_INTERNET" = "Signalがインターネットに接続できませんでした。再度試してください。";
 
 /* Error indicating that an outgoing message had no valid recipients. */
-"ERROR_DESCRIPTION_NO_VALID_RECIPIENTS" = "メッセージ送信に失敗しました。受取人が正しくありません。";
+"ERROR_DESCRIPTION_NO_VALID_RECIPIENTS" = "宛先が正しくないため、メッセージ送信に失敗しました。";
 
 /* Error indicating that a socket request failed. */
-"ERROR_DESCRIPTION_REQUEST_FAILED" = "ネットワーク要求に失敗しました。";
+"ERROR_DESCRIPTION_REQUEST_FAILED" = "ネットワーク要求が失敗しました。";
 
 /* Error indicating that a socket request timed out. */
-"ERROR_DESCRIPTION_REQUEST_TIMED_OUT" = "ネットワークへの要求が時間切れになりました。";
+"ERROR_DESCRIPTION_REQUEST_TIMED_OUT" = "ネットワーク要求がタイムアウトしました。";
 
 /* Error indicating that a socket response failed. */
-"ERROR_DESCRIPTION_RESPONSE_FAILED" = "無効な応答がサービスから返ってきました。";
+"ERROR_DESCRIPTION_RESPONSE_FAILED" = "サービスから無効な応答がありました。";
 
 /* Error message when attempting to send message */
 "ERROR_DESCRIPTION_SENDING_UNAUTHORIZED" = "この端末はあなたの電話番号で登録されていません。Signalを再インストールしてください。";
 
 /* Generic server error */
-"ERROR_DESCRIPTION_SERVER_FAILURE" = "サーバにエラーが発生しました。少し待って再試行してください。";
+"ERROR_DESCRIPTION_SERVER_FAILURE" = "サーバにエラーが発生しました。あとで再度試してください。";
 
 /* Worst case generic error message */
 "ERROR_DESCRIPTION_UNKNOWN_ERROR" = "不明なエラーが発生しました。";
@@ -1355,22 +1376,25 @@
 "ERROR_MESSAGE_DUPLICATE_MESSAGE" = "重複したメッセージを受信しました。";
 
 /* No comment provided by engineer. */
-"ERROR_MESSAGE_INVALID_KEY_EXCEPTION" = "受取人のIDキーが無効です。";
+"ERROR_MESSAGE_INVALID_KEY_EXCEPTION" = "宛先のキーが無効です。";
 
 /* No comment provided by engineer. */
-"ERROR_MESSAGE_INVALID_MESSAGE" = "不正なメッセージを受信しました。";
+"ERROR_MESSAGE_INVALID_MESSAGE" = "受信したメッセージが同期していませんでした。";
 
 /* No comment provided by engineer. */
-"ERROR_MESSAGE_INVALID_VERSION" = "バージョン違いのメッセージを受信しました。";
+"ERROR_MESSAGE_INVALID_VERSION" = "このバージョンと互換性のないメッセージを受信しました。";
 
 /* No comment provided by engineer. */
-"ERROR_MESSAGE_NO_SESSION" = "この連絡先とのセッションはありません";
+"ERROR_MESSAGE_NO_SESSION" = "この連絡先とのセッションはありません。";
 
 /* Shown when signal users safety numbers changed */
 "ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE" = "安全番号が変わりました。";
 
 /* Shown when signal users safety numbers changed, embeds the user's {{name or phone number}} */
-"ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE_FORMAT" = "%@に対する安全番号が変わりました。";
+"ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE_FORMAT" = "%@ に対する安全番号が変わりました。";
+
+/* Text notifying the user that their secure session has been reset */
+"ERROR_MESSAGE_SESSION_REFRESH" = "セッションが更新されました";
 
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_UNKNOWN_ERROR" = "不明なエラーが発生しました。";
@@ -1388,25 +1412,25 @@
 "ERROR_SENDING_DEREGISTERED" = "この端末はもはや登録されていません。メッセージを送受信するには、再登録してください。";
 
 /* Error indicating a send failure due to an expired application. */
-"ERROR_SENDING_EXPIRED" = "このバージョンのSignalは期限切れです。アップデートしてください。";
+"ERROR_SENDING_EXPIRED" = "このバージョンのSignalは期限が切れています。メッセージを送信するには、アップデートしてください。";
 
 /* Format string for 'unregistered user' error. Embeds {{the unregistered user's name or signal id}}. */
 "ERROR_UNREGISTERED_USER_FORMAT" = "未登録ユーザ: %@";
 
 /* Label notifying the user that the app has expired. */
-"EXPIRATION_ERROR" = "このバージョンのSignalは有効期限が切れました。タップして最新版にアップデートしてください。";
+"EXPIRATION_ERROR" = "このバージョンのSignalは期限が切れています！タップして最新版にアップデートします。";
 
 /* Label warning the user that the app will expire soon. */
-"EXPIRATION_WARNING_SOON" = "このバージョンのSignalは%d日後に期限が切れます。タップして最新版にアップデートしてください。";
+"EXPIRATION_WARNING_SOON" = "このバージョンのSignalは%d日後に期限が切れます。タップして最新版にアップデートします。";
 
 /* Label warning the user that the app will expire today. */
 "EXPIRATION_WARNING_TODAY" = "このバージョンのSignalは今日で期限切れとなります。タップして最新版にアップデートします。";
 
 /* action sheet header when re-sending message which failed because of too many attempts */
-"FAILED_SENDING_BECAUSE_RATE_LIMIT" = "多数のエラーが起きました。あとで再送信してください。";
+"FAILED_SENDING_BECAUSE_RATE_LIMIT" = "この連絡先で多数のエラーが起きました。あとで再度試してください。";
 
 /* action sheet header when re-sending message which failed because of untrusted identity keys */
-"FAILED_SENDING_BECAUSE_UNTRUSTED_IDENTITY_KEY" = "%@の安全番号が変更されました。このメッセージの送信前に検証しておくとよいでしょう。 ";
+"FAILED_SENDING_BECAUSE_UNTRUSTED_IDENTITY_KEY" = "%@ に対する安全番号が変更されました。このメッセージを再送する前に、検証した方が良いかもしれません。";
 
 /* alert title */
 "FAILED_VERIFICATION_TITLE" = "安全番号を検証できませんでした！";
@@ -1414,7 +1438,7 @@
 /* Button that marks user as verified after a successful fingerprint scan. */
 "FINGERPRINT_SCAN_VERIFY_BUTTON" = "検証済みにする";
 
-/* No comment provided by engineer. */
+/* Label for button to reset a session. */
 "FINGERPRINT_SHRED_KEYMATERIAL_BUTTON" = "セッションをリセット";
 
 /* Accessibility label for finishing new group */
@@ -1427,37 +1451,46 @@
 "FORWARD_MESSAGE" = "メッセージの転送";
 
 /* Label indicating media gallery is empty */
-"GALLERY_TILES_EMPTY_GALLERY" = "この会話にはメディアはありません。";
+"GALLERY_TILES_EMPTY_GALLERY" = "このチャットにはメディアはありません。";
 
 /* Label indicating loading is in progress */
-"GALLERY_TILES_LOADING_MORE_RECENT_LABEL" = "新しいメディアを読み込んでいます...";
+"GALLERY_TILES_LOADING_MORE_RECENT_LABEL" = "新しいメディアを読み込んでいます…";
 
 /* Label indicating loading is in progress */
-"GALLERY_TILES_LOADING_OLDER_LABEL" = "古いメディアを読み込んでいます...";
+"GALLERY_TILES_LOADING_OLDER_LABEL" = "古いメディアを読み込んでいます…";
 
 /* A label for generic attachments. */
 "GENERIC_ATTACHMENT_LABEL" = "添付ファイル";
 
+/* Title for the 'Get Started' banner */
+"GET_STARTED_BANNER_TITLE" = "始めましょう";
+
+/* 'Get Started' button directing users to invite friends */
+"GET_STARTED_CARD_INVITE_FRIENDS" = "友達を招待する";
+
+/* 'Get Started' button directing users to create a group */
+"GET_STARTED_CARD_NEW_GROUP" = "新規グループ";
+
 /* Error displayed when there is a failure fetching a GIF from the remote service. */
-"GIF_PICKER_ERROR_FETCH_FAILURE" = "GIFの取り込みに失敗しました。ネットに接続しているか確認してください。";
+"GIF_PICKER_ERROR_FETCH_FAILURE" = "GIFの取り込みに失敗しました。インターネット接続を確認してください。";
 
 /* Generic error displayed when picking a GIF */
-"GIF_PICKER_ERROR_GENERIC" = "未知のエラー";
+"GIF_PICKER_ERROR_GENERIC" = "不明なエラーが発生しました。";
 
 /* Shown when selected GIF couldn't be fetched */
-"GIF_PICKER_FAILURE_ALERT_TITLE" = "GIFを選べません";
+"GIF_PICKER_FAILURE_ALERT_TITLE" = "GIFを選択できません";
 
 /* Alert message shown when user tries to search for GIFs without entering any search terms. */
-"GIF_PICKER_VIEW_MISSING_QUERY" = "検索ワードを入力してください";
+"GIF_PICKER_VIEW_MISSING_QUERY" = "検索ワードを入力してください。";
 
 /* Title for the 'GIF picker' dialog. */
 "GIF_PICKER_VIEW_TITLE" = "GIF検索";
 
 /* Indicates that an error occurred while searching. */
-"GIF_VIEW_SEARCH_ERROR" = "エラーが発生しました。タップして再試行してください。";
+"GIF_VIEW_SEARCH_ERROR" = "エラーが発生しました。タップして再度試してください。";
 
 /* Indicates that the user's search had no results. */
-"GIF_VIEW_SEARCH_NO_RESULTS" = "該当なし。";
+"GIF_VIEW_SEARCH_NO_RESULTS" = "該当なし";
 
 /* Placeholder text for the search field in GIF view */
 "GIF_VIEW_SEARCH_PLACEHOLDER_TEXT" = "検索";
@@ -1469,13 +1502,13 @@
 "GRDB_MIGRATION_NOTIFICATION_BODY" = "このバージョンのSignalには、データベースの最適化とパフォーマンス改善が含まれます。アプリを開いてこの処理を完了させてください。";
 
 /* Title of notification shown during GRDB migration indicating that user may need to open app to view their content. */
-"GRDB_MIGRATION_NOTIFICATION_TITLE" = "データベースを更新中";
+"GRDB_MIGRATION_NOTIFICATION_TITLE" = "データベースを最適化中";
 
 /* Message indicating that the access to the group's attributes was changed by the local user. Embeds {{new access level}}. */
-"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_LOCAL_USER_FORMAT" = "グループ情報の編集アクセスを「%@」に変更しました。";
+"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_LOCAL_USER_FORMAT" = "グループ情報の編集アクセス権限を「%@」に変更しました。";
 
 /* Message indicating that the access to the group's attributes was changed by a remote user. Embeds {{ %1$@ user who changed the access, %2$@ new access level}}. */
-"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@がグループ情報の編集アクセスを 「%2$@」に変更しました。";
+"GROUP_ACCESS_ATTRIBUTES_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@がグループ情報の編集アクセス権限を 「%2$@」に変更しました。";
 
 /* Message indicating that the access to the group's attributes was changed. Embeds {{new access level}}. */
 "GROUP_ACCESS_ATTRIBUTES_UPDATED_FORMAT" = "「%@」はグループ情報を変更できます。";
@@ -1496,25 +1529,154 @@
 "GROUP_ACCESS_LEVEL_UNSATISFIABLE" = "無効";
 
 /* Message indicating that the access to the group's members was changed by the local user. Embeds {{new access level}}. */
-"GROUP_ACCESS_MEMBERS_UPDATED_BY_LOCAL_USER_FORMAT" = "グループメンバーシップの編集アクセスを「%@」に変更しました。";
+"GROUP_ACCESS_MEMBERS_UPDATED_BY_LOCAL_USER_FORMAT" = "グループメンバーシップの編集アクセス権限を「%@」に変更しました。";
 
 /* Message indicating that the access to the group's members was changed by a remote user. Embeds {{ %1$@ user who changed the access, %2$@ new access level}}. */
-"GROUP_ACCESS_MEMBERS_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@がグループメンバーシップの編集アクセスを「%2$@」に変更しました。";
+"GROUP_ACCESS_MEMBERS_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@がグループメンバーシップの編集アクセス権限を「%2$@」に変更しました。";
 
 /* Message indicating that the access to the group's members was changed. Embeds {{new access level}}. */
 "GROUP_ACCESS_MEMBERS_UPDATED_FORMAT" = "「%@」はグループメンバーシップを変更できます。";
+
+/* Message indicating that a feature can only be used by group admins. */
+"GROUP_ADMIN_ONLY_WARNING" = "管理者のみがこの設定を変更できます。";
+
+/* Message body for alert explaining that a group call participant is blocked */
+"GROUP_CALL_BLOCKED_ALERT_MESSAGE" = "音声や映像の送受信を行いません。";
+
+/* Title for alert explaining that a group call participant is blocked. Embeds {{ user's name }} */
+"GROUP_CALL_BLOCKED_ALERT_TITLE_FORMAT" = "%@ はブロックされました";
+
+/* String displayed in group call grid cell when a user is blocked. Embeds {user's name} */
+"GROUP_CALL_BLOCKED_USER_FORMAT" = "%@ はブロックされました";
+
+/* Button to continue an ongoing group call */
+"GROUP_CALL_CONTINUE_BUTTON" = "通話を続ける";
+
+/* Text in conversation view for a group call that has since ended */
+"GROUP_CALL_ENDED_MESSAGE" = "グループ通話が終了しました";
+
+/* A button to receive more info about not seeing a participant in group call grid */
+"GROUP_CALL_ERROR_DETAILS" = "詳細";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. Embeds {{max device count}}. */
+"GROUP_CALL_HAS_MAX_DEVICES_FORMAT" = "この通話の参加者が、上限の%ld人に達しました。あとで再度試してください。";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. */
+"GROUP_CALL_HAS_MAX_DEVICES_UNKNOWN_COUNT" = "この通話の参加者が、上限人数に達しました。あとで再度試してください。";
+
+/* Text explaining the group call is full */
+"GROUP_CALL_IS_FULL" = "満席です";
+
+/* Button to join an ongoing group call */
+"GROUP_CALL_JOIN_BUTTON" = "通話に参加する";
+
+/* Button to leave a group call */
+"GROUP_CALL_LEAVE_BUTTON" = "通話から抜ける";
+
+/* String indicating how many people are current in the call */
+"GROUP_CALL_MANY_IN_THIS_CALL_FORMAT" = "参加者 · %ld人";
+
+/* Text explaining that there are more than three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2, %3$@ participantCount-2 }} */
+"GROUP_CALL_MANY_PEOPLE_HERE_FORMAT" = "%1$@, %2$@, %3$@ などが参加中";
+
+/* String displayed in cell when media from a user can't be displayed in group call grid. Embeds {user's name} */
+"GROUP_CALL_MISSING_MEDIA_KEYS_FORMAT" = "%@ からの音声と映像を受信できません";
+
+/* Message body for alert explaining that a group call participant cannot be displayed because of missing keys */
+"GROUP_CALL_NO_KEYS_ALERT_MESSAGE" = "相手があなたの安全番号の変更を検証していないか、相手の端末に問題があるか、あなたがブロックされている可能性があります。";
+
+/* Title for alert explaining that a group call participant cannot be displayed because of missing keys. Embeds {{ user's name }} */
+"GROUP_CALL_NO_KEYS_ALERT_TITLE_FORMAT" = "%@ からの音声と映像を受信できません";
+
+/* Text explaining that you are the only person currently in the group call */
+"GROUP_CALL_NO_ONE_HERE" = "誰も参加していません";
+
+/* Text explaining to the user that nobody has joined this call yet. */
+"GROUP_CALL_NOBODY_IS_IN_YET" = "まだ誰も参加していません。";
+
+/* Copy explaining that many new users have joined the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_JOINED_FORMAT" = "%@, %@ ほか%ld人が参加しました";
+
+/* Copy explaining that many users have left the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_LEFT_FORMAT" = "%@, %@ ほか%ld人が退出しました。";
+
+/* Copy explaining that a user has joined the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_JOINED_FORMAT" = "%@ が参加しました";
+
+/* Copy explaining that a user has left the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_LEFT_FORMAT" = "%@ が退出しました";
+
+/* Copy explaining that two users have joined the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_JOINED_FORMAT" = "%@ と %@ が参加しました";
+
+/* Copy explaining that two users have left the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_LEFT_FORMAT" = "%@ と %@ が退出しました";
+
+/* String indicating one person is currently in the call */
+"GROUP_CALL_ONE_IN_THIS_CALL" = "参加者 · 1人";
+
+/* Text explaining that there is one person in the group call. Embeds {member name} */
+"GROUP_CALL_ONE_PERSON_HERE_FORMAT" = "%@ が参加中";
+
+/* Text indicating that the user has lost their connection to the call and we are reconnecting. */
+"GROUP_CALL_RECONNECTING" = "再接続しています";
+
+/* notification body when a group call participant joins with an untrusted safety number */
+"GROUP_CALL_SAFETY_NUMBER_CHANGE_BODY" = "安全番号を変更したメンバーが、この通話に参加しています。";
+
+/* Text in conversation view for a group call that someone started. We don't know who */
+"GROUP_CALL_SOMEONE_STARTED_MESSAGE" = "グループ通話が始まりました";
+
+/* Toast view text informing user about swiping to speaker view */
+"GROUP_CALL_SPEAKER_VIEW_TOAST" = "上にスワイプして表示を変更";
+
+/* Button to start a group call */
+"GROUP_CALL_START_BUTTON" = "通話を開始する";
+
+/* Tooltip highlighting group calls. */
+"GROUP_CALL_START_TOOLTIP" = "タップしてグループ通話を開始";
+
+/* Text explaining that you started a group call. */
+"GROUP_CALL_STARTED_BY_YOU" = "グループ通話を開始しました";
+
+/* Text explaining that someone started a group call. Embeds {{call creator display name}} */
+"GROUP_CALL_STARTED_MESSAGE_FORMAT" = "%@ がグループ通話を開始しました";
+
+/* Text explaining that there are three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_THREE_PEOPLE_HERE_FORMAT" = "%1$@, %2$@ ほか1人が参加中";
+
+/* Text explaining that there are two people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_TWO_PEOPLE_HERE_FORMAT" = "%1$@ と %2$@ が参加中";
+
+/* An error displayed to the user when the group call unexpectedly ends. */
+"GROUP_CALL_UNEXPECTEDLY_ENDED" = "通話が切断されました。ネット接続を確認して再接続してください。";
+
+/* Text describing the local user as a participant in a group call. */
+"GROUP_CALL_YOU" = "あなた";
+
+/* Text explaining that you are in the group call. */
+"GROUP_CALL_YOU_ARE_HERE" = "グループ通話中です";
+
+/* Text describing the local user in the group call members sheet when connected from another device. */
+"GROUP_CALL_YOU_ON_ANOTHER_DEVICE" = "あなた (別端末)";
+
+/* Body for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_BODY" = "新しいグループで暗号化されたグループ通話を始めましょう";
+
+/* Title for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_TITLE" = "グループ通話のご紹介";
 
 /* Message indicating that group was created by the local user. */
 "GROUP_CREATED_BY_LOCAL_USER" = "グループを作成しました。";
 
 /* Message indicating that group was created by another user. Embeds {{remote user name}}. */
-"GROUP_CREATED_BY_REMOTE_USER_FORMAT" = "%@があなたをグループに追加しました。";
+"GROUP_CREATED_BY_REMOTE_USER_FORMAT" = "%@ があなたをグループに追加しました。";
 
 /* Message indicating that group was created by an unknown user. */
 "GROUP_CREATED_BY_UNKNOWN_USER" = "グループが作成されました。";
 
 /* Message shown in conversation view that indicates there were issues with group creation. */
-"GROUP_CREATION_FAILED" = "全てのメンバーをグループへ追加できませんでした。タップして再試行します。";
+"GROUP_CREATION_FAILED" = "何人かのメンバーをグループへ追加できませんでした。タップして再試行します。";
 
 /* Message indicating that 1 invalid invite was added to the group. */
 "GROUP_INVALID_INVITES_ADDED_1" = "不正な招待が追加されました。";
@@ -1526,10 +1688,10 @@
 "GROUP_INVALID_INVITES_ADDED_BY_LOCAL_USER_N" = "不正な招待を追加しました。";
 
 /* Message indicating that 1 invalid invite was added by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_1" = "%@が不正な招待を追加しました。";
+"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_1" = "%@ が不正な招待を追加しました。";
 
 /* Message indicating that multiple invalid invites were added by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_N" = "%@が不正な招待を追加しました。";
+"GROUP_INVALID_INVITES_ADDED_BY_REMOTE_USER_FORMAT_N" = "%@ が不正な招待を追加しました。";
 
 /* Message indicating that multiple invalid invites were added to the group. */
 "GROUP_INVALID_INVITES_ADDED_N" = "不正な招待が追加されました。";
@@ -1544,10 +1706,10 @@
 "GROUP_INVALID_INVITES_REMOVED_BY_LOCAL_USER_N" = "不正な招待を取り消しました。";
 
 /* Message indicating that 1 invalid invite was revoked by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_1" = "%@が不正な招待を取り消しました。";
+"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_1" = "%@ が不正な招待を取り消しました。";
 
 /* Message indicating that multiple invalid invites were revoked by another user. Embeds {{remote user name}}. */
-"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_N" = "%@が不正な招待を取り消しました。";
+"GROUP_INVALID_INVITES_REMOVED_BY_REMOTE_USER_FORMAT_N" = "%@ が不正な招待を取り消しました。";
 
 /* Message indicating that multiple invalid invites were revoked. */
 "GROUP_INVALID_INVITES_REMOVED_N" = "不正な招待が取り消されました。";
@@ -1562,22 +1724,22 @@
 "GROUP_INVITE_LINK_DISABLED_BY_REMOTE_USER_FORMAT" = "%@ がグループリンクを無効にしました。";
 
 /* Message indicating that the group invite link was enabled. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL" = "管理者承認制の共有グループリンクが有効になりました。";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL" = "管理者承認制のグループリンクが有効になりました。";
 
 /* Message indicating that the group invite link was enabled by the local user. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_LOCAL_USER" = "管理者承認制の共有グループリンクを有効にしました。";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_LOCAL_USER" = "管理者承認制のグループリンクを有効にしました。";
 
 /* Message indicating that the group invite link was enabled by a remote user. Embeds {{ user who enabled the group invite link }}. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ が管理者承認制の共有グループリンクを有効にしました。";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ が管理者承認制のグループリンクを有効にしました。";
 
 /* Message indicating that the group invite link was enabled. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL" = "管理者未承認のグループリンクが有効になりました。";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL" = "管理者承認の不要なグループリンクが有効になりました。";
 
 /* Message indicating that the group invite link was enabled by the local user. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_LOCAL_USER" = "管理者未承認のグループリンクを有効にしました。";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_LOCAL_USER" = "管理者承認の不要なグループリンクを有効にしました。";
 
 /* Message indicating that the group invite link was enabled by a remote user. Embeds {{ user who enabled the group invite link }}. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ が管理者未承認のグループリンクを有効にしました。";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ が管理者承認の不要なグループリンクを有効にしました。";
 
 /* Message indicating that the group invite link was reset. */
 "GROUP_INVITE_LINK_RESET" = "グループリンクがリセットされました。";
@@ -1589,22 +1751,22 @@
 "GROUP_INVITE_LINK_RESET_BY_REMOTE_USER_FORMAT" = "%@ がグループリンクをリセットしました。";
 
 /* Message indicating that the group invite link was set to not require approval. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL" = "グループリンクの管理者承認が無効にされました。";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL" = "グループリンクの管理者承認が不要になりました。";
 
 /* Message indicating that the group invite link was set to not require approval by the local user. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_LOCAL_USER" = "グループリンクの管理者承認を無効にしました。";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_LOCAL_USER" = "グループリンクの管理者承認を不要にしました。";
 
 /* Message indicating that the group invite link was set to not require approval by a remote user. Embeds {{ user who set the group invite link to not require approval }}. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@がグループリンクの管理者承認を無効にしました。";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ がグループリンクの管理者承認を不要にしました。";
 
 /* Message indicating that the group invite link was set to require approval. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL" = "グループリンクの管理者承認が有効にされました。";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL" = "グループリンクが管理者承認制になりました。";
 
 /* Message indicating that the group invite link was set to require approval by the local user. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_LOCAL_USER" = "グループリンクの管理者承認を有効にしました。";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_LOCAL_USER" = "グループリンクを管理者承認制にしました。";
 
 /* Message indicating that the group invite link was set to require approval by a remote user. Embeds {{ user who set the group invite link to require approval }}. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@がグループリンクの管理者承認を有効にしました。";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ がグループリンクを管理者承認制にしました。";
 
 /* Format for the message for an alert indicating that a member was invited to a group. Embeds: {{ the number of invites sent. }} */
 "GROUP_INVITES_SENT_ALERT_MESSAGE_1_FORMAT" = "%@を自動的にこのグループに追加することはできません。ユーザは受信した招待を受け入れるまでグループメッセージを閲覧できません。";
@@ -1613,16 +1775,19 @@
 "GROUP_INVITES_SENT_ALERT_TITLE_1" = "招待を送信しました";
 
 /* Format for the title for an alert indicating that some members were invited to a group. Embeds: {{ the number of invites sent. }} */
-"GROUP_INVITES_SENT_ALERT_TITLE_N_FORMAT" = "%@件の招待を送信";
+"GROUP_INVITES_SENT_ALERT_TITLE_N_FORMAT" = "%@件の招待を送信済み";
 
 /* Message for an alert indicating that some members were invited to a group. */
-"GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "これらのユーザを自動的にこのグループに追加することはできません。ユーザは受信した招待を受け入れるまでグループメッセージを閲覧できません。";
+"GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "これらのユーザを自動的にこのグループに追加することはできません。ユーザは受信した招待を受け入れるまで、グループメッセージを閲覧できません。";
+
+/* The title for the 'group invites' view. */
+"GROUP_INVITES_VIEW_TITLE" = "メンバーを招待";
 
 /* Subtitle indicating that the group invite link has expired in the 'group invite link' action sheet. */
 "GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "このグループリンクはすでに無効です。";
 
 /* Title indicating that the group invite link has expired in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_TITLE" = "グループに参加できません。";
+"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_TITLE" = "グループに参加できません";
 
 /* Indicator for group conversations in the 'group invite link' action sheet. */
 "GROUP_LINK_ACTION_SHEET_VIEW_GROUP_INDICATOR" = "グループ";
@@ -1634,10 +1799,10 @@
 "GROUP_LINK_ACTION_SHEET_VIEW_LOADING_TITLE" = "読み込みんでいます…";
 
 /* Message text for the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_MESSAGE" = "このグループに参加して、あなたの名前と画像をそのメンバーと共有しますか？";
+"GROUP_LINK_ACTION_SHEET_VIEW_MESSAGE" = "このグループに参加して、あなたの名前と写真をそのメンバーと共有しますか？";
 
 /* Error message the attempt to request to join the group failed due to network connectivity. */
-"GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_DUE_TO_NETWORK_ERROR_MESSAGE" = "ネットに接続しているか、確認してください。";
+"GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_DUE_TO_NETWORK_ERROR_MESSAGE" = "インターネット接続を確認して、再度試してください。";
 
 /* Error message the attempt to request to join the group failed. */
 "GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_ERROR_MESSAGE" = "あとで再度試してください。";
@@ -1648,14 +1813,29 @@
 /* Title for the 'invalid group invite link' alert. */
 "GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "無効なリンク";
 
-/* Indicator that a group invite link has expired. */
-"GROUP_LINK_INVITE_LINK_IS_EXPIRED" = "このグループリンクはすでに無効です。";
-
-/* Button to join a group from a group link. */
-"GROUP_LINK_JOIN_GROUP_BUTTON" = "グループに参加する";
-
 /* Error message indicating that the local user does not support groups v2. */
 "GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "このグループに参加するには、Signalのバージョンを更新してください。";
+
+/* Explanation of the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_EXPLANATION" = "グループリンク経由での新メンバー参加時に、管理者の承認を要求します。";
+
+/* Label for the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_SWITCH" = "新メンバーを承認する";
+
+/* Label for the 'enable and share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_ENABLE_AND_SHARE_LINK" = "リンクを有効にして共有する";
+
+/* Label for the 'share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SHARE_LINK" = "リンクを共有する";
+
+/* Subtitle for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SUBTITLE" = "友達とリンクを共有して、すぐにこのグループに参加できるようにしましょう。";
+
+/* Title for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_TITLE" = "友達を招待しましょう";
+
+/* Suggestion to invite more group members via the group invite link. */
+"GROUP_LINK_PROMOTION_UPDATE" = "グループリンク経由で友達をこのグループに招待しましょう";
 
 /* Description text in the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_DESCRIPTION" = "このコードをスキャンすると、グループに参加できます。設定によっては、新メンバーの参加時に管理者の承認が必要になります。";
@@ -1667,7 +1847,7 @@
 "GROUP_LINK_QR_CODE_VIEW_TITLE" = "QRコード";
 
 /* Label for the 'approve new members' switch in the 'group link' view. */
-"GROUP_LINK_VIEW_APPROVE_NEW_MEMBERS_SWITCH" = "新メンバーを承認する";
+"GROUP_LINK_VIEW_APPROVE_NEW_MEMBERS_SWITCH" = "新メンバーを承認制にする";
 
 /* Label for the 'copy link' button in the 'group link' view. */
 "GROUP_LINK_VIEW_COPY_LINK" = "リンクをコピーする";
@@ -1679,7 +1859,7 @@
 "GROUP_LINK_VIEW_MANAGE_AND_SHARE_SECTION_TITLE" = "管理と共有";
 
 /* Footer for the 'member requests' section of the 'group link' view. */
-"GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_FOOTER" = "グループリンク経由での新メンバー参加時に、管理者の承認を要求します。";
+"GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_FOOTER" = "グループリンク経由での新メンバーの参加時に、管理者の承認を要求します。";
 
 /* Title for the 'member requests' section of the 'group link' view. */
 "GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_TITLE" = "メンバー申請";
@@ -1703,52 +1883,52 @@
 "GROUP_LINK_VIEW_SHARE_LINK_VIA_SIGNAL" = "Signal経由で共有する";
 
 /* Message for the 'share group link' action sheet in the 'group link' view. */
-"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "このリンクを知っている人は誰でもグループに参加申請できます。信頼できる人とだけ、共有してください。";
+"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "誰でもこのリンクから、グループの名前とメンバーを見たり、参加を申請できます。信頼できる人と共有してください。";
 
 /* The title for the 'group link' view. */
 "GROUP_LINK_VIEW_TITLE" = "グループリンク";
 
 /* Message indicating that the local user was added to the group by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%@はあなたを追加しました。";
+"GROUP_LOCAL_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%@ があなたを追加しました。";
 
 /* Message indicating that the local user was granted administrator role. */
-"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR" = "あなたは現在管理者です。";
+"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR" = "現在、あなたは管理者です。";
 
 /* Message indicating that the local user was granted administrator role by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@はあなたを管理者にしました。";
+"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@ があなたを管理者にしました。";
 
 /* Message indicating that the local user accepted an invite to the group. */
-"GROUP_LOCAL_USER_INVITE_ACCEPTED" = "こグループの招待を承認しました。";
+"GROUP_LOCAL_USER_INVITE_ACCEPTED" = "こグループへの招待を受け入れました。";
 
 /* Message indicating that the local user accepted an invite to the group. Embeds {{user who invited the local user}}. */
-"GROUP_LOCAL_USER_INVITE_ACCEPTED_FORMAT" = "%@から受信したグループへの招待を受け入れました。";
+"GROUP_LOCAL_USER_INVITE_ACCEPTED_FORMAT" = "%@ からのグループへの招待を受け入れました。";
 
 /* Message indicating that the local user declined an invite to the group. */
 "GROUP_LOCAL_USER_INVITE_DECLINED_BY_LOCAL_USER" = "グループへの招待を断りました。";
 
 /* Message indicating that the local user declined an invite to the group. Embeds {{user who invited the local user}}. */
-"GROUP_LOCAL_USER_INVITE_DECLINED_FORMAT" = "%@からのグループへの招待を断りました。";
+"GROUP_LOCAL_USER_INVITE_DECLINED_FORMAT" = "%@ からのグループへの招待を断りました。";
 
 /* Message indicating that the local user's invite was revoked by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_INVITE_REVOKED_BY_REMOTE_USER_FORMAT" = "%@はあなたのグループへの招待を無効にしました。";
+"GROUP_LOCAL_USER_INVITE_REVOKED_BY_REMOTE_USER_FORMAT" = "%@ があなたが送ったグループへの招待を取り消しました。";
 
 /* Message indicating that the local user's invite was revoked by an unknown user. */
-"GROUP_LOCAL_USER_INVITE_REVOKED_BY_UNKNOWN_USER" = "あなたのグループへの招待は無効にされました。";
+"GROUP_LOCAL_USER_INVITE_REVOKED_BY_UNKNOWN_USER" = "あなたが送ったグループへの招待は取り消されました。";
 
 /* Message indicating that the local user was invited to the group by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_INVITED_BY_REMOTE_USER_FORMAT" = "%@はあなたを招待しました。";
+"GROUP_LOCAL_USER_INVITED_BY_REMOTE_USER_FORMAT" = "%@ があなたを招待しました。";
 
 /* Message indicating that the local user was invited to the group. */
 "GROUP_LOCAL_USER_INVITED_TO_THE_GROUP" = "グループに招待されました。";
 
 /* Message indicating that the local user has joined the group. */
-"GROUP_LOCAL_USER_JOINED_THE_GROUP" = "グループに入りました。";
+"GROUP_LOCAL_USER_JOINED_THE_GROUP" = "グループに参加しました。";
 
 /* Message indicating that the local user has joined the group. */
 "GROUP_LOCAL_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK" = "グループリンクからグループに参加しました。";
 
 /* Message indicating that the local user was removed from the group by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_REMOVED_BY_REMOTE_USER_FORMAT" = "%@はあなたを削除しました。";
+"GROUP_LOCAL_USER_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ があなたを削除しました。";
 
 /* Message indicating that the local user was removed from the group by an unknown user. */
 "GROUP_LOCAL_USER_REMOVED_BY_UNKNOWN_USER" = "グループから削除されました。";
@@ -1766,25 +1946,28 @@
 "GROUP_LOCAL_USER_REQUESTED_TO_JOIN_TO_THE_GROUP" = "グループ参加を申請しました。";
 
 /* Message indicating that the local user had their administrator role revoked. */
-"GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR" = "あなたの管理者特権は無効にされました。";
+"GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR" = "あなたの管理者権限が削除されました。";
 
 /* Message indicating that the local user had their administrator role revoked by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@はあなたの管理者特権を無効にしました。　";
+"GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%@ があなたの管理者権限を削除しました。";
+
+/* Message indicating that the local user was added to the group. */
+"GROUP_LOCAL_USER_WAS_ADDED_TO_THE_GROUP" = "メンバーがあなたをグループに追加しました。";
 
 /* Label indicating that a group member is an admin. */
 "GROUP_MEMBER_ADMIN_INDICATOR" = "管理者";
-
-/* Format string for the group member count indicator. Embeds {{ %1$@ the number of members in the group, %2$@ the maximum number of members in the group. }}. */
-"GROUP_MEMBER_COUNT_FORMAT" = "%1$@/%2$@";
 
 /* The 'group member count' indicator when there are no members in the group. */
 "GROUP_MEMBER_COUNT_LABEL_0" = "メンバーがいません";
 
 /* The 'group member count' indicator when there is 1 member in the group. */
-"GROUP_MEMBER_COUNT_LABEL_1" = "1人のメンバー";
+"GROUP_MEMBER_COUNT_LABEL_1" = "メンバー 1人";
 
 /* Format for the 'group member count' indicator. Embeds {the number of group members}. */
-"GROUP_MEMBER_COUNT_LABEL_FORMAT" = "%@人のメンバー ";
+"GROUP_MEMBER_COUNT_LABEL_FORMAT" = "メンバー %@人";
+
+/* Format string for the group member count indicator. Embeds {{ the number of members in the group }}. */
+"GROUP_MEMBER_COUNT_WITHOUT_LIMIT_FORMAT" = "メンバー %@人";
 
 /* Label indicating the local user. */
 "GROUP_MEMBER_LOCAL_USER" = "あなた";
@@ -1792,8 +1975,8 @@
 /* Accessibility label for the 'call group member' button */
 "GROUP_MEMBERS_CALL" = "音声通話";
 
-/* Label indicating that a group has no other members. */
-"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "メンバーがいません。";
+/* Label indicating that a new group has no other members. */
+"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "このグループを作成した後に、友達を追加したり招待することができます。";
 
 /* Title for the 'members' section of the 'group members' view. */
 "GROUP_MEMBERS_SECTION_TITLE_MEMBERS" = "メンバー";
@@ -1808,31 +1991,31 @@
 "GROUP_NAME_PLACEHOLDER" = "グループ名 (必須)";
 
 /* Message indicating that a remote user has accepted their invite. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ACCEPTED_INVITE_FORMAT" = "%@はグループの招待を承認しました。";
+"GROUP_REMOTE_USER_ACCEPTED_INVITE_FORMAT" = "%@ がグループへの招待を受け入れました。";
 
 /* Message indicating that a remote user has accepted an invite from the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@はあなたのグループの招待を承認しました。";
+"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@ があなたからのグループへの招待を受け入れました。";
 
 /* Message indicating that a remote user has accepted their invite. Embeds {{ %1$@ user who accepted their invite, %2$@ user who invited the user}}. */
-"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_REMOTE_USER_FORMAT" = "%1$@は%2$@からのグループの招待を承認しました。 ";
+"GROUP_REMOTE_USER_ACCEPTED_INVITE_FROM_REMOTE_USER_FORMAT" = "%1$@ が %2$@ からのグループへの招待を受け入れました。 ";
 
 /* Message indicating that a remote user was added to the group by the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_LOCAL_USER_FORMAT" = "%@を追加しました。";
+"GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_LOCAL_USER_FORMAT" = "%@ を追加しました。";
 
 /* Message indicating that a remote user was added to the group by another user. Embeds {{ %1$@ user who added the user, %2$@ user who was added}}. */
-"GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@は%2$@を追加しました。";
+"GROUP_REMOTE_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@ が %2$@ を追加しました。";
 
 /* Message indicating that a remote user was added to the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_ADDED_TO_GROUP_FORMAT" = "%@はグループに追加されました。";
+"GROUP_REMOTE_USER_ADDED_TO_GROUP_FORMAT" = "%@ がグループに追加されました。";
 
 /* Message indicating that a remote user has declined their invite. */
 "GROUP_REMOTE_USER_DECLINED_INVITE" = "1人がこのグループの招待を断りました。";
 
 /* Message indicating that a remote user has declined their invite. Embeds {{ user who invited them }}. */
-"GROUP_REMOTE_USER_DECLINED_INVITE_FORMAT" = "1 人のユーザが%@から受けたグループへの招待を断りました。";
+"GROUP_REMOTE_USER_DECLINED_INVITE_FORMAT" = "1人が %@ からのグループへの招待を断りました。";
 
 /* Message indicating that a remote user has declined an invite to the group from the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_DECLINED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@があなたから受信したグループへの招待を断りました。";
+"GROUP_REMOTE_USER_DECLINED_INVITE_FROM_LOCAL_USER_FORMAT" = "%@ があなたからのグループへの招待を断りました。";
 
 /* Message indicating that a remote user was granted administrator role. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR" = "%@ は現在管理者です。　";
@@ -1844,52 +2027,52 @@
 "GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@ は %2$@ を管理者にしました。";
 
 /* Message indicating that a single remote user's invite was revoked. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_1" = "1人のユーザに対してグループへの招待が無効にされました。";
+"GROUP_REMOTE_USER_INVITE_REVOKED_1" = "1人に対するグループへの招待が取り消されました。";
 
 /* Message indicating that a remote user's invite was revoked by the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_BY_LOCAL_USER_FORMAT" = "%@に対してグループへの招待が無効にされました。";
+"GROUP_REMOTE_USER_INVITE_REVOKED_BY_LOCAL_USER_FORMAT" = "%@ に対するグループへの招待が取り消されました。";
 
 /* Message indicating that a single remote user's invite was revoked by a remote user. Embeds {{ user who revoked the invite }}. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_1_FORMAT" = "%@が1人のユーザに対してグループへの招待を無効にしました。";
+"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_1_FORMAT" = "%@ が1人に対するグループへの招待を取り消しました。";
 
 /* Message indicating that a group of remote users' invites were revoked by a remote user. Embeds {{ %1$@ user who revoked the invite, %2$@ number of users }}. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_N_FORMAT" = "%1$@が%2$@人のユーザに対してグループへの招待を無効にしました。";
+"GROUP_REMOTE_USER_INVITE_REVOKED_BY_REMOTE_USER_N_FORMAT" = "%1$@ が%2$@人のユーザに対するグループへの招待を取り消しました。";
 
 /* Message indicating that a group of remote users' invites were revoked. Embeds {{ number of users }}. */
-"GROUP_REMOTE_USER_INVITE_REVOKED_N_FORMAT" = "%@人のユーザに対してグループへの招待が無効にされました。";
+"GROUP_REMOTE_USER_INVITE_REVOKED_N_FORMAT" = "%@人に対するグループへの招待が取り消されました。";
 
 /* Message indicating that a single remote user was invited to the group. */
 "GROUP_REMOTE_USER_INVITED_1" = "1人がグループに招待されました。";
 
 /* Message indicating that a single remote user was invited to the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_INVITED_1_FORMAT" = "%@がグループに招待されました。";
+"GROUP_REMOTE_USER_INVITED_1_FORMAT" = "%@ がグループに招待されました。";
 
 /* Message indicating that a remote user was invited to the group by the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_INVITED_BY_LOCAL_USER_FORMAT" = "%@をグループに招待しました。";
+"GROUP_REMOTE_USER_INVITED_BY_LOCAL_USER_FORMAT" = "%@ をグループに招待しました。";
 
 /* Message indicating that a single remote user was invited to the group by the local user. Embeds {{ user who invited the user }}. */
-"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_1_FORMAT" = "%@が1人をグループに招待しました。";
+"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_1_FORMAT" = "%@ が1人をグループに招待しました。";
 
 /* Message indicating that a group of remote users were invited to the group by the local user. Embeds {{ %1$@ user who invited the user, %2$@ number of invited users }}. */
-"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_N_FORMAT" = "%1$@が%2$@人のユーザをグループに招待しました。";
+"GROUP_REMOTE_USER_INVITED_BY_REMOTE_USER_N_FORMAT" = "%1$@ が %2$@人をグループに招待しました。";
 
 /* Message indicating that a group of remote users were invited to the group. Embeds {{number of invited users}}. */
 "GROUP_REMOTE_USER_INVITED_N_FORMAT" = "%@人がグループに招待されました。";
 
 /* Message indicating that a remote user was added to the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_JOINED_GROUP_FORMAT" = "%@がグループに参加しました。";
+"GROUP_REMOTE_USER_JOINED_GROUP_FORMAT" = "%@ がグループに参加しました。";
 
 /* Message indicating that another user has joined the group. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK_FORMAT" = "%@ がグループリンクからグループに参加しました。";
 
 /* Message indicating that a remote user has left the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_LEFT_GROUP_FORMAT" = "%@はグループを去りました。";
+"GROUP_REMOTE_USER_LEFT_GROUP_FORMAT" = "%@ がグループを抜けました。";
 
 /* Message indicating that a remote user was removed from the group by the local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_REMOVED_BY_LOCAL_USER_FORMAT" = "%@を削除しました。　";
+"GROUP_REMOTE_USER_REMOVED_BY_LOCAL_USER_FORMAT" = "%@ を削除しました。　";
 
 /* Message indicating that the remote user was removed from the group. Embeds {{ %1$@ user who removed the user, %2$@ user who was removed}}. */
-"GROUP_REMOTE_USER_REMOVED_FROM_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@は%2$@を削除しました。";
+"GROUP_REMOTE_USER_REMOVED_FROM_GROUP_BY_REMOTE_USER_FORMAT" = "%1$@ が %2$@ を削除しました。";
 
 /* Message indicating that a remote user's request to join the group was approved by the local user. Embeds {{requesting user name}}. */
 "GROUP_REMOTE_USER_REQUEST_APPROVED_BY_LOCAL_USER_FORMAT" = "%@ からのグループ参加申請を承認しました。";
@@ -1897,11 +2080,8 @@
 /* Message indicating that a remote user's request to join the group was approved by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
 "GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%2$@ が %1$@ からのグループ参加申請を承認しました。";
 
-/* Message indicating that a remote user's request to join the group was approved. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_FORMAT" = "%@ からのグループ参加申請は承認されました。";
-
 /* Message indicating that a remote user cancelled their request to join the group. Embeds {{ the name of the requesting user }}. */
-"GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@ はグループ参加申請をキャンセルしました。";
+"GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@ がグループ参加申請をキャンセルしました。";
 
 /* Message indicating that a remote user's request to join the group was rejected by the local user. Embeds {{requesting user name}}. */
 "GROUP_REMOTE_USER_REQUEST_REJECTED_BY_LOCAL_USER_FORMAT" = "%@ からのグループ参加申請を拒否しました。";
@@ -1910,19 +2090,19 @@
 "GROUP_REMOTE_USER_REQUEST_REJECTED_BY_REMOTE_USER_FORMAT" = "%2$@ が %1$@ からのグループ参加申請を拒否しました。";
 
 /* Message indicating that a remote user's request to join the group was rejected. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_FORMAT" = "%@ からのグループ参加申請は拒否されました。";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_FORMAT" = "%@ からのグループ参加申請が拒否されました。";
 
 /* Message indicating that a remote user requested to join the group. Embeds {{requesting user name}}. */
 "GROUP_REMOTE_USER_REQUESTED_TO_JOIN_THE_GROUP_FORMAT" = "%@ がグループリンクから参加を申請しました。";
 
 /* Message indicating that a remote user had their administrator role revoked. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR" = "%@の管理者権限は無効にされました。";
+"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR" = "%@ の管理者権限が削除されました。";
 
 /* Message indicating that a remote user had their administrator role revoked by local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_LOCAL_USER" = "%@から管理者特権を無効にしました。";
+"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_LOCAL_USER" = "%@ の管理者権限を削除しました。";
 
 /* Message indicating that a remote user had their administrator role revoked by another user. Embeds {{ %1$@ user who revoked, %2$@ user who was granted administrator role}}. */
-"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@が%2$@の管理者権限を無効にしました。";
+"GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "%1$@ が %2$@ の管理者権限を削除しました。";
 
 /* Label for the 'member requests' mode of the 'group requests and invites' view. */
 "GROUP_REQUESTS_AND_INVITES_VIEW_MEMBER_REQUESTS_MODE" = "メンバー申請";
@@ -1937,22 +2117,22 @@
 "GROUP_UPDATED" = "グループが更新されました。";
 
 /* Message indicating that the group's avatar was removed. */
-"GROUP_UPDATED_AVATAR_REMOVED" = "グループのアイコンを削除しました。";
+"GROUP_UPDATED_AVATAR_REMOVED" = "グループアイコンが削除されました。";
 
 /* Message indicating that the group's avatar was removed. */
-"GROUP_UPDATED_AVATAR_REMOVED_BY_LOCAL_USER" = "写真を削除しました。";
+"GROUP_UPDATED_AVATAR_REMOVED_BY_LOCAL_USER" = "アイコンを削除しました。";
 
 /* Message indicating that the group's avatar was removed by a remote user. Embeds {{user who removed the avatar}}. */
-"GROUP_UPDATED_AVATAR_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ が写真を削除しました。";
+"GROUP_UPDATED_AVATAR_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ がアイコンを削除しました。";
 
 /* Message indicating that the group's avatar was changed. */
-"GROUP_UPDATED_AVATAR_UPDATED" = "グループのアイコンを更新しました。";
+"GROUP_UPDATED_AVATAR_UPDATED" = "グループアイコンが更新されました。";
 
 /* Message indicating that the group's avatar was changed. */
-"GROUP_UPDATED_AVATAR_UPDATED_BY_LOCAL_USER" = "あなたがグループ写真を更新しました。";
+"GROUP_UPDATED_AVATAR_UPDATED_BY_LOCAL_USER" = "アイコンを更新しました。";
 
 /* Message indicating that the group's avatar was changed by a remote user. Embeds {{user who changed the avatar}}. */
-"GROUP_UPDATED_AVATAR_UPDATED_BY_REMOTE_USER_FORMAT" = "%@ がグループ写真を更新しました。";
+"GROUP_UPDATED_AVATAR_UPDATED_BY_REMOTE_USER_FORMAT" = "%@ がアイコンを更新しました。";
 
 /* Info message indicating that the group was updated by the local user. */
 "GROUP_UPDATED_BY_LOCAL_USER" = "グループを更新しました。";
@@ -1961,43 +2141,67 @@
 "GROUP_UPDATED_BY_REMOTE_USER_FORMAT" = "%@ がグループを更新しました。";
 
 /* Message indicating that the group's name was removed. */
-"GROUP_UPDATED_NAME_REMOVED" = "グループ名は削除されました。";
+"GROUP_UPDATED_NAME_REMOVED" = "グループ名が削除されました。";
 
 /* Message indicating that the group's name was removed by the local user. */
 "GROUP_UPDATED_NAME_REMOVED_BY_LOCAL_USER" = "グループ名を削除しました。";
 
 /* Message indicating that the group's name was removed by a remote user. Embeds {{user who removed the name}}. */
-"GROUP_UPDATED_NAME_REMOVED_BY_REMOTE_USER_FORMAT" = "%@はグループ名を削除しました。";
+"GROUP_UPDATED_NAME_REMOVED_BY_REMOTE_USER_FORMAT" = "%@ がグループ名を削除しました。";
 
 /* Message indicating that the group's name was changed by the local user. Embeds {{new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_BY_LOCAL_USER_FORMAT" = "グループ名を「%@」へ変更しました。";
 
 /* Message indicating that the group's name was changed by a remote user. Embeds {{ %1$@ user who changed the name, %2$@ new group name}}. */
-"GROUP_UPDATED_NAME_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@はグループ名を「%2$@」へ変更しました。";
+"GROUP_UPDATED_NAME_UPDATED_BY_REMOTE_USER_FORMAT" = "%1$@ がグループ名を「%2$@」へ変更しました。";
 
 /* Message indicating that the group's name was changed. Embeds {{new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_FORMAT" = "グループ名が「%@」になりました。";
 
+/* Message indicating that the group was migrated. */
+"GROUP_WAS_MIGRATED" = "このグループは新しいグループにアップデートされました。";
+
+/* Message indicating that 1 user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_1" = "新しいグループに追加できなかったメンバーが、グループから削除されました。";
+
+/* Message indicating that the local user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_LOCAL_USER" = "あなたは新しいグループに追加できなかっため、グループから削除されました。";
+
+/* Message indicating that N users were dropped while migrating the group. Embeds {{ the number of dropped users }}. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_N_FORMAT" = "%@人のメンバーが新しいグループに追加できなかっため、グループから削除されました。";
+
+/* Message indicating that 1 user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_1" = "新しいグループに追加できなかったメンバーに、招待を送りました。";
+
+/* Message indicating that the local user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_LOCAL_USER" = "新しいグループに追加できなかったあなたに、招待を送りました。";
+
+/* Message indicating that N users were invited while migrating the group. Embeds {{ the number of invited users }}. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_N_FORMAT" = "新しいグループに追加できなかった%@人のメンバーに、招待を送りました。";
+
 /* Message indicating that the local user left the group. */
-"GROUP_YOU_LEFT" = "グループを離れました。";
+"GROUP_YOU_LEFT" = "グループを抜けました。";
 
 /* Message for the 'can't replace group admin' alert. */
-"GROUPS_CANT_REPLACE_ADMIN_ALERT_MESSAGE" = "去る前に、このグループの新しい管理者を選択してください。";
+"GROUPS_CANT_REPLACE_ADMIN_ALERT_MESSAGE" = "グループから抜ける前に、新しい管理者を選択してください。";
 
 /* Error message indicating that a member can't be added to a group because they are already in the group. */
 "GROUPS_ERROR_MEMBER_ALREADY_IN_GROUP" = "ユーザはすでにグループにいます。";
 
 /* Error indicating that an error occurred while accepting an invite. */
-"GROUPS_INVITE_ACCEPT_INVITE_FAILED" = "招待を承認できませんでした。";
+"GROUPS_INVITE_ACCEPT_INVITE_FAILED" = "招待を受け入れられませんでした。";
 
 /* Label for 'block group' button in group invite view. */
-"GROUPS_INVITE_BLOCK_GROUP" = "グループをブロック";
+"GROUPS_INVITE_BLOCK_GROUP" = "グループをブロックする";
 
 /* Label for 'block group and inviter' button in group invite view. Embeds {{name of user who invited you}}. */
-"GROUPS_INVITE_BLOCK_GROUP_AND_INVITER_FORMAT" = "グループと%@をブロック";
+"GROUPS_INVITE_BLOCK_GROUP_AND_INVITER_FORMAT" = "グループと %@ をブロックする";
 
 /* Label for 'block inviter' button in group invite view. Embeds {{name of user who invited you}}. */
-"GROUPS_INVITE_BLOCK_INVITER_FORMAT" = "%@をブロック";
+"GROUPS_INVITE_BLOCK_INVITER_FORMAT" = "%@ をブロックする";
+
+/* Label for 'invite friends to group' button. */
+"GROUPS_INVITE_FRIENDS_BUTTON" = "友達を招待する";
 
 /* Body text for the first section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "レガシーグループは新グループとは互換性がなく、管理機能や詳細なグループ内の更新情報などの機能を使用できません。";
@@ -2006,16 +2210,43 @@
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_TITLE" = "レガシーグループとは？";
 
 /* Body text for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "レガシーグループを新グループに変換することはできませんが、同じメンバーで新グループを作成できます。";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "レガシーグループは新しいグループにアップグレードできませんが、メンバーが最新バージョンのSignalを使用していれば、同じメンバーで新しいグループを作成できます。\n\nSignalは、レガシーグループをアップデートする方法を提供する予定です。";
 
 /* Title for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "どうすれば新グループを使えますか？";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "レガシーグループをアップグレードできますか？";
 
 /* Body text for the third section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_3_BODY" = "新グループを作成するには、すべてのメンバーが最新バージョンのSignalにアップデートしてください。";
 
 /* Title for the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_TITLE" = "レガシーグループと新グループ";
+
+/* Format for indicator that a group cannot be used until it is migrated. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_BLOCKING_MIGRATION_FORMAT" = "@メンションや管理者などの機能を有効にするため、グループをアップグレードしてください。名前や写真を共有していないメンバーは、改めてこのグループに招待されます。%@。";
+
+/* Title for the 'can't upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TITLE" = "新しいグループにアップグレードできません";
+
+/* Text indicating that a legacy group can't be upgraded because it has too many members. Embeds {{ The maximum number of members allowed in a group. }}. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TOO_MANY_MEMBERS_FORMAT" = "このグループは大きすぎるため、新しいグループにアップグレードできません。グループの上限は%@人です。";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_1" = "グループメンバー全員が新しいグループに対応したバージョンのSignalを使っている場合、このグループはアップグレードされます。";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_2" = "すべてのメッセージ履歴とメディアは、アップグレード後も維持されます。";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_1" = "古いバージョンのSignalを使っているメンバーが1人いるため、グループを作成できません。当該メンバーのSignalをアップデートするか、メンバーから外せば、新しいスタイルのグループを作成できます。";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. Embeds {{ the number of members which do not support v2 groups. }} */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_N_FORMAT" = "古いバージョンのSignalを使っているメンバーが%@人いるため、グループを作成できません。当該メンバーのSignalをアップデートするか、メンバーから外せば、新しいスタイルのグループを作成できます。";
+
+/* Indicates that a new group cannot be created because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_1" = "古いバージョンのSignalを使っているメンバーが1人いるため、グループを作成できません。当該メンバーのSignalをアップデートするか、メンバーから外せば、新しいスタイルのグループを作成できます。%@";
+
+/* Indicates that a new group cannot be created because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_N" = "古いバージョンのSignalを使っているメンバーが%1$@人いるため、グループを作成できません。当該メンバーのSignalをアップデートするか、メンバーから外せば、新しいスタイルのグループを作成できます。%2$@";
 
 /* Title for alert that explains that a new group will be a legacy group because 1 member does not support v2 groups. */
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_1" = "古いバージョンのSignalを使用しているメンバーが1人いるため、レガシーグループが作成されます。当該メンバーのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。";
@@ -2024,28 +2255,136 @@
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_N_FORMAT" = "古いバージョンのSignalを使用しているメンバーが%@人いるため、レガシーグループが作成されます。当該メンバーのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。";
 
 /* Indicates that a new group will be a legacy group because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_1" = "新グループをサポートしないメンバーが1人いるため、このグループはレガシーグループになります。%@";
+"GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_1" = "新しいグループをサポートしないメンバーが1人いるため、このグループはレガシーグループになります。%@";
 
 /* Indicates that a new group will be a legacy group because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "新グループをサポートしないメンバーが%1$@人いるため、このグループはレガシーグループになります。%2$@";
+"GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "新しいグループをサポートしないメンバーが%1$@人いるため、このグループはレガシーグループになります。%2$@";
 
 /* Brief explanation of legacy groups. Embeds {{ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "これはレガシーグループです。グループの管理機能などの新機能を利用するには、新グループを作成してください。%@";
+"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "これはレガシーグループです。グループ管理者などの新機能を利用するには、新しいグループを作成してください。%@";
+
+/* Indicates that a legacy group can't be upgraded because some members can't be migrated. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_MEMBERS_CANT_BE_MIGRATED_FORMAT" = "このレガシーグループは、まだ新しいグループにアップグレードできません。%@。";
+
+/* Indicates that a legacy group can't be upgraded because it has too many members. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_TOO_MANY_MEMBERS_FORMAT" = "このレガシーグループは大きすぎるため、新しいグループにアップグレードできません。%@。";
+
+/* Explanation of legacy groups. Embeds {{ an \"upgrade\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_WITH_UPGRADE_OFFER_FORMAT" = "これはレガシーグループです。@メンションや管理者などの新機能を利用するには、%@。";
+
+/* Title for the the 'dropped group member' banner. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_1" = "1人のメンバーを新しいグループに再追加できませんでした。追加しますか？";
+
+/* Format for the title for the the 'dropped group members' banner. Embeds: {{ the number of dropped group members }}. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_N_FORMAT" = "%@人のメンバーが新しいグループに追加できませんでした。追加しますか？";
 
 /* Label indicating a legacy group. */
 "GROUPS_LEGACY_GROUP_INDICATOR" = "レガシーグループ";
 
-/* A \"learn more\" link with more information about legacy groups. */
-"GROUPS_LEGACY_GROUP_LEARN_MORE_LINK" = "詳細を見る";
+/* Indicates that the local user needs to accept an invitation to rejoin the group after a group migration. */
+"GROUPS_LEGACY_GROUP_LOCAL_USER_INVITED" = "あなたがグループへの招待を受け入れるまで、グループメッセージは受信できません:";
+
+/* Label for the 'migrate' button in the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_MIGRATE_BUTTON" = "アップグレードする";
+
+/* Title for the the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_OFFER_BANNER" = "@メンションや管理者などの新機能を利用するには、このグループをアップグレードしてください。";
+
+/* Title for the 'migrated group' alert view. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_ALERT_TITLE" = "新しいグループとは？";
+
+/* Explanation of group migration for a migrated group in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_DESCRIPTION" = "すべてのメッセージ履歴とメディアは、アップグレード前から維持されています。";
+
+/* Explanation of new groups in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_NEW_GROUP_DESCRIPTION" = "新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。";
+
+/* Title for the 'new groups' alert view. */
+"GROUPS_LEGACY_GROUP_NEW_GROUPS_ALERT_TITLE" = "新しいグループ";
+
+/* Label for the 'add members' button in the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ADD_MEMBERS_BUTTON" = "メンバーを追加する";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_1" = "メンバーを追加しますか？";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_N" = "メンバーを追加しますか？";
+
+/* Label for the 'add members' button in the 're-add dropped groups members' banner. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_BUTTON" = "メンバーを追加する";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_1" = "以下のメンバーは、新しいグループにアップグレードした際に、自動で追加できませんでした:";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_N" = "以下のメンバーは、新しいグループにアップグレードした際に、自動で追加できませんでした:";
+
+/* Body text for the second section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_2_BODY" = "すべてのメッセージ履歴とメディアは、アップグレード前から維持されています。";
+
+/* Body text for the 'dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_1" = "このメンバーはグループから削除されました。アップグレードするまで再参加できません:";
+
+/* Body text for the 'dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_N" = "このメンバーはグループから削除されました。アップグレードするまで再参加できません:";
+
+/* Body text for the 'invites member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_1" = "このメンバーがグループへの招待を受け入れるまで、グループメッセージは受信できません:";
+
+/* Body text for the 'invites members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_N" = "このメンバーがグループへの招待を受け入れるまで、グループメッセージは受信できません:";
+
+/* Body text for the 'possibly dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_1" = "このメンバーは新しいグループに参加できないため、グループから削除されます:";
+
+/* Body text for the 'possibly dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_N" = "以下のメンバーは新しいグループに参加できないため、グループから削除されます:";
+
+/* Title for the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_TITLE" = "新しいグループにアップグレードする";
+
+/* Label for the 'upgrade this group' button in the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_BUTTON" = "このグループをアップグレード";
+
+/* Message for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE" = "このグループは新しいグループにアップデートできませんでした。";
+
+/* Message for error alert indicating the group update failed due to network connectivity. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE_NETWORK" = "インターネットに接続していないため、このグループを新しいグループにアップグレードできませんでした。";
+
+/* Title for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_TITLE" = "アップグレードが完了しませんでした";
+
+/* Message indicating the group update succeeded. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_SUCCEEDED" = "新しいグループにアップグレードしました。";
+
+/* An \"upgrade\" link for upgrading legacy groups to new groups. */
+"GROUPS_LEGACY_GROUP_UPGRADE_LINK" = "このグループをアップグレード";
 
 /* Message for the 'replace group admin' alert. */
-"GROUPS_REPLACE_ADMIN_ALERT_MESSAGE" = "去る前に、このグループの新しい管理者を選択してください。";
+"GROUPS_REPLACE_ADMIN_ALERT_MESSAGE" = "グループから抜ける前に、新しい管理者を選択してください。";
 
 /* Title for the 'replace group admin' alert. */
-"GROUPS_REPLACE_ADMIN_ALERT_TITLE" = "新しい管理者を選択";
+"GROUPS_REPLACE_ADMIN_ALERT_TITLE" = "新管理者を選択してください";
 
 /* Label for the 'replace group admin' button. */
-"GROUPS_REPLACE_ADMIN_BUTTON" = "新しい管理者を選択";
+"GROUPS_REPLACE_ADMIN_BUTTON" = "新管理者を選択する";
+
+/* Format for the alert warning the user that they've reached the recommended limit on how many members can be in a group when creating a new group. Embeds {{ the maximum number of recommended members in a group }}. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_MESSAGE_FORMAT" = "Signalグループは%@人以下が最適です。これよりメンバーを追加すると、メッセージの送受信で遅延が発生します。";
+
+/* Title for alert warning the user that they've reached the recommended limit on how many members can be in a group. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_TITLE" = "推奨されるメンバー数の上限に達しました";
+
+/* Message asking the user to confirm that they want to add a member to the group. */
+"GROUPS_TOO_MANY_MEMBERS_CONFIRM" = "メンバーを追加しますか？";
+
+/* Label for button that lets the user view the request to join the group. */
+"GROUPS_VIEW_REQUEST_BUTTON" = "申請を見る";
+
+/* Label for button that lets the user view the requests to join the group. */
+"GROUPS_VIEW_REQUESTS_BUTTON" = "申請を見る";
 
 /* Help item allowing the user to file a support request */
 "HELP_CONTACT_US" = "お問い合わせ";
@@ -2054,7 +2393,7 @@
 "HELP_SUPPORT_CENTER" = "サポートセンター";
 
 /* Label for 'archived conversations' button. */
-"HOME_VIEW_ARCHIVED_CONVERSATIONS" = "保存された会話";
+"HOME_VIEW_ARCHIVED_CONVERSATIONS" = "アーカイブ済みのチャット";
 
 /* Table cell subtitle label for a conversation the user has blocked. */
 "HOME_VIEW_BLOCKED_CONVERSATION" = "ブロック済み";
@@ -2069,22 +2408,22 @@
 "HOME_VIEW_FIRST_CONVERSATION_OFFER_1_CONTACT_FORMAT" = "連絡先には、すでにSignalを使用中の人がいます: %@";
 
 /* Format string for a label offering to start a new conversation with your contacts, if you have 2 Signal contacts.  Embeds {{The names of 2 of your Signal contacts}}. */
-"HOME_VIEW_FIRST_CONVERSATION_OFFER_2_CONTACTS_FORMAT" = "連絡先には、すでにSignalを使用中の人がいます: %@と%@";
+"HOME_VIEW_FIRST_CONVERSATION_OFFER_2_CONTACTS_FORMAT" = "連絡先には、すでにSignalを使用中の人がいます: %@, %@";
 
 /* Format string for a label offering to start a new conversation with your contacts, if you have at least 3 Signal contacts.  Embeds {{The names of 3 of your Signal contacts}}. */
-"HOME_VIEW_FIRST_CONVERSATION_OFFER_3_CONTACTS_FORMAT" = "連絡先には、すでにSignalを使用中の人がいます: %@と%@と%@";
+"HOME_VIEW_FIRST_CONVERSATION_OFFER_3_CONTACTS_FORMAT" = "連絡先には、すでにSignalを使用中の人がいます: %@, %@, %@";
 
 /* A label offering to start a new conversation with your contacts, if you have no Signal contacts. */
-"HOME_VIEW_FIRST_CONVERSATION_OFFER_NO_CONTACTS" = "最初の会話を始めてみましょう。";
+"HOME_VIEW_FIRST_CONVERSATION_OFFER_NO_CONTACTS" = "最初のチャットを始めましょう。";
 
 /* Table cell subtitle label for a group the user has been added to. {Embeds inviter name} */
-"HOME_VIEW_MESSAGE_REQUEST_ADDED_TO_GROUP_FORMAT" = "%@があなたをグループに追加しました";
+"HOME_VIEW_MESSAGE_REQUEST_ADDED_TO_GROUP_FORMAT" = "%@ があなたをグループに追加しました";
 
 /* Table cell subtitle label for a conversation the user has not accepted. */
 "HOME_VIEW_MESSAGE_REQUEST_CONVERSATION" = "メッセージリクエスト";
 
 /* Format string when search returns no results. Embeds {{search term}} */
-"HOME_VIEW_SEARCH_NO_RESULTS_FORMAT" = "「%@」について何も見つかりませんでした";
+"HOME_VIEW_SEARCH_NO_RESULTS_FORMAT" = "「%@」の検索結果はありません";
 
 /* Title for the conversation list's 'archive' mode. */
 "HOME_VIEW_TITLE_ARCHIVE" = "アーカイブ";
@@ -2093,22 +2432,31 @@
 "HOME_VIEW_TITLE_INBOX" = "Signal";
 
 /* The image editor hint that you can draw blur */
-"IMAGE_EDITOR_BLUR_HINT" = "画面のどこかを選んでぼかす";
+"IMAGE_EDITOR_BLUR_HINT" = "ぼかす場所を選択してください";
 
 /* The image editor setting to blur faces */
 "IMAGE_EDITOR_BLUR_SETTING" = "顔をぼかす";
 
 /* A toast indicating that you can blur more faces after detection */
-"IMAGE_EDITOR_BLUR_TOAST" = "顔や他の部分をもっとぼかす";
+"IMAGE_EDITOR_BLUR_TOAST" = "ぼかす顔や場所を追加できます";
 
 /* Momentarily shown to the user when attempting to select more images than is allowed. Embeds {{max number of items}} that can be shared. */
 "IMAGE_PICKER_CAN_SELECT_NO_MORE_TOAST_FORMAT" = "画像の共有は%@点までです。";
+
+/* Button that will present a view for the user to change the photos Signal has access to. */
+"IMAGE_PICKER_CHANGE_PHOTOS" = "写真を変更";
+
+/* Explanation showing that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_EXPLANATION" = "写真にアクセスできるように設定でSignalにアクセス権限を与えます";
+
+/* Title show that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_TITLE" = "写真が見えませんか？";
 
 /* alert title */
 "IMAGE_PICKER_FAILED_TO_PROCESS_ATTACHMENTS" = "添付ファイルを選択できませんでした。";
 
 /* Call setup status label */
-"IN_CALL_CONNECTING" = "接続しています...";
+"IN_CALL_CONNECTING" = "接続しています…";
 
 /* Call screen label when call was canceled on this device because the call recipient answered on another device. */
 "IN_CALL_ENDED_BECAUSE_ANSWERED_ELSEWHERE" = "他のデバイスから応答がありました。";
@@ -2120,7 +2468,7 @@
 "IN_CALL_ENDED_BECAUSE_DECLINED_ELSEWHERE" = "他のデバイスで拒否しました。";
 
 /* Call setup status label */
-"IN_CALL_RECONNECTING" = "再接続しています...";
+"IN_CALL_RECONNECTING" = "再接続しています…";
 
 /* Call setup status label */
 "IN_CALL_RINGING" = "呼び出しています…";
@@ -2138,16 +2486,16 @@
 "IN_CALL_TERMINATED" = "通話が終了しました。";
 
 /* Label reminding the user that they are in archive mode. */
-"INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "この会話は保存されます。新しいメッセージが届いた場合だけ、受信箱に表示されます。";
+"INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "これらのチャットはアーカイブされ、新しいメッセージを受信した場合のみ受信トレイに表示されます。";
 
 /* Message shown in the conversation list when the inbox is empty. */
-"INBOX_VIEW_EMPTY_INBOX" = "友達にメッセージを送って始めよう！";
+"INBOX_VIEW_EMPTY_INBOX" = "まだチャットがありません。\n友達にメッセージを送って始めましょう。";
 
 /* info message text in conversation view. {embeds callee name} */
 "INCOMING_CALL_FORMAT" = "%@ から着信";
 
 /* Shown in inbox and conversation after syncing as a placeholder indicating why your message history is missing. */
-"INFO_MESSAGE_SYNCED_THREAD" = "携帯電話やiPadから同期したメッセージを送受信できます。\nセキュリティのため、会話履歴は転送されません。";
+"INFO_MESSAGE_SYNCED_THREAD" = "携帯電話やiPadから同期したメッセージを送受信することができます。セキュリティのため、チャット履歴は新たにリンクされた端末には転送されません。";
 
 /* Shown in inbox and conversation when a user joins Signal, embeds the new user's {{contact name}} */
 "INFO_MESSAGE_USER_JOINED_SIGNAL_BODY_FORMAT" = "%@ がSignalに参加！";
@@ -2179,6 +2527,9 @@
 /* Alert warning that sending an invite to multiple users will create a group message whose recipients will be able to see each other. */
 "INVITE_WARNING_MULTIPLE_INVITES_BY_TEXT" = "複数のユーザを同時に招待すると、グループメッセージが開始され、招待先は全員で共有されます。";
 
+/* Button to join an active group call */
+"JOIN_CALL_PILL_BUTTON" = "参加する";
+
 /* Slider label embeds {{TIME_AMOUNT}}, e.g. '2 hours'. See *_TIME_AMOUNT strings for examples. */
 "KEEP_MESSAGES_DURATION" = "メッセージは%@後に消えます。";
 
@@ -2189,13 +2540,13 @@
 "KEY_COMMAND_ALL_MEDIA" = "すべてのメディア";
 
 /* A keyboard command to archive the current coversation. */
-"KEY_COMMAND_ARCHIVE" = "会話を保存する";
+"KEY_COMMAND_ARCHIVE" = "チャットをアーカイブ";
 
 /* A keyboard command to open the current conversation's attachment picker. */
 "KEY_COMMAND_ATTACHMENTS" = "添付ファイルを表示";
 
 /* A keyboard command to open the current conversation's settings. */
-"KEY_COMMAND_CONVERSATION_INFO" = "会話情報";
+"KEY_COMMAND_CONVERSATION_INFO" = "チャットの設定";
 
 /* A keyboard command to focus the current conversation's input field. */
 "KEY_COMMAND_FOCUS_COMPOSER" = "入力バーにフォーカス";
@@ -2210,10 +2561,10 @@
 "KEY_COMMAND_NEW_MESSAGE" = "新規メッセージ";
 
 /* A keyboard command to jump to the next conversation in the list. */
-"KEY_COMMAND_NEXT_CONVERSATION" = "次の会話";
+"KEY_COMMAND_NEXT_CONVERSATION" = "次のチャット";
 
 /* A keyboard command to jump to the previous conversation in the list. */
-"KEY_COMMAND_PREVIOUS_CONVERSATION" = "前の会話";
+"KEY_COMMAND_PREVIOUS_CONVERSATION" = "前のチャット";
 
 /* A keyboard command to begin a search on the conversation list. */
 "KEY_COMMAND_SEARCH" = "検索";
@@ -2240,13 +2591,13 @@
 "LEAVE_GROUP_FAILED" = "グループ退出でエラーが発生しました。";
 
 /* report an invalid linking code */
-"LINK_DEVICE_INVALID_CODE_BODY" = "このQRコードは無効です。リンクしたいデバイスに表示されているQRコードか確認してください。";
+"LINK_DEVICE_INVALID_CODE_BODY" = "このQRコードは無効です。リンクしたい端末に表示されているQRコードであるか確認してください。";
 
 /* report an invalid linking code */
 "LINK_DEVICE_INVALID_CODE_TITLE" = "端末のリンクに失敗";
 
 /* confirm the users intent to link a new device */
-"LINK_DEVICE_PERMISSION_ALERT_BODY" = "この端末で、あなたのグループと通話相手、会話、メッセージにアクセスできるようになります。";
+"LINK_DEVICE_PERMISSION_ALERT_BODY" = "この端末は、あなたのグループや連絡先を確認したり、チャットにアクセスしたり、自分の名前でメッセージを送信することができるようになります。";
 
 /* confirm the users intent to link a new device */
 "LINK_DEVICE_PERMISSION_ALERT_TITLE" = "この端末をリンクしますか？";
@@ -2270,7 +2621,7 @@
 "LINKED_DEVICES_TITLE" = "リンク済み端末";
 
 /* Alert Title */
-"LINKING_DEVICE_FAILED_TITLE" = "端末のリンクに失敗";
+"LINKING_DEVICE_FAILED_TITLE" = "端末のリンクに失敗しました";
 
 /* Body for link previews megaphone */
 "LINKPREVIEWS_MEGAPHONE_BODY" = "すべてのサイトのリンクプレビューが生成されます。";
@@ -2280,6 +2631,24 @@
 
 /* Title for link previews megaphone */
 "LINKPREVIEWS_MEGAPHONE_TITLE" = "どんなリンクもプレビュー";
+
+/* Body for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_BODY" = "Signalのアカウントを移動するには、両方の端末をLANに接続する必要があります。";
+
+/* A button asking the user if they need further help getting their transfer working. */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_NEED_HELP" = "お困りですか？";
+
+/* First step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_ONE" = "両方の端末で設定を開いてください";
+
+/* Third step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_THREE" = "LANを有効にしてください";
+
+/* Second step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_TWO" = "Signalに移ってください";
+
+/* Title for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_TITLE" = "LAN接続を有効にしてください";
 
 /* A string indicating that the user can search for a location */
 "LOCATION_PICKER_SEARCH_PLACEHOLDER" = "名前か住所で検索";
@@ -2293,6 +2662,9 @@
 /* Title for the 'long text message' view. */
 "LONG_TEXT_VIEW_TITLE" = "メッセージ";
 
+/* A string describing that the user has many groups in common with another user. Embeds {{common group count}} */
+"MANY_GROUPS_IN_COMMON" = "共通のグループは%@件あります";
+
 /* nav bar button item */
 "MEDIA_DETAIL_VIEW_ALL_MEDIA_BUTTON" = "すべてのメディア";
 
@@ -2300,13 +2672,19 @@
 "MEDIA_FROM_CAMERA_BUTTON" = "カメラ";
 
 /* media picker option to choose from library */
-"MEDIA_FROM_LIBRARY_BUTTON" = "写真を選択";
+"MEDIA_FROM_LIBRARY_BUTTON" = "写真ライブラリ";
 
 /* Confirmation button text to delete selected media from the gallery, embeds {{number of messages}} */
-"MEDIA_GALLERY_DELETE_MULTIPLE_MESSAGES_FORMAT" = "%d個のメッセージを削除";
+"MEDIA_GALLERY_DELETE_MULTIPLE_MESSAGES_FORMAT" = "%d件のメッセージを削除する";
 
 /* Confirmation button text to delete selected media message from the gallery */
-"MEDIA_GALLERY_DELETE_SINGLE_MESSAGE" = "メッセージを削除";
+"MEDIA_GALLERY_DELETE_SINGLE_MESSAGE" = "メッセージを削除する";
+
+/* Format for an indicator of the number of image items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_IMAGE_COUNT_FORMAT" = "写真 %@件";
+
+/* Format for an indicator of the number of image or video items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_MIXED_COUNT_FORMAT" = "メディア %@件";
 
 /* Format for the 'more items' indicator for media galleries. Embeds {{the number of additional items}}. */
 "MEDIA_GALLERY_MORE_ITEMS_FORMAT" = "+%@";
@@ -2324,22 +2702,22 @@
 "MEGAPHONE_WILL_REMIND_LATER" = "あとで通知します。";
 
 /* Action sheet button title */
-"MESSAGE_ACTION_COPY_TEXT" = "メッセージ内容をコピー";
+"MESSAGE_ACTION_COPY_TEXT" = "メッセージテキストをコピー";
 
 /* The title for the action that deletes a message for all users in the conversation. */
-"MESSAGE_ACTION_DELETE_FOR_EVERYONE" = "すべて削除";
+"MESSAGE_ACTION_DELETE_FOR_EVERYONE" = "全員分を削除";
 
 /* A one-time confirmation that you want to delete for everyone */
-"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "このメッセージは、参加者全員から永久に削除されます。参加者には、あなたがメッセージを削除したことがわかります。";
+"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "このメッセージは、チャットの参加者全員が最新バージョンのSignalを使用している場合、全員で削除されます。参加者には、あなたがメッセージを削除したことがわかります。";
 
 /* The title for the action sheet asking who the user wants to delete the message for. */
-"MESSAGE_ACTION_DELETE_FOR_TITLE" = "このメッセージをどの参加者の会話から削除しますか?";
+"MESSAGE_ACTION_DELETE_FOR_TITLE" = "このメッセージを誰から削除しますか？";
 
 /* The title for the action that deletes a message for the local user only. */
 "MESSAGE_ACTION_DELETE_FOR_YOU" = "自分の分だけ削除";
 
 /* Action sheet button title */
-"MESSAGE_ACTION_DELETE_MESSAGE" = "このメッセージの消去";
+"MESSAGE_ACTION_DELETE_MESSAGE" = "このメッセージを削除";
 
 /* accessibility label */
 "MESSAGE_ACTION_DELETE_SELECTED_MESSAGES" = "選択したメッセージを削除";
@@ -2357,13 +2735,13 @@
 "MESSAGE_ACTION_SELECT_MESSAGE" = "複数を選択";
 
 /* Action sheet button title */
-"MESSAGE_ACTION_SHARE_MEDIA" = "共有";
+"MESSAGE_ACTION_SHARE_MEDIA" = "メディアを共有";
 
 /* Title for the 'message approval' dialog. */
 "MESSAGE_APPROVAL_DIALOG_TITLE" = "メッセージ";
 
 /* Title for the compose view. */
-"MESSAGE_COMPOSEVIEW_TITLE" = "新しいメッセージ";
+"MESSAGE_COMPOSEVIEW_TITLE" = "新規メッセージ";
 
 /* Label for file size of attachments in the 'message metadata' view. */
 "MESSAGE_METADATA_VIEW_ATTACHMENT_FILE_SIZE" = "ファイルサイズ";
@@ -2423,67 +2801,85 @@
 "MESSAGE_REQUEST_BLOCK_CONVERSATION_TITLE_FORMAT" = "%@ をブロックしますか？";
 
 /* Action sheet message to confirm blocking a group via a message request. */
-"MESSAGE_REQUEST_BLOCK_GROUP_MESSAGE" = "このグループから退出して、今後メッセージや更新を受信しなくなります。";
+"MESSAGE_REQUEST_BLOCK_GROUP_MESSAGE" = "このグループから抜けて、メッセージや更新を受信しなくなります。";
 
 /* Action sheet title to confirm blocking a group via a message request. Embeds {{group name}} */
-"MESSAGE_REQUEST_BLOCK_GROUP_TITLE_FORMAT" = "%@から退出し、ブロックしますか?";
+"MESSAGE_REQUEST_BLOCK_GROUP_TITLE_FORMAT" = "%@ をブロックして抜けますか？";
 
 /* Action sheet action to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_ACTION" = "削除";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_ACTION" = "削除する";
 
 /* Action sheet message to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_MESSAGE" = "この会話はあなたの全端末から削除されます。";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_MESSAGE" = "このチャットは、あなたのすべての端末から削除されます。";
 
 /* Action sheet title to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_TITLE" = "会話を削除しますか？";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_TITLE" = "チャットを削除しますか？";
 
 /* Action sheet action to confirm deleting a group via a message request. */
-"MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_ACTION" = "退出して削除";
+"MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_ACTION" = "削除して抜ける";
 
 /* Action sheet message to confirm deleting a group via a message request. */
-"MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_MESSAGE" = "このグループから退出し、すべての端末から削除します。";
+"MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_MESSAGE" = "このグループから抜けて、すべての端末から削除します。";
 
 /* Action sheet title to confirm deleting a group via a message request. */
-"MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_TITLE" = "グループから退出し、削除しますか?";
+"MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_TITLE" = "削除してグループから抜けますか？";
+
+/* Banner label notifying user that a new message is from a user with the same name as an existing contact */
+"MESSAGE_REQUEST_NAME_COLLISON_BANNER_LABEL" = "申請相手をチェックしてください。Signalには同じ名前の連絡先があります。";
+
+/* A header string above a known contact's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_CONTACT_HEADER" = "あなたの連絡先";
+
+/* A header string informing the user about name collisions in a message request */
+"MESSAGE_REQUEST_NAME_COLLISON_HEADER" = "この申請者が誰であるか不確かな場合、以下の連絡先を確認して対応してください。";
+
+/* A header string above the requester's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_REQUESTER_HEADER" = "申請";
+
+/* A title string for a view that allows a user to review name collisions for an incoming message request */
+"MESSAGE_REQUEST_NAME_COLLISON_TITLE" = "申請の確認";
+
+/* A button that updates a known contact's information to resolve a name collision */
+"MESSAGE_REQUEST_NAME_COLLISON_UPDATE_CONTACT_ACTION" = "連絡先を更新する";
+
+/* Button to allow user to review known name collisions with an incoming message request */
+"MESSAGE_REQUEST_REVIEW_NAME_COLLISION" = "申請を確認する";
 
 /* A button used to accept a user on an incoming message request. */
-"MESSAGE_REQUEST_VIEW_ACCEPT_BUTTON" = "承認";
+"MESSAGE_REQUEST_VIEW_ACCEPT_BUTTON" = "承認する";
 
 /* A button used to block a user on an incoming message request. */
-"MESSAGE_REQUEST_VIEW_BLOCK_BUTTON" = "ブロック";
+"MESSAGE_REQUEST_VIEW_BLOCK_BUTTON" = "ブロックする";
 
 /* A prompt notifying that the user must unblock this conversation to continue. Embeds {{contact name}}. */
 "MESSAGE_REQUEST_VIEW_BLOCKED_CONTACT_PROMPT_FORMAT" = "%@ があなたにメッセージを送り、名前や写真を共有する許可をしますか? ブロックを解除するまでメッセージを受け取れません。";
 
 /* A prompt notifying that the user must unblock this group to continue. */
-"MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT" = "このグループのブロックを解除し、名前やプロフィール画像を共有することを許可しますか? ブロックを解除するまでメッセージを受け取れません。";
+"MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT" = "このグループのブロックを解除し、あなたの名前と写真を共有しますか？ブロックを解除するまでメッセージは届きません。";
 
 /* A prompt notifying that the user must unblock this group to continue. */
 "MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT_V2" = "このグループのブロックを解除しますか? ブロックを解除するまで、あなたがメッセージを見たことはグループの他のメンバーにはわかりません。";
 
+/* A button used to continue a conversation and share your profile. */
+"MESSAGE_REQUEST_VIEW_CONTINUE_BUTTON" = "続ける";
+
 /* incoming message request button text which deletes a conversation */
-"MESSAGE_REQUEST_VIEW_DELETE_BUTTON" = "削除";
+"MESSAGE_REQUEST_VIEW_DELETE_BUTTON" = "削除する";
 
 /* A prompt notifying that the user must share their profile with this conversation. Embeds {{contact name}}. */
-"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "%@と会話を続けるには、プロフィールを共有する必要があります。";
+"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "%@ とのチャットを継続して、名前と写真を共有しますか？";
 
 /* A prompt notifying that the user must share their profile with this group. */
-"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "このグループと会話を続けるには、プロフィールを共有する必要があります。";
-
-/* A prompt for the user to accept or decline an invite to a group. Embeds {{name of user who invited you}}. */
-"MESSAGE_REQUEST_VIEW_GROUP_INVITE_PROMPT_FORMAT" = "あなたは%@からこのグループへの招待を受けました。このメンバーのグループからのメッセージを受信しますか?";
+"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "このグループとのチャットを継続して、あなたの名前と画像をそのメンバーと共有しますか？";
 
 /* A prompt asking if the user wants to accept a conversation invite. Embeds {{contact name}}. */
-"MESSAGE_REQUEST_VIEW_NEW_CONTACT_PROMPT_FORMAT" = "%@ があなたにメッセージを送り、名前や写真を共有する許可をしますか? あなたが許可するまで、相手はあなたがメッセージを見たことを知りえません。";
+"MESSAGE_REQUEST_VIEW_NEW_CONTACT_PROMPT_FORMAT" = "%@ からメッセージを受信し、あなたの名前と画像を共有しますか？承認するまで、相手にはあなたがメッセージを見たことははわかりません。";
 
 /* A prompt asking if the user wants to accept a group invite. */
 "MESSAGE_REQUEST_VIEW_NEW_GROUP_PROMPT" = "このグループに参加し、名前やプロフィール画像を共有しますか? あなたが許可するまで、相手はあなたがメッセージを見たことを知りえません。";
 
 /* A prompt asking if the user wants to accept a group invite. */
 "MESSAGE_REQUEST_VIEW_NEW_GROUP_PROMPT_V2" = "グループに参加しますか? 招待を受け入れるまで、あなたがメッセージを見たことはグループの他のメンバーにはわかりません。";
-
-/* A button used to share your profile with an existing thread. */
-"MESSAGE_REQUEST_VIEW_SHARE_PROFILE_BUTTON" = "プロフィールを共有する";
 
 /* A button used to unlock a blocked conversation. */
 "MESSAGE_REQUEST_VIEW_UNBLOCK_BUTTON" = "ブロック解除";
@@ -2495,31 +2891,19 @@
 "MESSAGE_REQUESTS_CANCEL_REQUEST_CONFIRM_TITLE" = "グループ参加申請をキャンセルしますか？";
 
 /* Indicator that you have requested to join this group. */
-"MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "参加申請がグループ管理者に送信されました。応答があると通知されます。";
-
-/* Header for message requests splash screen */
-"MESSAGE_REQUESTS_NAMES_SPLASH_TITLE" = "メッセージリクエストの紹介";
-
-/* Button to start a create profile name flow from the one time splash screen that appears after upgrading */
-"MESSAGE_REQUESTS_SPLASH_ADD_PROFILE_NAME_BUTTON" = "プロフィール名を追加";
-
-/* Body text for message requests splash screen */
-"MESSAGE_REQUESTS_SPLASH_BODY" = "新しい会話を受け入れるか削除するかを選択できます。メッセージの送信者名は通知されます。";
-
-/* Toast indicating that a profile name has been created. */
-"MESSAGE_REQUESTS_SPLASH_MEGAPHONE_TOAST" = "プロフィール名を保存しました。";
+"MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "あなたの参加申請はグループ管理者に送信されました。応答があると通知されます。";
 
 /* message status for message delivered to their recipient. */
 "MESSAGE_STATUS_DELIVERED" = "配信済み";
 
 /* message status while message is downloading. */
-"MESSAGE_STATUS_DOWNLOADING" = "ダウンロード中";
+"MESSAGE_STATUS_DOWNLOADING" = "ダウンロードしています";
 
 /* status message for failed messages */
 "MESSAGE_STATUS_FAILED" = "送信に失敗しました。";
 
 /* status message for failed messages */
-"MESSAGE_STATUS_FAILED_SHORT" = "送信に失敗";
+"MESSAGE_STATUS_FAILED_SHORT" = "失敗";
 
 /* Label indicating that a message was only sent to some recipients. */
 "MESSAGE_STATUS_PARTIALLY_SENT" = "一部だけ送信しました、タップして詳細";
@@ -2528,28 +2912,28 @@
 "MESSAGE_STATUS_READ" = "既読";
 
 /* message status if message delivery to a recipient is skipped. We skip delivering group messages to users who have left the group or unregistered their Signal account. */
-"MESSAGE_STATUS_RECIPIENT_SKIPPED" = "スキップされました";
+"MESSAGE_STATUS_RECIPIENT_SKIPPED" = "スキップ";
 
 /* Label indicating that a message failed to send. */
 "MESSAGE_STATUS_SEND_FAILED" = "送信に失敗";
 
 /* message status while message is sending. */
-"MESSAGE_STATUS_SENDING" = "送信しています...";
+"MESSAGE_STATUS_SENDING" = "送信しています…";
 
 /* status message for sent messages */
 "MESSAGE_STATUS_SENT" = "送信済み";
 
 /* status message while attachment is uploading */
-"MESSAGE_STATUS_UPLOADING" = "アップロード中...";
+"MESSAGE_STATUS_UPLOADING" = "アップロードしています…";
 
 /* placeholder text for the editable message field */
-"MESSAGE_TEXT_FIELD_PLACEHOLDER" = "新しいメッセージ";
+"MESSAGE_TEXT_FIELD_PLACEHOLDER" = "新規メッセージ";
 
 /* Indicates that one member of this group conversation is no longer verified. Embeds {{user's name or phone number}}. */
-"MESSAGES_VIEW_1_MEMBER_NO_LONGER_VERIFIED_FORMAT" = "%@は未検証となっています。タップして選択肢を確認します。";
+"MESSAGES_VIEW_1_MEMBER_NO_LONGER_VERIFIED_FORMAT" = "%@ は検証されていません。タップして確認します。";
 
 /* Indicates that this 1:1 conversation is no longer verified. Embeds {{user's name or phone number}}. */
-"MESSAGES_VIEW_CONTACT_NO_LONGER_VERIFIED_FORMAT" = "%@は未検証となっています。タップして選択肢を確認します。";
+"MESSAGES_VIEW_CONTACT_NO_LONGER_VERIFIED_FORMAT" = "%@ は検証されていません。タップして確認します。";
 
 /* Indicates that a single member of this group has been blocked. */
 "MESSAGES_VIEW_GROUP_1_MEMBER_BLOCKED" = "このグループのメンバー1名をブロックしました";
@@ -2561,55 +2945,67 @@
 "MESSAGES_VIEW_N_MEMBERS_NO_LONGER_VERIFIED" = "複数のメンバーが要確認となっています。タップして選択肢をご覧ください。";
 
 /* Indicator that separates read from unread messages. */
-"MESSAGES_VIEW_UNREAD_INDICATOR" = "新しいメッセージ";
+"MESSAGES_VIEW_UNREAD_INDICATOR" = "新規メッセージ";
 
 /* info message text in conversation view */
 "MISSED_CALL" = "不在着信";
 
 /* Alert body */
-"MISSING_CAMERA_PERMISSION_MESSAGE" = "Signalで動画通話ができるように、iOSの設定でカメラのアクセスを設定できます。";
+"MISSING_CAMERA_PERMISSION_MESSAGE" = "Signalで動画通話ができるように、iOSの設定でカメラのアクセス権限を設定できます。";
 
 /* Alert title */
-"MISSING_CAMERA_PERMISSION_TITLE" = "カメラへのアクセスが必要です。";
+"MISSING_CAMERA_PERMISSION_TITLE" = "Signalにカメラへのアクセス権限が必要です。";
 
 /* Alert body indicating the user has denied location permissios */
-"MISSING_LOCATION_PERMISSION_MESSAGE" = "iOSの設定でアクセス許可を設定できます。";
+"MISSING_LOCATION_PERMISSION_MESSAGE" = "iOSの設定でアクセス権限を設定できます。";
 
 /* Alert title indicating the user has denied location permissios */
 "MISSING_LOCATION_PERMISSION_TITLE" = "この機能を使うためには、Signalに位置情報のアクセスを許可する必要があります。";
 
 /* Alert body when user has previously denied media library access */
-"MISSING_MEDIA_LIBRARY_PERMISSION_MESSAGE" = "iOSの設定でアクセス許可を設定できます。";
+"MISSING_MEDIA_LIBRARY_PERMISSION_MESSAGE" = "iOSの設定でアクセス権限を設定できます。";
 
 /* Alert title when user has previously denied media library access */
-"MISSING_MEDIA_LIBRARY_PERMISSION_TITLE" = "この機能を使うためには、Signalに写真のアクセスを許可する必要があります。";
+"MISSING_MEDIA_LIBRARY_PERMISSION_TITLE" = "この機能を使用するには、Signalに写真へのアクセス権限が必要です。";
 
 /* alert title: cannot link - reached max linked devices */
 "MULTIDEVICE_PAIRING_MAX_DESC" = "これ以上の端末はリンクできません。";
 
 /* alert body: cannot link - reached max linked devices */
-"MULTIDEVICE_PAIRING_MAX_RECOVERY" = "リンクできる端末の数が最大限度に達しています。端末を削除してください。";
+"MULTIDEVICE_PAIRING_MAX_RECOVERY" = "リンク可能な端末数が最大値に達しています。端末を削除して再度試してください。";
 
 /* An explanation of the consequences of muting a thread. */
 "MUTE_BEHAVIOR_EXPLANATION" = "ミュートすると通知を受信しません。";
 
 /* Badge indicating that the user is muted. */
-"MUTED_BADGE" = "ミュート";
+"MUTED_BADGE" = "ミュート中";
 
 /* A button to skip a view. */
 "NAVIGATION_ITEM_SKIP_BUTTON" = "スキップ";
 
 /* No comment provided by engineer. */
-"NETWORK_ERROR_RECOVERY" = "ネットに接続しているか、確認してください。";
+"NETWORK_ERROR_RECOVERY" = "インターネット接続を確認して、再度試してください。";
+
+/* String representing only the cellular interface */
+"NETWORK_INTERFACE_SET_CELLULAR" = "携帯電話回線のみ";
+
+/* String representing the 'never' condition of having no supported network interfaces */
+"NETWORK_INTERFACE_SET_NEVER" = "なし";
+
+/* String representing only the wifi interface */
+"NETWORK_INTERFACE_SET_WIFI" = "Wi-Fiのみ";
+
+/* String representing both wifi and cellular interfaces */
+"NETWORK_INTERFACE_SET_WIFI_CELLULAR" = "Wi-Fiと携帯電話回線";
 
 /* A label the cell that lets you add a new member to a group. */
 "NEW_CONVERSATION_FIND_BY_PHONE_NUMBER" = "電話番号で検索";
 
 /* Action Sheet title prompting the user for a group avatar */
-"NEW_GROUP_ADD_PHOTO_ACTION" = "グループのアイコンを設定";
+"NEW_GROUP_ADD_PHOTO_ACTION" = "グループアイコンを設定";
 
 /* Label for the 'create new group' button. */
-"NEW_GROUP_BUTTON" = "新グループ";
+"NEW_GROUP_BUTTON" = "新規グループ";
 
 /* The title for the 'create group' button. */
 "NEW_GROUP_CREATE_BUTTON" = "作成";
@@ -2618,7 +3014,10 @@
 "NEW_GROUP_CREATION_FAILED" = "新しいグループを作成できませんでした。";
 
 /* Error indicating that a new group could not be created due to network connectivity problems. */
-"NEW_GROUP_CREATION_FAILED_DUE_TO_NETWORK" = "新グループが作成できませんでした。インターネット接続を確認し再度試してください。";
+"NEW_GROUP_CREATION_FAILED_DUE_TO_NETWORK" = "新しいグループを作成できませんでした。インターネット接続を確認して再度試してください。";
+
+/* Indicates that a group member does not support New Groups. */
+"NEW_GROUP_CREATION_MEMBER_DOES_NOT_SUPPORT_NEW_GROUPS" = "新しいグループをサポートしていません";
 
 /* Message for error alert indicating that a group name is required. */
 "NEW_GROUP_CREATION_MISSING_NAME_ALERT_MESSAGE" = "グループ名は必須です。";
@@ -2627,13 +3026,13 @@
 "NEW_GROUP_CREATION_MISSING_NAME_ALERT_TITLE" = "グループ名がありません";
 
 /* Used in place of the group name when a group has not yet been named. */
-"NEW_GROUP_DEFAULT_TITLE" = "新グループ";
+"NEW_GROUP_DEFAULT_TITLE" = "新規グループ";
 
 /* notification title. Embeds {{author name}} and {{group name}} */
 "NEW_GROUP_MESSAGE_NOTIFICATION_TITLE" = "%@ から %@";
 
 /* The title for the 'name new group' view. */
-"NEW_GROUP_NAME_GROUP_VIEW_TITLE" = "グループの名前";
+"NEW_GROUP_NAME_GROUP_VIEW_TITLE" = "グループ名";
 
 /* a title for the selected section of the 'recipient picker' view. */
 "NEW_GROUP_NON_CONTACTS_SECTION_TITLE" = "他のユーザ";
@@ -2642,13 +3041,13 @@
 "NEW_GROUP_SELECT_MEMBERS_VIEW_TITLE" = "メンバーを選択";
 
 /* The alert message if user tries to exit the new group view without saving changes. */
-"NEW_GROUP_VIEW_UNSAVED_CHANGES_MESSAGE" = "変更を破棄しますか?";
+"NEW_GROUP_VIEW_UNSAVED_CHANGES_MESSAGE" = "変更を破棄しますか？";
 
 /* The alert title if user tries to exit the new group view without saving changes. */
 "NEW_GROUP_VIEW_UNSAVED_CHANGES_TITLE" = "未保存の変更";
 
 /* No comment provided by engineer. */
-"new_message" = "新しいメッセージ";
+"new_message" = "新規メッセージ";
 
 /* A label for the 'add by phone number' button in the 'new non-contact conversation' view */
 "NEW_NONCONTACT_CONVERSATION_VIEW_BUTTON" = "検索";
@@ -2659,23 +3058,26 @@
 /* Label for a button that lets users search for contacts by phone number */
 "NO_CONTACTS_SEARCH_BY_PHONE_NUMBER" = "連絡先を電話番号で検索";
 
+/* A string describing that the user has no groups in common with another user */
+"NO_GROUPS_IN_COMMON" = "共通のグループはありません";
+
 /* Explanation of how to see a conversation. */
-"NO_SELECTED_CONVERSATION_DESCRIPTION" = "チャットを始めるには連絡先かグループを選択してください";
+"NO_SELECTED_CONVERSATION_DESCRIPTION" = "チャットを始めるには、連絡先かグループを選択してください。";
 
 /* Title welcoming to the app */
 "NO_SELECTED_CONVERSATION_TITLE" = "Signalへようこそ";
 
 /* A string prompting the user to send a new mesaage to a user */
-"NON_CONTACT_TABLE_CELL_NEW_MESSAGE" = "新しいメッセージ:";
+"NON_CONTACT_TABLE_CELL_NEW_MESSAGE" = "新規メッセージ:";
 
 /* A string asking the user if they'd like to invite a number to signal via SMS. */
-"NON_CONTACT_TABLE_CELL_SEND_SMS" = "ユーザが見つかりません。SMSで招待しますか?";
+"NON_CONTACT_TABLE_CELL_SEND_SMS" = "ユーザが見つかりません。SMSで招待しますか？";
 
 /* Label for 1:1 conversation with yourself. */
 "NOTE_TO_SELF" = "自分用メモ";
 
 /* Lock screen notification text presented after user powers on their device without unlocking. Embeds {{device model}} (either 'iPad' or 'iPhone') */
-"NOTIFICATION_BODY_PHONE_LOCKED_FORMAT" = "%@の再起動中にメッセージが届いたかもしれません。";
+"NOTIFICATION_BODY_PHONE_LOCKED_FORMAT" = "%@の再起動中にメッセージが届いた可能性があります。";
 
 /* Body for notification permission action sheet */
 "NOTIFICATION_PERMISSION_ACTION_SHEET_BODY" = "新着メッセージの通知を受けるには:";
@@ -2708,16 +3110,19 @@
 "NOTIFICATIONS_FOOTER_WARNING" = "「既読」「返信」「折り返す」を含む";
 
 /* No comment provided by engineer. */
-"NOTIFICATIONS_NONE" = "名前もメッセージも無し";
+"NOTIFICATIONS_NONE" = "名前もメッセージも非表示";
 
 /* Table cell switch label. When disabled, Signal will not play notification sounds while the app is in the foreground. */
 "NOTIFICATIONS_SECTION_INAPP" = "アプリが開いている場合のみ再生";
 
 /* Label for settings UI that allows user to change the notification sound. */
-"NOTIFICATIONS_SECTION_SOUNDS" = "サウンド";
+"NOTIFICATIONS_SECTION_SOUNDS" = "通知音";
+
+/* Label for settings UI that allows user to add a new notification sound. */
+"NOTIFICATIONS_SECTION_SOUNDS_ADD_CUSTOM_SOUND" = "カスタム通知音を追加…";
 
 /* No comment provided by engineer. */
-"NOTIFICATIONS_SENDER_AND_MESSAGE" = "名前、内容、アクション";
+"NOTIFICATIONS_SENDER_AND_MESSAGE" = "名前、メッセージ、アクション";
 
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SENDER_ONLY" = "名前のみ";
@@ -2725,7 +3130,7 @@
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SHOW" = "表示内容";
 
-/* No comment provided by engineer. */
+/* Label for the 'ok' button. */
 "OK" = "OK";
 
 /* Label indicating that the 2fa pin is exhausted in the 'onboarding 2fa' view. */
@@ -2735,13 +3140,13 @@
 "ONBOARDING_2FA_CREATE_NEW_PIN" = "新しいPINを作成";
 
 /* Button asking if the user would like to enter an alphanumeric PIN */
-"ONBOARDING_2FA_ENTER_ALPHANUMERIC" = "英数字PINを入力";
+"ONBOARDING_2FA_ENTER_ALPHANUMERIC" = "英数字のPINを入力";
 
 /* Button asking if the user would like to enter an numeric PIN */
 "ONBOARDING_2FA_ENTER_NUMERIC" = "数字PINを入力";
 
 /* Label for the 'forgot 2FA PIN' link in the 'onboarding 2FA' view. */
-"ONBOARDING_2FA_FORGOT_PIN_LINK" = "ヘルプ";
+"ONBOARDING_2FA_FORGOT_PIN_LINK" = "お困りですか？";
 
 /* Label indicating that the 2fa pin is invalid in the 'onboarding 2fa' view. */
 "ONBOARDING_2FA_INVALID_PIN" = "PINが違います";
@@ -2753,16 +3158,16 @@
 "ONBOARDING_2FA_INVALID_PIN_SINGLE" = "PINが違います。あと1回試せます。";
 
 /* Label for the 'skip and create new pin' button when reglock is disabled during onboarding. */
-"ONBOARDING_2FA_SKIP_AND_CREATE_NEW_PIN" = "スキップし新しいPINを作成";
+"ONBOARDING_2FA_SKIP_AND_CREATE_NEW_PIN" = "スキップして新しいPINを作成";
 
 /* Explanation for the skip pin entry action sheet during onboarding. */
-"ONBOARDING_2FA_SKIP_PIN_ENTRY_MESSAGE" = "もし PIN を思い出せない場合、新規に作成することができます。登録してアカウントを使用することはできますが、保存されたプロフィール設定などは失われます。";
+"ONBOARDING_2FA_SKIP_PIN_ENTRY_MESSAGE" = "もしPINを忘れてしまっても、新しく作成できます。アカウントを登録して使用することもできますが、プロフィールなどの保存されている設定情報は失われます。";
 
 /* Title for the skip pin entry action sheet during onboarding. */
-"ONBOARDING_2FA_SKIP_PIN_ENTRY_TITLE" = "PIN の入力を飛ばしますか?";
+"ONBOARDING_2FA_SKIP_PIN_ENTRY_TITLE" = "PINの入力を省略しますか？";
 
 /* Title of the 'onboarding Captcha' view. */
-"ONBOARDING_CAPTCHA_TITLE" = "メッセージに「人間っぽさ」を加える";
+"ONBOARDING_CAPTCHA_TITLE" = "あなたのメッセージに人間味を加えます";
 
 /* button indicating that the user will register their ipad */
 "ONBOARDING_MODE_SWITCH_BUTTON_PROVISIONING" = "iPadを登録";
@@ -2771,43 +3176,49 @@
 "ONBOARDING_MODE_SWITCH_BUTTON_REGISTERING" = "iPhoneをリンク";
 
 /* explanation to the user they're switching from linking to registering flow */
-"ONBOARDING_MODE_SWITCH_EXPLANATION_PROVISIONING" = "「iPadを登録」をタップすると、Signalの新しいアカウントを作るか、お持ちのアカウントをiPadにリンクするできます。この結果、同じ番号で現在登録されている端末のSignalが無効化されます。";
+"ONBOARDING_MODE_SWITCH_EXPLANATION_PROVISIONING" = "「このiPadを登録する」をタップすると、Signalの新しいアカウントを作るか、このiPadに既存のアカウントを移行できます。これにより、現在同じ電話番号で登録されている、他の端末のSignalが無効化されます。";
 
 /* explanation to the user they're switching from registering to linking flow */
-"ONBOARDING_MODE_SWITCH_EXPLANATION_REGISTERING" = "「iPhoneをリンク」をタップすると、あなたのiPhoneをお持ちのアカウントに接続します。一般的には、通話などの機能が制限されるため、電話をリンクすることはお勧めできません。";
+"ONBOARDING_MODE_SWITCH_EXPLANATION_REGISTERING" = "「このiPhoneをリンクする」をタップすると、あなたの電話を既存のアカウントに接続します。通話などの機能が制限されるため、通常は電話をリンクすることは推奨されません。";
 
 /* header text indicating to the user they're switching from linking to registering flow */
 "ONBOARDING_MODE_SWITCH_TITLE_PROVISIONING" = "このiPadを登録する";
 
 /* header text indicating to the user they're switching from registering to linking flow */
-"ONBOARDING_MODE_SWITCH_TITLE_REGISTERING" = "このiPhoneをリンク";
+"ONBOARDING_MODE_SWITCH_TITLE_REGISTERING" = "このiPhoneをリンクする";
 
 /* warning to the user that registering an ipad is not recommended */
-"ONBOARDING_MODE_SWITCH_WARNING_PROVISIONING" = "このiPadを登録すると、同じ電話番号で登録されている他の端末でSignalを使用できなくなります。";
+"ONBOARDING_MODE_SWITCH_WARNING_PROVISIONING" = "このiPadを登録すると、現在同じ電話番号で登録されている、他の端末のSignalが無効化されます。";
 
 /* warning to the user that linking a phone is not recommended */
-"ONBOARDING_MODE_SWITCH_WARNING_REGISTERING" = "あなたのiPhoneをリンクすることは、機能が制限されるため、お勧めできません。";
+"ONBOARDING_MODE_SWITCH_WARNING_REGISTERING" = "このiPhoneをリンクすることは、機能が制限されるため、推奨されません。";
 
 /* Label for the 'give access' button in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "パーミッションを有効化";
+"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "アクセスを許可する";
 
 /* Explanation in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_EXPLANATION" = "通知機能は、メッセージの着信や会話の更新をお知らせます。";
+"ONBOARDING_PERMISSIONS_EXPLANATION" = "通知と連絡先を許可すると、メッセージの着信を確認でき、知り合いを見つけるのに役立ちます。連絡先は暗号化されているため、Signalのサービス側では見ることができません。";
 
 /* Title of the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_TITLE" = "メッセージの取得";
+"ONBOARDING_PERMISSIONS_TITLE" = "アクセス許可";
 
 /* Explanation of the 'onboarding phone number discoverability' view. Embeds {user phone number} */
-"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "あなたの電話番号 %@ で検索できる人を選んでください。";
+"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "Signalであなたを電話番号 %@ から検索できる人を選択してください";
 
 /* Title of the 'onboarding phone number discoverability' view. */
-"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "あなたの電話番号を検索できる人は？";
+"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "あなたを電話番号から検索できる人は？";
+
+/* Placeholder string for phone number field during registration */
+"ONBOARDING_PHONE_NUMBER_PLACEHOLDER" = "あなたの電話番号";
+
+/* Label indicating that registration has been ratelimited. Embeds {{remaining time string}}. */
+"ONBOARDING_PHONE_NUMBER_RATE_LIMIT_WARNING_FORMAT" = "数分待ってから再度試してください。(%@)";
 
 /* Title of the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_TITLE" = "電話番号を入力";
+"ONBOARDING_PHONE_NUMBER_TITLE" = "あなたの電話番号を入力してください";
 
 /* Label indicating that the phone number is invalid in the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "不正な番号です";
+"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "不正な電話番号です。正しい電話番号を入力してください。";
 
 /* Explanation of the 'onboarding pin attempts exhausted' view when reglock is disabled. */
 "ONBOARDING_PIN_ATTEMPTS_EXHAUSTED_EXPLANATION" = "PINの試行回数が尽きましたが、新しいPINを作成すればSignalアカウントにアクセスすることはできます。ただし、プライバシーと安全性のため、アカウントに保存されたプロフィールや設定は復元されません。";
@@ -2831,58 +3242,58 @@
 "ONBOARDING_PIN_EXPLANATION" = "あなたのアカウント用に作成したPINを入力してください。これはSMSの認証コードとは違います。";
 
 /* Title of the 'onboarding PIN' view. */
-"ONBOARDING_PIN_TITLE" = "PINを入力";
+"ONBOARDING_PIN_TITLE" = "PINを入力してください";
+
+/* Title label for profile creation step of onboarding */
+"ONBOARDING_PROFILE_CREATION_TITLE" = "あなたのプロフィール";
+
+/* Placeholder text for the family name field of the profile creation view. */
+"ONBOARDING_PROFILE_FAMILY_NAME_FIELD" = "姓 (任意)";
+
+/* Placeholder text for the given name field of the profile creation view. */
+"ONBOARDING_PROFILE_GIVEN_NAME_FIELD" = "名 (必須)";
 
 /* Link to the 'terms and privacy policy' in the 'onboarding splash' view. */
 "ONBOARDING_SPLASH_TERM_AND_PRIVACY_POLICY" = "利用規約とプライバシーポリシー";
 
 /* Title of the 'onboarding splash' view. */
-"ONBOARDING_SPLASH_TITLE" = "プライバシーを守ります。\n自分らしいメッセージを送信しましょう。";
+"ONBOARDING_SPLASH_TITLE" = "あなたにプライバシーを。\nすべてのメッセージで自分らしく。";
 
 /* Label for the link that lets users change their phone number in the onboarding views. */
-"ONBOARDING_VERIFICATION_BACK_LINK" = "番号が違いますか?";
+"ONBOARDING_VERIFICATION_BACK_LINK" = "番号が違いますか？";
 
-/* Format for the label of the 'sent code' label of the 'onboarding verification' view. Embeds {{the time until the code can be resent}}. */
-"ONBOARDING_VERIFICATION_CODE_COUNTDOWN_FORMAT" = "コードが届きません (再送可能まで%@)";
+/* Label for button to perform verification with a phone call. */
+"ONBOARDING_VERIFICATION_CALL_ME_BUTTON" = "電話してください";
 
-/* action sheet item shown after a number of failures to receive a verificaiton SMS during registration */
-"ONBOARDING_VERIFICATION_EMAIL_SIGNAL_SUPPORT" = "Signalサポートに問い合わせ";
+/* Format string for button counting down time until phone call verification can be performed. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_CALL_ME_COUNTDOWN_FORMAT" = "%@後に電話してください";
+
+/* Label for a progress spinner currently validating code */
+"ONBOARDING_VERIFICATION_CODE_VALIDATION_PROGRESS_LABEL" = "コードを検証しています…";
 
 /* Label indicating that the verification code is incorrect in the 'onboarding verification' view. */
 "ONBOARDING_VERIFICATION_INVALID_CODE" = "コードが違います";
 
-/* Label for link that can be used when the original code did not arrive. */
-"ONBOARDING_VERIFICATION_ORIGINAL_CODE_MISSING_LINK" = "コードが届きません";
+/* Label for button to resend SMS verification code. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_BUTTON" = "コードを再送信する";
 
-/* Message for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_MESSAGE" = "SMSショートメッセージが受信できるようになっているか確認してください。";
-
-/* Title for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_TITLE" = "コードがありませんか?";
-
-/* Label for the 'resend code by SMS' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_SMS_BUTTON" = "認証コードの再送信";
-
-/* Label for the 'resend code by voice' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_VOICE_BUTTON" = "代わりに電話してください";
-
-/* Label for link that can be used when the resent code did not arrive. */
-"ONBOARDING_VERIFICATION_RESENT_CODE_MISSING_LINK" = "まだコードが届きませんか?";
+/* Format string for button counting down time until SMS code can be resent. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_COUNTDOWN_FORMAT" = "%@後にコードを再送する";
 
 /* Format for the title of the 'onboarding verification' view. Embeds {{the user's phone number}}. */
-"ONBOARDING_VERIFICATION_TITLE_DEFAULT_FORMAT" = "%@へ送信したコードを入力してください";
+"ONBOARDING_VERIFICATION_TITLE_DEFAULT_FORMAT" = "%@ へ送信したコードを入力してください";
 
-/* Format for the title of the 'onboarding verification' view after the verification code has been resent. Embeds {{the user's phone number}}. */
-"ONBOARDING_VERIFICATION_TITLE_RESENT_FORMAT" = "%@へコードを再送しました";
+/* Title label for the onboarding verification page */
+"ONBOARDING_VERIFICATION_TITLE_LABEL" = "認証コード";
 
 /* Button text which opens the settings app */
 "OPEN_SETTINGS_BUTTON" = "設定";
 
 /* Info Message when another user disabled disappearing messages. Embeds {{name of other user}}. */
-"OTHER_DISABLED_DISAPPEARING_MESSAGES_CONFIGURATION" = "%@が消えるメッセージを無効にしました。";
+"OTHER_DISABLED_DISAPPEARING_MESSAGES_CONFIGURATION" = "%@ が消えるメッセージを無効にしました。";
 
 /* Info Message when another user enabled disappearing messages. Embeds {{name of other user}} and {{time amount}} before messages disappear. See the *_TIME_AMOUNT strings for context. */
-"OTHER_UPDATED_DISAPPEARING_MESSAGES_CONFIGURATION" = "%@が消えるメッセージのタイマーを%@に設定しました。";
+"OTHER_UPDATED_DISAPPEARING_MESSAGES_CONFIGURATION" = "%@ が消えるメッセージのタイマーを%@に設定しました。";
 
 /* Label warning the user that the Signal service may be down. */
 "OUTAGE_WARNING" = "Signalは技術的な問題を抱えています。私たちは、これをできるだけ早く解決するよう対応しています。";
@@ -2890,41 +3301,35 @@
 /* info message text in conversation view. {embeds callee name} */
 "OUTGOING_CALL_FORMAT" = "%@ に発信";
 
-/* Error indicating that a PDF could not be displayed. */
-"PDF_VIEW_COULD_NOT_RENDER" = "PDFを表示できません";
-
-/* Navbar title for for PDF view. */
-"PDF_VIEW_TITLE" = "PDF";
-
 /* Title of 'accept member request to join group' button. */
-"PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_BUTTON" = "グループに追加";
+"PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_BUTTON" = "グループに追加する";
 
 /* Title of 'accept member request to join group' confirmation alert. Embeds {{ the name of the requesting group member. }}. */
 "PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_CONFIRMATION_TITLE_FORMAT" = "「%@」をこのグループに追加しますか？";
 
 /* Title of 'deny member request to join group' button. */
-"PENDING_GROUP_MEMBERS_DENY_REQUEST_BUTTON" = "申請を拒否";
+"PENDING_GROUP_MEMBERS_DENY_REQUEST_BUTTON" = "申請を拒否する";
 
 /* Title of 'deny member request to join group' confirmation alert. Embeds {{ the name of the requesting group member. }}. */
 "PENDING_GROUP_MEMBERS_DENY_REQUEST_CONFIRMATION_TITLE_FORMAT" = "「%@」からの申請を拒否しますか？";
 
 /* Format for label indicating the a group member has invited 1 other user to the group. Embeds {{ the name of the inviting group member. }}. */
-"PENDING_GROUP_MEMBERS_MEMBER_INVITED_1_USER_FORMAT" = "%@は1人を招待しました。";
+"PENDING_GROUP_MEMBERS_MEMBER_INVITED_1_USER_FORMAT" = "%@ が1人を招待しました";
 
 /* Format for label indicating the a group member has invited N other users to the group. Embeds {{ %1$@ name of the inviting group member, %2$@ the number of users they have invited. }}. */
-"PENDING_GROUP_MEMBERS_MEMBER_INVITED_N_USERS_FORMAT" = "%1$@は%2$@人を招待しました";
+"PENDING_GROUP_MEMBERS_MEMBER_INVITED_N_USERS_FORMAT" = "%1$@ が%2$@人を招待しました";
 
 /* Label indicating that a group has no pending member requests. */
 "PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "保留中のメンバー申請はありません。";
 
 /* Label indicating that a group has no pending members. */
-"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBERS" = "表示する招待がありません。";
+"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBERS" = "招待はありません。";
 
 /* Message indicating that a request to join the group was successfully approved. Embeds {{ the name of the approved user }}. */
 "PENDING_GROUP_MEMBERS_REQUEST_APPROVED_FORMAT" = "「%@」を追加しました。";
 
 /* Format for banner indicating that there are pending member requests to join the group. Embeds {{ the number of pending member requests }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_BANNER_FORMAT" = "%@ 件のメンバー申請が保留中";
+"PENDING_GROUP_MEMBERS_REQUEST_BANNER_FORMAT" = "%@件のメンバー申請が保留中です。";
 
 /* Label for the 'view requests' button in the pending member requests banner. */
 "PENDING_GROUP_MEMBERS_REQUEST_BANNER_VIEW_REQUESTS" = "申請を見る";
@@ -2939,19 +3344,19 @@
 "PENDING_GROUP_MEMBERS_REVOKE_INVALID_INVITES_N_FORMAT" = "%@件の不正な招待を取り消す";
 
 /* Title of 'revoke invite' button. */
-"PENDING_GROUP_MEMBERS_REVOKE_INVITE_1_BUTTON" = "招待を無効にする";
+"PENDING_GROUP_MEMBERS_REVOKE_INVITE_1_BUTTON" = "招待を取り消す";
 
 /* Format for title of 'revoke invite' confirmation alert. Embeds {{ the name of the inviting group member. }}. */
-"PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_1_FORMAT" = "「%@」から送信されたグループ招待を無効にしますか?";
+"PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_1_FORMAT" = "「%@」が送信したグループ招待を無効にしますか？";
 
 /* Format for title of 'revoke invite' confirmation alert. Embeds {{ %1$@ the number of users they have invited, %2$@ name of the inviting group member. }}. */
-"PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_N_FORMAT" = "「%2$@」からの%1$@件の招待を無効にしますか?";
+"PENDING_GROUP_MEMBERS_REVOKE_INVITE_CONFIRMATION_TITLE_N_FORMAT" = "「%2$@」が送信した%1$@件の招待を無効にしますか？";
 
 /* Title of 'revoke invites' button. */
 "PENDING_GROUP_MEMBERS_REVOKE_INVITE_N_BUTTON" = "招待を無効にする";
 
 /* Format for title of 'revoke invite' confirmation alert. Embeds {{ the name of the invited group member. }}. */
-"PENDING_GROUP_MEMBERS_REVOKE_LOCAL_INVITE_CONFIRMATION_TITLE_1_FORMAT" = "「%@」からのグループ招待を無効にしますか?";
+"PENDING_GROUP_MEMBERS_REVOKE_LOCAL_INVITE_CONFIRMATION_TITLE_1_FORMAT" = "「%@」に対するグループ招待を無効にしますか？";
 
 /* Footer for the 'invites by other group members' section of the 'member requests and invites' view. */
 "PENDING_GROUP_MEMBERS_SECTION_FOOTER_INVITES_FROM_OTHER_MEMBERS" = "他のグループメンバーから招待を受けたユーザの詳細は表示されません。招待を受けたユーザの情報は、そのユーザがグループに参加する時点でグループと共有されます。それまでの間、そのユーザにグループのメッセージは表示されません。";
@@ -2963,13 +3368,13 @@
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_INVALID_INVITES" = "不正な招待";
 
 /* Title for the 'invites by other group members' section of the 'member requests and invites' view. */
-"PENDING_GROUP_MEMBERS_SECTION_TITLE_INVITES_FROM_OTHER_MEMBERS" = "グループの他のメンバーからの招待";
+"PENDING_GROUP_MEMBERS_SECTION_TITLE_INVITES_FROM_OTHER_MEMBERS" = "他のグループメンバーによる招待";
 
 /* Title for the 'pending member requests' section of the 'member requests and invites' view. */
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_PENDING_MEMBER_REQUESTS" = "保留中のメンバー申請";
 
 /* Title for the 'people you invited' section of the 'member requests and invites' view. */
-"PENDING_GROUP_MEMBERS_SECTION_TITLE_PEOPLE_YOU_INVITED" = "あなたを招待した人";
+"PENDING_GROUP_MEMBERS_SECTION_TITLE_PEOPLE_YOU_INVITED" = "あなたが招待した人";
 
 /* Label for view-once messages that have invalid content. */
 "PER_MESSAGE_EXPIRATION_INVALID_CONTENT" = "受信中にエラー";
@@ -2999,34 +3404,34 @@
 "PHONE_NUMBER_DISCOVERABILITY_EVERYBODY" = "全員";
 
 /* A user friendly description of the 'everybody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY_DESCRIPTION" = "電話帳にあなたの電話番号を保存している場合、Singnalのリストにあなたの名前が表示されます。保存していない場合でも検索できます。";
+"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY_DESCRIPTION" = "連絡先にあなたの電話番号がある人には、Signalであなたが表示されます。ない場合でも検索が可能です。";
 
 /* A user friendly name for the 'nobody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_NOBODY" = "無人";
+"PHONE_NUMBER_DISCOVERABILITY_NOBODY" = "なし";
 
 /* A user friendly description of the 'nobody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_NOBODY_DESCRIPTION" = "誰も電話番号であなたを検索できません。電話帳にあなたの電話番号を保存している場合でも、Signalではあなたの名前が表示されません。保存していない場合は検索さえできません。";
+"PHONE_NUMBER_DISCOVERABILITY_NOBODY_DESCRIPTION" = "だれもSignalで電話番号からあなたを見つけられなくなります。連絡先にあなたの電話番号があっても、あなたは表示されず、電話番号による検索もできません。";
 
 /* A format for a label showing an example phone number. Embeds {{the example phone number}}. */
 "PHONE_NUMBER_EXAMPLE_FORMAT" = "例: %@";
 
 /* A user friendly name for the 'contacts only' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_CONTACTS_ONLY" = "自分の連絡先だけ";
+"PHONE_NUMBER_SHARING_CONTACTS_ONLY" = "自分の連絡先のみ";
 
 /* A user friendly description of the 'contacts only' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_CONTACTS_ONLY_DESCRIPTION" = "あなたの連絡先だけが、Signal上であなたの電話番号を見ることができます。";
+"PHONE_NUMBER_SHARING_CONTACTS_ONLY_DESCRIPTION" = "あなたの連絡先だけが、Signalであなたの電話番号を見ることができます。";
 
 /* A user friendly name for the 'everybody' phone number sharing mode. */
 "PHONE_NUMBER_SHARING_EVERYBODY" = "全員";
 
 /* A user friendly description of the 'everybody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_EVERYBODY_DESCRIPTION" = "あなたの電話番号は、メッセージを送信したすべての相手とグループに表示されます。電話帳にあなたの電話番号が保存されている場合も、Signalで表示されます。";
+"PHONE_NUMBER_SHARING_EVERYBODY_DESCRIPTION" = "あなたの電話番号は、メッセージを送信したすべての相手とグループに表示されます。連絡先にあなたの電話番号がある人にも、Signalで表示されます。";
 
 /* A user friendly name for the 'nobody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_NOBODY" = "無人";
+"PHONE_NUMBER_SHARING_NOBODY" = "なし";
 
 /* A user friendly description of the 'nobody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_NOBODY_DESCRIPTION" = "あなたの電話番号は誰にも表示されません。";
+"PHONE_NUMBER_SHARING_NOBODY_DESCRIPTION" = "あなたの電話番号は、誰のSignalにも表示されません。";
 
 /* Format for phone number label with an index. Embeds {{Phone number label (e.g. 'home')}} and {{index, e.g. 2}}. */
 "PHONE_NUMBER_TYPE_AND_INDEX_NAME_FORMAT" = "%@ %@";
@@ -3065,13 +3470,13 @@
 "PHONE_NUMBER_TYPE_WORK_FAX" = "職場FAX";
 
 /* alert title, generic error preventing user from capturing a photo */
-"PHOTO_CAPTURE_GENERIC_ERROR" = "画像はキャプチャできません。";
+"PHOTO_CAPTURE_GENERIC_ERROR" = "画像をキャプチャできません。";
 
 /* alert title */
-"PHOTO_CAPTURE_UNABLE_TO_CAPTURE_IMAGE" = "画像はキャプチャできません。";
+"PHOTO_CAPTURE_UNABLE_TO_CAPTURE_IMAGE" = "画像をキャプチャできません。";
 
 /* alert title */
-"PHOTO_CAPTURE_UNABLE_TO_INITIALIZE_CAMERA" = "カメラの設定ができませんでした。";
+"PHOTO_CAPTURE_UNABLE_TO_INITIALIZE_CAMERA" = "カメラを設定できませんでした。";
 
 /* label for system photo collections which have no name. */
 "PHOTO_PICKER_UNNAMED_COLLECTION" = "無名のアルバム";
@@ -3080,16 +3485,16 @@
 "PIN_ACTION" = "ピン留めする";
 
 /* Label indicating the user must use at least 4 characters */
-"PIN_CREATION_ALPHANUMERIC_HINT" = "PINは4桁以上にしてください";
+"PIN_CREATION_ALPHANUMERIC_HINT" = "PINは4文字以上にしてください";
 
 /* Title of the 'pin creation' recreation view. */
-"PIN_CREATION_CHANGING_TITLE" = "PINを変更";
+"PIN_CREATION_CHANGING_TITLE" = "PINの変更";
 
 /* Title of the 'pin creation' confirmation view. */
-"PIN_CREATION_CONFIRM_TITLE" = "PINを確認";
+"PIN_CREATION_CONFIRM_TITLE" = "PINの確認";
 
 /* The explanation of confirmation in the 'pin creation' view. */
-"PIN_CREATION_CONFIRMATION_EXPLANATION" = "作成したPINを入力します。";
+"PIN_CREATION_CONFIRMATION_EXPLANATION" = "先ほど作成したPINを入力してください。";
 
 /* Button asking if the user would like to create an alphanumeric PIN */
 "PIN_CREATION_CREATE_ALPHANUMERIC" = "英数字のPINを作成";
@@ -3107,13 +3512,13 @@
 "PIN_CREATION_DISABLE_CONFIRMATION_TITLE" = "ご注意ください";
 
 /* Error body indicating that the attempt to create a PIN failed. */
-"PIN_CREATION_ERROR_MESSAGE" = "PINを保存できませんでした。もう一度作成できるようになるまでしばらくお待ちください。";
+"PIN_CREATION_ERROR_MESSAGE" = "PINは保存されていません。あとでPINを作成するようお知らせします。";
 
 /* Error title indicating that the attempt to create a PIN failed. */
 "PIN_CREATION_ERROR_TITLE" = "PINの作成に失敗しました";
 
 /* The explanation in the 'pin creation' view. */
-"PIN_CREATION_EXPLANATION" = "PINはSignal上に保管されている情報を暗号化するのに使われます。これによって、あなた以外の誰もその情報にアクセスできないようにしています。PINを使うことで、Signalを再インストールしたときにあなたのプロフィール、設定、連絡先の情報が復元されます。アプリを利用するときにPINを入力する必要はありません。";
+"PIN_CREATION_EXPLANATION" = "Signal内に保存された情報は、PINにより暗号化を保持されるため、あなたのみアクセスできます。PINを使うことで、Signalの再インストール時にあなたのプロフィール、設定および連絡先が復元されます。アプリを開く際にはPINは必要はありません。";
 
 /* Learn more action on the pin creation view */
 "PIN_CREATION_LEARN_MORE" = "PINに関する詳細情報";
@@ -3125,22 +3530,22 @@
 "PIN_CREATION_NUMERIC_HINT" = "PINは4桁以上の数字にしてください";
 
 /* Label indication the user must confirm their PIN. */
-"PIN_CREATION_PIN_CONFIRMATION_HINT" = "PINを再入力";
+"PIN_CREATION_PIN_CONFIRMATION_HINT" = "PINを再入力してください";
 
 /* Indicates the work we are doing while creating the user's pin */
 "PIN_CREATION_PIN_PROGRESS" = "PINを作成しています…";
 
 /* The re-creation explanation in the 'pin creation' view. */
-"PIN_CREATION_RECREATION_EXPLANATION" = "このデバイスが登録されている間はPINを変更することができます。";
+"PIN_CREATION_RECREATION_EXPLANATION" = "この端末が登録されていればPINの変更が可能です。";
 
 /* Title of the 'pin creation' recreation view. */
-"PIN_CREATION_RECREATION_TITLE" = "PINを変更";
+"PIN_CREATION_RECREATION_TITLE" = "PINの変更";
 
 /* Action of the 'pin disable' reglock action sheet. */
 "PIN_CREATION_REGLOCK_CONFIRMATION_ACTION" = "無効にする";
 
 /* Message of the 'pin disable' reglock action sheet. */
-"PIN_CREATION_REGLOCK_CONFIRMATION_MESSAGE" = "PINを無効にする前に登録ロックを解除してください。";
+"PIN_CREATION_REGLOCK_CONFIRMATION_MESSAGE" = "PINを無効にする前に、登録ロックを解除してください。";
 
 /* Title of the 'pin disable' reglock action sheet. */
 "PIN_CREATION_REGLOCK_CONFIRMATION_TITLE" = "登録ロックを無効にしますか？";
@@ -3149,10 +3554,10 @@
 "PIN_CREATION_SKIP" = "PINを無効にする";
 
 /* Title of the 'pin creation' view. */
-"PIN_CREATION_TITLE" = "あなたのPINを作成";
+"PIN_CREATION_TITLE" = "PINの作成";
 
 /* Label indicating that the attempted PIN is too weak */
-"PIN_CREATION_WEAK_ERROR" = "もっと強いPINを選択してください";
+"PIN_CREATION_WEAK_ERROR" = "もっと強力なPINを選択してください";
 
 /* Error body indicating that the attempt to disable a PIN failed. */
 "PIN_DISABLE_ERROR_MESSAGE" = "PINを無効にできませんでした。あとでまたお知らせします。";
@@ -3161,7 +3566,7 @@
 "PIN_DISABLE_ERROR_TITLE" = "PINの無効化に失敗";
 
 /* The explanation for the 'pin reminder' dialog. */
-"PIN_REMINDER_EXPLANATION" = "あなたがPINを忘れないよう、Signalは定期的に確認します。頻度は次第に減ってゆきます。";
+"PIN_REMINDER_EXPLANATION" = "PINを覚えていただくため、定期的に入力をお願いしています。頻度は次第に少なくなります。";
 
 /* Text asking if the user forgot their pin for the 'pin reminder' dialog. */
 "PIN_REMINDER_FORGOT_PIN" = "PINを忘れましたか？";
@@ -3170,34 +3575,34 @@
 "PIN_REMINDER_MEGAPHONE_ACTION" = "PINの確認";
 
 /* Body for PIN reminder megaphone */
-"PIN_REMINDER_MEGAPHONE_BODY" = "PINを忘れないように、Signalは時々入力を求めます。";
+"PIN_REMINDER_MEGAPHONE_BODY" = "PINを忘れないよう、時々確認を行います。";
 
 /* Toast indicating that we'll ask you for your PIN again in 3 days. */
-"PIN_REMINDER_MEGAPHONE_FEW_DAYS_TOAST" = "数日後にPINを再度入力していただきます。";
+"PIN_REMINDER_MEGAPHONE_FEW_DAYS_TOAST" = "数日後に再度お知らせします。";
 
 /* Title for PIN reminder megaphone */
 "PIN_REMINDER_MEGAPHONE_TITLE" = "Signal PINを確認";
 
 /* Toast indicating that we'll ask you for your PIN again tomorrow. */
-"PIN_REMINDER_MEGAPHONE_TOMORROW_TOAST" = "明日、PINを再度入力していただきます。";
+"PIN_REMINDER_MEGAPHONE_TOMORROW_TOAST" = "明日、再度お知らせします。";
 
 /* Toast indicating that we'll ask you for your PIN again in 2 weeks. */
-"PIN_REMINDER_MEGAPHONE_TWO_WEEK_TOAST" = "数週間後にPINを再度入力していただきます。";
+"PIN_REMINDER_MEGAPHONE_TWO_WEEK_TOAST" = "2週間後に再度お知らせします。";
 
 /* Toast indicating that we'll ask you for your PIN again in a week. */
-"PIN_REMINDER_MEGAPHONE_WEEK_TOAST" = "来週、PINを再度入力していただきます。";
+"PIN_REMINDER_MEGAPHONE_WEEK_TOAST" = "1週間後に再度お知らせします。";
 
 /* Label indicating that the attempted PIN does not match the user's PIN */
 "PIN_REMINDER_MISMATCH_ERROR" = "PINが違います。再度試してください。";
 
 /* The title for the 'pin reminder' dialog. */
-"PIN_REMINDER_TITLE" = "Signal PINを入力";
+"PIN_REMINDER_TITLE" = "Signal PINを入力してください";
 
 /* Label indicating that the attempted PIN is too short */
 "PIN_REMINDER_TOO_SHORT_ERROR" = "PINは4桁以上の数字にしてください。";
 
 /* An explanation that you have already pinned the maximum number of conversations. */
-"PINNED_CONVERSATION_LIMIT" = "ピン留めできる会話は4件までです。";
+"PINNED_CONVERSATION_LIMIT" = "ピン留めできるチャットは4件までです。";
 
 /* The title for pinned conversation section on the conversation list */
 "PINNED_SECTION_TITLE" = "ピン留め中";
@@ -3206,7 +3611,7 @@
 "PINS_MEGAPHONE_ACTION" = "PINを作成";
 
 /* Body for PIN megaphone when user doesn't have a PIN */
-"PINS_MEGAPHONE_BODY" = "PINによってSignalで保管される情報が暗号化されます";
+"PINS_MEGAPHONE_BODY" = "Signalで保管される情報はPINで暗号化されます。";
 
 /* Toast indication that the user will be reminded later to setup their PIN. Embeds {{time until mandatory}} */
 "PINS_MEGAPHONE_SNOOZE_TOAST_FORMAT" = "あとで再度お知らせします。PINの作成は%ld日後に必須になります。";
@@ -3239,16 +3644,16 @@
 "PRIVACY_UNVERIFY_BUTTON" = "未検証にする";
 
 /* Alert body when verifying with {{contact name}} */
-"PRIVACY_VERIFICATION_FAILED_I_HAVE_WRONG_KEY_FOR_THEM" = "%@との安全番号ではありません。連絡先が正しいか確認してください。";
+"PRIVACY_VERIFICATION_FAILED_I_HAVE_WRONG_KEY_FOR_THEM" = "これは %@ に対する安全番号ではないようです。連絡先が正しいか確認してください。";
 
 /* Alert body */
-"PRIVACY_VERIFICATION_FAILED_MISMATCHED_SAFETY_NUMBERS_IN_CLIPBOARD" = "クリップボードにある番号はこの会話の安全番号ではないようです。";
+"PRIVACY_VERIFICATION_FAILED_MISMATCHED_SAFETY_NUMBERS_IN_CLIPBOARD" = "クリップボードにある番号は、このチャットの安全番号ではないようです。";
 
 /* Alert body for user error */
 "PRIVACY_VERIFICATION_FAILED_NO_SAFETY_NUMBERS_IN_CLIPBOARD" = "クリップボードのなかに安全番号はみつかりませんでした。正しくコピーしたか確認してください。";
 
 /* Alert body when verifying with {{contact name}} */
-"PRIVACY_VERIFICATION_FAILED_THEY_HAVE_WRONG_KEY_FOR_ME" = "安全番号はSignalユーザの組合せごとに異なります。%@が表示している安全番号があなたとの番号か確認してください。";
+"PRIVACY_VERIFICATION_FAILED_THEY_HAVE_WRONG_KEY_FOR_ME" = "安全番号はSignalユーザの組合せごとに異なります。%@ があなた固有の安全番号を表示しているか、ダブルチェックしてください。";
 
 /* alert body */
 "PRIVACY_VERIFICATION_FAILED_WITH_OLD_LOCAL_VERSION" = "古いバージョンのSignalを使っています。検証するにはアップデートしてください。";
@@ -3257,10 +3662,10 @@
 "PRIVACY_VERIFICATION_FAILED_WITH_OLD_REMOTE_VERSION" = "相手が古いバージョンのSignalを使っています。検証するにはアップデートをお願いしてください。";
 
 /* alert body */
-"PRIVACY_VERIFICATION_FAILURE_INVALID_QRCODE" = "QRコードは安全番号ではありません。Signalは最新バージョンですか?";
+"PRIVACY_VERIFICATION_FAILURE_INVALID_QRCODE" = "スキャンしたQRコードは安全番号ではないようです。二人とも最新版のSignalをお使いですか？";
 
 /* Paragraph(s) shown alongside the safety number when verifying privacy with {{contact name}} */
-"PRIVACY_VERIFICATION_INSTRUCTIONS" = "%@との端末間の暗号化が完全かどうかを確認するには，上記の番号と相手方に表示されている番号を比べてください。\n\nあるいは、相手方の端末上のQRコードを読み取るか、こちらのQRコードを相手に読み取ってもらってください。";
+"PRIVACY_VERIFICATION_INSTRUCTIONS" = "%@ とのエンドツーエンド暗号化のセキュリティを検証するには、上記の番号が相手の端末のものと一致するか確認してください。\n\n相手の端末上のコードをスキャンするか、あなたのコードをスキャンしてもらうことでも可能です。";
 
 /* Navbar title */
 "PRIVACY_VERIFICATION_TITLE" = "安全番号の検証";
@@ -3271,17 +3676,53 @@
 /* No comment provided by engineer. */
 "PROCEED_BUTTON" = "進む";
 
+/* Placeholder text for the bio field of the profile bio view. */
+"PROFILE_BIO_VIEW_BIO_PLACEHOLDER" = "簡単な自己紹介を記入してください…";
+
+/* The 'Be kind' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_BE_KIND" = "優しくしてね";
+
+/* The 'Coffee lover' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_COFFEE_LOVER" = "コーヒー大好き";
+
+/* The 'Encrypted' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_ENCRYPTED" = "暗号化済み";
+
+/* The 'free to chat' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_FREE_TO_CHAT" = "チャット歓迎";
+
+/* The 'Speak Freely' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_SPEAK_FREELY" = "気軽に話しかけて";
+
+/* The 'Taking a break' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_TAKING_A_BREAK" = "休憩中";
+
+/* The 'Working on something new' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_WORKING_ON_SOMETHING_NEW" = "新しいことをしています";
+
+/* Title for the profile bio view. */
+"PROFILE_BIO_VIEW_TITLE" = "自己紹介";
+
+/* Title for the profile bio view. Embeds {{ the number of characters that can be added to the profile bio without hitting the length limit }}. */
+"PROFILE_BIO_VIEW_TITLE_FORMAT" = "自己紹介 (%@)";
+
 /* The copy rendered in a conversation when someone in your address book changes their profile name. Embeds {contact name}, {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_CONTACT_FORMAT" = "%@ はプロフィール名前を %@ から %@ に変更しました。";
 
 /* The copy rendered in a conversation when someone not in your address book changes their profile name. Embeds {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_NONCONTACT_FORMAT" = "%@ はプロフィール名を %@ に変更しました。";
 
+/* Button to add a 'bio' to the user's profile in the profile view. */
+"PROFILE_VIEW_ADD_BIO_TO_PROFILE" = "プロフィールに追加";
+
 /* Action Sheet title prompting the user for a profile avatar */
 "PROFILE_VIEW_AVATAR_ACTIONSHEET_TITLE" = "プロフィール写真を設定";
 
+/* Header for the 'bio' section of the profile view. */
+"PROFILE_VIEW_BIO_SECTION_HEADER" = "自己紹介";
+
 /* Label for action that clear's the user's profile avatar */
-"PROFILE_VIEW_CLEAR_AVATAR" = "写真を消去";
+"PROFILE_VIEW_CLEAR_AVATAR" = "写真を削除";
 
 /* A string indicating that the user can create a username on the profile view. */
 "PROFILE_VIEW_CREATE_USERNAME" = "ユーザ名の作成";
@@ -3311,7 +3752,7 @@
 "PROFILE_VIEW_NO_CONNECTION" = "プロフィールの更新にはインターネット接続が必要です。";
 
 /* Description of the user profile. */
-"PROFILE_VIEW_PROFILE_DESCRIPTION" = "あなたのプロフィールは暗号化されています。会話を開始した際や、初めて相手からのメッセージを受け取った際、グループに参加した際に表示されます。";
+"PROFILE_VIEW_PROFILE_DESCRIPTION" = "あなたのプロフィールはエンドツーエンドで暗号化されています。プロフィールとその更新は、あなたの連絡先や、新しいチャットを開始したり受け入れた際に表示されます。";
 
 /* Button to save the profile view in the profile view. */
 "PROFILE_VIEW_SAVE_BUTTON" = "保存";
@@ -3332,7 +3773,7 @@
 "PUSH_MANAGER_REPLY" = "返信";
 
 /* Title of alert shown when push tokens sync job succeeds. */
-"PUSH_REGISTER_SUCCESS" = "プッシュ通信の再登録ができました。";
+"PUSH_REGISTER_SUCCESS" = "プッシュ通知を再登録しました。";
 
 /* Used in table section header and alert view title contexts */
 "PUSH_REGISTER_TITLE" = "プッシュ通知";
@@ -3434,7 +3875,7 @@
 "REGISTER_2FA_FORGOT_V1_PIN_ALERT_MESSAGE" = "あなたのPINは4桁以上の数字です。PINを思い出せない場合、7日間はアカウントを再登録できません。";
 
 /* Alert message explaining what happens if you get your pin wrong and have multiple attempts remaining 'two-factor auth pin' with reglock disabled. */
-"REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_PLURAL_FORMAT" = "残り%lu回試行できます。もし試行回数を使い果たした場合、新しいPINを作成することができます。登録することができアカウントを使用できますが、保存されたあなたのプロフィール情報は失われます。";
+"REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_PLURAL_FORMAT" = "あと%lu回試行できます。残りの試行回数がなくなった場合、新しいPINを作成できます。アカウントを登録して使用することもできますが、プロフィールなどの保存されている設定情報は失われます。";
 
 /* Alert message explaining what happens if you get your pin wrong and have multiple attempts remaining 'two-factor auth pin' with reglock enabled. */
 "REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_REGLOCK_PLURAL_FORMAT" = "あと%lu回試せます。試し終わるとアカウントがロックされます。7日間の休止後にPINなしで再登録できますが、アカウントはリセットされ、メッセージ等もすべて削除されます。";
@@ -3443,7 +3884,7 @@
 "REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_REGLOCK_SINGLE" = "あと1回試せます。試し終わるとアカウントがロックされます。7日間の休止後にPINなしで再登録できますが、アカウントはリセットされ、メッセージ等もすべて削除されます。";
 
 /* Alert message explaining what happens if you get your pin wrong and have one attempt remaining 'two-factor auth pin' with reglock disabled. */
-"REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_SINGLE" = "残り1回試行できます。もし試行回数を使い果たした場合、新しいPINを作成することができます。登録することができアカウントを使用できますが、保存されたあなたのプロフィール情報は失われます。";
+"REGISTER_2FA_INVALID_PIN_ALERT_MESSAGE_SINGLE" = "あと1回試行できます。残りの試行回数がなくなった場合、新しいPINを作成できます。アカウントを登録して使用することもできますが、プロフィールなどの保存されている設定情報は失われます。";
 
 /* Alert title explaining what happens if you forget your 'two-factor auth pin'. */
 "REGISTER_2FA_INVALID_PIN_ALERT_TITLE" = "PINが違います";
@@ -3458,7 +3899,7 @@
 "REGISTER_CONTACTS_WELCOME" = "ようこそ！";
 
 /* No comment provided by engineer. */
-"REGISTER_FAILED_TRY_AGAIN" = "再試行";
+"REGISTER_FAILED_TRY_AGAIN" = "もう一度試す";
 
 /* action sheet body */
 "REGISTER_RATE_LIMITING_BODY" = "急ぎすぎです。少し待ってから再試行してください。";
@@ -3473,13 +3914,19 @@
 "REGISTRATION_DEFAULT_COUNTRY_NAME" = "国番号";
 
 /* Placeholder text for the phone number textfield */
-"REGISTRATION_ENTERNUMBER_DEFAULT_TEXT" = "番号を入力";
+"REGISTRATION_ENTERNUMBER_DEFAULT_TEXT" = "電話番号を入力してください";
 
 /* No comment provided by engineer. */
 "REGISTRATION_ERROR" = "登録エラー";
 
 /* alert body during registration */
-"REGISTRATION_ERROR_BLANK_VERIFICATION_CODE" = "アカウントを有効化するには、お送りしたコードの確認を行ってください。";
+"REGISTRATION_ERROR_BLANK_VERIFICATION_CODE" = "送信したコードを確認するまで、アカウントを有効化できません。";
+
+/* Alert body for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_BODY" = "続けるには、携帯電話のインターネット接続を確認して再度試してください。";
+
+/* Alert title for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_TITLE" = "接続を確認してください";
 
 /* No comment provided by engineer. */
 "REGISTRATION_NON_VALID_NUMBER" = "サポートされていない形式の電話番号です。サポートに連絡してください。";
@@ -3491,7 +3938,7 @@
 "REGISTRATION_RESTRICTED_MESSAGE" = "メッセージを送信する前に登録が必要です。";
 
 /* Alert view title */
-"REGISTRATION_VERIFICATION_FAILED_TITLE" = "認証の失敗";
+"REGISTRATION_VERIFICATION_FAILED_TITLE" = "認証失敗";
 
 /* Error message indicating that registration failed due to a missing or incorrect verification code. */
 "REGISTRATION_VERIFICATION_FAILED_WRONG_CODE_DESCRIPTION" = "提出していただいた番号がこちらから送った番号とは異なります。再度確認してください。";
@@ -3511,6 +3958,18 @@
 /* Title of alert indicating that users needs to enter a phone number to register. */
 "REGISTRATION_VIEW_NO_PHONE_NUMBER_ALERT_TITLE" = "電話番号なし";
 
+/* Message for confirmation alert during phone number registration. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_MESSAGE" = "この電話番号に認証コードが送られます。あなたのもので合っていますか？";
+
+/* Title for confirmation alert during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_TITLE_FORMAT" = "電話番号の確認: %@";
+
+/* A button allowing user to cancel registration and edit a phone number */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_EDIT_BUTTON" = "編集";
+
+/* Label for the progress spinner shown during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_SPINNER_LABEL_FORMAT" = "%@ を検証しています…";
+
 /* notification action */
 "REJECT_CALL_BUTTON_TITLE" = "拒否する";
 
@@ -3518,13 +3977,37 @@
 "RELAY_REGISTERED_ERROR_RECOVERY" = "登録しようとしている番号はすでに別のサーバに登録されています。そこでの登録を解除してから再度試してください。";
 
 /* The title for the 'replace group admin' view. */
-"REPLACE_ADMIN_VIEW_TITLE" = "新しい管理者を選択";
+"REPLACE_ADMIN_VIEW_TITLE" = "新管理者の選択";
 
 /* No comment provided by engineer. */
 "REREGISTER_FOR_PUSH" = "プッシュ通知を再登録する";
 
+/* Body for research megaphone */
+"RESEARCH_MEGAPHONE_BODY" = "Signalを地上最高のメッセージアプリにするため、皆様からのフィードバックをお待ちしています。";
+
+/* Title for research megaphone */
+"RESEARCH_MEGAPHONE_TITLE" = "Signalへご意見ください";
+
+/* Text for the research modal footer */
+"RESEARCH_MODAL_FOOTER" = "このアンケートは、Surveygizmoが安全なドメイン (surveys.signalusers.org) でホストしています。";
+
+/* Button text for declining the research modal */
+"RESEARCH_MODAL_NO_THANKS" = "参加しない";
+
+/* Text explaining why the user should take the survey */
+"RESEARCH_MODAL_PLEA" = "<bold>私たちはプライバシーを尊重しています。</bold>\n\nSignalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<bold>お待ちしています。</bold>\n\n私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。\n\nお時間とご意見をお持ちの方は、ぜひご連絡ください。";
+
+/* Button text for taking the research survey */
+"RESEARCH_MODAL_TAKE_SURVEY" = "アンケートに参加する";
+
+/* Title for the research megaphone modal */
+"RESEARCH_MODAL_TITLE" = "Signalリサーチ";
+
 /* Generic text for button that retries whatever the last action was. */
 "RETRY_BUTTON_TEXT" = "再試行";
+
+/* Button to return to current group call */
+"RETURN_CALL_PILL_BUTTON" = "戻る";
 
 /* button title to confirm adding a recipient to a group when their safety number has recently changed */
 "SAFETY_NUMBER_CHANGED_CONFIRM_ADD_TO_GROUP_ACTION" = "とにかくグループに追加する";
@@ -3542,7 +4025,7 @@
 "SAFETY_NUMBER_CONFIRMATION_PREVIOUSLY_VERIFIED" = "以前に検証済み";
 
 /* Title for the 'safety number confirmation' view */
-"SAFETY_NUMBER_CONFIRMATION_TITLE" = "安全番号を変更";
+"SAFETY_NUMBER_CONFIRMATION_TITLE" = "安全番号が変わりました";
 
 /* View safety number action for the 'safety number confirmation' view */
 "SAFETY_NUMBER_CONFIRMATION_VIEW_ACTION" = "表示";
@@ -3551,7 +4034,7 @@
 "SAFETY_NUMBER_SHARE_FORMAT" = "私たちのSignal安全番号:\n%@";
 
 /* Action sheet heading */
-"SAFETY_NUMBERS_ACTIONSHEET_TITLE" = "%@との安全番号が変わりました。確認した方がいいかも知れません。";
+"SAFETY_NUMBERS_ACTIONSHEET_TITLE" = "%@ に対する安全番号が変わりました。検証した方が良いかもしれません。";
 
 /* label presented once scanning (camera) view is visible. */
 "SCAN_CODE_INSTRUCTIONS" = "連絡先のデバイスのQRコードを読み取ります。";
@@ -3572,13 +4055,13 @@
 "SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_LOCKOUT" = "認証に失敗しました。後で再試行してください";
 
 /* Indicates that Touch ID/Face ID/Phone Passcode are not available on this device. */
-"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_NOT_AVAILABLE" = "画面ロックを使うにはiOSでパスコードを設定してください。";
+"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_NOT_AVAILABLE" = "画面ロックを使用するには、iOSの設定でパスコードを有効にしてください。";
 
 /* Indicates that Touch ID/Face ID/Phone Passcode is not configured on this device. */
-"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_NOT_ENROLLED" = "画面ロックを使うにはiOSでパスコードを設定してください。";
+"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_NOT_ENROLLED" = "画面ロックを使用するには、iOSの設定でパスコードを有効にしてください。";
 
 /* Indicates that Touch ID/Face ID/Phone Passcode passcode is not set. */
-"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_PASSCODE_NOT_SET" = "画面ロックを使うにはiOSでパスコードを設定してください。";
+"SCREEN_LOCK_ERROR_LOCAL_AUTHENTICATION_PASSCODE_NOT_SET" = "画面ロックを使用するには、iOSの設定でパスコードを有効にしてください。";
 
 /* Description of how and why Signal iOS uses Touch ID/Face ID/Phone Passcode to unlock 'screen lock'. */
 "SCREEN_LOCK_REASON_UNLOCK_SCREEN_LOCK" = "Signalの起動を認証する";
@@ -3641,7 +4124,7 @@
 "SCREENSHOT_NAME_LOCAL_PROFILE" = "Freya会長";
 
 /* This is a message expressing support/happiness/awe/shock. */
-"SCREENSHOT_THREAD_DIRECT_FIVE_MESSAGE_ONE" = "おめでとう! 信じられないよ!";
+"SCREENSHOT_THREAD_DIRECT_FIVE_MESSAGE_ONE" = "おめでとう！信じられないよ！";
 
 /* This is a message. */
 "SCREENSHOT_THREAD_DIRECT_FIVE_MESSAGE_THREE" = "また明日？";
@@ -3656,7 +4139,7 @@
 "SCREENSHOT_THREAD_DIRECT_FOUR_MESSAGE_TWO" = "ありがとう！なんて素敵なメッセージでしょう :)";
 
 /* This is a message. */
-"SCREENSHOT_THREAD_DIRECT_ONE_MESSAGE_ONE" = "私は激しく降る雨の音をここに座って聞いています。";
+"SCREENSHOT_THREAD_DIRECT_ONE_MESSAGE_ONE" = "私は雨の音を、ただここに座って聞いています。";
 
 /* This is a message. */
 "SCREENSHOT_THREAD_DIRECT_ONE_MESSAGE_TWO" = "私も今朝同じことをしました。";
@@ -3677,7 +4160,7 @@
 "SCREENSHOT_THREAD_DIRECT_TWO_MESSAGE_THREE" = "ニュージーランド！";
 
 /* This is a message after an image of mountains + a lake. */
-"SCREENSHOT_THREAD_DIRECT_TWO_MESSAGE_TWO" = "え、今どこですか?";
+"SCREENSHOT_THREAD_DIRECT_TWO_MESSAGE_TWO" = "え、今どこですか？";
 
 /* This is a message in the group chat of family members. */
 "SCREENSHOT_THREAD_GROUP_FIVE_MESSAGE_ONE" = "今日は…";
@@ -3776,28 +4259,28 @@
 "SECONDARY_ONBOARDING_GET_STARTED_BY_OPENING_PRIMARY" = "このiPadをリンクさせるため、携帯電話のSignalを立ち上げてください。";
 
 /* Link explaining what to do when trying to link a device before having a primary device. */
-"SECONDARY_ONBOARDING_GET_STARTED_DO_NOT_HAVE_PRIMARY" = "スマホにSignalが入っていません...";
+"SECONDARY_ONBOARDING_GET_STARTED_DO_NOT_HAVE_PRIMARY" = "私の端末にはSignalがありません…";
 
 /* alert body */
-"SECONDARY_ONBOARDING_INSTALL_PRIMARY_FIRST_BODY" = "App StoreからSignalをインストールし、登録をしてください。そのアカウントにiPadをリンクできます。";
+"SECONDARY_ONBOARDING_INSTALL_PRIMARY_FIRST_BODY" = "App StoreからSignalをインストールし、登録すると、同じアカウントにiPadをリンクできます。";
 
 /* alert title */
 "SECONDARY_ONBOARDING_INSTALL_PRIMARY_FIRST_TITLE" = "Signalのインストール";
 
 /* body text while displaying a QR code which, when scanned, will link this device. */
-"SECONDARY_ONBOARDING_SCAN_CODE_BODY" = "携帯電話のSignalで、あなたのアイコンをタップし、「リンク済み端末」の「新しい端末をリンク」から、このQRコードを撮影してください。";
+"SECONDARY_ONBOARDING_SCAN_CODE_BODY" = "携帯電話のSignalであなたのアイコンをタップし、「リンク済み端末」の「新しい端末をリンク」から、このQRコードをスキャンしてください:";
 
 /* Link text for page with troubleshooting info shown on the QR scanning screen */
 "SECONDARY_ONBOARDING_SCAN_CODE_HELP_TEXT" = "iPadのリンクに関するヘルプはこちら";
 
 /* header text while displaying a QR code which, when scanned, will link this device. */
-"SECONDARY_ONBOARDING_SCAN_CODE_TITLE" = "QRコードをスキャン";
+"SECONDARY_ONBOARDING_SCAN_CODE_TITLE" = "QRコードをスキャンしてください";
 
 /* header text before the user can transfer to this device */
 "SECONDARY_TRANSFER_GET_STARTED_BY_OPENING_IPAD" = "アカウントを移行するため、以前のiPadでSignalを起動してください。";
 
 /* No comment provided by engineer. */
-"SECURE_SESSION_RESET" = "安全なセッションがリセットされました。";
+"SECURE_SESSION_RESET" = "セキュアセッションがリセットされました。";
 
 /* Table section header for conversations you haven't recently used. */
 "SELECT_THREAD_TABLE_OTHER_CHATS_TITLE" = "他の連絡先";
@@ -3806,7 +4289,7 @@
 "SELECT_THREAD_TABLE_RECENT_CHATS_TITLE" = "最近のチャット";
 
 /* No comment provided by engineer. */
-"SEND_AGAIN_BUTTON" = "再送する";
+"SEND_AGAIN_BUTTON" = "再送";
 
 /* Label for the button to send a message */
 "SEND_BUTTON_TITLE" = "送信";
@@ -3815,31 +4298,46 @@
 "SEND_FAILED_NOTIFICATION_BODY" = "メッセージの送信に失敗しました。";
 
 /* Alert body after invite failed */
-"SEND_INVITE_FAILURE" = "招待の送信に失敗しました。後でもう一度行ってください。";
+"SEND_INVITE_FAILURE" = "招待の送信に失敗しました。あとで再度試してください。";
 
 /* Alert body after invite succeeded */
 "SEND_INVITE_SUCCESS" = "友達をSignalに招待しました！";
 
 /* alert action, confirming the user wants to exit the media flow and abandon any photos they've taken */
-"SEND_MEDIA_CONFIRM_ABANDON_ALBUM" = "メディアを破棄します";
+"SEND_MEDIA_CONFIRM_ABANDON_ALBUM" = "メディアを破棄する";
 
 /* alert action when the user decides not to cancel the media flow after all. */
-"SEND_MEDIA_RETURN_TO_CAMERA" = "カメラに戻ります";
+"SEND_MEDIA_RETURN_TO_CAMERA" = "カメラに戻る";
 
 /* alert action when the user decides not to cancel the media flow after all. */
-"SEND_MEDIA_RETURN_TO_MEDIA_LIBRARY" = "メディアライブラリに戻ります";
+"SEND_MEDIA_RETURN_TO_MEDIA_LIBRARY" = "メディアライブラリに戻る";
 
 /* No comment provided by engineer. */
 "SEND_SMS_CONFIRM_TITLE" = "安全ではないSMSで友達を招待しますか？";
 
 /* No comment provided by engineer. */
-"SEND_SMS_INVITE_TITLE" = "この番号をSignalに招待しますか?";
+"SEND_SMS_INVITE_TITLE" = "この番号をSignalに招待しますか:";
+
+/* Description for the session refresh alert */
+"SESSION_REFRESH_ALERT_MESSAGE" = "Signalは、エンドツーエンドの暗号を使用しており、セッションを時々更新する必要があります。セキュリティには影響しませんが、この連絡先からのメッセージが失われる場合があり、その際は再送を依頼する必要があるかもしれません。";
+
+/* Title for the session refresh alert */
+"SESSION_REFRESH_ALERT_TITLE" = "セッションが更新されました";
+
+/* Title for the wallpaper choose from photos option */
+"SET_WALLPAPER_CHOOSE_PHOTO" = "写真から選択";
+
+/* Title for the wallpaper presets section */
+"SET_WALLPAPER_PRESETS" = "プリセット";
+
+/* Title for the set wallpaper settings view. */
+"SET_WALLPAPER_TITLE" = "壁紙の設定";
 
 /* Navbar title */
 "SETTINGS_ABOUT" = "Signalについて";
 
 /* Title for the 'add to block list' view. */
-"SETTINGS_ADD_TO_BLOCK_LIST_TITLE" = "ブロックする";
+"SETTINGS_ADD_TO_BLOCK_LIST_TITLE" = "ブロック";
 
 /* Label for the  'manual censorship circumvention' switch. */
 "SETTINGS_ADVANCED_CENSORSHIP_CIRCUMVENTION" = "検閲回避";
@@ -3892,6 +4390,12 @@
 /* table cell label */
 "SETTINGS_ADVANCED_VIEW_ERROR_LOG" = "エラーログ";
 
+/* Footer for avatar section in appearance settings */
+"SETTINGS_APPEARANCE_AVATAR_FOOTER" = "システムの連絡先写真を表示";
+
+/* Title for switch to toggle preference between contact and profile avatars */
+"SETTINGS_APPEARANCE_AVATAR_PREFERENCE_LABEL" = "システムの連絡先写真を使用する";
+
 /* The title for the theme section in the appearance settings. */
 "SETTINGS_APPEARANCE_THEME_TITLE" = "テーマ";
 
@@ -3938,7 +4442,7 @@
 "SETTINGS_BACKUP_STATUS" = "状態";
 
 /* Indicates that the last backup failed. */
-"SETTINGS_BACKUP_STATUS_FAILED" = "バックアップ失敗しました";
+"SETTINGS_BACKUP_STATUS_FAILED" = "バックアップに失敗しました";
 
 /* Indicates that app is not backing up. */
 "SETTINGS_BACKUP_STATUS_IDLE" = "待機中";
@@ -3959,7 +4463,7 @@
 "SETTINGS_BLOCK_LIST_NO_CONTACTS" = "Signal上に連絡先がいません。";
 
 /* A label that indicates the user's search has no matching results. */
-"SETTINGS_BLOCK_LIST_NO_SEARCH_RESULTS" = "検索結果なし";
+"SETTINGS_BLOCK_LIST_NO_SEARCH_RESULTS" = "該当なし";
 
 /* Label for the block list section of the settings view */
 "SETTINGS_BLOCK_LIST_TITLE" = "ブロックリスト";
@@ -3971,22 +4475,46 @@
 "SETTINGS_CALLING_HIDES_IP_ADDRESS_PREFERENCE_TITLE_DETAIL" = "すべての通話をSignalサーバで中継して、相手にIPアドレスを知られることを防ぎます。ただし通話の品質は下がります。";
 
 /* No comment provided by engineer. */
-"SETTINGS_CLEAR_HISTORY" = "会話履歴の消去";
+"SETTINGS_CLEAR_HISTORY" = "チャット履歴の消去";
 
 /* No comment provided by engineer. */
 "SETTINGS_COPYRIGHT" = "Copyright Signal Messenger \n Licensed under the GPLv3";
 
+/* Label for the 'data' section of the app settings. */
+"SETTINGS_DATA" = "データ通信量";
+
+/* Item title for the low bandwidth call setting */
+"SETTINGS_DATA_CALL_LOW_BANDWIDTH_ITEM_TITLE" = "データ通信量の抑制";
+
+/* Section footer for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_FOOTER" = "データ通信量を抑えて低品質なネットワーク上での通話を改善します";
+
+/* Section header for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_HEADER" = "通話";
+
+/* Footer for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_FOOTER" = "音声メッセージ、使い捨てメディアおよびステッカー (100kb以下) は、常に自動でダウンロードされます。";
+
+/* Header for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_HEADER" = "メディアの自動ダウンロード";
+
+/* Label for for the 'reset media auto-download settings' button in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_RESET" = "自動ダウンロードの設定をリセットする";
+
+/* The title for the data settings. */
+"SETTINGS_DATA_TITLE" = "データ通信量";
+
 /* No comment provided by engineer. */
-"SETTINGS_DELETE_ACCOUNT_BUTTON" = "アカウントを削除";
+"SETTINGS_DELETE_ACCOUNT_BUTTON" = "アカウントを削除する";
 
 /* Label for 'delete data' button. */
-"SETTINGS_DELETE_DATA_BUTTON" = "全データを削除";
+"SETTINGS_DELETE_DATA_BUTTON" = "すべてのデータを削除する";
 
 /* Alert message before user confirms clearing history */
-"SETTINGS_DELETE_HISTORYLOG_CONFIRMATION" = "すべての履歴 (メッセージや添付ファイルなど) を本当に消去しますか? この処理は復元できません。";
+"SETTINGS_DELETE_HISTORYLOG_CONFIRMATION" = "本当にすべての履歴 (メッセージ、添付ファイル、通話など) を消去しますか？この処理は元に戻せません。";
 
 /* Confirmation text for button which deletes all message, calling, attachments, etc. */
-"SETTINGS_DELETE_HISTORYLOG_CONFIRMATION_BUTTON" = "すべて消去";
+"SETTINGS_DELETE_HISTORYLOG_CONFIRMATION_BUTTON" = "すべて消去する";
 
 /* Title for the 'donate to signal' link in settings. */
 "SETTINGS_DONATE" = "Signalへの寄付";
@@ -3995,7 +4523,7 @@
 "SETTINGS_HELP" = "ヘルプ";
 
 /* Section header */
-"SETTINGS_HISTORYLOG_TITLE" = "会話履歴の消去";
+"SETTINGS_HISTORYLOG_TITLE" = "チャット履歴の消去";
 
 /* No comment provided by engineer. */
 "SETTINGS_INFORMATION_HEADER" = "情報";
@@ -4004,10 +4532,13 @@
 "SETTINGS_INVITE_TITLE" = "友達を招待する";
 
 /* content of tweet when inviting via twitter - please do not translate URL */
-"SETTINGS_INVITE_TWITTER_TEXT" = "私への連絡は@signalappを使ってください。アプリのダウンロード先はhttps://signal.org/download/";
+"SETTINGS_INVITE_TWITTER_TEXT" = "私への連絡は @signalapp を使ってください。入手先: https://signal.org/download/";
 
 /* Label for settings view that allows user to change the notification sound. */
 "SETTINGS_ITEM_NOTIFICATION_SOUND" = "メッセージ着信音";
+
+/* Label for settings view that allows user to change the wallpaper. */
+"SETTINGS_ITEM_WALLPAPER" = "チャットの壁紙";
 
 /* table cell label */
 "SETTINGS_LEGAL_TERMS_CELL" = "利用規約とプライバシーポリシー";
@@ -4018,6 +4549,27 @@
 /* Footer for setting for enabling & disabling link previews. */
 "SETTINGS_LINK_PREVIEWS_FOOTER" = "送信メッセージのリンクプレビューをウェブサイトから直接取得します。";
 
+/* Label for the 'never' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_NEVER" = "なし";
+
+/* Label for the 'wifi and cellular' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_AND_CELLULAR" = "Wi-Fiと携帯電話回線";
+
+/* Label for the 'wifi-only' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_ONLY" = "Wi-Fi";
+
+/* Label for the 'audio' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_AUDIO" = "音声";
+
+/* Label for the 'document' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_DOCUMENT" = "ドキュメント";
+
+/* Label for the 'photo' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_PHOTO" = "写真";
+
+/* Label for the 'video' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_VIDEO" = "動画";
+
 /* Label for the 'messaging' privacy settings. */
 "SETTINGS_MESSAGING" = "メッセージ";
 
@@ -4025,7 +4577,7 @@
 "SETTINGS_NAV_BAR_TITLE" = "設定";
 
 /* When the local device discovers a contact has recently installed signal, the app can generates a message encouraging the local user to say hello. Turning this switch off disables that feature. */
-"SETTINGS_NOTIFICATION_BADGE_COUNT_INCLUDES_MUTED_CONVERSATIONS" = "ミュート中の会話数";
+"SETTINGS_NOTIFICATION_BADGE_COUNT_INCLUDES_MUTED_CONVERSATIONS" = "ミュート中のチャットも数に含める";
 
 /* table section header */
 "SETTINGS_NOTIFICATION_BADGE_COUNT_TITLE" = "バッジ数";
@@ -4046,19 +4598,19 @@
 "SETTINGS_NOTIFICATIONS" = "通知";
 
 /* Label for the 'phone number discoverability' setting. */
-"SETTINGS_PHONE_NUMBER_DISCOVERABILITY" = "電話番号で私を検索できる";
+"SETTINGS_PHONE_NUMBER_DISCOVERABILITY" = "電話番号で私を検索できる人";
 
 /* The title for the phone number discoverability settings. */
-"SETTINGS_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "電話番号で私を検索できる";
+"SETTINGS_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "電話番号で私を検索できる人";
 
 /* Label for the 'phone number sharing' setting. */
-"SETTINGS_PHONE_NUMBER_SHARING" = "私の電話番号の表示を許可";
+"SETTINGS_PHONE_NUMBER_SHARING" = "私の電話番号を確認できる人";
 
 /* The title for the phone number sharing settings. */
-"SETTINGS_PHONE_NUMBER_SHARING_TITLE" = "私の電話番号の表示を許可";
+"SETTINGS_PHONE_NUMBER_SHARING_TITLE" = "私の電話番号を確認できる人";
 
 /* The button text for the dialog asking user to confirm their PIN to disable reminders */
-"SETTINGS_PIN_REMINDER_DISABLE_CONFIRMATION_ACTION" = "リマインダーを切る";
+"SETTINGS_PIN_REMINDER_DISABLE_CONFIRMATION_ACTION" = "リマインダーを無効にする";
 
 /* The explanation for the dialog asking user to confirm their PIN to disable reminders */
 "SETTINGS_PIN_REMINDER_DISABLE_CONFIRMATION_EXPLANATION" = "PINは忘れないようにするか、安全に保管してください。復元はできませんので。PINを忘れると、Signalに登録し直しても、データは失われる可能性があります。";
@@ -4097,7 +4649,7 @@
 "SETTINGS_READ_RECEIPT" = "既読確認";
 
 /* An explanation of the 'read receipts' setting. */
-"SETTINGS_READ_RECEIPTS_SECTION_FOOTER" = "メッセージが既読かどうかを確認・共有します。この設定はすべての会話に適用されます。";
+"SETTINGS_READ_RECEIPTS_SECTION_FOOTER" = "メッセージが既読であることを表示し、共有します。この設定は任意で、すべてのチャットに適用されます。";
 
 /* Action to turn off registration lock */
 "SETTINGS_REGISTRATION_LOCK_TURN_OFF" = "無効にする";
@@ -4109,7 +4661,7 @@
 "SETTINGS_REGISTRATION_LOCK_TURN_ON" = "有効にする";
 
 /* Body for the alert confirming that the user wants to turn on registration lock. */
-"SETTINGS_REGISTRATION_LOCK_TURN_ON_MESSAGE" = "Signal PINをSignal再登録時に忘れると、アカウントから7日間締め出されます。";
+"SETTINGS_REGISTRATION_LOCK_TURN_ON_MESSAGE" = "Signalに再登録する際にPINを忘れると、アカウントが7日間ロックされます。";
 
 /* Title for the alert confirming that the user wants to turn on registration lock. */
 "SETTINGS_REGISTRATION_LOCK_TURN_ON_TITLE" = "登録ロックを有効にしますか？";
@@ -4136,7 +4688,7 @@
 "SETTINGS_SCREEN_SECURITY" = "画面のセキュリティを有効化";
 
 /* No comment provided by engineer. */
-"SETTINGS_SCREEN_SECURITY_DETAIL" = "アプリ変更時にSignalの画面を表示しません。";
+"SETTINGS_SCREEN_SECURITY_DETAIL" = "AppスイッチャーでSignalのプレビューが表示されないようにします。";
 
 /* Header Label for the sounds section of settings views. */
 "SETTINGS_SECTION_SOUNDS" = "着信音";
@@ -4147,17 +4699,23 @@
 /* Section header */
 "SETTINGS_SECURITY_TITLE" = "画面のセキュリティ";
 
+/* Setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS" = "Siriからの提案に表示する";
+
+/* Footer for setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS_FOOTER" = "他のアプリから共有する際に、Signalチャットを候補として表示します。";
+
 /* Label for the 'enable registration lock' switch of the privacy settings. */
 "SETTINGS_TWO_FACTOR_AUTH_SWITCH_LABEL" = "登録ロック";
 
 /* Footer for the 'two factor auth' section of the privacy settings when Signal PINs are available. */
-"SETTINGS_TWO_FACTOR_PINS_AUTH_FOOTER" = "セキュリティをさらに高めるために登録ロックを有効にします。有効にすると、同じ電話番号をSignalに再度登録する際にSignal PINが必要となります。";
+"SETTINGS_TWO_FACTOR_PINS_AUTH_FOOTER" = "さらにセキュリティを高めるため、同じ電話番号をSignalに再度登録する際にSignal PINが必要となるよう、登録ロックを有効にしてください。";
 
 /* Label for the 'typing indicators' setting. */
 "SETTINGS_TYPING_INDICATORS" = "入力中アイコン";
 
 /* An explanation of the 'typing indicators' setting. */
-"SETTINGS_TYPING_INDICATORS_FOOTER" = "メッセージが入力中であることを表示・共有します。この設定はオプションで、すべての会話に適用されます。";
+"SETTINGS_TYPING_INDICATORS_FOOTER" = "メッセージが入力中であることを表示し、共有します。この設定は任意で、すべてのチャットに適用されます。";
 
 /* table section label */
 "SETTINGS_UNIDENTIFIED_DELIVERY_SECTION_TITLE" = "送信者の秘匿化";
@@ -4178,7 +4736,7 @@
 "SETTINGS_VERSION" = "バージョン";
 
 /* Label for the 'who can' privacy settings. */
-"SETTINGS_WHO_CAN" = "プライバシーの対象...";
+"SETTINGS_WHO_CAN" = "電話番号のプライバシー";
 
 /* action sheet item to open native mail app */
 "SHARE_ACTION_MAIL" = "メール";
@@ -4205,10 +4763,13 @@
 "SHARE_EXTENSION_NOT_YET_MIGRATED_MESSAGE" = "Signalを起動してアップデート、登録してください。";
 
 /* Title indicating that the share extension cannot be used until the main app has been launched at least once. */
-"SHARE_EXTENSION_NOT_YET_MIGRATED_TITLE" = "準備不足";
+"SHARE_EXTENSION_NOT_YET_MIGRATED_TITLE" = "準備できていません";
 
 /* Alert title */
 "SHARE_EXTENSION_SENDING_FAILURE_TITLE" = "添付ファイルの送信失敗";
+
+/* Send progress for share extension. Embeds {{ %1$@ number of attachments uploaded, %2$@ total number of attachments}} */
+"SHARE_EXTENSION_SENDING_IN_PROGRESS_FORMAT" = "%1$@/%2$@をアップロードしています…";
 
 /* Alert title */
 "SHARE_EXTENSION_SENDING_IN_PROGRESS_TITLE" = "アップロードしています…";
@@ -4219,11 +4780,26 @@
 /* Title for the 'share extension' view. */
 "SHARE_EXTENSION_VIEW_TITLE" = "Signalと共有";
 
+/* Title of alert indicating sharing suggestions failed to deactivate */
+"SHARING_SUGGESTIONS_DISABLE_ERROR" = "共有時の提案を無効にできませんでした。";
+
+/* Body for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_BODY" = "他のアプリから共有する際に、Signalチャットを候補として表示できるようになりました。";
+
+/* Title for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_TITLE" = "共有をもっと簡単に";
+
+/* Disable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_DISABLE" = "無効にする";
+
+/* Enable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_ENABLE" = "有効にする";
+
 /* Action sheet item */
 "SHOW_SAFETY_NUMBER_ACTION" = "安全番号を表示";
 
 /* notification action */
-"SHOW_THREAD_BUTTON_TITLE" = "会話を表示";
+"SHOW_THREAD_BUTTON_TITLE" = "チャットを表示";
 
 /* body sent to contacts when inviting to Install Signal */
 "SMS_INVITE_BODY" = "Signalのインストールをお勧めします！このリンクから入手してください:";
@@ -4231,14 +4807,23 @@
 /* Label for the 'no sound' option that allows users to disable sounds for notifications, etc. */
 "SOUNDS_NONE" = "なし";
 
+/* Footer for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_FOOTER" = "既存のグループは、今後数週間で自動でこれらの機能を持ちます。";
+
+/* Instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS" = "新しいグループ";
+
+/* Joiner symbol in the instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS_JOINER" = "+";
+
+/* Header for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_TITLE" = "新しいグループがやって来ました！";
+
+/* Body text for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_SPLASH_BODY" = "新しいグループには、@メンションやグループ管理者機能などがあります。以下をタップして試してください:";
+
 /* Preview text shown in notifications and conversation list for sticker messages. */
 "STICKER_MESSAGE_PREVIEW" = "ステッカーメッセージ";
-
-/* Tooltip indicating that a sticker pack was installed. */
-"STICKER_PACK_INSTALLED_TOOLTIP" = "ステッカーパックをインストールしました";
-
-/* Label for a sticker that failed to download. */
-"STICKERS_FAILED_DOWNLOAD" = "ステッカー";
 
 /* Label for the 'install sticker pack' button. */
 "STICKERS_INSTALL_BUTTON" = "インストール";
@@ -4270,9 +4855,6 @@
 /* Default title for sticker packs. */
 "STICKERS_PACK_DEFAULT_TITLE" = "ステッカーパック";
 
-/* Title of the 'share sticker pack' view. */
-"STICKERS_PACK_SHARE_VIEW_TITLE" = "ステッカーパックの共有";
-
 /* The default title for the 'sticker pack' view. */
 "STICKERS_PACK_VIEW_DEFAULT_TITLE" = "ステッカーパック";
 
@@ -4294,8 +4876,35 @@
 /* Placeholder string for support description */
 "SUPPORT_DESCRIPTION_PLACEHOLDER" = "何が起きているか教えてください";
 
+/* Default prompt for user description in support email requests */
+"SUPPORT_EMAIL_DEFAULT_DESCRIPTION" = "この問題について教えてください:";
+
 /* Message for alert dialog presented when a support email failed to send */
 "SUPPORT_EMAIL_ERROR_ALERT_DESCRIPTION" = "サポートリクエストを support@signal.org へメールしてください。";
+
+/* Localized label for support request email filter string. Embeds {{filter text}}. */
+"SUPPORT_EMAIL_FILTER_LABEL_FORMAT" = "フィルタ: %@";
+
+/* Localized label for support request email hardware string (e.g. iPhone or iPad). Embeds {{hardware text}}. */
+"SUPPORT_EMAIL_HARDWARE_LABEL_FORMAT" = "ハードウェア: %@";
+
+/* Localized label for support request email HID string (e.g. 12,1). Embeds {{hid text}}. */
+"SUPPORT_EMAIL_HID_LABEL_FORMAT" = "HID: %@";
+
+/* Localized divider for support request emails internal information */
+"SUPPORT_EMAIL_INFO_DIVIDER" = "--- サポート情報 ---";
+
+/* Localized label for support request email iOS Version string (e.g. 13.4). Embeds {{ios version}}. */
+"SUPPORT_EMAIL_IOS_VERSION_LABEL_FORMAT" = "iOSバージョン: %@";
+
+/* Localized label for support request email locale string. Embeds {{locale}}. */
+"SUPPORT_EMAIL_LOCALE_LABEL_FORMAT" = "言語設定: %@";
+
+/* Localized label for support request email debug log URL. Embeds {{debug log url}}. */
+"SUPPORT_EMAIL_LOG_URL_LABEL_FORMAT" = "ログURL: %@";
+
+/* Localized label for support request email signal version string. Embeds {{signal version}}. */
+"SUPPORT_EMAIL_SIGNAL_VERSION_LABEL_FORMAT" = "Signalバージョン: %@";
 
 /* Localized subject for support request emails */
 "SUPPORT_EMAIL_SUBJECT" = "Signal iOSサポートリクエスト";
@@ -4307,7 +4916,7 @@
 "SUPPORT_FAQ_PROMPT" = "よくある質問を読まれましたか？";
 
 /* Label describing support switch to attach debug logs */
-"SUPPORT_INCLUDE_DEBUG_LOG" = "デバッグログを添付";
+"SUPPORT_INCLUDE_DEBUG_LOG" = "デバッグログを添付する";
 
 /* A string in the navigation bar indicating that the support request is uploading logs */
 "SUPPORT_LOG_UPLOAD_IN_PROGRESS" = "読み込み中";
@@ -4325,10 +4934,10 @@
 "THIS_MESSAGE_WAS_DELETED" = "このメッセージは削除されました。";
 
 /* A string indicating two mutual groups the user shares with this contact and that there are more unlisted. Embeds {{mutual group name}} */
-"THREAD_DETAILS_MORE_MUTUAL_GROUP" = "%@、%@、%luグループのメンバー";
+"THREAD_DETAILS_MORE_MUTUAL_GROUP" = "%@, %@ ほか%luグループのメンバー";
 
 /* Subtitle appearing at the top of the users 'note to self' conversation */
-"THREAD_DETAILS_NOTE_TO_SELF_EXPLANATION" = "この会話に自分用のメモを追加できます。今後のメモはリンク済みの端末にも同期されます。";
+"THREAD_DETAILS_NOTE_TO_SELF_EXPLANATION" = "このチャットに自分用のメモを追加できます。新規のメモはリンク済み端末にも同期されます。";
 
 /* A string indicating a mutual group the user shares with this contact. Embeds {{mutual group name}} */
 "THREAD_DETAILS_ONE_MUTUAL_GROUP" = "%@ のメンバー";
@@ -4403,7 +5012,7 @@
 "UNARCHIVE_ACTION" = "受信箱に戻す";
 
 /* Message shown in conversation view that offers to block an unknown user. */
-"UNKNOWN_CONTACT_BLOCK_OFFER" = "連絡先にないユーザです。このユーザをブロックしますか?";
+"UNKNOWN_CONTACT_BLOCK_OFFER" = "連絡先にないユーザです。このユーザをブロックしますか？";
 
 /* Displayed if for some reason we can't determine a contacts phone number *or* name */
 "UNKNOWN_CONTACT_NAME" = "不明な連絡先";
@@ -4412,13 +5021,13 @@
 "UNKNOWN_COUNTRY_NAME" = "不明な国名";
 
 /* Info message recorded in conversation history when local user receives an unknown message from a linked device and needs to upgrade. */
-"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_FROM_LINKED_DEVICE" = "Signalの新機能を使用してメッセージを送信したため、処理または表示できませんでした。";
+"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_FROM_LINKED_DEVICE" = "あなたの端末の1つが、Signalの新機能を使用してメッセージを送信したため、ここでは処理または表示できません。";
 
 /* Info message recorded in conversation history when local user receives an unknown message and needs to upgrade. Embeds {{user's name or phone number}}. */
-"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITH_NAME_FORMAT" = "%@からメッセージが届きましたが、Signalの新機能を使用したもののため処理または表示できませんでした。";
+"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITH_NAME_FORMAT" = "%@ からメッセージが届きましたが、Signalの新機能が使用されているため、処理または表示できませんでした。";
 
 /* Info message recorded in conversation history when local user receives an unknown message and needs to upgrade. */
-"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITHOUT_NAME" = "メッセージが届きましたが、Signalの新機能が使用されているため、処理または表示ができませんでした。";
+"UNKNOWN_PROTOCOL_VERSION_NEED_TO_UPGRADE_WITHOUT_NAME" = "メッセージが届きましたが、Signalの新機能が使用されているため、処理または表示できませんでした。";
 
 /* Label for button that lets users upgrade the app. */
 "UNKNOWN_PROTOCOL_VERSION_UPGRADE_BUTTON" = "いますぐSignalをアップデートする";
@@ -4427,7 +5036,7 @@
 "UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_FROM_LINKED_DEVICE" = "最新版のSignalにアップデートしました。この端末でもこのタイプのメッセージを受信できます。";
 
 /* Info message recorded in conversation history when local user has received an unknown message and has upgraded. Embeds {{user's name or phone number}}. */
-"UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_WITH_NAME_FORMAT" = "Signalをアップデートしたので、 %@ にメッセージの再送を依頼してください。";
+"UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_WITH_NAME_FORMAT" = "Signalを最新版にアップデートしたため、このメッセージの再送を %@ に依頼できます。";
 
 /* Info message recorded in conversation history when local user has received an unknown message and has upgraded. */
 "UNKNOWN_PROTOCOL_VERSION_UPGRADE_COMPLETE_WITHOUT_NAME" = "Signalをアップデートしたので、メッセージの再送を依頼してください。";
@@ -4472,7 +5081,7 @@
 "UNREAD_ACTION" = "未読にする";
 
 /* No comment provided by engineer. */
-"UNREGISTER_SIGNAL_FAIL" = "Signalからの登録解除に失敗しました。";
+"UNREGISTER_SIGNAL_FAIL" = "Signalからの登録削除に失敗しました。";
 
 /* No comment provided by engineer. */
 "UNSUPPORTED_ATTACHMENT" = "サポートされていない種類の添付ファイルを受信しました。";
@@ -4603,8 +5212,65 @@
 /* Activity indicator title, shown upon returning to the device manager, until you complete the provisioning process on desktop */
 "WAITING_TO_COMPLETE_DEVICE_LINK_TEXT" = "Signal Desktopの設定が完了しました。";
 
+/* Placeholder text for header of the wallpaper mini preview */
+"WALLPAPER_MINI_PREVIEW_CONTACT_NAME" = "連絡先名";
+
+/* Blur button on wallpaper preview. */
+"WALLPAPER_PREVIEW_BLUR_BUTTON" = "写真をぼかす";
+
+/* The incoming bubble text when setting a photo */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PHOTO" = "ピンチで拡大、ドラッグで調整します。";
+
+/* The incoming bubble text when setting a preset */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PRESET" = "スワイプすると別の壁紙をプレビューできます。";
+
+/* The outgoing bubble text when setting a wallpaper for all chats. */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_ALL_CHATS" = "すべてのチャットの壁紙を設定します。";
+
+/* The outgoing bubble text when setting a wallpaper for specific chat. Embeds {{chat name}} */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_FORMAT" = "%@ の壁紙を設定します。";
+
+/* The text for the set button on wallpaper preview view. */
+"WALLPAPER_PREVIEW_SET_BUTTON" = "設定する";
+
+/* Title for the wallpaper preview view. */
+"WALLPAPER_PREVIEW_TITLE" = "プレビュー";
+
+/* Clear wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER" = "壁紙を消去";
+
+/* Confirmation dialog when clearing the wallpaper for a specific chat. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_CHAT_CONFIRMATION" = "このチャットの壁紙を消去しますか？";
+
+/* Confirmation dialog when clearing the global wallpaper. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_GLOBAL_CONFIRMATION" = "壁紙を消去しますか？チャットに設定したカスタム壁紙は消去されません。";
+
+/* Dim wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_DIM_WALLPAPER" = "ダークテーマで壁紙を暗くする";
+
+/* An error indicating to the user that we failed to clear the wallpaper. */
+"WALLPAPER_SETTINGS_FAILED_TO_CLEAR" = "壁紙を消去できませんでした。あとで再度試すか、エラーが続く場合はサポートに連絡してください。";
+
+/* An error indicating to the user that we failed to reset all wallpapers. */
+"WALLPAPER_SETTINGS_FAILED_TO_RESET" = "すべての壁紙をリセットできませんでした。あとで再度試すか、エラーが続く場合はサポートに連絡してください。";
+
+/* Title for the wallpaper settings preview section. */
+"WALLPAPER_SETTINGS_PREVIEW" = "プレビュー";
+
+/* Reset all wallpapers action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_RESET_ALL" = "すべての壁紙をリセット";
+
+/* Confirmation dialog when resetting all wallpapers. */
+"WALLPAPER_SETTINGS_RESET_ALL_WALLPAPERS_CONFIRMATION" = "チャットに設定したカスタム壁紙を含む、すべての壁紙をリセットしますか？";
+
+/* Set wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_SET_WALLPAPER" = "壁紙を設定";
+
+/* Title for the wallpaper settings view. */
+"WALLPAPER_SETTINGS_TITLE" = "チャットの壁紙";
+
 /* text indicating the message was remotely deleted by you */
-"YOU_DELETED_THIS_MESSAGE" = "このメッセージを削除しました。";
+"YOU_DELETED_THIS_MESSAGE" = "メッセージを削除しました。";
 
 /* Info Message when you disabled disappearing messages. */
 "YOU_DISABLED_DISAPPEARING_MESSAGES_CONFIGURATION" = "消えるメッセージを無効にしました。";

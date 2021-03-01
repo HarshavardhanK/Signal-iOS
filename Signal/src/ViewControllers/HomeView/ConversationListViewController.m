@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "ConversationListViewController.h"
@@ -21,8 +21,8 @@
 #import <SignalMessaging/SignalMessaging-Swift.h>
 #import <SignalMessaging/Theme.h>
 #import <SignalMessaging/UIUtil.h>
+#import <SignalServiceKit/MessageSender.h>
 #import <SignalServiceKit/OWSFormat.h>
-#import <SignalServiceKit/OWSMessageSender.h>
 #import <SignalServiceKit/OWSMessageUtils.h>
 #import <SignalServiceKit/SignalServiceKit-Swift.h>
 #import <SignalServiceKit/TSAccountManager.h>
@@ -56,7 +56,8 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     ConversationSearchViewDelegate,
     UIDatabaseSnapshotDelegate,
     OWSBlockListCacheDelegate,
-    CameraFirstCaptureDelegate>
+    CameraFirstCaptureDelegate,
+    OWSGetStartedBannerViewControllerDelegate>
 
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *emptyInboxView;
@@ -66,18 +67,20 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
 @property (nonatomic, readonly) ThreadMapping *threadMapping;
 @property (nonatomic) ConversationListMode conversationListMode;
-@property (nonatomic) id previewingContext;
 @property (nonatomic, readonly) NSCache<NSString *, ThreadViewModel *> *threadViewModelCache;
 @property (nonatomic) BOOL isViewVisible;
 @property (nonatomic) BOOL shouldObserveDBModifications;
 @property (nonatomic) BOOL hasEverAppeared;
+
+// Get Started banner
+@property (nonatomic, nullable) OWSInviteFlow *inviteFlow;
+@property (nonatomic, nullable) OWSGetStartedBannerViewController *getStartedBanner;
 
 // Mark: Search
 
 @property (nonatomic, readonly) OWSSearchBar *searchBar;
 @property (nonatomic) ConversationSearchViewController *searchResultsController;
 
-@property (nonatomic, readonly) OWSContactsManager *contactsManager;
 @property (nonatomic, readonly) OWSBlockListCache *blocklistCache;
 
 // Views
@@ -121,23 +124,6 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     [_blocklistCache startObservingAndSyncStateWithDelegate:self];
     _threadViewModelCache = [NSCache new];
     _threadMapping = [ThreadMapping new];
-}
-
-#pragma mark - Dependencies
-
-- (OWSContactsManager *)contactsManager
-{
-    return Environment.shared.contactsManager;
-}
-
-- (SDSDatabaseStorage *)databaseStorage
-{
-    return SDSDatabaseStorage.shared;
-}
-
-- (nullable MessageFetcherJob *)messageFetcherJob
-{
-    return SSKEnvironment.shared.messageFetcherJob;
 }
 
 #pragma mark -
@@ -187,6 +173,10 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
                                              selector:@selector(appExpiryDidChange:)
                                                  name:AppExpiry.AppExpiryDidChange
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateAvatars)
+                                                 name:SSKPreferences.preferContactAvatarsPreferenceDidChange
+                                               object:nil];
 }
 
 - (void)dealloc
@@ -195,6 +185,11 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 }
 
 #pragma mark - Notifications
+
+- (void)updateAvatars
+{
+    [self.tableView reloadData];
+}
 
 - (void)signalAccountsDidChange:(NSNotification *)notification
 {
@@ -295,6 +290,14 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
             if (!UIDevice.currentDevice.isIPad) {
                 [self.tableView reloadData];
             }
+
+            // The Get Started banner will occupy most of the screen in landscape
+            // If we're transitioning to landscape, fade out the view (if it exists)
+            if (size.width > size.height) {
+                self.getStartedBanner.view.alpha = 0;
+            } else {
+                self.getStartedBanner.view.alpha = 1;
+            }
         }
                         completion:nil];
 }
@@ -318,7 +321,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     __weak ConversationListViewController *weakSelf = self;
     ReminderView *deregisteredView = [ReminderView
-        nagWithText:TSAccountManager.sharedInstance.isPrimaryDevice
+        nagWithText:TSAccountManager.shared.isPrimaryDevice
             ? NSLocalizedString(@"DEREGISTRATION_WARNING", @"Label warning the user that they have been de-registered.")
             : NSLocalizedString(
                 @"UNLINKED_WARNING", @"Label warning the user that they have been unlinked from their primary device.")
@@ -371,7 +374,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     self.emptyInboxView = [self createEmptyInboxView];
     [self.view addSubview:self.emptyInboxView];
     [self.emptyInboxView autoPinWidthToSuperviewMargins];
-    [self.emptyInboxView autoVCenterInSuperview];
+    [self.emptyInboxView autoAlignAxis:ALAxisHorizontal toSameAxisOfView:self.view withMultiplier:0.85];
     SET_SUBVIEW_ACCESSIBILITY_IDENTIFIER(self, _emptyInboxView);
 
     [self createFirstConversationCueView];
@@ -400,42 +403,16 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
 - (UIView *)createEmptyInboxView
 {
-    NSArray<NSString *> *emptyInboxImageNames = @[
-        @"home_empty_splash_1",
-        @"home_empty_splash_2",
-        @"home_empty_splash_3",
-        @"home_empty_splash_4",
-        @"home_empty_splash_5",
-    ];
-    NSString *emptyInboxImageName = emptyInboxImageNames[arc4random_uniform((uint32_t)emptyInboxImageNames.count)];
-    UIImageView *emptyInboxImageView = [UIImageView new];
-    emptyInboxImageView.image = [UIImage imageNamed:emptyInboxImageName];
-    emptyInboxImageView.layer.minificationFilter = kCAFilterTrilinear;
-    emptyInboxImageView.layer.magnificationFilter = kCAFilterTrilinear;
-    [emptyInboxImageView autoPinToAspectRatioWithSize:emptyInboxImageView.image.size];
-    CGSize navControllerSize = self.navigationController.view.frame.size;
-    CGFloat emptyInboxImageSize = MIN(navControllerSize.width, navControllerSize.height) * 0.65f;
-    [emptyInboxImageView autoSetDimension:ALDimensionWidth toSize:emptyInboxImageSize];
-
     UILabel *emptyInboxLabel = [UILabel new];
     emptyInboxLabel.text = NSLocalizedString(
         @"INBOX_VIEW_EMPTY_INBOX", @"Message shown in the conversation list when the inbox is empty.");
-    emptyInboxLabel.font = UIFont.ows_dynamicTypeBodyClampedFont;
-    emptyInboxLabel.textColor = Theme.secondaryTextAndIconColor;
+    emptyInboxLabel.font = UIFont.ows_dynamicTypeSubheadlineClampedFont;
+    emptyInboxLabel.textColor = Theme.isDarkThemeEnabled ? Theme.darkThemeSecondaryTextAndIconColor : UIColor.ows_gray45Color;
     emptyInboxLabel.textAlignment = NSTextAlignmentCenter;
     emptyInboxLabel.numberOfLines = 0;
     emptyInboxLabel.lineBreakMode = NSLineBreakByWordWrapping;
 
-    UIStackView *emptyInboxStack = [[UIStackView alloc] initWithArrangedSubviews:@[
-        emptyInboxImageView,
-        emptyInboxLabel,
-    ]];
-    emptyInboxStack.axis = UILayoutConstraintAxisVertical;
-    emptyInboxStack.alignment = UIStackViewAlignmentCenter;
-    emptyInboxStack.spacing = 12;
-    emptyInboxStack.layoutMargins = UIEdgeInsetsMake(50, 50, 50, 50);
-    emptyInboxStack.layoutMarginsRelativeArrangement = YES;
-    return emptyInboxStack;
+    return emptyInboxLabel;
 }
 
 - (void)createFirstConversationCueView
@@ -596,8 +573,8 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 {
     self.archiveReminderView.hidden = self.conversationListMode != ConversationListMode_Archive;
     self.deregisteredView.hidden
-        = !TSAccountManager.sharedInstance.isDeregistered || TSAccountManager.sharedInstance.isTransferInProgress;
-    self.outageView.hidden = !OutageDetection.sharedManager.hasOutage;
+        = !TSAccountManager.shared.isDeregistered || TSAccountManager.shared.isTransferInProgress;
+    self.outageView.hidden = !OutageDetection.shared.hasOutage;
 
     self.expiredView.hidden = !AppExpiry.shared.isExpiringSoon;
     [self.expiredView updateText];
@@ -638,8 +615,11 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     [self applyDefaultBackButton];
 
-    if ([self.traitCollection respondsToSelector:@selector(forceTouchCapability)]
-        && (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable)) {
+    if (@available(iOS 13, *)) {
+        // Automatically handled by UITableViewDelegate callbacks
+        // -tableView:contextMenuConfigurationForRowAtIndexPath:point:
+        // -tableView:willPerformPreviewActionForMenuWithConfiguration:animator:
+    } else if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         [self registerForPreviewingWithDelegate:self sourceView:self.tableView];
     }
 
@@ -718,6 +698,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     if (!self.hasEverAppeared && ![ExperienceUpgradeManager presentNextFromViewController:self]) {
         [OWSActionSheets showIOSUpgradeNagIfNecessary];
+        [self presentGetStartedBannerIfNecessary];
     }
 
     [self applyDefaultBackButton];
@@ -748,6 +729,19 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     [self.searchResultsController viewDidDisappear:animated];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    BOOL isBannerVisible = self.getStartedBanner.view && !self.getStartedBanner.view.isHidden;
+
+    UIEdgeInsets newContentInset = UIEdgeInsetsZero;
+    newContentInset.bottom = isBannerVisible ? self.getStartedBanner.opaqueHeight : 0;
+
+    if (!UIEdgeInsetsEqualToEdgeInsets(self.tableView.contentInset, newContentInset)) {
+        [UIView animateWithDuration:0.25 animations:^{ self.tableView.contentInset = newContentInset; }];
+    }
+}
+
 - (void)updateBarButtonItems
 {
     if (self.conversationListMode != ConversationListMode_Inbox) {
@@ -756,7 +750,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     //  Settings button.
     const NSUInteger kAvatarSize = 28;
-    UIImage *_Nullable localProfileAvatarImage = [OWSProfileManager.sharedManager localProfileAvatarImage];
+    UIImage *_Nullable localProfileAvatarImage = [OWSProfileManager.shared localProfileAvatarImage];
     UIImage *avatarImage = (localProfileAvatarImage
                             ?: [[[OWSContactAvatarBuilder alloc] initForLocalUserWithDiameter:kAvatarSize] buildDefaultImage]);
     OWSAssertDebug(avatarImage);
@@ -773,7 +767,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     self.navigationItem.leftBarButtonItem = settingsButton;
     SET_SUBVIEW_ACCESSIBILITY_IDENTIFIER(self, settingsButton);
 
-    UIBarButtonItem *compose = [[UIBarButtonItem alloc] initWithImage:[Theme iconImage:ThemeIconCompose]
+    UIBarButtonItem *compose = [[UIBarButtonItem alloc] initWithImage:[Theme iconImage:ThemeIconCompose24]
                                                                 style:UIBarButtonItemStylePlain
                                                                target:self
                                                                action:@selector(showNewConversationView)];
@@ -793,45 +787,6 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     camera.accessibilityIdentifier = ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"camera");
 
     self.navigationItem.rightBarButtonItems = @[ compose, camera ];
-}
-
-- (nullable UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext
-                       viewControllerForLocation:(CGPoint)location
-{
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
-
-    if (!indexPath) {
-        return nil;
-    }
-
-    switch (indexPath.section) {
-        case ConversationListViewControllerSectionPinned:
-        case ConversationListViewControllerSectionUnpinned:
-            break;
-        default:
-            return nil;
-    }
-
-    [previewingContext setSourceRect:[self.tableView rectForRowAtIndexPath:indexPath]];
-
-    ThreadViewModel *threadViewModel = [self threadViewModelForIndexPath:indexPath];
-    self.lastViewedThread = threadViewModel.threadRecord;
-    ConversationViewController *vc =
-        [[ConversationViewController alloc] initWithThreadViewModel:threadViewModel
-                                                             action:ConversationViewActionNone
-                                                     focusMessageId:nil];
-    [vc peekSetup];
-
-    return vc;
-}
-
-- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext
-     commitViewController:(UIViewController *)viewControllerToCommit
-{
-    ConversationViewController *vc = (ConversationViewController *)viewControllerToCommit;
-    [vc popped];
-
-    [self.navigationController pushViewController:vc animated:NO];
 }
 
 - (void)showNewConversationView
@@ -1138,6 +1093,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     if (![ExperienceUpgradeManager presentNextFromViewController:self]) {
         [OWSActionSheets showIOSUpgradeNagIfNecessary];
+        [self presentGetStartedBannerIfNecessary];
     }
 }
 
@@ -1202,7 +1158,9 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     __block ThreadViewModel *_Nullable newThreadViewModel;
     [self.databaseStorage uiReadWithBlock:^(SDSAnyReadTransaction *transaction) {
-        newThreadViewModel = [[ThreadViewModel alloc] initWithThread:threadRecord transaction:transaction];
+        newThreadViewModel = [[ThreadViewModel alloc] initWithThread:threadRecord
+                                                 forConversationList:YES
+                                                         transaction:transaction];
     }];
     [self.threadViewModelCache setObject:newThreadViewModel forKey:threadRecord.uniqueId];
     return newThreadViewModel;
@@ -1449,7 +1407,7 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 
     [self.messageFetcherJob runObjc]
         .then(^{
-            if (TSAccountManager.sharedInstance.isRegisteredPrimaryDevice) {
+            if (TSAccountManager.shared.isRegisteredPrimaryDevice) {
                 return [AnyPromise promiseWithValue:nil];
             }
 
@@ -1973,6 +1931,153 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     }
 }
 
+#pragma mark - Previewing
+
+#pragma mark Old Style
+
+- (nullable UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext
+                       viewControllerForLocation:(CGPoint)location
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    if ([self canPresentPreviewFromIndexPath:indexPath] == NO) {
+        return nil;
+    }
+
+    [previewingContext setSourceRect:[self.tableView rectForRowAtIndexPath:indexPath]];
+    return [self createPreviewControllerAtIndexPath:indexPath];
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext
+     commitViewController:(UIViewController *)viewControllerToCommit
+{
+    [self commitPreviewController:viewControllerToCommit];
+}
+
+#pragma mark New Style
+
+- (nullable UIContextMenuConfiguration *)tableView:(UITableView *)tableView
+         contextMenuConfigurationForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+                                             point:(CGPoint)point API_AVAILABLE(ios(13.0))
+{
+    if ([self canPresentPreviewFromIndexPath:indexPath] == NO) {
+        return nil;
+    }
+    NSString *threadId = [self threadForIndexPath:indexPath].uniqueId;
+    if (!threadId) {
+        return nil;
+    }
+
+    __weak typeof(self) wSelf = self;
+    return [UIContextMenuConfiguration configurationWithIdentifier:threadId
+        previewProvider:^UIViewController *_Nullable { return [wSelf createPreviewControllerAtIndexPath:indexPath]; }
+        actionProvider:^UIMenu *_Nullable(NSArray<UIMenuElement *> *_Nonnull suggestedActions) {
+            // nil for now. But we may want to add options like "Pin" or "Mute" in the future
+            return nil;
+        }];
+}
+
+- (nullable UITargetedPreview *)tableView:(UITableView *)tableView
+    previewForDismissingContextMenuWithConfiguration:(UIContextMenuConfiguration *)configuration
+    API_AVAILABLE(ios(13.0))
+{
+
+    NSString *threadId = (NSString *)configuration.identifier;
+    if (![threadId isKindOfClass:[NSString class]]) {
+        OWSFailDebug(@"Unexpected context menu configuration identifier");
+        return nil;
+    }
+    NSIndexPath *indexPath = [self.threadMapping indexPathForUniqueId:threadId];
+    if (!indexPath) {
+        OWSLogWarn(@"No index path for threadId %@", threadId);
+        return nil;
+    }
+
+    // Below is a partial workaround for database updates causing cells to reload mid-transition:
+    // When the conversation view controller is dismissed, it touches the database which causes
+    // the row to update.
+    //
+    // The way this *should* appear is that during presentation and dismissal, the row animates
+    // into and out of the platter. Currently, it looks like UIKit uses a portal view to accomplish
+    // this. It seems the row stays in its original position and is occluded by context menu internals
+    // while the portal view is translated.
+    //
+    // But in our case, when the table view is updated the old cell will be removed and hidden by
+    // UITableView. So mid-transition, the cell appears to disappear. What's left is the background
+    // provided by UIPreviewParameters. By default this is opaque and the end result is that an empty
+    // row appears while dismissal completes.
+    //
+    // A straightforward way to work around this is to just set the background color to clear. When
+    // the row is updated because of a database change, it will appear to snap into position instead
+    // of properly animating. This isn't *too* much of an issue since the row is usually occluded by
+    // the platter anyway. This avoids the empty row issue. A better solution would probably be to
+    // defer data source updates until the transition completes but, as far as I can tell, we aren't
+    // notified when this happens.
+
+    ConversationListCell *cell = (ConversationListCell *)[tableView cellForRowAtIndexPath:indexPath];
+    CGRect cellFrame = [tableView rectForRowAtIndexPath:indexPath];
+    CGPoint center = CGPointMake(CGRectGetMidX(cellFrame), CGRectGetMidY(cellFrame));
+
+    UIPreviewTarget *target = [[UIPreviewTarget alloc] initWithContainer:tableView center:center];
+    UIPreviewParameters *params = [[UIPreviewParameters alloc] init];
+    params.backgroundColor = UIColor.clearColor;
+    return [[UITargetedPreview alloc] initWithView:cell parameters:params target:target];
+}
+
+- (void)tableView:(UITableView *)tableView
+    willPerformPreviewActionForMenuWithConfiguration:(UIContextMenuConfiguration *)configuration
+                                            animator:(id<UIContextMenuInteractionCommitAnimating>)animator
+    API_AVAILABLE(ios(13.0))
+{
+    UIViewController *vc = animator.previewViewController;
+    __weak typeof(self) wSelf = self;
+    [animator addAnimations:^{ [wSelf commitPreviewController:vc]; }];
+}
+
+#pragma mark Shared
+
+- (BOOL)canPresentPreviewFromIndexPath:(nullable NSIndexPath *)indexPath
+{
+    NSString *currentSelectedThreadId = self.conversationSplitViewController.selectedThread.uniqueId;
+    if (!indexPath) {
+        return NO;
+    } else if ([[self threadForIndexPath:indexPath].uniqueId isEqual:currentSelectedThreadId]) {
+        // Currently, no previewing the currently selected thread.
+        // Though, in a scene-aware, multiwindow world, we may opt to permit this.
+        // If only to allow the user to pick up and drag a conversation to a new window.
+        return NO;
+    } else {
+        switch (indexPath.section) {
+            case ConversationListViewControllerSectionPinned:
+            case ConversationListViewControllerSectionUnpinned:
+                return YES;
+            default:
+                return NO;
+        }
+    }
+}
+
+- (UIViewController *)createPreviewControllerAtIndexPath:(NSIndexPath *)indexPath
+{
+    ThreadViewModel *threadViewModel = [self threadViewModelForIndexPath:indexPath];
+    self.lastViewedThread = threadViewModel.threadRecord;
+    ConversationViewController *vc =
+        [[ConversationViewController alloc] initWithThreadViewModel:threadViewModel
+                                                             action:ConversationViewActionNone
+                                                     focusMessageId:nil];
+    [vc previewSetup];
+    return vc;
+}
+
+- (void)commitPreviewController:(UIViewController *)previewController
+{
+    if ([previewController isKindOfClass:[ConversationViewController class]]) {
+        ConversationViewController *vc = (ConversationViewController *)previewController;
+        [self presentThread:vc.thread action:ConversationViewActionNone animated:NO];
+    } else {
+        OWSFailDebug(@"Unexpected preview controller %@", previewController);
+    }
+}
+
 #pragma mark - DatabaseSnapshotDelegate
 
 - (void)uiDatabaseSnapshotWillUpdate
@@ -2121,13 +2226,13 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
     NSData *_Nullable groupId = notification.userInfo[kNSNotificationKey_ProfileGroupId];
 
     __block NSString *_Nullable changedThreadId;
-    if (address.isValid) {
-        [self.databaseStorage uiReadWithBlock:^(SDSAnyReadTransaction *transaction) {
+    [self.databaseStorage uiReadWithBlock:^(SDSAnyReadTransaction *transaction) {
+        if (address.isValid) {
             changedThreadId = [TSContactThread getThreadWithContactAddress:address transaction:transaction].uniqueId;
-        }];
-    } else if (groupId.length > 0) {
-        changedThreadId = [TSGroupThread threadIdFromGroupId:groupId];
-    }
+        } else if (groupId.length > 0) {
+            changedThreadId = [TSGroupThread threadIdForGroupId:groupId transaction:transaction];
+        }
+    }];
 
     if (changedThreadId) {
         [self anyUIDBDidUpdateWithUpdatedThreadIds:[NSSet setWithObject:changedThreadId]];
@@ -2217,6 +2322,58 @@ NSString *const kArchiveButtonPseudoGroup = @"kArchiveButtonPseudoGroup";
 - (void)cameraFirstCaptureSendFlowDidCancel:(CameraFirstCaptureSendFlow *)cameraFirstCaptureSendFlow
 {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+#pragma mark - <OWSGetStartedBannerViewControllerDelegate>
+
+- (void)presentGetStartedBannerIfNecessary
+{
+    if (self.getStartedBanner || self.conversationListMode != ConversationListMode_Inbox) {
+        return;
+    }
+
+    OWSGetStartedBannerViewController *getStartedVC = [[OWSGetStartedBannerViewController alloc] initWithDelegate:self];
+    if (getStartedVC.hasIncompleteCards) {
+        self.getStartedBanner = getStartedVC;
+
+        [self addChildViewController:getStartedVC];
+        [self.view addSubview:getStartedVC.view];
+        [getStartedVC.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
+
+        // If we're in landscape, the banner covers most of the screen
+        // Hide it until we transition to portrait
+        if (self.view.bounds.size.width > self.view.bounds.size.height) {
+            getStartedVC.view.alpha = 0;
+        }
+    }
+}
+
+- (void)getStartedBannerDidTapCreateGroup:(OWSGetStartedBannerViewController *)banner
+{
+    [self showNewGroupView];
+}
+
+- (void)getStartedBannerDidTapInviteFriends:(OWSGetStartedBannerViewController *)banner
+{
+    self.inviteFlow = [[OWSInviteFlow alloc] initWithPresentingViewController:self];
+    [self.inviteFlow presentWithIsAnimated:YES isModal:YES completion:nil];
+}
+
+- (void)getStartedBannerDidDismissAllCards:(OWSGetStartedBannerViewController *)banner animated:(BOOL)isAnimated
+{
+    void (^dismissBlock)(void) = ^{
+        [self.getStartedBanner.view removeFromSuperview];
+        [self.getStartedBanner removeFromParentViewController];
+        self.getStartedBanner = nil;
+    };
+
+    if (isAnimated) {
+        [UIView animateWithDuration:0.5
+            animations:^{ self.getStartedBanner.view.alpha = 0; }
+            completion:^(BOOL finished) { dismissBlock(); }];
+    } else {
+        dismissBlock();
+    }
 }
 
 @end

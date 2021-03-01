@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -54,9 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Styles
 
-- (UIFont *)ows_italic;
-- (UIFont *)ows_semibold;
-- (UIFont *)ows_monospaced;
+@property (readonly, nonatomic) UIFont *ows_italic;
+@property (readonly, nonatomic) UIFont *ows_semibold;
+@property (readonly, nonatomic) UIFont *ows_medium;
+@property (readonly, nonatomic) UIFont *ows_monospaced;
 
 @end
 

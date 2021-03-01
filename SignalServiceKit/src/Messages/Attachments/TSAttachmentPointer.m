@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSAttachmentPointer.h"
@@ -10,6 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NSString *NSStringForTSAttachmentPointerState(TSAttachmentPointerState value)
+{
+    switch (value) {
+        case TSAttachmentPointerStateEnqueued:
+            return @"Enqueued";
+        case TSAttachmentPointerStateDownloading:
+            return @"Downloading";
+        case TSAttachmentPointerStateFailed:
+            return @"Failed";
+        case TSAttachmentPointerStatePendingMessageRequest:
+            return @"PendingMessageRequest";
+        case TSAttachmentPointerStatePendingManualDownload:
+            return @"PendingManualDownload";
+        default:
+            OWSCFailDebug(@"Invalid value.");
+            return @"Invalid value";
+    }
+}
+
 @interface TSAttachmentStream (TSAttachmentPointer)
 
 - (CGSize)cachedMediaSize;
@@ -19,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -
 
 @interface TSAttachmentPointer ()
+
+@property (nonatomic) TSAttachmentPointerState state;
 
 // Optional property.  Only set for attachments which need "lazy backup restore."
 @property (nonatomic, nullable) NSString *lazyRestoreFragmentId;
@@ -362,6 +383,34 @@ NS_ASSUME_NONNULL_BEGIN
         OWSFailDebug(@"Missing uniqueId.");
     }
 #endif
+}
+
+#if TESTABLE_BUILD
+- (void)setAttachmentPointerStateDebug:(TSAttachmentPointerState)state
+{
+    self.state = state;
+}
+#endif
+
+- (void)updateWithAttachmentPointerState:(TSAttachmentPointerState)state
+                             transaction:(SDSAnyWriteTransaction *)transaction
+{
+    [self anyUpdateAttachmentPointerWithTransaction:transaction
+                                              block:^(TSAttachmentPointer *attachmentPointer) {
+                                                  attachmentPointer.state = state;
+                                              }];
+}
+
+- (void)updateAttachmentPointerStateFrom:(TSAttachmentPointerState)oldState
+                                      to:(TSAttachmentPointerState)newState
+                             transaction:(SDSAnyWriteTransaction *)transaction
+{
+    [self anyUpdateAttachmentPointerWithTransaction:transaction
+                                              block:^(TSAttachmentPointer *attachmentPointer) {
+                                                  if (attachmentPointer.state == oldState) {
+                                                      attachmentPointer.state = newState;
+                                                  }
+                                              }];
 }
 
 @end

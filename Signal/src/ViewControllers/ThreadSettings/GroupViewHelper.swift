@@ -22,7 +22,7 @@ class GroupViewHelper: NSObject {
     // MARK: - Dependencies
 
     var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     var contactsManager: OWSContactsManager {
@@ -68,6 +68,9 @@ class GroupViewHelper: NSObject {
             // Both users can edit contact threads.
             return true
         }
+        guard !isBlockedByMigration else {
+            return false
+        }
         guard !blockingManager.isThreadBlocked(groupThread) else {
             return false
         }
@@ -95,6 +98,10 @@ class GroupViewHelper: NSObject {
         case .administrator:
             return (groupModelV2.groupMembership.isFullMemberAndAdministrator(localAddress))
         }
+    }
+
+    var isBlockedByMigration: Bool {
+        thread.isBlockedByMigration
     }
 
     // Can local user edit conversation attributes:
@@ -159,5 +166,13 @@ class GroupViewHelper: NSObject {
             return true
         }
         return groupThread.isLocalUserFullOrInvitedMember
+    }
+
+    func isFullOrInvitedMember(_ address: SignalServiceAddress) -> Bool {
+        guard let groupThread = thread as? TSGroupThread else {
+            return false
+        }
+        let groupMembership = groupThread.groupModel.groupMembership
+        return groupMembership.isFullMember(address) || groupMembership.isInvitedMember(address)
     }
 }

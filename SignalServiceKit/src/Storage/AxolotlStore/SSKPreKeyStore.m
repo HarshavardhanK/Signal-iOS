@@ -133,7 +133,9 @@ NSString *const TSNextPrekeyIdKey = @"TSStorageInternalSettingsNextPreKeyId";
 {
     OWSAssertDebug([protocolContext isKindOfClass:[SDSAnyWriteTransaction class]]);
     SDSAnyWriteTransaction *transaction = (SDSAnyWriteTransaction *)protocolContext;
-    
+
+    OWSLogInfo(@"Removing prekeyID: %lu", (unsigned long)preKeyId);
+
     [self.keyStore removeValueForKey:[SDSKeyValueStore keyWithInt:preKeyId] transaction:transaction];
 }
 
@@ -156,6 +158,16 @@ NSString *const TSNextPrekeyIdKey = @"TSStorageInternalSettingsNextPreKeyId";
 
     return lastPreKeyId;
 }
+
+#if TESTABLE_BUILD
+- (void)removeAll:(SDSAnyWriteTransaction *)transaction
+{
+    OWSLogWarn(@"");
+
+    [self.keyStore removeAllWithTransaction:transaction];
+    [self.metadataStore removeAllWithTransaction:transaction];
+}
+#endif
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSAccountManager.h"
@@ -12,7 +12,6 @@
 #import "ProfileManagerProtocol.h"
 #import "RemoteAttestation.h"
 #import "SSKEnvironment.h"
-#import "SSKSessionStore.h"
 #import "TSNetworkManager.h"
 #import "TSPreKeyManager.h"
 #import <AFNetworking/AFURLResponseSerialization.h>
@@ -218,14 +217,12 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
 
     OWSSingletonAssert();
 
-    [AppReadiness runNowOrWhenAppDidBecomeReady:^{
+    AppReadinessRunNowOrWhenAppDidBecomeReadySync(^{
         if (!CurrentAppContext().isMainApp) {
             [self.databaseStorage appendUIDatabaseSnapshotDelegate:self];
         }
-    }];
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
-        [self updateAccountAttributesIfNecessary];
-    }];
+    });
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{ [self updateAccountAttributesIfNecessary]; });
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reachabilityChanged)
@@ -240,7 +237,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (TSAccountManager *)sharedInstance
++ (TSAccountManager *)shared
 {
     OWSAssertDebug(SSKEnvironment.shared.tsAccountManager);
     
@@ -441,7 +438,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
 
 + (nullable NSString *)localNumber
 {
-    return [[self sharedInstance] localNumber];
+    return [[self shared] localNumber];
 }
 
 - (nullable NSString *)localNumber
@@ -491,7 +488,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
 
 + (nullable SignalServiceAddress *)localAddressWithTransaction:(SDSAnyReadTransaction *)transaction
 {
-    return [self.sharedInstance localAddressWithTransaction:transaction];
+    return [self.shared localAddressWithTransaction:transaction];
 }
 
 - (nullable SignalServiceAddress *)localAddressWithTransaction:(SDSAnyReadTransaction *)transaction
@@ -508,7 +505,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
 
 + (nullable SignalServiceAddress *)localAddress
 {
-    return [[self sharedInstance] localAddress];
+    return [[self shared] localAddress];
 }
 
 - (nullable SignalServiceAddress *)localAddress
@@ -534,7 +531,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
         [self.keyValueStore setString:localNumber key:TSAccountManager_RegisteredNumberKey transaction:transaction];
 
         if (localUuid == nil) {
-            OWSAssert(!RemoteConfig.allowUUIDOnlyContacts);
+            OWSFail(@"Missing localUuid.");
         } else {
             [self.keyValueStore setString:localUuid.UUIDString
                                       key:TSAccountManager_RegisteredUUIDKey
@@ -802,6 +799,11 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
     return [self getOrLoadAccountStateWithSneakyTransaction].deviceId;
 }
 
+- (UInt32)storedDeviceIdWithTransaction:(SDSAnyReadTransaction *)transaction
+{
+    return [self getOrLoadAccountStateWithTransaction:transaction].deviceId;
+}
+
 - (void)setStoredServerAuthToken:(NSString *)authToken
                         deviceId:(UInt32)deviceId
                      transaction:(SDSAnyWriteTransaction *)transaction
@@ -826,7 +828,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
 + (void)unregisterTextSecureWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failureBlock
 {
     TSRequest *request = [OWSRequestFactory unregisterAccountRequest];
-    [[TSNetworkManager sharedManager] makeRequest:request
+    [[TSNetworkManager shared] makeRequest:request
         success:^(NSURLSessionDataTask *task, id responseObject) {
             OWSLogInfo(@"Successfully unregistered");
             success();
@@ -837,7 +839,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
             // `RegistrationStateDidChangeNotification` which is only safe to fire after
             // the data store is reset.
 
-            [self.sharedInstance postRegistrationStateDidChangeNotification];
+            [self.shared postRegistrationStateDidChangeNotification];
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (!IsNetworkConnectivityFailure(error)) {
@@ -909,7 +911,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
             [self loadAccountStateWithTransaction:transaction];
 
             [OWSKeyBackupService clearKeysWithTransaction:transaction];
-            [OWS2FAManager.sharedManager setPinCode:nil transaction:transaction];
+            [OWS2FAManager.shared setPinCode:nil transaction:transaction];
         }
     });
 
@@ -1027,9 +1029,7 @@ NSString *NSStringForOWSRegistrationState(OWSRegistrationState value)
 - (void)reachabilityChanged {
     OWSAssertIsOnMainThread();
 
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
-        [self updateAccountAttributesIfNecessary];
-    }];
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{ [self updateAccountAttributesIfNecessary]; });
 }
 
 #pragma mark - Notifications

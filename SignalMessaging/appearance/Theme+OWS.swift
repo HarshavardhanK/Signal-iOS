@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -31,6 +31,7 @@ public enum ThemeIcon: UInt {
     case settingsAddToGroup
     case settingsMention
     case settingsLink
+    case settingsWallpaper
 
     case stickerButton
     case cameraButton
@@ -50,10 +51,11 @@ public enum ThemeIcon: UInt {
     case messageActionSave
     case messageActionSelect
 
-    case compose
+    case compose24
     case composeNewGroup
     case composeFindByPhoneNumber
     case composeInvite
+    case compose32
 
     case checkCircle
     case message
@@ -87,6 +89,7 @@ public enum ThemeIcon: UInt {
     case videoIncoming16
     case videoOutgoing16
     case videoX16
+    case refresh16
 
     case transfer
     case register
@@ -186,6 +189,8 @@ public extension Theme {
             return "mention-24"
         case .settingsLink:
             return "link-24"
+        case .settingsWallpaper:
+            return isDarkThemeEnabled ? "wallpaper-solid-24" : "wallpaper-outline-24"
 
         // Input Toolbar
         case .stickerButton:
@@ -222,7 +227,7 @@ public extension Theme {
         case .messageActionSelect:
             return "select-24"
 
-        case .compose:
+        case .compose24:
             return isDarkThemeEnabled ? "compose-solid-24" : "compose-outline-24"
         case .composeNewGroup:
             return "group-outline-256"
@@ -230,6 +235,8 @@ public extension Theme {
             return "phone-number-256"
         case .composeInvite:
             return "invite-outline-256"
+        case .compose32:
+            return isDarkThemeEnabled ? "compose-solid-32" : "compose-outline-32"
 
         case .checkCircle:
             return isDarkThemeEnabled ? "check-circle-solid-24" : "check-circle-outline-24"
@@ -294,6 +301,8 @@ public extension Theme {
             return isDarkThemeEnabled ? "video-outgoing-solid-16" : "video-outgoing-outline-16"
         case .videoX16:
             return isDarkThemeEnabled ? "video-x-solid-16" : "video-x-outline-16"
+        case .refresh16:
+            return "refresh-16"
 
         case .transfer:
             return "transfer-\(UIDevice.current.isIPad ? "ipad" : "phone")-outline-60-\(isDarkThemeEnabled ? "dark" : "light")"
@@ -318,6 +327,92 @@ public extension Theme {
             return "emoji-travel-\(isDarkThemeEnabled ? "solid" : "outline")-20"
         case .emojiRecent:
             return "recent-\(isDarkThemeEnabled ? "solid" : "outline")-20"
+        }
+    }
+}
+
+extension Theme {
+
+    // Bridging the old name to new name for our ObjC friends
+    @objc
+    public static var actionSheetBackgroundColor: UIColor {
+        return ActionSheet.default.backgroundColor
+    }
+
+    public enum ActionSheet {
+        case `default`
+        case translucentDark
+
+        public var hairlineColor: UIColor {
+            switch self {
+            case .default: return isDarkThemeEnabled ? .ows_gray65 : .ows_gray05
+            case .translucentDark: return .ows_whiteAlpha20
+            }
+        }
+
+        public var headerTitleColor: UIColor {
+            switch self {
+            case .default: return Theme.primaryTextColor
+            case .translucentDark: return Theme.darkThemePrimaryColor
+            }
+        }
+
+        public var headerMessageColor: UIColor {
+            switch self {
+            case .default: return Theme.primaryTextColor
+            case .translucentDark: return Theme.darkThemeSecondaryTextAndIconColor
+            }
+        }
+
+        public var buttonTextColor: UIColor {
+            switch self {
+            case .default: return Theme.primaryTextColor
+            case .translucentDark: return Theme.darkThemePrimaryColor
+            }
+        }
+
+        public var safetyNumberChangeButtonBackgroundColor: UIColor {
+            switch self {
+            case .default: return Theme.conversationButtonBackgroundColor
+            case .translucentDark: return .ows_gray75
+            }
+        }
+
+        public var safetyNumberChangeButtonTextColor: UIColor {
+            switch self {
+            case .default: return Theme.conversationButtonTextColor
+            case .translucentDark: return .ows_accentBlueDark
+            }
+        }
+
+        public var destructiveButtonTextColor: UIColor {
+            return .ows_accentRed
+        }
+
+        public var buttonHighlightColor: UIColor {
+            switch self {
+            case .default: return Theme.cellSelectedColor
+            case .translucentDark: return .ows_whiteAlpha20
+            }
+        }
+
+        public var backgroundColor: UIColor {
+            switch self {
+            case .default: return isDarkThemeEnabled ? .ows_gray75 : .ows_white
+            case .translucentDark: return .clear
+            }
+        }
+
+        public func createBackgroundView() -> UIView {
+            switch self {
+            case .default:
+                let background = UIView()
+                background.backgroundColor = backgroundColor
+                return background
+            case .translucentDark:
+                let background = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+                return background
+            }
         }
     }
 }

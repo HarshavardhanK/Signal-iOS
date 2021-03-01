@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -60,7 +60,7 @@ extension ConversationSettingsViewController {
         // TODO: We can remove this item once message requests are mandatory.
         addProfileSharingItems(to: mainSection)
 
-        if shouldShowColorPicker {
+        if DebugFlags.shouldShowColorPicker {
             addColorPickerItems(to: mainSection)
         }
 
@@ -72,7 +72,8 @@ extension ConversationSettingsViewController {
             contents.addSection(buildNotificationsSection())
         }
 
-        if let groupModel = currentGroupModel {
+        if let groupModel = currentGroupModel,
+            !groupModel.isPlaceholder {
             if let groupModelV2 = groupModel as? TSGroupModelV2 {
                 if canEditConversationAccess {
                     buildGroupAccessSections(groupModelV2: groupModelV2, contents: contents)
@@ -131,19 +132,39 @@ extension ConversationSettingsViewController {
                                     self?.showMediaGallery()
         }))
 
+        if !groupViewHelper.isBlockedByMigration {
+            section.add(OWSTableItem(customCellBlock: { [weak self] in
+                guard let self = self else {
+                    owsFailDebug("Missing self")
+                    return OWSTableItem.newCell()
+                }
+                let title = NSLocalizedString("CONVERSATION_SETTINGS_SEARCH",
+                                              comment: "Table cell label in conversation settings which returns the user to the conversation with 'search mode' activated")
+                return OWSTableItem.buildDisclosureCell(name: title,
+                                                        icon: .settingsSearch,
+                                                        accessibilityIdentifier: UIView.accessibilityIdentifier(in: self, name: "search"))
+            },
+            actionBlock: { [weak self] in
+                self?.tappedConversationSearch()
+            }))
+        }
+
         section.add(OWSTableItem(customCellBlock: { [weak self] in
             guard let self = self else {
                 owsFailDebug("Missing self")
                 return OWSTableItem.newCell()
             }
-            let title = NSLocalizedString("CONVERSATION_SETTINGS_SEARCH",
-                                          comment: "Table cell label in conversation settings which returns the user to the conversation with 'search mode' activated")
-            return OWSTableItem.buildDisclosureCell(name: title,
-                                                    icon: .settingsSearch,
-                                                    accessibilityIdentifier: UIView.accessibilityIdentifier(in: self, name: "search"))
-            },
-                                 actionBlock: { [weak self] in
-                                    self?.tappedConversationSearch()
+
+            let cell = OWSTableItem.buildCellWithAccessoryLabel(
+                icon: .settingsWallpaper,
+                itemName: NSLocalizedString("SETTINGS_ITEM_WALLPAPER",
+                                            comment: "Label for settings view that allows user to change the wallpaper."),
+                accessibilityIdentifier: UIView.accessibilityIdentifier(in: self, name: "wallpaper")
+            )
+            return cell
+        },
+        actionBlock: { [weak self] in
+            self?.showWallpaperSettingsView()
         }))
 
         if !isNoteToSelf && !isGroupThread && thread.hasSafetyNumbers() {
@@ -201,7 +222,7 @@ extension ConversationSettingsViewController {
         let (isPreMessageRequestsThread, isThreadInProfileWhitelist) = databaseStorage.uiRead { transaction -> (Bool, Bool) in
             return (
                 GRDBThreadFinder.isPreMessageRequestsThread(self.thread, transaction: transaction.unwrapGrdbRead),
-                self.profileManager.isThread(inProfileWhitelist: self.thread, transaction: transaction)
+                Self.profileManager.isThread(inProfileWhitelist: self.thread, transaction: transaction)
             )
         }
 
@@ -274,7 +295,6 @@ extension ConversationSettingsViewController {
 
             return cell
             },
-                                 customRowHeight: UITableView.automaticDimension,
                                  actionBlock: nil))
 
         if disappearingMessagesConfiguration.isEnabled {
@@ -322,7 +342,6 @@ extension ConversationSettingsViewController {
 
                 return cell
                 },
-                                     customRowHeight: UITableView.automaticDimension,
                                      actionBlock: nil))
         }
 
@@ -366,11 +385,10 @@ extension ConversationSettingsViewController {
             let cell = OWSTableItem.buildCellWithAccessoryLabel(icon: .settingsMessageSound,
                                                                 itemName: NSLocalizedString("SETTINGS_ITEM_NOTIFICATION_SOUND",
                                                                                             comment: "Label for settings view that allows user to change the notification sound."),
-                                                                accessoryText: OWSSounds.displayName(for: sound))
+                                                                accessoryText: OWSSounds.displayName(forSound: sound))
             cell.accessibilityIdentifier = UIView.accessibilityIdentifier(in: self, name: "notifications")
             return cell
             },
-                                 customRowHeight: UITableView.automaticDimension,
                                  actionBlock: { [weak self] in
                                     self?.showSoundSettingsView()
         }))
@@ -417,7 +435,6 @@ extension ConversationSettingsViewController {
 
             return cell
             },
-                                 customRowHeight: UITableView.automaticDimension,
                                  actionBlock: { [weak self] in
                                     self?.showMuteUnmuteActionSheet()
         }))
@@ -438,7 +455,6 @@ extension ConversationSettingsViewController {
 
                 return cell
                 },
-                                     customRowHeight: UITableView.automaticDimension,
                                      actionBlock: { [weak self] in
                                         self?.showMentionNotificationModeActionSheet()
             }))
@@ -532,58 +548,48 @@ extension ConversationSettingsViewController {
     private func buildGroupAccessSections(groupModelV2: TSGroupModelV2,
                                           contents: OWSTableContents) {
 
-        do {
-            let section = OWSTableSection()
-            section.customHeaderHeight = 14
+        let section = OWSTableSection()
+        section.customHeaderHeight = 14
 
-            section.footerTitle = NSLocalizedString("CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER",
-                                                    comment: "Footer for the 'attributes access' section in conversation settings view.")
+        section.add(OWSTableItem(customCellBlock: { [weak self] in
+            guard let self = self else {
+                owsFailDebug("Missing self")
+                return OWSTableItem.newCell()
+            }
 
-            section.add(OWSTableItem(customCellBlock: { [weak self] in
-                guard let self = self else {
-                    owsFailDebug("Missing self")
-                    return OWSTableItem.newCell()
-                }
+            let accessStatus = self.accessoryLabel(forAccess: groupModelV2.access.members)
+            let cell = OWSTableItem.buildCellWithAccessoryLabel(icon: .settingsEditGroupAccess,
+                                                                itemName: NSLocalizedString("CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS",
+                                                                                            comment: "Label for 'edit membership access' action in conversation settings view."),
+                                                                accessoryText: accessStatus)
+            cell.accessibilityIdentifier = UIView.accessibilityIdentifier(in: self, name: "edit_group_membership_access")
+            return cell
+            },
+                                 actionBlock: { [weak self] in
+                                    self?.showGroupMembershipAccessView()
+        }))
 
-                let accessStatus = self.accessoryLabel(forAccess: groupModelV2.access.attributes)
-                let cell = OWSTableItem.buildCellWithAccessoryLabel(icon: .settingsEditGroupAccess,
-                                                                    itemName: NSLocalizedString("CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS",
-                                                                                                comment: "Label for 'edit attributes access' action in conversation settings view."),
-                                                                    accessoryText: accessStatus)
-                cell.accessibilityIdentifier = UIView.accessibilityIdentifier(in: self, name: "edit_group_attributes_access")
-                return cell
-                },
-                                     actionBlock: { [weak self] in
-                                        self?.showGroupAttributesAccessView()
-            }))
-            contents.addSection(section)
-        }
+        section.footerTitle = NSLocalizedString("CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER",
+                                                comment: "Footer for the 'attributes access' section in conversation settings view.")
 
-        if DebugFlags.groupsV2editMemberAccess {
-            let section = OWSTableSection()
-            section.customHeaderHeight = 14
+        section.add(OWSTableItem(customCellBlock: { [weak self] in
+            guard let self = self else {
+                owsFailDebug("Missing self")
+                return OWSTableItem.newCell()
+            }
 
-            section.footerTitle = NSLocalizedString("CONVERSATION_SETTINGS_MEMBERSHIP_ACCESS_SECTION_FOOTER",
-                                                    comment: "Footer for the 'membership access' section in conversation settings view.")
-            section.add(OWSTableItem(customCellBlock: { [weak self] in
-                guard let self = self else {
-                    owsFailDebug("Missing self")
-                    return OWSTableItem.newCell()
-                }
-
-                let accessStatus = self.accessoryLabel(forAccess: groupModelV2.access.members)
-                let cell = OWSTableItem.buildCellWithAccessoryLabel(icon: .settingsEditGroupAccess,
-                                                                    itemName: NSLocalizedString("CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS",
-                                                                                                comment: "Label for 'edit membership access' action in conversation settings view."),
-                                                                    accessoryText: accessStatus)
-                cell.accessibilityIdentifier = UIView.accessibilityIdentifier(in: self, name: "edit_group_membership_access")
-                return cell
-                },
-                                     actionBlock: { [weak self] in
-                                        self?.showGroupMembershipAccessView()
-            }))
-            contents.addSection(section)
-        }
+            let accessStatus = self.accessoryLabel(forAccess: groupModelV2.access.attributes)
+            let cell = OWSTableItem.buildCellWithAccessoryLabel(icon: .settingsEditGroupAccess,
+                                                                itemName: NSLocalizedString("CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS",
+                                                                                            comment: "Label for 'edit attributes access' action in conversation settings view."),
+                                                                accessoryText: accessStatus)
+            cell.accessibilityIdentifier = UIView.accessibilityIdentifier(in: self, name: "edit_group_attributes_access")
+            return cell
+            },
+                                 actionBlock: { [weak self] in
+                                    self?.showGroupAttributesAccessView()
+        }))
+        contents.addSection(section)
     }
 
     private func accessoryLabel(forAccess access: GroupV2Access) -> String {
@@ -643,8 +649,7 @@ extension ConversationSettingsViewController {
                 contentRow.autoPinEdgesToSuperviewMargins()
 
                 return cell
-                },
-                                     customRowHeight: UITableView.automaticDimension) { [weak self] in
+                }) { [weak self] in
                                         self?.showAddMembersView()
             })
         }
@@ -733,12 +738,15 @@ extension ConversationSettingsViewController {
                     cell.selectionStyle = .default
                 }
 
-                cell.configure(withRecipientAddress: memberAddress)
+                cell.configureWithSneakyTransaction(recipientAddress: memberAddress)
 
-                if isGroupAdmin {
-                    cell.setAttributedSubtitle(nil)
-                } else if isVerified {
+                if isVerified {
                     cell.setAttributedSubtitle(cell.verifiedSubtitle())
+                } else if !memberAddress.isLocalAddress,
+                          let bioForDisplay = (Self.databaseStorage.read { transaction in
+                    Self.profileManager.profileBioForDisplay(for: memberAddress, transaction: transaction)
+                }) {
+                    cell.setAttributedSubtitle(NSAttributedString(string: bioForDisplay))
                 } else {
                     cell.setAttributedSubtitle(nil)
                 }
@@ -747,8 +755,7 @@ extension ConversationSettingsViewController {
                 cell.accessibilityIdentifier = UIView.accessibilityIdentifier(in: self, name: cellName)
 
                 return cell
-                },
-                                     customRowHeight: UITableView.automaticDimension) { [weak self] in
+                }) { [weak self] in
                                         self?.didSelectGroupMember(memberAddress)
             })
         }
@@ -782,8 +789,7 @@ extension ConversationSettingsViewController {
                 contentRow.autoPinEdgesToSuperviewMargins()
 
                 return cell
-                },
-                                     customRowHeight: UITableView.automaticDimension) { [weak self] in
+                }) { [weak self] in
                                         self?.showAllGroupMembers()
             })
         }
@@ -798,13 +804,16 @@ extension ConversationSettingsViewController {
         section.customHeaderHeight = 14
         section.customFooterHeight = 14
 
+        let itemTitle = (RemoteConfig.groupsV2InviteLinks
+            ? NSLocalizedString("CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES",
+                                comment: "Label for 'member requests & invites' action in conversation settings view.")
+            : NSLocalizedString("CONVERSATION_SETTINGS_MEMBER_INVITES",
+                                comment: "Label for 'member invites' action in conversation settings view."))
         section.add(OWSTableItem.disclosureItem(icon: .settingsViewRequestAndInvites,
-                                                name: NSLocalizedString("CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES",
-                                                                        comment: "Label for 'member requests & invites' action in conversation settings view."),
+                                                name: itemTitle,
                                                 accessibilityIdentifier: "conversation_settings_requests_and_invites",
-                                                actionBlock: {  [weak self] in
+                                                actionBlock: { [weak self] in
                                                     self?.showMemberRequestsAndInvitesView()
-
         }))
 
         if RemoteConfig.groupsV2InviteLinks {
@@ -816,9 +825,8 @@ extension ConversationSettingsViewController {
                                                                             comment: "Label for 'group link' action in conversation settings view."),
                                                     accessoryText: groupLinkStatus,
                                                     accessibilityIdentifier: "conversation_settings_group_link",
-                                                    actionBlock: {  [weak self] in
+                                                    actionBlock: { [weak self] in
                                                         self?.showGroupLinkView()
-
             }))
         }
 

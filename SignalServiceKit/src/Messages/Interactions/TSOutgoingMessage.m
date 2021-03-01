@@ -1,10 +1,11 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSOutgoingMessage.h"
+#import "MessageSender.h"
+#import "NSError+OWSOperation.h"
 #import "OWSContact.h"
-#import "OWSMessageSender.h"
 #import "OWSOutgoingSyncMessage.h"
 #import "ProtoUtils.h"
 #import "SSKEnvironment.h"
@@ -647,11 +648,6 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
     return self.messageState == TSOutgoingMessageStateSent;
 }
 
-- (BOOL)isSilent
-{
-    return NO;
-}
-
 - (BOOL)isOnline
 {
     return NO;
@@ -853,6 +849,12 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
     OWSAssertDebug(recipientAddress.isValid);
     OWSAssertDebug(transaction);
 
+    OWSLogWarn(@"Send to recipient failed, address: %@, timestamp: %llu, error: %@ (isRetryable: %d)",
+        recipientAddress,
+        self.timestamp,
+        error,
+        error.isRetryable);
+
     [self anyUpdateOutgoingMessageWithTransaction:transaction
                                             block:^(TSOutgoingMessage *message) {
                                                 TSOutgoingMessageRecipientState *_Nullable recipientState
@@ -873,6 +875,12 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
 {
     OWSAssertDebug(recipientAddress.isValid);
     OWSAssertDebug(transaction);
+
+    // Ignore receipts for messages that have been deleted.
+    // They are no longer relevant to this message.
+    if (self.wasRemotelyDeleted) {
+        return;
+    }
 
     // If delivery notification doesn't include timestamp, use "now" as an estimate.
     if (!deliveryTimestamp) {
@@ -903,6 +911,12 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
 {
     OWSAssertDebug(recipientAddress.isValid);
     OWSAssertDebug(transaction);
+
+    // Ignore receipts for messages that have been deleted.
+    // They are no longer relevant to this message.
+    if (self.wasRemotelyDeleted) {
+        return;
+    }
 
     [self anyUpdateOutgoingMessageWithTransaction:transaction
                                             block:^(TSOutgoingMessage *message) {
@@ -1046,6 +1060,16 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
         }
     }
     return result;
+}
+
+- (void)updateWithRecipientAddressStates:
+            (nullable NSDictionary<SignalServiceAddress *, TSOutgoingMessageRecipientState *> *)recipientAddressStates
+                             transaction:(SDSAnyWriteTransaction *)transaction
+{
+    [self anyUpdateOutgoingMessageWithTransaction:transaction
+                                            block:^(TSOutgoingMessage *message) {
+                                                message.recipientAddressStates = [recipientAddressStates copy];
+                                            }];
 }
 
 #ifdef TESTABLE_BUILD
@@ -1323,7 +1347,7 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
             }
         }
 
-        if (!SSKFeatureFlags.phoneNumberSharing) {
+        if (!SSKFeatureFlags.phoneNumberSharing || SSKDebugFlags.allowV1GroupsUpdates) {
             [groupBuilder setMembersE164:membersE164];
             [groupBuilder setMembers:members];
         } else {
@@ -1499,14 +1523,12 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
     return dataProto;
 }
 
-- (nullable NSData *)buildPlainTextData:(SignalRecipient *)recipient
+- (nullable NSData *)buildPlainTextData:(SignalServiceAddress *)address
                                  thread:(TSThread *)thread
                             transaction:(SDSAnyReadTransaction *)transaction
 {
     NSError *error;
-    SSKProtoDataMessage *_Nullable dataMessage = [self buildDataMessage:recipient.address
-                                                                 thread:thread
-                                                            transaction:transaction];
+    SSKProtoDataMessage *_Nullable dataMessage = [self buildDataMessage:address thread:thread transaction:transaction];
     if (error || !dataMessage) {
         OWSFailDebug(@"could not build protobuf: %@", error);
         return nil;
@@ -1530,10 +1552,10 @@ NSUInteger const TSOutgoingMessageSchemaVersion = 1;
 - (NSString *)statusDescription
 {
     NSMutableString *result = [NSMutableString new];
-    [result appendFormat:@"[status: %@", NSStringForOutgoingMessageState(self.messageState)];
+    [result appendFormat:@"[status: %@\n", NSStringForOutgoingMessageState(self.messageState)];
     for (SignalServiceAddress *address in self.recipientAddressStates) {
         TSOutgoingMessageRecipientState *recipientState = self.recipientAddressStates[address];
-        [result appendFormat:@", %@: %@", address, NSStringForOutgoingMessageRecipientState(recipientState.state)];
+        [result appendFormat:@", %@: %@\n", address, NSStringForOutgoingMessageRecipientState(recipientState.state)];
     }
     [result appendString:@"]"];
     return [result copy];

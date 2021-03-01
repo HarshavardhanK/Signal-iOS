@@ -26,7 +26,7 @@ class SyncPushTokensJob: NSObject {
         self.preferences = preferences
     }
 
-    class func run(accountManager: AccountManager, preferences: OWSPreferences) -> Promise<Void> {
+    private class func run(accountManager: AccountManager, preferences: OWSPreferences) -> Promise<Void> {
         let job = self.init(accountManager: accountManager, preferences: preferences)
         return job.run()
     }
@@ -48,7 +48,7 @@ class SyncPushTokensJob: NSObject {
                 shouldUploadTokens = true
             }
 
-            if AppVersion.sharedInstance().lastAppVersion != AppVersion.sharedInstance().currentAppVersion {
+            if AppVersion.shared().lastAppVersion != AppVersion.shared().currentAppVersion {
                 Logger.info("Uploading due to fresh install or app upgrade.")
                 shouldUploadTokens = true
             }

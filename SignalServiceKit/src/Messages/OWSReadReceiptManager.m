@@ -1,10 +1,10 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSReadReceiptManager.h"
 #import "AppReadiness.h"
-#import "OWSMessageSender.h"
+#import "MessageSender.h"
 #import "OWSOutgoingReceiptManager.h"
 #import "OWSReadReceiptsForLinkedDevicesMessage.h"
 #import "OWSReceiptsForSenderMessage.h"
@@ -30,7 +30,7 @@ NSString *const OWSReadReceiptManagerAreReadReceiptsEnabled = @"areReadReceiptsE
 // Should only be accessed while synchronized on the OWSReadReceiptManager.
 @property (nonatomic) BOOL isProcessing;
 
-@property (atomic) NSNumber *areReadReceiptsEnabledCached;
+@property (atomic, nullable) NSNumber *areReadReceiptsEnabledCached;
 
 @end
 
@@ -48,7 +48,7 @@ NSString *const OWSReadReceiptManagerAreReadReceiptsEnabled = @"areReadReceiptsE
     return instance;
 }
 
-+ (instancetype)sharedManager
++ (instancetype)shared
 {
     OWSAssert(SSKEnvironment.shared.readReceiptManager);
 
@@ -66,9 +66,7 @@ NSString *const OWSReadReceiptManagerAreReadReceiptsEnabled = @"areReadReceiptsE
     OWSSingletonAssert();
 
     // Start processing.
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
-        [self scheduleProcessing];
-    }];
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{ [self scheduleProcessing]; });
 
     return self;
 }

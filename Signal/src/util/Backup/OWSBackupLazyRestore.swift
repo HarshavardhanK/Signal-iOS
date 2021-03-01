@@ -16,7 +16,7 @@ public class BackupLazyRestore: NSObject {
     }
 
     private var tsAccountManager: TSAccountManager {
-        return TSAccountManager.sharedInstance()
+        return TSAccountManager.shared()
     }
 
     var databaseStorage: SDSDatabaseStorage {
@@ -34,7 +34,7 @@ public class BackupLazyRestore: NSObject {
 
         SwiftSingletons.register(self)
 
-        AppReadiness.runNowOrWhenAppDidBecomeReadyPolite {
+        AppReadiness.runNowOrWhenAppDidBecomeReadyAsync {
             self.runIfNecessary()
         }
 

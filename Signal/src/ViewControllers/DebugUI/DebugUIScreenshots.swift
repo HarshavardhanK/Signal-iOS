@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -23,7 +23,7 @@ public extension DebugUIScreenshots {
     }
 
     static var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     // MARK: -
@@ -988,6 +988,8 @@ public extension DebugUIScreenshots {
         OWSProfileManager.updateLocalProfilePromise(
             profileGivenName: givenName,
             profileFamilyName: familyName,
+            profileBio: nil,
+            profileBioEmoji: nil,
             profileAvatarData: avatarData
         )
     }

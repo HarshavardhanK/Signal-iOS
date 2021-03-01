@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "AppSetup.h"
@@ -12,15 +12,11 @@
 #import <SignalMessaging/SignalMessaging-Swift.h>
 #import <SignalMetadataKit/SignalMetadataKit-Swift.h>
 #import <SignalServiceKit/OWS2FAManager.h>
-#import <SignalServiceKit/OWSAttachmentDownloads.h>
 #import <SignalServiceKit/OWSBackgroundTask.h>
-#import <SignalServiceKit/OWSBatchMessageProcessor.h>
 #import <SignalServiceKit/OWSBlockingManager.h>
 #import <SignalServiceKit/OWSDisappearingMessagesJob.h>
 #import <SignalServiceKit/OWSIdentityManager.h>
-#import <SignalServiceKit/OWSMessageDecrypter.h>
 #import <SignalServiceKit/OWSMessageManager.h>
-#import <SignalServiceKit/OWSMessageReceiver.h>
 #import <SignalServiceKit/OWSOutgoingReceiptManager.h>
 #import <SignalServiceKit/OWSReadReceiptManager.h>
 #import <SignalServiceKit/OWSStorage.h>
@@ -49,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
         //
         // All of these "singletons" should have any dependencies used in their
         // initializers injected.
-        [[OWSBackgroundTaskManager sharedManager] observeNotifications];
+        [[OWSBackgroundTaskManager shared] observeNotifications];
 
         StorageCoordinator *storageCoordinator = [StorageCoordinator new];
         SDSDatabaseStorage *databaseStorage = storageCoordinator.databaseStorage;
@@ -70,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
         TSNetworkManager *networkManager = [[TSNetworkManager alloc] initDefault];
         OWSContactsManager *contactsManager = [OWSContactsManager new];
         OWSLinkPreviewManager *linkPreviewManager = [OWSLinkPreviewManager new];
-        OWSMessageSender *messageSender = [OWSMessageSender new];
+        MessageSender *messageSender = [MessageSender new];
         MessageSenderJobQueue *messageSenderJobQueue = [MessageSenderJobQueue new];
         id<PendingReadReceiptRecorder> pendingReadReceiptRecorder = [MessageRequestReadReceipts new];
         OWSProfileManager *profileManager = [[OWSProfileManager alloc] initWithDatabaseStorage:databaseStorage];
@@ -83,9 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
         SSKPreKeyStore *preKeyStore = [SSKPreKeyStore new];
         id<OWSUDManager> udManager = [OWSUDManagerImpl new];
         OWSMessageDecrypter *messageDecrypter = [OWSMessageDecrypter new];
-        SSKMessageDecryptJobQueue *messageDecryptJobQueue = [SSKMessageDecryptJobQueue new];
-        OWSBatchMessageProcessor *batchMessageProcessor = [OWSBatchMessageProcessor new];
-        OWSMessageReceiver *messageReceiver = [OWSMessageReceiver new];
         GroupsV2MessageProcessor *groupsV2MessageProcessor = [GroupsV2MessageProcessor new];
         TSSocketManager *socketManager = [[TSSocketManager alloc] init];
         TSAccountManager *tsAccountManager = [TSAccountManager new];
@@ -112,7 +105,6 @@ NS_ASSUME_NONNULL_BEGIN
         OWSSounds *sounds = [OWSSounds new];
         id<OWSProximityMonitoringManager> proximityMonitoringManager = [OWSProximityMonitoringManagerImpl new];
         OWSWindowManager *windowManager = [[OWSWindowManager alloc] initDefault];
-        MessageProcessing *messageProcessing = [MessageProcessing new];
         MessageFetcherJob *messageFetcherJob = [MessageFetcherJob new];
         BulkProfileFetch *bulkProfileFetch = [BulkProfileFetch new];
         BulkUUIDLookup *bulkUUIDLookup = [BulkUUIDLookup new];
@@ -123,6 +115,8 @@ NS_ASSUME_NONNULL_BEGIN
             [OWSMessagePipelineSupervisor createStandardSupervisor];
         ContactsViewHelper *contactsViewHelper = [ContactsViewHelper new];
         AppExpiry *appExpiry = [AppExpiry new];
+        BroadcastMediaMessageJobQueue *broadcastMediaMessageJobQueue = [BroadcastMediaMessageJobQueue new];
+        MessageProcessor *messageProcessor = [MessageProcessor new];
 
         [Environment setShared:[[Environment alloc] initWithAudioSession:audioSession
                                              incomingContactSyncJobQueue:incomingContactSyncJobQueue
@@ -132,9 +126,8 @@ NS_ASSUME_NONNULL_BEGIN
                                               proximityMonitoringManager:proximityMonitoringManager
                                                                   sounds:sounds
                                                            windowManager:windowManager
-                                                      contactsViewHelper:contactsViewHelper]];
-
-        [SMKEnvironment setShared:[[SMKEnvironment alloc] initWithAccountIdFinder:[OWSAccountIdFinder new]]];
+                                                      contactsViewHelper:contactsViewHelper
+                                           broadcastMediaMessageJobQueue:broadcastMediaMessageJobQueue]];
 
         [SSKEnvironment setShared:[[SSKEnvironment alloc] initWithContactsManager:contactsManager
                                                                linkPreviewManager:linkPreviewManager
@@ -153,9 +146,6 @@ NS_ASSUME_NONNULL_BEGIN
                                                                       preKeyStore:preKeyStore
                                                                         udManager:udManager
                                                                  messageDecrypter:messageDecrypter
-                                                           messageDecryptJobQueue:messageDecryptJobQueue
-                                                            batchMessageProcessor:batchMessageProcessor
-                                                                  messageReceiver:messageReceiver
                                                          groupsV2MessageProcessor:groupsV2MessageProcessor
                                                                     socketManager:socketManager
                                                                  tsAccountManager:tsAccountManager
@@ -176,7 +166,6 @@ NS_ASSUME_NONNULL_BEGIN
                                                                    sskPreferences:sskPreferences
                                                                          groupsV2:groupsV2
                                                                    groupV2Updates:groupV2Updates
-                                                                messageProcessing:messageProcessing
                                                                 messageFetcherJob:messageFetcherJob
                                                                  bulkProfileFetch:bulkProfileFetch
                                                                    bulkUUIDLookup:bulkUUIDLookup
@@ -184,7 +173,8 @@ NS_ASSUME_NONNULL_BEGIN
                                                                   modelReadCaches:modelReadCaches
                                                               earlyMessageManager:earlyMessageManager
                                                         messagePipelineSupervisor:messagePipelineSupervisor
-                                                                        appExpiry:appExpiry]];
+                                                                        appExpiry:appExpiry
+                                                                 messageProcessor:messageProcessor]];
 
         appSpecificSingletonBlock();
 
@@ -204,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
         //
         // We can use any object.
         NSObject *sleepBlockObject = [NSObject new];
-        [DeviceSleepManager.sharedInstance addBlockWithBlockObject:sleepBlockObject];
+        [DeviceSleepManager.shared addBlockWithBlockObject:sleepBlockObject];
 
         dispatch_block_t completionBlock = ^{
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -225,7 +215,7 @@ NS_ASSUME_NONNULL_BEGIN
                     [VersionMigrations performUpdateCheckWithCompletion:^() {
                         OWSAssertIsOnMainThread();
 
-                        [DeviceSleepManager.sharedInstance removeBlockWithBlockObject:sleepBlockObject];
+                        [DeviceSleepManager.shared removeBlockWithBlockObject:sleepBlockObject];
 
                         if (StorageCoordinator.dataStoreForUI == DataStoreGrdb) {
                             [SSKEnvironment.shared warmCaches];

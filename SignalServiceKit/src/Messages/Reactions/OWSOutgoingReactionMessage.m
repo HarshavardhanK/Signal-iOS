@@ -58,12 +58,13 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     SSKProtoDataMessageReactionBuilder *reactionBuilder =
-        [SSKProtoDataMessageReaction builderWithEmoji:self.emoji remove:self.isRemoving timestamp:message.timestamp];
+        [SSKProtoDataMessageReaction builderWithEmoji:self.emoji timestamp:message.timestamp];
+    [reactionBuilder setRemove:self.isRemoving];
 
     SignalServiceAddress *_Nullable messageAuthor;
 
     if ([message isKindOfClass:[TSOutgoingMessage class]]) {
-        messageAuthor = TSAccountManager.sharedInstance.localAddress;
+        messageAuthor = TSAccountManager.shared.localAddress;
     } else if ([message isKindOfClass:[TSIncomingMessage class]]) {
         messageAuthor = ((TSIncomingMessage *)message).authorAddress;
     }
@@ -109,7 +110,7 @@ NS_ASSUME_NONNULL_BEGIN
         return;
     }
 
-    SignalServiceAddress *_Nullable localAddress = TSAccountManager.sharedInstance.localAddress;
+    SignalServiceAddress *_Nullable localAddress = TSAccountManager.shared.localAddress;
     if (!localAddress) {
         OWSFailDebug(@"unexpectedly missing local address");
         return;

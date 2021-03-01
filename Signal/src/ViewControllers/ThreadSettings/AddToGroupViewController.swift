@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -7,14 +7,6 @@ import PromiseKit
 
 @objc
 public class AddToGroupViewController: OWSTableViewController {
-
-    // MARK: Dependencies
-
-    private var databaseStorage: SDSDatabaseStorage {
-        return SDSDatabaseStorage.shared
-    }
-
-    // MARK: -
 
     private let address: SignalServiceAddress
     private let collation = UILocalizedIndexedCollation.current()
@@ -75,7 +67,9 @@ public class AddToGroupViewController: OWSTableViewController {
         let groupThreads = databaseStorage.read { transaction in
             return self.threadViewHelper.threads.filter { thread -> Bool in
                 guard let groupThread = thread as? TSGroupThread else { return false }
-                let threadViewModel = ThreadViewModel(thread: groupThread, transaction: transaction)
+                let threadViewModel = ThreadViewModel(thread: groupThread,
+                                                      forConversationList: false,
+                                                      transaction: transaction)
                 let groupViewHelper = GroupViewHelper(threadViewModel: threadViewModel)
                 return groupViewHelper.canEditConversationMembership
             } as? [TSGroupThread] ?? []
@@ -90,7 +84,7 @@ public class AddToGroupViewController: OWSTableViewController {
             title: NSLocalizedString("ADD_TO_GROUP_RECENTS_TITLE",
                                      comment: "The title for the 'add to group' view's recents section")
         )
-        recentsSection.add(recentGroups.map(item(for:)))
+        recentsSection.add(items: recentGroups.map(item(forGroupThread:)))
         contents.addSection(recentsSection)
 
         if let additionalGroups = groupThreads.count > maxRecentGroups ? Array(groupThreads[maxRecentGroups..<groupThreads.count]) : nil {
@@ -106,10 +100,9 @@ public class AddToGroupViewController: OWSTableViewController {
 
                 let section = OWSTableSection()
                 section.customHeaderView = sectionHeader(title: title)
-                section.add(
-                    sectionGroups
+                section.add(items: sectionGroups
                         .sorted { $0.groupNameOrDefault.localizedCaseInsensitiveCompare($1.groupNameOrDefault) == .orderedAscending }
-                        .map(item(for:))
+                        .map(item(forGroupThread:))
                 )
 
                 contents.addSection(section)
@@ -144,7 +137,7 @@ public class AddToGroupViewController: OWSTableViewController {
 
     private func didSelectGroup(_ groupThread: TSGroupThread) {
         let shortName = databaseStorage.uiRead { transaction in
-            return Environment.shared.contactsManager.shortDisplayName(for: self.address, transaction: transaction)
+            return Self.contactsManager.shortDisplayName(for: self.address, transaction: transaction)
         }
 
         guard !groupThread.groupModel.groupMembership.isMemberOfAnyKind(address) else {
@@ -171,11 +164,27 @@ public class AddToGroupViewController: OWSTableViewController {
             proceedTitle: NSLocalizedString("ADD_TO_GROUP_ACTION_PROCEED_BUTTON",
                                             comment: "The button on the 'add to group' confirmation to add the user to the group."),
             proceedStyle: .default) { _ in
-                self.addToGroup(groupThread, shortName: shortName)
+                self.addToGroupStep1(groupThread, shortName: shortName)
         }
     }
 
-    private func addToGroup(_ groupThread: TSGroupThread, shortName: String) {
+    private func addToGroupStep1(_ groupThread: TSGroupThread, shortName: String) {
+        AssertIsOnMainThread()
+        guard groupThread.isGroupV2Thread else {
+            addToGroupStep2(groupThread, shortName: shortName)
+            return
+        }
+        let doesUserSupportGroupsV2 = databaseStorage.read { transaction in
+            GroupManager.doesUserSupportGroupsV2(address: self.address, transaction: transaction)
+        }
+        guard doesUserSupportGroupsV2 else {
+            GroupViewUtils.showInvalidGroupMemberAlert(fromViewController: self)
+            return
+        }
+        addToGroupStep2(groupThread, shortName: shortName)
+    }
+
+    private func addToGroupStep2(_ groupThread: TSGroupThread, shortName: String) {
         let oldGroupModel = groupThread.groupModel
         guard let newGroupModel = buildNewGroupModel(oldGroupModel: oldGroupModel) else {
             let error = OWSAssertionError("Couldn't build group model.")
@@ -267,7 +276,7 @@ public class AddToGroupViewController: OWSTableViewController {
         textView.textContainer.lineFragmentPadding = 0
         textView.isScrollEnabled = false
         textView.textColor = Theme.primaryTextColor
-        textView.font = UIFont.ows_dynamicTypeBody.ows_semibold()
+        textView.font = UIFont.ows_dynamicTypeBody.ows_semibold
         textView.backgroundColor = Theme.washColor
         let tableEdgeInsets: CGFloat = UIDevice.current.isPlusSizePhone ? 20 : 16
         textView.textContainerInset = UIEdgeInsets(top: 5, left: tableEdgeInsets, bottom: 5, right: tableEdgeInsets)
@@ -275,14 +284,13 @@ public class AddToGroupViewController: OWSTableViewController {
         return textView
     }
 
-    private func item(for groupThread: TSGroupThread) -> OWSTableItem {
+    private func item(forGroupThread  groupThread: TSGroupThread) -> OWSTableItem {
         return OWSTableItem(
             customCellBlock: {
                 let cell = GroupTableViewCell()
                 cell.configure(thread: groupThread)
                 return cell
             },
-            customRowHeight: UITableView.automaticDimension,
             actionBlock: { [weak self] in
                 self?.didSelectGroup(groupThread)
             }

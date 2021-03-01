@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSFakeProfileManager.h"
@@ -278,6 +278,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateProfileForAddress:(SignalServiceAddress *)address
                       givenName:(nullable NSString *)givenName
                      familyName:(nullable NSString *)familyName
+                            bio:(nullable NSString *)bio
+                       bioEmoji:(nullable NSString *)bioEmoji
                        username:(nullable NSString *)username
                   isUuidCapable:(BOOL)isUuidCapable
                   avatarUrlPath:(nullable NSString *)avatarUrlPath
@@ -318,6 +320,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didSendOrReceiveMessageFromAddress:(SignalServiceAddress *)address
                                transaction:(SDSAnyWriteTransaction *)transaction
+{
+    // Do nothing.
+}
+
+- (void)reuploadLocalProfile
+{
+    // Do nothing.
+}
+
+- (void)migrateWhitelistedGroupsWithTransaction:(SDSAnyWriteTransaction *)transaction
 {
     // Do nothing.
 }

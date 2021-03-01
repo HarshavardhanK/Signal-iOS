@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -8,15 +8,24 @@ import GRDB
 @objc
 public class GRDBSchemaMigrator: NSObject {
 
-    var grdbStorage: GRDBDatabaseStorageAdapter {
+    // MARK: - Dependencies
+
+    private var grdbStorage: GRDBDatabaseStorageAdapter {
         return SDSDatabaseStorage.shared.grdbStorage
     }
 
+    // MARK: -
+
+    // Returns true IFF incremental migrations were performed.
     @objc
-    public func runSchemaMigrations() {
+    public func runSchemaMigrations() -> Bool {
+        var didPerformIncrementalMigrations = false
+
         if hasCreatedInitialSchema {
             Logger.info("Using incrementalMigrator.")
+            let appliedMigrations = self.appliedMigrations
             try! incrementalMigrator.migrate(grdbStorage.pool)
+            didPerformIncrementalMigrations = appliedMigrations != self.appliedMigrations
         } else {
             Logger.info("Using newUserMigrator.")
             try! newUserMigrator.migrate(grdbStorage.pool)
@@ -24,9 +33,17 @@ public class GRDBSchemaMigrator: NSObject {
         Logger.info("Migrations complete.")
 
         SSKPreferences.markGRDBSchemaAsLatest()
+
+        return didPerformIncrementalMigrations
     }
 
     private var hasCreatedInitialSchema: Bool {
+        let appliedMigrations = self.appliedMigrations
+        Logger.info("appliedMigrations: \(appliedMigrations).")
+        return appliedMigrations.contains(MigrationId.createInitialSchema.rawValue)
+    }
+
+    private var appliedMigrations: Set<String> {
         // HACK: GRDB doesn't create the grdb_migrations table until running a migration.
         // So we can't cleanly check which migrations have run for new users until creating this
         // table ourselves.
@@ -34,9 +51,7 @@ public class GRDBSchemaMigrator: NSObject {
             try! self.fixit_setupMigrations(transaction.database)
         }
 
-        let appliedMigrations = try! incrementalMigrator.appliedMigrations(in: grdbStorage.pool)
-        Logger.info("appliedMigrations: \(appliedMigrations).")
-        return appliedMigrations.contains(MigrationId.createInitialSchema.rawValue)
+        return try! incrementalMigrator.appliedMigrations(in: grdbStorage.pool)
     }
 
     private func fixit_setupMigrations(_ db: Database) throws {
@@ -85,6 +100,11 @@ public class GRDBSchemaMigrator: NSObject {
         case addOfferTypeToCalls
         case addServerDeliveryTimestamp
         case updateAnimatedStickers
+        case updateMarkedUnreadIndex
+        case addGroupCallMessage2
+        case addGroupCallEraIdIndex
+        case addProfileBio
+        case addWasIdentityVerified
 
         // NOTE: Every time we add a migration id, consider
         // incrementing grdbSchemaVersionLatest.
@@ -116,10 +136,13 @@ public class GRDBSchemaMigrator: NSObject {
         case dataMigration_kbsStateCleanup
         case dataMigration_turnScreenSecurityOnForExistingUsers
         case dataMigration_disableLinkPreviewForExistingUsers
+        case dataMigration_groupIdMapping
+        case dataMigration_disableSharingSuggestionsForExistingUsers
+        case dataMigration_removeOversizedGroupAvatars
     }
 
     public static let grdbSchemaVersionDefault: UInt = 0
-    public static let grdbSchemaVersionLatest: UInt = 14
+    public static let grdbSchemaVersionLatest: UInt = 19
 
     // An optimization for new users, we have the first migration import the latest schema
     // and mark any other migrations as "already run".
@@ -849,6 +872,73 @@ public class GRDBSchemaMigrator: NSObject {
             }
         }
 
+        migrator.registerMigration(MigrationId.updateMarkedUnreadIndex.rawValue) { db in
+            do {
+                try db.drop(index: "index_model_TSThread_on_isMarkedUnread")
+                try db.create(
+                    index: "index_model_TSThread_on_isMarkedUnread_and_shouldThreadBeVisible",
+                    on: "model_TSThread",
+                    columns: ["isMarkedUnread", "shouldThreadBeVisible"]
+                )
+            } catch {
+                owsFail("Error: \(error)")
+            }
+        }
+
+        migrator.registerMigration(MigrationId.addGroupCallMessage2.rawValue) { db in
+            do {
+                try db.alter(table: "model_TSInteraction") { table in
+                    table.add(column: "eraId", .text)
+                    table.add(column: "hasEnded", .boolean)
+                    table.add(column: "creatorUuid", .text)
+                    table.add(column: "joinedMemberUuids", .blob)
+                }
+
+                try db.create(
+                    index: "index_model_TSInteraction_on_uniqueThreadId_and_hasEnded_and_recordType",
+                    on: "model_TSInteraction",
+                    columns: ["uniqueThreadId", "hasEnded", "recordType"]
+                )
+            } catch {
+                owsFail("Error: \(error)")
+            }
+        }
+
+        migrator.registerMigration(MigrationId.addGroupCallEraIdIndex.rawValue) { db in
+            do {
+                try db.create(
+                    index: "index_model_TSInteraction_on_uniqueThreadId_and_eraId_and_recordType",
+                    on: "model_TSInteraction",
+                    columns: ["uniqueThreadId", "eraId", "recordType"]
+                )
+            } catch {
+                owsFail("Error: \(error)")
+            }
+        }
+
+        migrator.registerMigration(MigrationId.addProfileBio.rawValue) { db in
+            do {
+                try db.alter(table: "model_OWSUserProfile") { table in
+                    table.add(column: "bio", .text)
+                    table.add(column: "bioEmoji", .text)
+                }
+            } catch {
+                owsFail("Error: \(error)")
+            }
+        }
+
+        migrator.registerMigration(MigrationId.addWasIdentityVerified.rawValue) { db in
+            do {
+                try db.alter(table: "model_TSInteraction") { table in
+                    table.add(column: "wasIdentityVerified", .boolean)
+                }
+
+                try db.execute(sql: "UPDATE model_TSInteraction SET wasIdentityVerified = 0")
+            } catch {
+                owsFail("Error: \(error)")
+            }
+        }
+
         // MARK: - Schema Migration Insertion Point
     }
 
@@ -872,9 +962,9 @@ public class GRDBSchemaMigrator: NSObject {
             let transaction = GRDBWriteTransaction(database: db)
             defer { transaction.finalizeTransaction() }
 
-            if TSAccountManager.sharedInstance().isRegistered(transaction: transaction.asAnyWrite) {
+            if TSAccountManager.shared().isRegistered(transaction: transaction.asAnyWrite) {
                 Logger.info("marking existing user as onboarded")
-                TSAccountManager.sharedInstance().setIsOnboarded(true, transaction: transaction.asAnyWrite)
+                TSAccountManager.shared().setIsOnboarded(true, transaction: transaction.asAnyWrite)
             }
         }
 
@@ -977,6 +1067,49 @@ public class GRDBSchemaMigrator: NSObject {
             } else {
                 // We don't want to show the megaphone for users that already had link previews disabled
                 ExperienceUpgradeFinder.markAsComplete(experienceUpgradeId: .linkPreviews, transaction: transaction)
+            }
+        }
+
+        migrator.registerMigration(MigrationId.dataMigration_groupIdMapping.rawValue) { db in
+            let transaction = GRDBWriteTransaction(database: db)
+            defer { transaction.finalizeTransaction() }
+
+            TSThread.anyEnumerate(transaction: transaction.asAnyWrite) { (thread: TSThread,
+                _: UnsafeMutablePointer<ObjCBool>) in
+                guard let groupThread = thread as? TSGroupThread else {
+                    return
+                }
+                TSGroupThread.setGroupIdMapping(groupThread.uniqueId,
+                                                forGroupId: groupThread.groupModel.groupId,
+                                                transaction: transaction.asAnyWrite)
+            }
+        }
+
+        migrator.registerMigration(MigrationId.dataMigration_disableSharingSuggestionsForExistingUsers.rawValue) { db in
+            let transaction = GRDBWriteTransaction(database: db)
+            defer { transaction.finalizeTransaction() }
+            SSKPreferences.setAreSharingSuggestionsEnabled(false, transaction: transaction.asAnyWrite)
+        }
+
+        migrator.registerMigration(MigrationId.dataMigration_removeOversizedGroupAvatars.rawValue) { db in
+            let transaction = GRDBWriteTransaction(database: db)
+            defer { transaction.finalizeTransaction() }
+
+            TSGroupThread.anyEnumerate(transaction: transaction.asAnyWrite) { (thread: TSThread, _) in
+                guard let groupThread = thread as? TSGroupThread else { return }
+                guard let avatarData = groupThread.groupModel.groupAvatarData else { return }
+                guard !TSGroupModel.isValidGroupAvatarData(avatarData) else { return }
+
+                var builder = groupThread.groupModel.asBuilder
+                builder.avatarData = nil
+                builder.avatarUrlPath = nil
+
+                do {
+                    let newGroupModel = try builder.build(transaction: transaction.asAnyWrite)
+                    groupThread.update(with: newGroupModel, transaction: transaction.asAnyWrite)
+                } catch {
+                    owsFail("Failed to remove invalid group avatar during migration: \(error)")
+                }
             }
         }
     }
@@ -1672,12 +1805,13 @@ public func dedupeSignalRecipients(transaction: SDSAnyWriteTransaction) throws {
         // Since we have duplicate recipients for an address, we want to keep the one returned by the
         // finder, since that is the one whose uniqueId is used as the `accountId` for the
         // accountId finder.
-        guard let primaryRecipient = SignalRecipient.registeredRecipient(for: address,
-                                                                         mustHaveDevices: false,
-                                                                         transaction: transaction) else {
-                                                                            owsFailDebug("primaryRecipient was unexpectedly nil")
-                                                                            continue
-
+        guard let primaryRecipient = SignalRecipient.get(
+            address: address,
+            mustHaveDevices: false,
+            transaction: transaction
+        ) else {
+            owsFailDebug("primaryRecipient was unexpectedly nil")
+            continue
         }
 
         let redundantRecipientIds = recipientIds.filter { $0 != primaryRecipient.uniqueId }

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -42,11 +42,11 @@ extension StorageServiceProtoContactRecord {
         unknownFields: SwiftProtobuf.UnknownStorage? = nil,
         transaction: SDSAnyReadTransaction
     ) throws -> StorageServiceProtoContactRecord {
-        guard let address = OWSAccountIdFinder().address(forAccountId: accountId, transaction: transaction) else {
+        guard let address = OWSAccountIdFinder.address(forAccountId: accountId, transaction: transaction) else {
             throw StorageService.StorageError.accountMissing
         }
 
-        let builder = StorageServiceProtoContactRecord.builder()
+        var builder = StorageServiceProtoContactRecord.builder()
 
         if let phoneNumber = address.phoneNumber {
             builder.setServiceE164(phoneNumber)
@@ -282,7 +282,7 @@ extension StorageServiceProtoGroupV1Record {
         transaction: SDSAnyReadTransaction
     ) throws -> StorageServiceProtoGroupV1Record {
 
-        let builder = StorageServiceProtoGroupV1Record.builder(id: groupId)
+        var builder = StorageServiceProtoGroupV1Record.builder(id: groupId)
 
         builder.setWhitelisted(profileManager.isGroupId(inProfileWhitelist: groupId, transaction: transaction))
         builder.setBlocked(blockingManager.isGroupIdBlocked(groupId))
@@ -307,6 +307,10 @@ extension StorageServiceProtoGroupV1Record {
     }
 
     func mergeWithLocalGroup(transaction: SDSAnyWriteTransaction) -> MergeState {
+        // We might be learning of a v1 group id for the first time that
+        // corresponds to a v2 group without a v1-to-v2 group id mapping.
+        TSGroupThread.ensureGroupIdMapping(forGroupId: id, transaction: transaction)
+
         // Our general merge philosophy is that the latest value on the service
         // is always right. There are some edge cases where this could cause
         // user changes to get blown away, such as if you're changing values
@@ -410,7 +414,7 @@ extension StorageServiceProtoGroupV2Record {
         let groupContextInfo = try groupsV2.groupV2ContextInfo(forMasterKeyData: masterKeyData)
         let groupId = groupContextInfo.groupId
 
-        let builder = StorageServiceProtoGroupV2Record.builder(masterKey: masterKeyData)
+        var builder = StorageServiceProtoGroupV2Record.builder(masterKey: masterKeyData)
 
         builder.setWhitelisted(profileManager.isGroupId(inProfileWhitelist: groupId, transaction: transaction))
         builder.setBlocked(blockingManager.isGroupIdBlocked(groupId))
@@ -478,6 +482,10 @@ extension StorageServiceProtoGroupV2Record {
             return .invalid
         }
         let groupId = groupContextInfo.groupId
+
+        // We might be learning of a v1 group id for the first time that
+        // corresponds to a v2 group without a v1-to-v2 group id mapping.
+        TSGroupThread.ensureGroupIdMapping(forGroupId: groupId, transaction: transaction)
 
         var mergeState: MergeState = .resolved(masterKey)
 
@@ -569,11 +577,11 @@ extension StorageServiceProtoAccountRecord {
     }
 
     static var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     static var udManager: OWSUDManager {
@@ -594,7 +602,7 @@ extension StorageServiceProtoAccountRecord {
             throw OWSAssertionError("Missing local address")
         }
 
-        let builder = StorageServiceProtoAccountRecord.builder()
+        var builder = StorageServiceProtoAccountRecord.builder()
 
         if let profileKey = profileManager.profileKeyData(for: localAddress, transaction: transaction) {
             builder.setProfileKey(profileKey)
@@ -639,6 +647,9 @@ extension StorageServiceProtoAccountRecord {
 
         let pinnedConversationProtos = try PinnedThreadManager.pinnedConversationProtos(transaction: transaction)
         builder.setPinnedConversations(pinnedConversationProtos)
+
+        let preferContactAvatars = SSKPreferences.preferContactAvatars(transaction: transaction)
+        builder.setPreferContactAvatars(preferContactAvatars)
 
         if let unknownFields = unknownFields {
             builder.setUnknownFields(unknownFields)
@@ -766,6 +777,14 @@ extension StorageServiceProtoAccountRecord {
             mergeState = .needsUpdate
         }
 
+        let localPrefersContactAvatars = SSKPreferences.preferContactAvatars(transaction: transaction)
+        if preferContactAvatars != localPrefersContactAvatars {
+            SSKPreferences.setPreferContactAvatars(
+                preferContactAvatars,
+                updateStorageService: false,
+                transaction: transaction)
+        }
+
         return mergeState
     }
 }
@@ -835,17 +854,19 @@ extension PinnedThreadManager {
                 pinnedThreadIds.append(thread.uniqueId)
             case .groupMasterKey(let masterKey)?:
                 let contextInfo = try groupsV2.groupV2ContextInfo(forMasterKeyData: masterKey)
-                let threadUniqueId = TSGroupThread.threadId(fromGroupId: contextInfo.groupId)
+                let threadUniqueId = TSGroupThread.threadId(forGroupId: contextInfo.groupId,
+                                                            transaction: transaction)
                 pinnedThreadIds.append(threadUniqueId)
             case .legacyGroupID(let groupId)?:
-                let threadUniqueId = TSGroupThread.threadId(fromGroupId: groupId)
+                let threadUniqueId = TSGroupThread.threadId(forGroupId: groupId,
+                                                            transaction: transaction)
                 pinnedThreadIds.append(threadUniqueId)
             default:
                 break
             }
         }
 
-        try updatePinnedThreadIds(pinnedThreadIds, transaction: transaction)
+        updatePinnedThreadIds(pinnedThreadIds, transaction: transaction)
     }
 
     public class func pinnedConversationProtos(
@@ -855,7 +876,7 @@ extension PinnedThreadManager {
 
         var pinnedConversationProtos = [StorageServiceProtoAccountRecordPinnedConversation]()
         for pinnedThread in pinnedThreads {
-            let pinnedConversationBuilder = StorageServiceProtoAccountRecordPinnedConversation.builder()
+            var pinnedConversationBuilder = StorageServiceProtoAccountRecordPinnedConversation.builder()
 
             if let groupThread = pinnedThread as? TSGroupThread {
                 if let groupModelV2 = groupThread.groupModel as? TSGroupModelV2 {
@@ -877,7 +898,7 @@ extension PinnedThreadManager {
                 }
 
             } else if let contactThread = pinnedThread as? TSContactThread {
-                let contactBuilder = StorageServiceProtoAccountRecordPinnedConversationContact.builder()
+                var contactBuilder = StorageServiceProtoAccountRecordPinnedConversationContact.builder()
                 if let uuidString = contactThread.contactAddress.uuidString {
                     contactBuilder.setUuid(uuidString)
                 } else if let e164 = contactThread.contactAddress.phoneNumber {

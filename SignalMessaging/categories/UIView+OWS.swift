@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -10,6 +10,10 @@ public extension UIEdgeInsets {
                   left: CurrentAppContext().isRTL ? trailing : leading,
                   bottom: bottom,
                   right: CurrentAppContext().isRTL ? leading : trailing)
+    }
+
+    init(hMargin: CGFloat, vMargin: CGFloat) {
+        self.init(top: vMargin, left: hMargin, bottom: vMargin, right: hMargin)
     }
 
     func plus(_ inset: CGFloat) -> UIEdgeInsets {
@@ -23,6 +27,11 @@ public extension UIEdgeInsets {
 
     func minus(_ inset: CGFloat) -> UIEdgeInsets {
         return plus(-inset)
+    }
+
+    var asSize: CGSize {
+        CGSize(width: left + right,
+               height: top + bottom)
     }
 }
 
@@ -54,6 +63,30 @@ public extension UINavigationController {
         CATransaction.setCompletionBlock(completion)
         self.popToViewController(viewController, animated: animated)
         CATransaction.commit()
+    }
+}
+
+// MARK: - SpacerView
+
+public class SpacerView: UIView {
+    private var preferredSize: CGSize
+
+    convenience public init(preferredWidth: CGFloat = UIView.noIntrinsicMetric, preferredHeight: CGFloat = UIView.noIntrinsicMetric) {
+        self.init(preferredSize: CGSize(width: preferredWidth, height: preferredHeight))
+    }
+
+    public init(preferredSize: CGSize = CGSize(square: UIView.noIntrinsicMetric)) {
+        self.preferredSize = preferredSize
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override public var intrinsicContentSize: CGSize {
+        get { preferredSize }
+        set { preferredSize = newValue }
     }
 }
 
@@ -248,6 +281,12 @@ public extension UIView {
 
         NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: otherView, attribute: .width, multiplier: 1, constant: 0).autoInstall()
     }
+
+    func removeAllSubviews() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+    }
 }
 
 // MARK: -
@@ -315,6 +354,14 @@ public extension CGPoint {
 
     func plus(_ value: CGPoint) -> CGPoint {
         return CGPointAdd(self, value)
+    }
+
+    func plusX(_ value: CGFloat) -> CGPoint {
+        CGPointAdd(self, CGPoint(x: value, y: 0))
+    }
+
+    func plusY(_ value: CGFloat) -> CGPoint {
+        CGPointAdd(self, CGPoint(x: 0, y: value))
     }
 
     func minus(_ value: CGPoint) -> CGPoint {
@@ -394,12 +441,20 @@ public extension CGSize {
         return CGSizeCeil(self)
     }
 
+    var floor: CGSize {
+        return CGSizeFloor(self)
+    }
+
+    var round: CGSize {
+        return CGSizeRound(self)
+    }
+
     var abs: CGSize {
         return CGSize(width: Swift.abs(width), height: Swift.abs(height))
     }
 
     var largerAxis: CGFloat {
-        return max(width, height)
+        return Swift.max(width, height)
     }
 
     var smallerAxis: CGFloat {
@@ -409,11 +464,43 @@ public extension CGSize {
     init(square: CGFloat) {
         self.init(width: square, height: square)
     }
+
+    func plus(_ value: CGSize) -> CGSize {
+        return CGSizeAdd(self, value)
+    }
+
+    func max(_ other: CGSize) -> CGSize {
+        return CGSize(width: Swift.max(self.width, other.width),
+                      height: Swift.max(self.height, other.height))
+    }
+
+    static func square(_ size: CGFloat) -> CGSize {
+        return CGSize(width: size, height: size)
+    }
 }
 
 // MARK: -
 
 public extension CGRect {
+
+    var x: CGFloat {
+        get {
+            origin.x
+        }
+        set {
+            origin.x = newValue
+        }
+    }
+
+    var y: CGFloat {
+        get {
+            origin.y
+        }
+        set {
+            origin.y = newValue
+        }
+    }
+
     var center: CGPoint {
         return CGPoint(x: midX, y: midY)
     }
@@ -647,6 +734,16 @@ public extension UITextView {
         inputDelegate?.selectionWillChange(self)
         inputDelegate?.selectionDidChange(self)
     }
+
+    func updateVerticalInsetsForDynamicBodyType(defaultInsets: CGFloat) {
+        let currentFontSize = UIFont.ows_dynamicTypeBody.pointSize
+        let systemDefaultFontSize: CGFloat = 17
+        let insetFontAdjustment = systemDefaultFontSize > currentFontSize ? systemDefaultFontSize - currentFontSize : 0
+        let topInset = defaultInsets + insetFontAdjustment
+        let bottomInset = systemDefaultFontSize > currentFontSize ? topInset - 1 : topInset
+        textContainerInset.top = topInset
+        textContainerInset.bottom = bottomInset
+    }
 }
 
 // MARK: -
@@ -683,3 +780,60 @@ public extension UIToolbar {
         return toolbar
     }
  }
+
+// MARK: -
+
+public extension UIEdgeInsets {
+    var totalWidth: CGFloat {
+        left + right
+    }
+
+    var totalHeight: CGFloat {
+        top + bottom
+    }
+}
+
+// MARK: - Gestures
+
+public extension UIView {
+    func containsGestureLocation(_ gestureRecognizer: UIGestureRecognizer,
+                                 hotAreaAdjustment: CGFloat? = nil) -> Bool {
+        let location = gestureRecognizer.location(in: self)
+        var hotArea = bounds
+        if let hotAreaAdjustment = hotAreaAdjustment {
+            owsAssertDebug(hotAreaAdjustment > 0)
+            // Permissive hot area to make it easier to perform gesture.
+            hotArea = hotArea.insetBy(dx: -hotAreaAdjustment, dy: -hotAreaAdjustment)
+        }
+        return hotArea.contains(location)
+    }
+}
+
+// MARK: -
+
+public extension UIStackView {
+    func addArrangedSubviews(_ subviews: [UIView], reverseOrder: Bool = false) {
+        var subviews = subviews
+        if reverseOrder {
+            subviews.reverse()
+        }
+        for subview in subviews {
+            addArrangedSubview(subview)
+        }
+    }
+}
+
+// MARK: -
+
+// This works around a UIStackView bug where hidden subviews
+// sometimes re-appear.
+@objc
+public extension UIView {
+    var isHiddenInStackView: Bool {
+        get { isHidden }
+        set {
+            isHidden = newValue
+            alpha = newValue ? 0 : 1
+        }
+    }
+}

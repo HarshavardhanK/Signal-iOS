@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSTableViewController.h"
@@ -64,6 +64,8 @@ const CGFloat kOWSTable_DefaultCellHeight = 45.f;
 {
     if (self = [super init]) {
         _items = [NSMutableArray new];
+        _hasSeparators = YES;
+        _hasBackground = YES;
     }
     return self;
 }
@@ -91,14 +93,27 @@ const CGFloat kOWSTable_DefaultCellHeight = 45.f;
 
 #pragma mark -
 
+@implementation OWSTableItemEditAction
+
++ (OWSTableItemEditAction *)actionWithTitle:(nullable NSString *)title block:(OWSTableActionBlock)block
+{
+    OWSTableItemEditAction *action = [OWSTableItemEditAction new];
+    action.title = title;
+    action.block = block;
+    return action;
+}
+
+@end
+
+#pragma mark -
+
 @interface OWSTableItem ()
 
 @property (nonatomic, nullable) NSString *title;
 @property (nonatomic, nullable) OWSTableActionBlock actionBlock;
 
 @property (nonatomic) OWSTableCustomCellBlock customCellBlock;
-@property (nonatomic) UITableViewCell *customCell;
-@property (nonatomic) NSNumber *customRowHeight;
+@property (nonatomic, nullable) UITableViewCell *customCell;
 
 @end
 
@@ -151,17 +166,6 @@ const CGFloat kOWSTable_DefaultCellHeight = 45.f;
 }
 
 + (OWSTableItem *)itemWithCustomCellBlock:(OWSTableCustomCellBlock)customCellBlock
-                          customRowHeight:(CGFloat)customRowHeight
-                              actionBlock:(nullable OWSTableActionBlock)actionBlock
-{
-    OWSAssertDebug(customRowHeight > 0 || customRowHeight == UITableViewAutomaticDimension);
-
-    OWSTableItem *item = [self itemWithCustomCellBlock:customCellBlock actionBlock:actionBlock];
-    item.customRowHeight = @(customRowHeight);
-    return item;
-}
-
-+ (OWSTableItem *)itemWithCustomCellBlock:(OWSTableCustomCellBlock)customCellBlock
                               actionBlock:(nullable OWSTableActionBlock)actionBlock
 {
     OWSAssertDebug(customCellBlock);
@@ -169,6 +173,7 @@ const CGFloat kOWSTable_DefaultCellHeight = 45.f;
     OWSTableItem *item = [OWSTableItem new];
     item.actionBlock = actionBlock;
     item.customCellBlock = customCellBlock;
+    item.customRowHeight = @(UITableViewAutomaticDimension);
     return item;
 }
 
@@ -279,6 +284,7 @@ const CGFloat kOWSTable_DefaultCellHeight = 45.f;
         cell.accessibilityIdentifier = accessibilityIdentifier;
         return cell;
     };
+    item.customRowHeight = @(UITableViewAutomaticDimension);
     return item;
 }
 
@@ -529,10 +535,11 @@ const CGFloat kOWSTable_DefaultCellHeight = 45.f;
 
         return cell;
     };
+    item.customRowHeight = @(UITableViewAutomaticDimension);
     return item;
 }
 
-- (nullable UITableViewCell *)customCell
+- (nullable UITableViewCell *)getOrBuildCustomCell
 {
     if (_customCell) {
         return _customCell;
@@ -602,11 +609,17 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
         // We don't need a top or bottom insets, since we pin to the top and bottom layout guides.
         self.automaticallyAdjustsScrollViewInsets = NO;
     } else {
-        [self.tableView autoPinEdgesToSuperviewEdges];
+        if (self.shouldAvoidKeyboard) {
+            [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+            [self autoPinViewToBottomOfViewControllerOrKeyboard:self.tableView avoidNotch:YES];
+        } else {
+            [self.tableView autoPinEdgesToSuperviewEdges];
+        }
     }
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kOWSTableCellIdentifier];
 
+    [self configureTableLayoutMargins];
     [self applyContents];
     [self applyTheme];
 
@@ -689,7 +702,7 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
 
     item.tableViewController = self;
 
-    UITableViewCell *_Nullable customCell = [item customCell];
+    UITableViewCell *_Nullable customCell = [item getOrBuildCustomCell];
     if (customCell != nil) {
         if (self.useThemeBackgroundColors) {
             customCell.backgroundColor = Theme.tableCellBackgroundColor;
@@ -713,7 +726,7 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OWSTableItem *item = [self itemForIndexPath:indexPath];
-    if (item.customRowHeight) {
+    if (item.customRowHeight != nil) {
         return [item.customRowHeight floatValue];
     }
     return kOWSTable_DefaultCellHeight;
@@ -729,17 +742,26 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
         UITextView *textView = [LinkingTextView new];
         textView.textColor = Theme.secondaryTextAndIconColor;
         textView.font = UIFont.ows_dynamicTypeCaption1Font;
-
-        CGFloat tableEdgeInsets = UIDevice.currentDevice.isPlusSizePhone ? 20 : 16;
-        textView.textContainerInset = UIEdgeInsetsMake(16, tableEdgeInsets, 6, tableEdgeInsets);
-
         if (section.headerAttributedTitle.length > 0) {
             textView.attributedText = section.headerAttributedTitle;
         } else {
             textView.text = [section.headerTitle uppercaseString];
         }
 
-        return textView;
+        UIView *sectionView = [[UIView alloc] init];
+        [sectionView addSubview:textView];
+        [textView autoPinHeightToSuperview];
+
+        if (self.layoutMarginsRelativeTableContent) {
+            sectionView.preservesSuperviewLayoutMargins = YES;
+            [textView autoPinWidthToSuperviewMargins];
+            textView.textContainerInset = UIEdgeInsetsMake(16, 0, 6, 0);
+        } else {
+            [textView autoPinWidthToSuperview];
+            CGFloat tableEdgeInsets = UIDevice.currentDevice.isPlusSizePhone ? 20 : 16;
+            textView.textContainerInset = UIEdgeInsetsMake(16, tableEdgeInsets, 6, tableEdgeInsets);
+        }
+        return sectionView;
     }
 
     return nil;
@@ -755,10 +777,6 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
         UITextView *textView = [LinkingTextView new];
         textView.textColor = UIColor.ows_gray45Color;
         textView.font = UIFont.ows_dynamicTypeCaption1Font;
-
-        CGFloat tableEdgeInsets = UIDevice.currentDevice.isPlusSizePhone ? 20 : 16;
-        textView.textContainerInset = UIEdgeInsetsMake(6, tableEdgeInsets, 12, tableEdgeInsets);
-
         textView.linkTextAttributes = @{
             NSForegroundColorAttributeName : Theme.accentBlueColor,
             NSUnderlineStyleAttributeName : @(NSUnderlineStyleNone),
@@ -771,7 +789,20 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
             textView.text = section.footerTitle;
         }
 
-        return textView;
+        UIView *sectionView = [[UIView alloc] init];
+        [sectionView addSubview:textView];
+        [textView autoPinHeightToSuperview];
+
+        if (self.layoutMarginsRelativeTableContent) {
+            sectionView.preservesSuperviewLayoutMargins = YES;
+            [textView autoPinWidthToSuperviewMargins];
+            textView.textContainerInset = UIEdgeInsetsMake(6, 0, 12, 0);
+        } else {
+            [textView autoPinWidthToSuperview];
+            CGFloat tableEdgeInsets = UIDevice.currentDevice.isPlusSizePhone ? 20 : 16;
+            textView.textContainerInset = UIEdgeInsetsMake(6, tableEdgeInsets, 12, tableEdgeInsets);
+        }
+        return sectionView;
     }
 
     return nil;
@@ -915,6 +946,61 @@ NSString *const kOWSTableCellIdentifier = @"kOWSTableCellIdentifier";
     self.view.backgroundColor = backgroundColor;
     self.tableView.backgroundColor = backgroundColor;
     self.tableView.separatorColor = Theme.cellSeparatorColor;
+}
+
+- (void)configureTableLayoutMargins
+{
+    if (!self.layoutMarginsRelativeTableContent) {
+        return;
+    }
+    self.tableView.preservesSuperviewLayoutMargins = YES;
+    self.tableView.layoutMargins = UIEdgeInsetsZero;
+}
+
+#pragma mark - Editing
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OWSTableItem *item = [self itemForIndexPath:indexPath];
+    if (item.deleteAction != nil) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OWSTableItem *item = [self itemForIndexPath:indexPath];
+    return item.deleteAction != nil;
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView
+    titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OWSTableItem *item = [self itemForIndexPath:indexPath];
+    return item.deleteAction.title;
+}
+
+- (void)tableView:(UITableView *)tableView
+    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+     forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OWSTableItem *item = [self itemForIndexPath:indexPath];
+    if (editingStyle == UITableViewCellEditingStyleDelete && item.deleteAction != nil) {
+        item.deleteAction.block();
+    }
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:animated];
+}
+
+- (void)setEditing:(BOOL)editing
+{
+    [super setEditing:editing];
+    [self.tableView setEditing:editing];
 }
 
 @end

@@ -12,16 +12,6 @@ protocol ConversationSearchViewDelegate: class {
 @objc
 class ConversationSearchViewController: UITableViewController, BlockListCacheDelegate {
 
-    // MARK: - Dependencies
-
-    private var databaseStorage: SDSDatabaseStorage {
-        return SDSDatabaseStorage.shared
-    }
-
-    private var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
     // MARK: -
 
     @objc
@@ -241,7 +231,7 @@ class ConversationSearchViewController: UITableViewController, BlockListCacheDel
                 owsFailDebug("searchResult was unexpectedly nil")
                 return UITableViewCell()
             }
-            cell.configure(withRecipientAddress: searchResult.signalAccount.recipientAddress)
+            cell.configureWithSneakyTransaction(recipientAddress: searchResult.signalAccount.recipientAddress)
             return cell
         case .messages:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ConversationListCell.cellReuseIdentifier()) as? ConversationListCell else {
@@ -305,7 +295,7 @@ class ConversationSearchViewController: UITableViewController, BlockListCacheDel
         let label = UILabel()
         label.textColor = Theme.secondaryTextAndIconColor
         label.text = title
-        label.font = UIFont.ows_dynamicTypeBody.ows_semibold()
+        label.font = UIFont.ows_dynamicTypeBody.ows_semibold
         label.tag = section
 
         let wrapper = UIView()

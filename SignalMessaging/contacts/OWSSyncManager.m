@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSSyncManager.h"
@@ -15,9 +15,9 @@
 #import <SignalServiceKit/AppReadiness.h>
 #import <SignalServiceKit/DataSource.h>
 #import <SignalServiceKit/MIMETypeUtil.h>
+#import <SignalServiceKit/MessageSender.h>
 #import <SignalServiceKit/NSNotificationCenter+OWS.h>
 #import <SignalServiceKit/OWSError.h>
-#import <SignalServiceKit/OWSMessageSender.h>
 #import <SignalServiceKit/OWSSyncConfigurationMessage.h>
 #import <SignalServiceKit/OWSSyncContactsMessage.h>
 #import <SignalServiceKit/OWSSyncFetchLatestMessage.h>
@@ -68,7 +68,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
 
     OWSSingletonAssert();
 
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{
         [self addObservers];
         
         if ([self.tsAccountManager isRegisteredAndReady]) {
@@ -86,7 +86,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
                 });
             }
         }
-    }];
+    });
 
     return self;
 }
@@ -124,7 +124,8 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
     return SSKEnvironment.shared.identityManager;
 }
 
-- (OWSMessageSender *)messageSender {
+- (MessageSender *)messageSender
+{
     OWSAssertDebug(SSKEnvironment.shared.messageSender);
 
     return SSKEnvironment.shared.messageSender;
@@ -145,7 +146,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
 
 - (TSAccountManager *)tsAccountManager
 {
-    return TSAccountManager.sharedInstance;
+    return TSAccountManager.shared;
 }
 
 - (id<OWSTypingIndicators>)typingIndicators
@@ -208,7 +209,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
 }
 
 - (void)sendConfigurationSyncMessage {
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{
         if (!self.tsAccountManager.isRegisteredAndReady) {
             return;
         }
@@ -216,7 +217,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
         dispatch_async(dispatch_get_main_queue(), ^{
             [self sendConfigurationSyncMessage_AppReady];
         });
-    }];
+    });
 }
 
 - (void)sendConfigurationSyncMessage_AppReady {
@@ -298,6 +299,11 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
 
 - (void)syncGroupsWithTransaction:(SDSAnyWriteTransaction *)transaction
 {
+    if (SSKDebugFlags.dontSendContactOrGroupSyncMessages.value) {
+        OWSLogInfo(@"Skipping group sync message.");
+        return;
+    }
+
     TSThread *_Nullable thread = [TSAccountManager getOrCreateLocalThreadWithTransaction:transaction];
     if (thread == nil) {
         OWSFailDebug(@"Missing thread.");
@@ -373,6 +379,10 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
                               skipIfRedundant:(BOOL)skipIfRedundant
                                      debounce:(BOOL)debounce
 {
+    if (SSKDebugFlags.dontSendContactOrGroupSyncMessages.value) {
+        OWSLogInfo(@"Skipping contact sync message.");
+        return [AnyPromise promiseWithValue:@(YES)];
+    }
     if (!self.contactsManager.isSetup) {
         return [AnyPromise promiseWithValue:OWSErrorMakeAssertionError(@"Contacts manager not yet ready.")];
     }
@@ -384,7 +394,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
     }
 
     AnyPromise *promise = [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
-        [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
+        AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{
             dispatch_async(self.serialQueue, ^{
                 if (debounce && self.isRequestInFlight) {
                     // De-bounce.  It's okay if we ignore some new changes;
@@ -478,7 +488,7 @@ NSString *const kSyncManagerLastContactSyncKey = @"kTSStorageManagerOWSSyncManag
                                                         });
                                                     }];
             });
-        }];
+        });
     }];
     return promise;
 }

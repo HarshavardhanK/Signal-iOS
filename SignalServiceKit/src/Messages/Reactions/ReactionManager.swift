@@ -15,7 +15,7 @@ public class ReactionManager: NSObject {
     }
 
     private static var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
+        return .shared()
     }
 
     private static var messageSender: MessageSender {
@@ -76,6 +76,11 @@ public class ReactionManager: NSObject {
                                          isRemoving: Bool,
                                          transaction: SDSAnyWriteTransaction) throws -> OWSOutgoingReactionMessage {
         assert(emoji.isSingleEmoji)
+
+        let thread = message.thread(transaction: transaction)
+        guard thread.canSendToThread else {
+            throw OWSAssertionError("Cannot send to thread.")
+        }
 
         Logger.info("Sending reaction: \(emoji) isRemoving: \(isRemoving)")
 
@@ -168,7 +173,7 @@ public class ReactionManager: NSObject {
 
         // If this is a reaction removal, we want to remove *any* reaction from this author
         // on this message, regardless of the specified emoji.
-        if reaction.remove {
+        if reaction.hasRemove, reaction.remove {
             message.removeReaction(for: reactor, transaction: transaction)
         } else {
             let reaction = message.recordReaction(

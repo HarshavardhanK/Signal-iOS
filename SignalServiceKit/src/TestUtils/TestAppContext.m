@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TestAppContext.h"
@@ -116,6 +116,10 @@ NS_ASSUME_NONNULL_BEGIN
     return nil;
 }
 
+- (void)openSystemSettings
+{
+}
+
 - (nullable UIAlertAction *)openSystemSettingsActionWithCompletion:(void (^_Nullable)(void))completion
 {
     return nil;
@@ -198,6 +202,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)didLastLaunchNotTerminate
 {
     return NO;
+}
+
+- (BOOL)hasActiveCall
+{
+    return NO;
+}
+
+- (NSString *)debugLogsDirPath
+{
+    return TestAppContext.testDebugLogsDirPath;
+}
+
++ (NSString *)testDebugLogsDirPath
+{
+    NSString *dirPath = [OWSTemporaryDirectory() stringByAppendingPathComponent:@"TestLogs"];
+    [OWSFileSystem ensureDirectoryExists:dirPath];
+    return dirPath;
 }
 
 @end

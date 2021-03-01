@@ -21,7 +21,7 @@ extension DeviceTransferService {
         set { CurrentAppContext().appUserDefaults().set(newValue, forKey: DeviceTransferService.pendingWasTransferedClearKey) }
     }
 
-    func verifyTransferCompletedSuccessfully(receivedFileIds: [String]) -> Bool {
+    func verifyTransferCompletedSuccessfully(receivedFileIds: [String], skippedFileIds: [String]) -> Bool {
         guard let manifest = readManifestFromTransferDirectory() else {
             owsFailDebug("Missing manifest file")
             return false
@@ -30,6 +30,8 @@ extension DeviceTransferService {
         // Check that there aren't any files that we were
         // expecting that are missing.
         for file in manifest.files {
+            guard !skippedFileIds.contains(file.identifier) else { continue }
+
             guard receivedFileIds.contains(file.identifier) else {
                 owsFailDebug("did not receive file \(file.identifier)")
                 return false
@@ -176,9 +178,20 @@ extension DeviceTransferService {
                 }
             } else if fileWasAlreadyRestored {
                 Logger.info("Skipping restoration of file that was already restored: \(file.identifier)")
-            } else {
+            } else if [
+                DeviceTransferService.databaseIdentifier,
+                DeviceTransferService.databaseWALIdentifier
+            ].contains(file.identifier) {
                 owsFailDebug("unable to restore file that is missing")
                 return false
+            } else {
+                // We sometimes don't receive a file because it goes missing on the old
+                // device between when we generate the manifest and when we perform the
+                // restoration. Our verification process ensures that the only files that
+                // could be missing in this way are non-essential files. It's better to
+                // let the user continue than to lock them out of the app in this state.
+                Logger.info("Skipping restoration of missing file: \(file.identifier)")
+                continue
             }
         }
 
@@ -194,6 +207,12 @@ extension DeviceTransferService {
                 self.pendingWasTransferredClear = false
                 self.tsAccountManager.isTransferInProgress = false
                 SignalApp.shared().showConversationSplitView()
+
+                // After transfer our push token has changed, update it.
+                SyncPushTokensJob.run(
+                    accountManager: AppEnvironment.shared.accountManager,
+                    preferences: Environment.shared.preferences
+                )
             }
         }
 
@@ -218,7 +237,7 @@ extension DeviceTransferService {
     func launchCleanup() -> Bool {
         Logger.info("hasBeenRestored: \(hasBeenRestored)")
 
-        AppReadiness.runNowOrWhenAppDidBecomeReady {
+        AppReadiness.runNowOrWhenAppDidBecomeReadySync {
             self.tsAccountManager.isTransferInProgress = false
 
             if self.pendingWasTransferredClear {

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import <SignalServiceKit/ProfileManagerProtocol.h>
@@ -11,8 +11,8 @@ extern NSNotificationName const kNSNotificationNameProfileKeyDidChange;
 extern const NSUInteger kOWSProfileManager_MaxAvatarDiameter;
 extern const NSString *kNSNotificationKey_WasLocallyInitiated;
 
+@class MessageSender;
 @class OWSAES256Key;
-@class OWSMessageSender;
 @class OWSUserProfile;
 @class SDSAnyReadTransaction;
 @class SDSAnyWriteTransaction;
@@ -23,6 +23,21 @@ extern const NSString *kNSNotificationKey_WasLocallyInitiated;
 @class TSThread;
 
 typedef void (^ProfileManagerFailureBlock)(NSError *error);
+
+@interface OWSProfileSnapshot : NSObject
+
+@property (nonatomic, readonly, nullable) NSString *givenName;
+@property (nonatomic, readonly, nullable) NSString *familyName;
+@property (nonatomic, readonly, nullable) NSString *fullName;
+@property (nonatomic, readonly, nullable) NSString *bio;
+@property (nonatomic, readonly, nullable) NSString *bioEmoji;
+@property (nonatomic, readonly, nullable) NSString *username;
+
+@property (nonatomic, readonly, nullable) NSData *avatarData;
+
+@end
+
+#pragma mark -
 
 // This class can be safely accessed and used from any thread.
 @interface OWSProfileManager : NSObject <ProfileManagerProtocol>
@@ -41,7 +56,7 @@ typedef void (^ProfileManagerFailureBlock)(NSError *error);
 
 - (instancetype)initWithDatabaseStorage:(SDSDatabaseStorage *)databaseStorage NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)sharedManager;
++ (instancetype)shared;
 
 #pragma mark - Local Profile
 
@@ -57,6 +72,9 @@ typedef void (^ProfileManagerFailureBlock)(NSError *error);
 - (nullable NSString *)localUsername;
 - (nullable UIImage *)localProfileAvatarImage;
 - (nullable NSData *)localProfileAvatarData;
+
+- (OWSProfileSnapshot *)localProfileSnapshotWithShouldIncludeAvatar:(BOOL)shouldIncludeAvatar
+    NS_SWIFT_NAME(localProfileSnapshot(shouldIncludeAvatar:));
 
 - (void)updateLocalUsername:(nullable NSString *)username transaction:(SDSAnyWriteTransaction *)transaction;
 
@@ -82,19 +100,6 @@ typedef void (^ProfileManagerFailureBlock)(NSError *error);
 //
 // Only use this method in profile manager methods on the swift extension.
 - (OWSUserProfile *)localUserProfile;
-
-// If avatarData is nil, we are clearing the avatar.
-- (void)updateServiceWithUnversionedProfileAvatarData:(nullable NSData *)avatarData
-                                              success:(void (^)(NSString *_Nullable avatarUrlPath))successBlock
-                                              failure:(ProfileManagerFailureBlock)failureBlock
-    NS_SWIFT_NAME(updateService(unversionedProfileAvatarData:success:failure:));
-
-// If profileName is nil, we are clearing the profileName.
-- (void)updateServiceWithUnversionedGivenName:(nullable NSString *)givenName
-                                   familyName:(nullable NSString *)familyName
-                                      success:(void (^)(void))successBlock
-                                      failure:(ProfileManagerFailureBlock)failureBlock
-    NS_SWIFT_NAME(updateService(unversionedGivenName:familyName:success:failure:));
 
 #pragma mark - Profile Whitelist
 
@@ -135,6 +140,9 @@ typedef void (^ProfileManagerFailureBlock)(NSError *error);
 - (nullable NSString *)usernameForAddress:(SignalServiceAddress *)address
                               transaction:(SDSAnyReadTransaction *)transaction;
 
+- (nullable NSString *)profileBioForDisplayForAddress:(SignalServiceAddress *)address
+                                          transaction:(SDSAnyReadTransaction *)transaction;
+
 #pragma mark - Clean Up
 
 + (NSSet<NSString *> *)allProfileAvatarFilePathsWithTransaction:(SDSAnyReadTransaction *)transaction;
@@ -149,6 +157,10 @@ typedef void (^ProfileManagerFailureBlock)(NSError *error);
 
 // This method is only exposed for usage by the Swift extensions.
 - (NSString *)generateAvatarFilename;
+
+#ifdef DEBUG
++ (void)discardAllProfileKeysWithTransaction:(SDSAnyWriteTransaction *)transaction;
+#endif
 
 @end
 

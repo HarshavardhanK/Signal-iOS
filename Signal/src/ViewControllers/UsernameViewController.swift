@@ -1,19 +1,11 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
 
 @objc
 class UsernameViewController: OWSViewController {
-
-    // MARK: - Dependencies
-
-    var databaseStorage: SDSDatabaseStorage {
-        return SSKEnvironment.shared.databaseStorage
-    }
-
-    // MARK: -
 
     @objc
     public var modalPresentation = false {
@@ -24,7 +16,7 @@ class UsernameViewController: OWSViewController {
     }
 
     private static let minimumUsernameLength = 4
-    private static let maximumUsernameLength: UInt = 26
+    private static let maximumUsernameLength: Int = 26
 
     private let usernameTextField = OWSTextField()
     private var hasPendingChanges: Bool {
@@ -89,7 +81,7 @@ class UsernameViewController: OWSViewController {
         let titleLabel = UILabel()
         titleLabel.text = NSLocalizedString("USERNAME_FIELD", comment: "Label for the username field in the username view.")
         titleLabel.textColor = Theme.primaryTextColor
-        titleLabel.font = UIFont.ows_dynamicTypeBodyClamped.ows_semibold()
+        titleLabel.font = UIFont.ows_dynamicTypeBodyClamped.ows_semibold
 
         usernameRow.addSubview(titleLabel)
         titleLabel.autoPinLeadingToSuperviewMargin()
@@ -297,12 +289,14 @@ extension UsernameViewController: UITextFieldDelegate {
         return false
     }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         return TextFieldHelper.textField(
             textField,
             shouldChangeCharactersInRange: range,
             replacementString: string,
-            byteLimit: UsernameViewController.maximumUsernameLength
+            maxByteCount: UsernameViewController.maximumUsernameLength
         )
     }
 }

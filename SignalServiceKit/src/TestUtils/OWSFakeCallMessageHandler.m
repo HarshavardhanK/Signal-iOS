@@ -50,6 +50,22 @@ NS_ASSUME_NONNULL_BEGIN
     OWSLogInfo(@"");
 }
 
+- (void)receivedOpaque:(SSKProtoCallMessageOpaque *)opaque
+                 fromCaller:(SignalServiceAddress *)caller
+               sourceDevice:(uint32_t)device
+    serverReceivedTimestamp:(uint64_t)serverReceivedTimestamp
+    serverDeliveryTimestamp:(uint64_t)serverDeliveryTimestamp
+{
+    OWSLogInfo(@"");
+}
+
+- (void)receivedGroupCallUpdateMessage:(SSKProtoDataMessageGroupCallUpdate *)update
+                             forThread:(TSGroupThread *)groupThread
+               serverReceivedTimestamp:(uint64_t)serverReceivedTimestamp
+{
+    OWSLogInfo(@"");
+}
+
 @end
 
 #endif

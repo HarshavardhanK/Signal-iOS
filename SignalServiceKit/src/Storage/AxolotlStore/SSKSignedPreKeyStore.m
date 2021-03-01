@@ -99,7 +99,7 @@ NSString *const kPrekeyCurrentSignedPrekeyIdKey = @"currentSignedPrekeyId";
 
     // Signed prekey ids must be > 0.
     int preKeyId = 1 + arc4random_uniform(INT32_MAX - 1);
-    ECKeyPair *_Nullable identityKeyPair = [[OWSIdentityManager sharedManager] identityKeyPair];
+    ECKeyPair *_Nullable identityKeyPair = [[OWSIdentityManager shared] identityKeyPair];
     OWSAssert(identityKeyPair);
 
     @try {
@@ -336,6 +336,16 @@ NSString *const kPrekeyCurrentSignedPrekeyIdKey = @"currentSignedPrekeyId";
                                              }];
     }];
 }
+
+#if TESTABLE_BUILD
+- (void)removeAll:(SDSAnyWriteTransaction *)transaction
+{
+    OWSLogWarn(@"");
+
+    [self.keyStore removeAllWithTransaction:transaction];
+    [self.metadataStore removeAllWithTransaction:transaction];
+}
+#endif
 
 @end
 

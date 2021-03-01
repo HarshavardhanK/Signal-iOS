@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +11,8 @@ public class NonContactTableViewCell: UITableViewCell {
     private let headerLabel = UILabel()
     private let accessoryLabel = UILabel()
 
-    @objc var accessoryMessage: String?
+    @objc
+    public var accessoryMessage: String?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,7 +44,7 @@ public class NonContactTableViewCell: UITableViewCell {
         headerLabel.textColor = Theme.primaryTextColor
         labelStack.addArrangedSubview(headerLabel)
 
-        identifierLabel.font = OWSTableItem.primaryLabelFont.ows_semibold()
+        identifierLabel.font = OWSTableItem.primaryLabelFont.ows_semibold
         identifierLabel.textColor = Theme.primaryTextColor
         labelStack.addArrangedSubview(identifierLabel)
 
@@ -51,7 +52,7 @@ public class NonContactTableViewCell: UITableViewCell {
         labelStack.addArrangedSubview(bottomSpacer)
         bottomSpacer.autoMatch(.height, to: .height, of: topSpacer)
 
-        accessoryLabel.font = OWSTableItem.accessoryLabelFont.ows_semibold()
+        accessoryLabel.font = OWSTableItem.accessoryLabelFont.ows_semibold
         accessoryLabel.textColor = Theme.middleGrayColor
         accessoryLabel.textAlignment = .right
         accessoryLabel.isHidden = true

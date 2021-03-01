@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "ContactTableViewCell.h"
@@ -7,6 +7,7 @@
 #import "OWSTableViewController.h"
 #import "UIFont+OWS.h"
 #import "UIView+OWS.h"
+#import <SignalMessaging/SignalMessaging-Swift.h>
 #import <SignalServiceKit/SignalAccount.h>
 #import <SignalServiceKit/SignalServiceKit-Swift.h>
 
@@ -70,11 +71,17 @@ NS_ASSUME_NONNULL_BEGIN
     self.cellView.userInteractionEnabled = self.allowUserInteraction;
 }
 
-- (void)configureWithRecipientAddress:(SignalServiceAddress *)address
+- (void)configureWithRecipientAddressWithSneakyTransaction:(SignalServiceAddress *)address
+{
+    [self.databaseStorage uiReadWithBlock:^(
+        SDSAnyReadTransaction *transaction) { [self configureWithRecipientAddress:address transaction:transaction]; }];
+}
+
+- (void)configureWithRecipientAddress:(SignalServiceAddress *)address transaction:(SDSAnyReadTransaction *)transaction
 {
     [OWSTableItem configureCell:self];
 
-    [self.cellView configureWithRecipientAddress:address];
+    [self.cellView configureWithRecipientAddress:address transaction:transaction];
 
     // Force layout, since imageView isn't being initally rendered on App Store optimized build.
     [self layoutSubviews];
@@ -109,6 +116,11 @@ NS_ASSUME_NONNULL_BEGIN
     [self.cellView setAttributedSubtitle:attributedSubtitle];
 }
 
+- (void)setSubtitle:(nullable NSString *)subtitle
+{
+    [self.cellView setSubtitle:subtitle];
+}
+
 - (void)setCustomName:(nullable NSString *)customName
 {
     [self.cellView setCustomName:customName.asAttributedString];
@@ -127,6 +139,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setUseSmallAvatars
 {
     self.cellView.useSmallAvatars = YES;
+}
+
+- (BOOL)forceDarkAppearance
+{
+    return self.cellView.forceDarkAppearance;
+}
+
+- (void)setForceDarkAppearance:(BOOL)forceDarkAppearance
+{
+    self.cellView.forceDarkAppearance = forceDarkAppearance;
 }
 
 - (void)prepareForReuse

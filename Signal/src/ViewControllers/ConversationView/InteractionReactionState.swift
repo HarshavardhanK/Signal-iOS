@@ -5,7 +5,7 @@
 import Foundation
 
 @objc
-class InteractionReactionState: NSObject {
+public class InteractionReactionState: NSObject {
     @objc
     var hasReactions: Bool { return !emojiCounts.isEmpty }
 
@@ -18,7 +18,7 @@ class InteractionReactionState: NSObject {
         // No reactions on non-message interactions
         guard let message = interaction as? TSMessage else { return nil }
 
-        guard let localAddress = TSAccountManager.sharedInstance().localAddress else {
+        guard let localAddress = TSAccountManager.shared().localAddress else {
             owsFailDebug("missing local address")
             return nil
         }

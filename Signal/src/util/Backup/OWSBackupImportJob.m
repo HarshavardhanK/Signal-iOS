@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSBackupImportJob.h"
@@ -39,7 +39,7 @@ NSString *const kOWSBackup_ImportDatabaseKeySpec = @"kOWSBackup_ImportDatabaseKe
 
 - (OWSProfileManager *)profileManager
 {
-    return [OWSProfileManager sharedManager];
+    return [OWSProfileManager shared];
 }
 
 - (TSAccountManager *)tsAccountManager
@@ -177,7 +177,7 @@ NSString *const kOWSBackup_ImportDatabaseKeySpec = @"kOWSBackup_ImportDatabaseKe
 
             // Make sure backup is enabled once we complete
             // a backup restore.
-            [OWSBackup.sharedManager setIsBackupEnabled:YES];
+            [OWSBackup.shared setIsBackupEnabled:YES];
         })
         .thenInBackground(^{
             return [self.tsAccountManager updateAccountAttributes];
@@ -329,6 +329,8 @@ NSString *const kOWSBackup_ImportDatabaseKeySpec = @"kOWSBackup_ImportDatabaseKe
 
     return [OWSProfileManager updateLocalProfilePromiseObjWithProfileGivenName:localProfileGivenName
                                                              profileFamilyName:localProfileFamilyName
+                                                                    profileBio:nil
+                                                               profileBioEmoji:nil
                                                              profileAvatarData:localProfileAvatarData]
         .catch(^(NSError *error) {
             OWSFailDebug(@"Error: %@", error);

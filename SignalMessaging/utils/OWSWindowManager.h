@@ -26,7 +26,7 @@ extern const UIWindowLevel UIWindowLevel_Background;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initDefault NS_DESIGNATED_INITIALIZER;
 
-@property (class, nonatomic, readonly, nonnull) OWSWindowManager *sharedManager;
+@property (class, nonatomic, readonly, nonnull) OWSWindowManager *shared;
 
 - (void)setupWithRootWindow:(UIWindow *)rootWindow screenBlockingWindow:(UIWindow *)screenBlockingWindow;
 
@@ -45,6 +45,7 @@ extern const UIWindowLevel UIWindowLevel_Background;
 - (void)startCall:(UIViewController<CallViewControllerWindowReference> *)callViewController;
 - (void)endCall:(UIViewController<CallViewControllerWindowReference> *)callViewController;
 - (void)leaveCallView;
+- (void)returnToCallView;
 @property (nonatomic, readonly) BOOL hasCall;
 
 @end

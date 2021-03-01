@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSWebSocket.h"
@@ -12,7 +12,6 @@
 #import "OWSDevicesService.h"
 #import "OWSError.h"
 #import "OWSMessageManager.h"
-#import "OWSMessageReceiver.h"
 #import "OWSSignalService.h"
 #import "SSKEnvironment.h"
 #import "TSAccountManager.h"
@@ -238,22 +237,17 @@ NSNotificationName const NSNotificationWebSocketStateDidChange = @"NSNotificatio
 
 - (OWSSignalService *)signalService
 {
-    return [OWSSignalService sharedInstance];
-}
-
-- (OWSMessageReceiver *)messageReceiver
-{
-    return SSKEnvironment.shared.messageReceiver;
+    return [OWSSignalService shared];
 }
 
 - (TSAccountManager *)tsAccountManager
 {
-    return TSAccountManager.sharedInstance;
+    return TSAccountManager.shared;
 }
 
 - (OutageDetection *)outageDetection
 {
-    return OutageDetection.sharedManager;
+    return OutageDetection.shared;
 }
 
 - (SDSDatabaseStorage *)databaseStorage
@@ -301,7 +295,7 @@ NSNotificationName const NSNotificationWebSocketStateDidChange = @"NSNotificatio
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deviceListUpdateModifiedDeviceList:)
-                                                 name:NSNotificationName_DeviceListUpdateModifiedDeviceList
+                                                 name:NSNotificationNameDeviceListUpdateModifiedDeviceList
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(environmentDidChange:)
@@ -440,6 +434,7 @@ NSNotificationName const NSNotificationWebSocketStateDidChange = @"NSNotificatio
                 [TSConstants.textSecureWebSocketAPI stringByAppendingString:[self webSocketAuthenticationString]];
             NSURL *webSocketConnectURL = [NSURL URLWithString:webSocketConnect];
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:webSocketConnectURL];
+            [request setValue:OWSURLSession.signalIosUserAgent forHTTPHeaderField:OWSURLSession.kUserAgentHeader];
 
             id<SSKWebSocket> socket = [SSKWebSocketManager buildSocketWithRequest:request];
             socket.delegate = self;
@@ -801,64 +796,49 @@ NSNotificationName const NSNotificationWebSocketStateDidChange = @"NSNotificatio
             [OWSBackgroundTask backgroundTaskWithLabelStr:__PRETTY_FUNCTION__];
 
         dispatch_async(self.serialQueue, ^{
-            BOOL success = NO;
-            @try {
-                BOOL useSignalingKey = NO;
-                uint64_t serverDeliveryTimestamp = 0;
-                for (NSString *header in message.headers) {
-                    if ([header isEqualToString:@"X-Signal-Key: true"]) {
-                        useSignalingKey = YES;
-                    } else if ([header hasPrefix:@"X-Signal-Timestamp:"]) {
-                        NSArray<NSString *> *components = [header componentsSeparatedByString:@":"];
-                        if (components.count == 2) {
-                            serverDeliveryTimestamp = (uint64_t)[components[1] longLongValue];
-                        } else {
-                            OWSFailDebug(@"Invalidly formatted timestamp header %@", header);
-                        }
+            void (^ackMessage)(BOOL success) = ^void(BOOL success) {
+                if (!success) {
+                    DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
+                        ThreadlessErrorMessage *errorMessage = [ThreadlessErrorMessage corruptedMessageInUnknownThread];
+                        [self.notificationsManager notifyUserForThreadlessErrorMessage:errorMessage
+                                                                           transaction:transaction];
+                    });
+                }
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self sendWebSocketMessageAcknowledgement:message];
+                    OWSAssertDebug(backgroundTask);
+                    backgroundTask = nil;
+                });
+            };
+
+            uint64_t serverDeliveryTimestamp = 0;
+            for (NSString *header in message.headers) {
+                if ([header hasPrefix:@"X-Signal-Timestamp:"]) {
+                    NSArray<NSString *> *components = [header componentsSeparatedByString:@":"];
+                    if (components.count == 2) {
+                        serverDeliveryTimestamp = (uint64_t)[components[1] longLongValue];
+                    } else {
+                        OWSFailDebug(@"Invalidly formatted timestamp header %@", header);
                     }
                 }
-
-                if (serverDeliveryTimestamp == 0) {
-                    OWSFailDebug(@"Missing server delivery timestamp");
-                }
-
-                NSData *_Nullable decryptedPayload;
-                if (useSignalingKey) {
-                    NSString *_Nullable signalingKey = self.tsAccountManager.storedSignalingKey;
-                    OWSAssertDebug(signalingKey);
-                    decryptedPayload =
-                        [Cryptography decryptAppleMessagePayload:message.body withSignalingKey:signalingKey];
-                } else {
-                    OWSAssertDebug([message.headers containsObject:@"X-Signal-Key: false"]);
-
-                    decryptedPayload = message.body;
-                }
-
-                if (!decryptedPayload) {
-                    OWSLogWarn(@"Failed to decrypt incoming payload or bad HMAC");
-                } else {
-                    [self.messageReceiver handleReceivedEnvelopeData:decryptedPayload
-                                             serverDeliveryTimestamp:serverDeliveryTimestamp];
-                    success = YES;
-                }
-            } @catch (NSException *exception) {
-                OWSFailDebug(@"Received an invalid envelope: %@", exception.debugDescription);
-                // TODO: Add analytics.
             }
 
-            if (!success) {
-                DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
-                    ThreadlessErrorMessage *errorMessage = [ThreadlessErrorMessage corruptedMessageInUnknownThread];
-                    [self.notificationsManager notifyUserForThreadlessErrorMessage:errorMessage
-                                                                       transaction:transaction];
-                });
+            if (serverDeliveryTimestamp == 0) {
+                OWSFailDebug(@"Missing server delivery timestamp");
             }
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self sendWebSocketMessageAcknowledgement:message];
-                OWSAssertDebug(backgroundTask);
-                backgroundTask = nil;
-            });
+            NSData *_Nullable encryptedEnvelope = message.body;
+
+            if (!encryptedEnvelope) {
+                OWSLogWarn(@"Missing encrypted envelope on message");
+                ackMessage(NO);
+            } else {
+                [MessageProcessor.shared processEncryptedEnvelopeData:encryptedEnvelope
+                                                    encryptedEnvelope:nil
+                                              serverDeliveryTimestamp:serverDeliveryTimestamp
+                                                           completion:^(NSError *error) { ackMessage(YES); }];
+            }
         });
     } else if ([message.path isEqualToString:@"/api/v1/queue/empty"]) {
         // Queue is drained.
@@ -966,6 +946,10 @@ NSNotificationName const NSNotificationWebSocketStateDidChange = @"NSNotificatio
 
     // Don't open socket in app extensions.
     if (!CurrentAppContext().isMainApp) {
+        return NO;
+    }
+
+    if (!AppReadiness.isAppReady) {
         return NO;
     }
 
@@ -1089,11 +1073,8 @@ NSNotificationName const NSNotificationWebSocketStateDidChange = @"NSNotificatio
 
     if (!AppReadiness.isAppReady) {
         static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [AppReadiness runNowOrWhenAppDidBecomeReady:^{
-                [self applyDesiredSocketState];
-            }];
-        });
+        dispatch_once(
+            &onceToken, ^{ AppReadinessRunNowOrWhenAppDidBecomeReadySync(^{ [self applyDesiredSocketState]; }); });
         return;
     }
 

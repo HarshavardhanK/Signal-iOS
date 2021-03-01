@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -8,7 +8,7 @@ import SignalServiceKit
 @objc
 public class OWSFlatButton: UIView {
 
-    private let button: UIButton
+    public let button: UIButton
 
     private var pressedBlock : (() -> Void)?
 
@@ -143,11 +143,20 @@ public class OWSFlatButton: UIView {
     // MARK: Methods
 
     @objc
-    public func setTitle(title: String, font: UIFont,
-                         titleColor: UIColor ) {
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(titleColor, for: .normal)
-        button.titleLabel!.font = font
+    public func setTitleColor(_ color: UIColor) {
+        button.setTitleColor(color, for: .normal)
+    }
+
+    @objc
+    public func setTitle(title: String? = nil, font: UIFont? = nil, titleColor: UIColor? = nil) {
+        title.map { button.setTitle($0, for: .normal) }
+        font.map { button.titleLabel?.font = $0 }
+        titleColor.map { setTitleColor($0) }
+    }
+
+    @objc
+    public func setAttributedTitle(_ title: NSAttributedString) {
+        button.setAttributedTitle(title, for: .normal)
     }
 
     @objc
@@ -223,5 +232,9 @@ public class OWSFlatButton: UIView {
             return
         }
         autoSetDimension(.height, toSize: font.lineHeight * 2.5)
+    }
+
+    override public var intrinsicContentSize: CGSize {
+        button.intrinsicContentSize
     }
 }

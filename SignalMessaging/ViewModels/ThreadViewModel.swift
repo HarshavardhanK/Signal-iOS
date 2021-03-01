@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -7,7 +7,6 @@ import Foundation
 @objc
 public class ThreadViewModel: NSObject {
     @objc public let hasUnreadMessages: Bool
-    @objc public let lastMessageDate: Date?
     @objc public let isGroupThread: Bool
     @objc public let threadRecord: TSThread
     @objc public let unreadCount: UInt
@@ -15,9 +14,11 @@ public class ThreadViewModel: NSObject {
     @objc public let name: String
     @objc public let isMuted: Bool
     @objc public let hasPendingMessageRequest: Bool
-    @objc public let addedToGroupByName: String?
+    @objc public let disappearingMessagesConfiguration: OWSDisappearingMessagesConfiguration
+    @objc public let groupCallInProgress: Bool
+    @objc public let hasWallpaper: Bool
 
-    var isContactThread: Bool {
+    public var isContactThread: Bool {
         return !isGroupThread
     }
 
@@ -26,30 +27,22 @@ public class ThreadViewModel: NSObject {
         threadRecord.isLocalUserFullMemberOfThread
     }
 
-    @objc public let draftText: String?
-    @objc public let lastMessageText: String?
-    @objc public let lastMessageForInbox: TSInteraction?
+    @objc
+    public let lastMessageForInbox: TSInteraction?
 
-    @objc public let lastVisibleInteraction: TSInteraction?
+    // This property is only set if forConversationList is true.
+    @objc
+    public let conversationListInfo: ConversationListInfo?
 
     @objc
-    public init(thread: TSThread, transaction: SDSAnyReadTransaction) {
+    public init(thread: TSThread, forConversationList: Bool, transaction: SDSAnyReadTransaction) {
         self.threadRecord = thread
+        self.disappearingMessagesConfiguration = thread.disappearingMessagesConfiguration(with: transaction)
 
         self.isGroupThread = thread.isGroupThread
         self.name = Environment.shared.contactsManager.displayName(for: thread, transaction: transaction)
 
         self.isMuted = thread.isMuted
-        let lastInteraction = thread.lastInteractionForInbox(transaction: transaction)
-        self.lastMessageForInbox = lastInteraction
-
-        if let previewable = lastInteraction as? OWSPreviewText {
-            self.lastMessageText = previewable.previewText(transaction: transaction)
-        } else {
-            self.lastMessageText = ""
-        }
-
-        self.lastMessageDate = lastInteraction?.receivedAtDate()
 
         if let contactThread = thread as? TSContactThread {
             self.contactAddress = contactThread.contactAddress
@@ -62,19 +55,21 @@ public class ThreadViewModel: NSObject {
         self.hasUnreadMessages = thread.isMarkedUnread || unreadCount > 0
         self.hasPendingMessageRequest = thread.hasPendingMessageRequest(transaction: transaction.unwrapGrdbRead)
 
-        if let groupThread = thread as? TSGroupThread, let addedByAddress = groupThread.groupModel.addedByAddress {
-            self.addedToGroupByName = Environment.shared.contactsManager.shortDisplayName(for: addedByAddress, transaction: transaction)
+        self.groupCallInProgress = GRDBInteractionFinder.unendedCallsForGroupThread(thread, transaction: transaction)
+            .filter { $0.joinedMemberAddresses.count > 0 }
+            .count > 0
+
+        self.lastMessageForInbox = thread.lastInteractionForInbox(transaction: transaction)
+
+        if forConversationList {
+            conversationListInfo = ConversationListInfo(thread: thread,
+                                                        lastMessageForInbox: lastMessageForInbox,
+                                                        transaction: transaction)
         } else {
-            self.addedToGroupByName = nil
+            conversationListInfo = nil
         }
 
-        if let draftMessageBody = thread.currentDraft(with: transaction) {
-            self.draftText = draftMessageBody.plaintextBody(transaction: transaction.unwrapGrdbRead)
-        } else {
-            self.draftText = nil
-        }
-
-        self.lastVisibleInteraction = thread.firstInteraction(atOrAroundSortId: thread.lastVisibleSortId, transaction: transaction)
+        self.hasWallpaper = Wallpaper.exists(for: thread, transaction: transaction)
     }
 
     @objc
@@ -84,5 +79,71 @@ public class ThreadViewModel: NSObject {
         }
 
         return threadRecord.isEqual(otherThread.threadRecord)
+    }
+}
+
+// MARK: -
+
+@objc
+public class ConversationListInfo: NSObject {
+
+    // MARK: - Dependencies
+
+    private static var contactsManager: OWSContactsManager {
+        Environment.shared.contactsManager
+    }
+
+    // MARK: -
+
+    @objc
+    public let draftText: String?
+    @objc
+    public let lastMessageText: String
+    @objc
+    public let lastMessageDate: Date?
+    @objc
+    public let lastMessageSenderName: String?
+    @objc
+    public let addedToGroupByName: String?
+
+    @objc
+    public init(thread: TSThread,
+                lastMessageForInbox: TSInteraction?,
+                transaction: SDSAnyReadTransaction) {
+
+        if let previewable = lastMessageForInbox as? OWSPreviewText {
+            self.lastMessageText = previewable.previewText(transaction: transaction).filterStringForDisplay()
+        } else {
+            self.lastMessageText = ""
+        }
+
+        self.lastMessageDate = lastMessageForInbox?.receivedAtDate()
+
+        if let draftMessageBody = thread.currentDraft(with: transaction) {
+            self.draftText = draftMessageBody.plaintextBody(transaction: transaction.unwrapGrdbRead)
+        } else {
+            self.draftText = nil
+        }
+
+        if let groupThread = thread as? TSGroupThread, let addedByAddress = groupThread.groupModel.addedByAddress {
+            self.addedToGroupByName = Environment.shared.contactsManager.shortDisplayName(for: addedByAddress, transaction: transaction)
+        } else {
+            self.addedToGroupByName = nil
+        }
+        var lastMessageSenderName: String?
+        if !lastMessageText.isEmpty,
+           let groupThread = thread as? TSGroupThread {
+            if let incomingMessage = lastMessageForInbox as? TSIncomingMessage {
+                lastMessageSenderName = Self.contactsManager.shortestDisplayName(
+                    forGroupMember: incomingMessage.authorAddress,
+                    inGroup: groupThread.groupModel,
+                    transaction: transaction
+                )
+            } else if lastMessageForInbox is TSOutgoingMessage {
+                lastMessageSenderName = NSLocalizedString("GROUP_MEMBER_LOCAL_USER",
+                                                          comment: "Label indicating the local user.")
+            }
+        }
+        self.lastMessageSenderName = lastMessageSenderName
     }
 }

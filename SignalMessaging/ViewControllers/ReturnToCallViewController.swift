@@ -8,15 +8,10 @@ import Foundation
 public protocol CallViewControllerWindowReference: class {
     var localVideoViewReference: UIView { get }
     var remoteVideoViewReference: UIView { get }
-    var thread: TSContactThread { get }
+    var remoteVideoAddress: SignalServiceAddress { get }
     var view: UIView! { get }
 
     func returnFromPip(pipWindow: UIWindow)
-}
-
-@objc
-public protocol ReturnToCallViewControllerDelegate: class {
-    func returnToCallWasTapped(_ viewController: ReturnToCallViewController)
 }
 
 @objc
@@ -39,9 +34,6 @@ public class ReturnToCallViewController: UIViewController {
         }
     }
 
-    @objc
-    public weak var delegate: ReturnToCallViewControllerDelegate?
-
     private weak var callViewController: CallViewControllerWindowReference?
 
     @objc
@@ -61,12 +53,29 @@ public class ReturnToCallViewController: UIViewController {
         callViewController.localVideoViewReference.layer.cornerRadius = 6
         updateLocalVideoFrame()
 
-        backgroundAvatarView.image = Environment.shared.contactsManager.profileImageForAddress(
-            withSneakyTransaction: callViewController.thread.contactAddress
-        )
-        avatarView.image = OWSAvatarBuilder.buildImage(thread: callViewController.thread, diameter: 60)
+        let (profileImage, conversationColorName) = databaseStorage.uiRead { transaction in
+            return (
+                self.profileManager.profileAvatar(for: callViewController.remoteVideoAddress, transaction: transaction),
+                self.contactsManager.conversationColorName(for: callViewController.remoteVideoAddress, transaction: transaction)
+            )
+        }
+
+        backgroundAvatarView.image = profileImage
+
+        avatarView.image = OWSContactAvatarBuilder(
+            address: callViewController.remoteVideoAddress,
+            colorName: conversationColorName,
+            diameter: 60
+        ).build()
 
         animatePipPresentation(snapshot: callViewSnapshot)
+    }
+
+    @objc
+    public func resignCall() {
+        callViewController?.localVideoViewReference.removeFromSuperview()
+        callViewController?.remoteVideoViewReference.removeFromSuperview()
+        callViewController = nil
     }
 
     private lazy var avatarView = AvatarImageView()
@@ -202,10 +211,7 @@ public class ReturnToCallViewController: UIViewController {
 
     @objc
     private func handleTap(sender: UITapGestureRecognizer) {
-        callViewController?.localVideoViewReference.removeFromSuperview()
-        callViewController?.remoteVideoViewReference.removeFromSuperview()
-        callViewController = nil
-        self.delegate?.returnToCallWasTapped(self)
+        OWSWindowManager.shared.returnToCallView()
     }
 
     // MARK: Orientation

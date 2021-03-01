@@ -13,17 +13,23 @@
 /* Accessibility label for contact. */
 "ACCESSIBILITY_LABEL_CONTACT" = "Επαφή";
 
+/* Accessibility label for contact. Embeds: {{ the contact name }}. */
+"ACCESSIBILITY_LABEL_CONTACT_FORMAT" = "Επαφή για τον/την %@";
+
 /* Accessibility label for media. */
 "ACCESSIBILITY_LABEL_MEDIA" = "Πολυμέσα";
-
-/* Accessibility label for message. */
-"ACCESSIBILITY_LABEL_MESSAGE" = "Μήνυμα";
 
 /* Accessibility label for messages sent by you. */
 "ACCESSIBILITY_LABEL_SENDER_SELF" = "Εσύ";
 
 /* Accessibility label for stickers. */
 "ACCESSIBILITY_LABEL_STICKER" = "Αυτοκόλλητο";
+
+/* Accessibility label for a voice memo. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO" = "Μήνυμα φωνής";
+
+/* Accessibility label for a voice memo. Embeds: {{ the duration of the voice message }}. */
+"ACCESSIBILITY_LABEL_VOICE_MEMO_FORMAT" = "Μήνυμα φωνής %@ δευτερόλεπτα";
 
 /* Label for 'audio call' button in contact view. */
 "ACTION_AUDIO_CALL" = "Κλήση Signal";
@@ -36,6 +42,9 @@
 
 /* Label for 'share contact' button. */
 "ACTION_SHARE_CONTACT" = "Κοινοποίηση επαφής";
+
+/* A label for 'tap to download' buttons. */
+"ACTION_TAP_TO_DOWNLOAD" = "Πάτα για λήψη";
 
 /* Label for 'video call' button in contact view. */
 "ACTION_VIDEO_CALL" = "Βιντεοκλήση";
@@ -103,7 +112,7 @@
 /* The label for the 'don't save' button in action sheets. */
 "ALERT_DONT_SAVE" = "Να μην αποθηκευτεί";
 
-/* No comment provided by engineer. */
+/* Generic error indicator. */
 "ALERT_ERROR_TITLE" = "Σφάλμα";
 
 /* The label for the 'save' button in action sheets. */
@@ -198,9 +207,6 @@
 
 /* Generic filename for an attachment with no known name */
 "ATTACHMENT_DEFAULT_FILENAME" = "Συνημμένο";
-
-/* Status label when an attachment download has failed. */
-"ATTACHMENT_DOWNLOADING_STATUS_FAILED" = "Η λήψη απέτυχε. Πάτα για επανάληψη.";
 
 /* The title of the 'attachment error' alert. */
 "ATTACHMENT_ERROR_ALERT_TITLE" = "Σφάλμα αποστολής συνημμένου";
@@ -358,6 +364,9 @@
 /* Error shown when backup fails due to an unexpected error. */
 "BACKUP_UNEXPECTED_ERROR" = "Αναπάντεχο σφάλμα κατά τη δημιουργία του αντιγράφου ασφαλείας ";
 
+/* Accessibility label for banner close button */
+"BANNER_CLOSE_ACCESSIBILITY_LABEL" = "Κλείσιμο μηνύματος";
+
 /* An explanation of the consequences of blocking a group. */
 "BLOCK_GROUP_BEHAVIOR_EXPLANATION" = "Δεν θα λαμβάνεις πια μηνύματα ή ενημερώσεις από αυτήν την ομάδα.";
 
@@ -430,8 +439,8 @@
 /* Tooltip highlighting the blur image editing tool. */
 "BLUR_TOOLTIP" = "Νέο: Θόλωσε τα πρόσωπα ή ζωγράφισε οπουδήποτε για να θολώσεις.";
 
-/* browse files option from file sharing menu */
-"BROWSE_FILES_BUTTON" = "Πλοήγηση";
+/* Label for the 'add' button. */
+"BUTTON_ADD" = "Προσθήκη";
 
 /* Label for 'continue' button. */
 "BUTTON_CONTINUE" = "Συνέχεια";
@@ -444,6 +453,9 @@
 
 /* Label for the 'no' button. */
 "BUTTON_NO" = "Όχι";
+
+/* Label for the 'not now' button. */
+"BUTTON_NOT_NOW" = "Όχι τώρα";
 
 /* Label for the 'okay' button. */
 "BUTTON_OKAY" = "Εντάξει";
@@ -474,6 +486,9 @@
 
 /* notification body */
 "CALL_MISSED_BECAUSE_OF_IDENTITY_CHANGE_NOTIFICATION_BODY" = "☎️ Αναπάντητη κλήση επειδή ο αριθμός ασφαλείας αυτού/ης που σε κάλεσε άλλαξε.";
+
+/* Button to return to the current call */
+"CALL_RETURN_BUTTON" = "Επιστροφή στην κλήση";
 
 /* Call setup status label after outgoing call times out */
 "CALL_SCREEN_STATUS_NO_ANSWER" = "Δεν απάντησε";
@@ -529,6 +544,9 @@
 /* notification action */
 "CALLBACK_BUTTON_TITLE" = "Επανάκληση";
 
+/* Indicates to the user that their camera is currently off. */
+"CALLING_MEMBER_VIEW_YOUR_CAMERA_IS_OFF" = "Η κάμερά σου είναι απενεργοποιημένη";
+
 /* The generic name used for calls if CallKit privacy is enabled */
 "CALLKIT_ANONYMOUS_CONTACT_NAME" = "Χρήστης/τρια Signal";
 
@@ -569,19 +587,19 @@
 "CLOUDKIT_STATUS_RESTRICTED" = "Το Signal δεν μπόρεσε να αποκτήσει πρόσβαση στον λογαριασμό iCloud σου για τη δημιουργία αντιγράφου ασφαλείας. Δώσε στο Signal πρόσβαση στον λογαριασμό iCloud σου μέσω των ρυθμίσεων του iOS ώστε να μπορέσεις να δημιουργήσεις ένα αντίγραφο ασφαλείας των δεδομένων του Signal.";
 
 /* The first of two messages demonstrating the chosen conversation color, by rendering this message in an outgoing message bubble. */
-"COLOR_PICKER_DEMO_MESSAGE_1" = "Choose the color of outgoing messages in this chat.";
+"COLOR_PICKER_DEMO_MESSAGE_1" = "Επέλεξε το χρώμα των εξερχόμενων μηνυμάτων αυτής της συνομιλίας.";
 
 /* The second of two messages demonstrating the chosen conversation color, by rendering this message in an incoming message bubble. */
 "COLOR_PICKER_DEMO_MESSAGE_2" = "Μόνο εσύ θα βλέπεις το χρώμα που θα διαλέξεις.";
 
 /* Modal Sheet title when picking a conversation color. */
-"COLOR_PICKER_SHEET_TITLE" = "Chat Color";
+"COLOR_PICKER_SHEET_TITLE" = "Χρώμα συνομιλίας";
 
 /* Activity Sheet label */
 "COMPARE_SAFETY_NUMBER_ACTION" = "Σύγκριση με το πρόχειρο";
 
 /* Accessibility hint describing what you can do with the compose button */
-"COMPOSE_BUTTON_HINT" = "Select or search for a Signal user to start a chat with.";
+"COMPOSE_BUTTON_HINT" = "Επέλεξε ή αναζήτησε κάποιον/α χρήστη Signal για να ξεκινήσεις μια συνομιλία.";
 
 /* Accessibility label from compose button. */
 "COMPOSE_BUTTON_LABEL" = "Σύνθεση";
@@ -614,7 +632,7 @@
 "CONFIRM_DELETE_LINKED_DATA_TITLE" = "Είσαι σίγουρος/η ότι θέλεις να διαγράψεις όλα τα δεδομένα;";
 
 /* Alert body */
-"CONFIRM_LEAVE_GROUP_DESCRIPTION" = "Δε θα μπορείς πια να στείλεις ή να λάεις μηνύματα σε αυτήν την ομάδα.";
+"CONFIRM_LEAVE_GROUP_DESCRIPTION" = "Δε θα μπορείς πια να στείλεις ή να λάβεις μηνύματα σε αυτήν την ομάδα.";
 
 /* Alert title */
 "CONFIRM_LEAVE_GROUP_TITLE" = "Θέλεις όντως να αποχωρήσεις;";
@@ -683,7 +701,7 @@
 "CONTACT_FIELD_ORGANIZATION" = "Oργανισμός";
 
 /* Body for contact permission action sheet */
-"CONTACT_PERMISSION_ACTION_SHEET_BODY" = "To see contact names and photos in your chats:";
+"CONTACT_PERMISSION_ACTION_SHEET_BODY" = "Για να δεις τα ονόματα επαφών και φωτογραφίες στις συνομιλίες σου:";
 
 /* First step for contact permission action sheet */
 "CONTACT_PERMISSION_ACTION_SHEET_STEP_ONE" = "Πάτησε \"Πήγαινε στις Ρυθμίσεις\" παρακάτω";
@@ -701,7 +719,7 @@
 "CONTACT_PERMISSION_REMINDER_MEGAPHONE_ACTION" = "Ενεργοποίηση";
 
 /* Body for contact permission reminder megaphone */
-"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "See contact names and photos in your chats.";
+"CONTACT_PERMISSION_REMINDER_MEGAPHONE_BODY" = "Δες ονόματα επαφών και φωτογραφίες στις συνομιλίες σου.";
 
 /* Title for contact permission reminder megaphone */
 "CONTACT_PERMISSION_REMINDER_MEGAPHONE_TITLE" = "Ενεργοποίηση Επαφών;";
@@ -761,16 +779,13 @@
 "CONTACT_WITHOUT_NAME" = "Ανώνυμη επαφή";
 
 /* Message for the 'conversation delete confirmation' alert. */
-"CONVERSATION_DELETE_CONFIRMATION_ALERT_MESSAGE" = "This chat will be deleted from this device.";
+"CONVERSATION_DELETE_CONFIRMATION_ALERT_MESSAGE" = "Αυτή η συνομιλία θα διαγραφεί από αυτή τη συσκευή.";
 
 /* Title for the 'conversation delete confirmation' alert. */
-"CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "Delete Chat?";
-
-/* Indicates that the user can tap to download this image. */
-"CONVERSATION_MEDIA_VIEW_DOWNLOAD_IMAGE" = "Λήψη";
+"CONVERSATION_DELETE_CONFIRMATION_ALERT_TITLE" = "Διαγραφή συνομιλίας;";
 
 /* Momentarily shown to the user when attempting to select more conversations than is allowed. Embeds {{max number of conversations}} that can be selected. */
-"CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "You can't select more than %@ chats.";
+"CONVERSATION_PICKER_CAN_SELECT_NO_MORE_CONVERSATIONS" = "Δεν μπορείς να επιλέξεις περισσότερες από %@ συνομιλίες.";
 
 /* table section header for section containing groups */
 "CONVERSATION_PICKER_SECTION_GROUPS" = "Ομάδες";
@@ -794,7 +809,7 @@
 "CONVERSATION_SEARCH_RESULTS_FORMAT" = "%d από %d αποτελέσματα";
 
 /* title for conversation settings screen */
-"CONVERSATION_SETTINGS" = "Chat Settings";
+"CONVERSATION_SETTINGS" = "Ρυθμίσεις συνομιλίας";
 
 /* Label for 'add members' button in conversation settings view. */
 "CONVERSATION_SETTINGS_ADD_MEMBERS" = "Προσθήκη μελών";
@@ -815,7 +830,7 @@
 "CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_NONE" = "Απενεργοποιημένο";
 
 /* Footer for the 'attributes access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER" = "Διάλεξε ποιος θα μπορεί να επεξεργάζεται το όνομα της ομάδας, τη φωτογραφία, και το χρόνο εξαφάνισης μηνυμάτων.";
+"CONVERSATION_SETTINGS_ATTRIBUTES_ACCESS_SECTION_FOOTER" = "Διάλεξε ποιοί θα μπορούν να επεξεργάζονται το όνομα της ομάδας, τη φωτογραφία, και το χρόνο εξαφάνισης μηνυμάτων.";
 
 /* Footer text for the 'block and leave' section of contact conversation settings view. */
 "CONVERSATION_SETTINGS_BLOCK_AND_LEAVE_SECTION_CONTACT_FOOTER" = "Δεν θα λαμβάνεις πια μηνύματα ή ενημερώσεις από αυτόν τον/την χρήστη.";
@@ -833,13 +848,16 @@
 "CONVERSATION_SETTINGS_CONTACT_INFO_TITLE" = "Πληροφορίες επαφής";
 
 /* Label for table cell which leads to picking a new conversation color */
-"CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "Chat Color";
+"CONVERSATION_SETTINGS_CONVERSATION_COLOR" = "Χρώμα συνομιλίας";
+
+/* Label for the 'edit' button in conversation settings view. */
+"CONVERSATION_SETTINGS_EDIT" = "Eπεξεργασία";
 
 /* Label for 'edit attributes access' action in conversation settings view. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS" = "Ποιος μπορεί να διαχειρίζεται πληροφορίες της ομάδας";
 
 /* Label for button that sets 'group attributes access' to 'administrators-only'. */
-"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Μόνο οι διαχειριστές/τριες";
+"CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Μόνο διαχειριστές";
 
 /* Description for the 'edit group attributes access' alert. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_DESCRIPTION" = "Διάλεξε ποιος θα μπορεί να αλλάξει το όνομα της ομάδας, τη φωτογραφία, και το χρόνο εξαφάνισης μηνυμάτων.";
@@ -847,23 +865,20 @@
 /* Label for button that sets 'group attributes access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_ATTRIBUTES_ACCESS_ALERT_MEMBERS_BUTTON" = "Όλα τα μέλη";
 
-/* Label for the 'edit group' button in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_GROUP" = "Eπεξεργασία";
-
 /* Label for 'edit membership access' action in conversation settings view. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "Who Can Add Members";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS" = "Ποιοί μπορούν να προσθέσουν μέλη";
 
 /* Label for button that sets 'group membership access' to 'administrators-only'. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Μόνο οι διαχειριστές/τριες";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_ADMINISTRATORS_BUTTON" = "Μόνο διαχειριστές";
 
 /* Description for the 'edit group membership access' alert. */
-"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "Διάλεξε ποιος μπορεί να διαχειρίζεται την συμμετοχή στην ομάδα:";
+"CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_DESCRIPTION" = "Διάλεξε ποιοί μπορούν να προσθέσουν μέλη σε αυτή την ομάδα:";
 
 /* Label for button that sets 'group membership access' to 'members-only'. */
 "CONVERSATION_SETTINGS_EDIT_MEMBERSHIP_ACCESS_ALERT_MEMBERS_BUTTON" = "Όλα τα μέλη";
 
 /* Label for 'group link' action in conversation settings view. */
-"CONVERSATION_SETTINGS_GROUP_LINK" = "Group Link";
+"CONVERSATION_SETTINGS_GROUP_LINK" = "Σύνδεσμος ομάδας";
 
 /* Label for 'make group admin' button in conversation settings view. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_BUTTON" = "Ορισμός διαχειριστή";
@@ -871,17 +886,17 @@
 /* Format for title for 'make group admin' confirmation alert. Embeds {user to make an admin}. */
 "CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_TITLE_FORMAT" = "Ο/Η %@ θα μπορεί να επεξεργάζεται αυτή την ομάδα και τα μέλη της.";
 
+/* Label for 'member invites' action in conversation settings view. */
+"CONVERSATION_SETTINGS_MEMBER_INVITES" = "Προσκλήσεις μελών";
+
 /* Label for 'member requests & invites' action in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "Member Requests & Invites";
+"CONVERSATION_SETTINGS_MEMBER_REQUESTS_AND_INVITES" = "Αιτήματα μελών & προσκλήσεις";
 
 /* Section title of the 'members' section in conversation settings view. */
 "CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE" = "Μέλη";
 
 /* Format for the section title of the 'members' section in conversation settings view. Embeds: {{ the number of group members }}. */
 "CONVERSATION_SETTINGS_MEMBERS_SECTION_TITLE_FORMAT" = "%@ μέλη";
-
-/* Footer for the 'membership access' section in conversation settings view. */
-"CONVERSATION_SETTINGS_MEMBERSHIP_ACCESS_SECTION_FOOTER" = "Διάλεξε ποιος μπορεί να διαχειρίζεται την συμμετοχή στην ομάδα.";
 
 /* label for 'always' option for mention notifications in conversation settings */
 "CONVERSATION_SETTINGS_MENTION_MODE_AlWAYS" = "Να ειδοποιούμαι πάντα";
@@ -932,13 +947,13 @@
 "CONVERSATION_SETTINGS_REMOVE_FROM_GROUP_TITLE_FORMAT" = "Αφαίρεση του/της %@ από την ομάδα;";
 
 /* Label for 'revoke group admin' button in conversation settings view. */
-"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_BUTTON" = "Αφαίρεση ως διαχειριστή/τρια";
+"CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_BUTTON" = "Αφαίρεση ως διαχειριστή";
 
 /* Format for title for 'revoke group admin' confirmation alert. Embeds {user to revoke admin status from}. */
 "CONVERSATION_SETTINGS_REVOKE_GROUP_ADMIN_TITLE_FORMAT" = "Αφαίρεση του/της %@ ως διαχειριστή/τρια της ομάδας;";
 
 /* Table cell label in conversation settings which returns the user to the conversation with 'search mode' activated */
-"CONVERSATION_SETTINGS_SEARCH" = "Search Chat";
+"CONVERSATION_SETTINGS_SEARCH" = "Αναζήτηση στη συνομιλία";
 
 /* Label for 'unblock group' action in conversation settings view. */
 "CONVERSATION_SETTINGS_UNBLOCK_GROUP" = "Κατάργηση φραγής ομάδας";
@@ -950,7 +965,7 @@
 "CONVERSATION_SETTINGS_UNMUTE_ACTION" = "Αναίρεση σίγασης";
 
 /* The alert message if user tries to exit conversation settings view without saving changes. */
-"CONVERSATION_SETTINGS_UNSAVED_CHANGES_MESSAGE" = "Would you like to save the changes that you made to this chat?";
+"CONVERSATION_SETTINGS_UNSAVED_CHANGES_MESSAGE" = "Θέλεις να αποθηκεύσεις τις αλλαγές που έχεις κάνει σε αυτή τη συνομιλία;";
 
 /* The alert title if user tries to exit conversation settings view without saving changes. */
 "CONVERSATION_SETTINGS_UNSAVED_CHANGES_TITLE" = "Μη αποθηκευμένες αλλαγές";
@@ -972,6 +987,12 @@
 
 /* Message shown in conversation view that offers to add an unknown user to your phone's contacts. */
 "CONVERSATION_VIEW_ADD_TO_CONTACTS_OFFER" = "Προσθήκη στις επαφές";
+
+/* Format for sender info for accessibility label for message. Embeds {{ the sender name }}. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_FORMAT" = "Ο/Η %@ έστειλε:";
+
+/* Format for sender info for outgoing messages. */
+"CONVERSATION_VIEW_CELL_ACCESSIBILITY_SENDER_LOCAL_USER" = "Έστειλες:";
 
 /* button text to delete all items in the current conversation */
 "CONVERSATION_VIEW_DELETE_ALL_MESSAGES" = "Διαγραφή όλων";
@@ -1045,9 +1066,6 @@
 /* Title of the debug log alert. */
 "DEBUG_LOG_ALERT_TITLE" = "Ένα βήμα ακόμα";
 
-/* Error indicating that the app could not launch the Email app. */
-"DEBUG_LOG_COULD_NOT_EMAIL" = "Αποτυχία πρόσβασης στην εφαρμογή email.";
-
 /* Message of the alert before redirecting to GitHub Issues. */
 "DEBUG_LOG_GITHUB_ISSUE_ALERT_MESSAGE" = "Ο σύνδεσμος gist αντιγράφτηκε στο πρόχειρό σου. Πρόκειται να ανακατευθυνθείς στην λίστα θεμάτων του GitHub.";
 
@@ -1058,7 +1076,7 @@
 "DEBUG_LOG_INFO_BUTTON" = "Πληροφορίες για αρχείο καταγραφής εντοπισμού σφαλμάτων";
 
 /* action sheet body */
-"DELETE_ALL_MESSAGES_IN_CONVERSATION_ALERT_BODY" = "Delete all messages in the chat?";
+"DELETE_ALL_MESSAGES_IN_CONVERSATION_ALERT_BODY" = "Διαγραφή όλων των μηνυμάτων αυτής της συνομιλίας;";
 
 /* button text */
 "DELETE_ALL_MESSAGES_IN_CONVERSATION_BUTTON" = "Διαγραφή όλων των μηνυμάτων";
@@ -1159,6 +1177,9 @@
 /* The second explanation for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_EXPLANATION2" = "Τοποθέτησε αυτόν τον κώδικα QR εντός του πλαισίου της άλλης συσκευής.";
 
+/* A prompt to provide further explanation if the user is not seeing the transfer on both devices. */
+"DEVICE_TRANSFER_QRCODE_NOT_SEEING" = "Δεν βλέπεις το μήνυμα στη παλιά σου συσκευή;";
+
 /* The title for the device transfer qr code view */
 "DEVICE_TRANSFER_QRCODE_TITLE" = "Αναμονή για την Άλλη Συσκευή...";
 
@@ -1187,10 +1208,10 @@
 "DISAPPEARING_MESSAGES" = "Μηνύματα που εξαφανίζονται";
 
 /* Info Message when added to a group which has enabled disappearing messages. Embeds {{time amount}} before messages disappear. See the *_TIME_AMOUNT strings for context. */
-"DISAPPEARING_MESSAGES_CONFIGURATION_GROUP_EXISTING_FORMAT" = "Messages in this chat will disappear after %@.";
+"DISAPPEARING_MESSAGES_CONFIGURATION_GROUP_EXISTING_FORMAT" = "Τα μηνύματα σε αυτή τη συνομιλία θα εξαφανίζονται μετά από %@.";
 
 /* subheading in conversation settings */
-"DISAPPEARING_MESSAGES_DESCRIPTION" = "When enabled, messages sent and received in this chat will disappear after they have been seen.";
+"DISAPPEARING_MESSAGES_DESCRIPTION" = "Όταν ενεργοποιηθεί, τα μηνύματα που στέλνονται και λαμβάνονται σε αυτή τη συνομιλία θα εξαφανίζονται αφού προβληθούν.";
 
 /* Accessibility hint that contains current timeout information */
 "DISAPPEARING_MESSAGES_HINT" = "Τα μηνύματα εξαφανίζονται μετά από %@";
@@ -1219,8 +1240,8 @@
 /* Error message indicating the a user can't be added to a group. */
 "EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER" = "Ο/Η χρήστης/τρια δεν μπορεί να προστεθεί στην ομάδα μέχρι να αναβαθμίσει το Signal.";
 
-/* Message for 'group full' error alert when a user can't be added to a group. */
-"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL" = "Φτάσατε το μέγιστο όριο 100 μελών στην ομάδα.";
+/* Format for the 'group full' error alert when a user can't be added to a group because the group is full. Embeds {{ the maximum number of members in a group }}. */
+"EDIT_GROUP_ERROR_CANNOT_ADD_MEMBER_GROUP_FULL_FORMAT" = "Φτάσατε το μέγιστο μέγεθος %@ μελών της ομάδας.";
 
 /* Error message indicating that an avatar image is invalid and cannot be used. */
 "EDIT_GROUP_ERROR_INVALID_AVATAR" = "Μη έγκυρη φωτογραφία.";
@@ -1241,7 +1262,7 @@
 "EDIT_ITEM_COPY_ACTION" = "Αντιγραφή";
 
 /* body of email sent to contacts when inviting to install Signal. Embeds {{link to install Signal}} and {{link to the Signal home page}} */
-"EMAIL_INVITE_BODY" = "Hey,\n\nLately I've been using Signal to keep the chats on my iPhone private. I'd like you to install it too, so we can be confident that only you and I can read our messages or hear our calls.\n\nSignal is available for iPhones and Android. Get it here: %@\n\nSignal works like your existing messaging app. We can send pictures and video, make calls, and start group chats. The best part is, no one else can see any of it, not even the people who make Signal!\n\nYou can read more about Open Whisper Systems, the people who make Signal, here: %@";
+"EMAIL_INVITE_BODY" = "Γειά,\n\nΤον τελευταίο καιρό χρησιμοποιώ το Signal για να διατηρώ τις συνομιλίες στο iPhone μου ιδιωτικές. Θα ήθελα να το εγκαταστήσεις και εσύ, για να είμαστε σίγουροι οτι μόνο εμείς οι δυο μπορούμε να διαβάσουμε τα μηνύματα μας και να ακούσουμε τις συνομιλίες μας.\n\nΤο Signal είναι διαθέσιμο για iPhone και Android εδώ: %@\n\nΤο Signal λειτουργεί όπως η εφαρμογή μηνυμάτων που ήδη χρησιμοποιείς. Μπορούμε να στείλουμε φωτογραφίες και βίντεο, να κάνουμε κλήσεις, και να αρχίσουμε ομαδικές συνομιλίες. Το καλύτερο είναι ότι κανείς δεν θα μπορεί να τα δει, ούτε καν αυτοί που έφτιαξαν το Signal!\n\nΜπορείς να διαβάσεις περισσότερα για το Open Whisper Systems, τον οργανισμό που έφτιαξε το Signal, εδώ: %@";
 
 /* subject of email sent to contacts when inviting to install Signal */
 "EMAIL_INVITE_SUBJECT" = "Έλα να χρησιμοποιήσουμε το Signal";
@@ -1372,6 +1393,9 @@
 /* Shown when signal users safety numbers changed, embeds the user's {{name or phone number}} */
 "ERROR_MESSAGE_NON_BLOCKING_IDENTITY_CHANGE_FORMAT" = "Ο αριθμός ασφαλείας με τον/την %@ άλλαξε.";
 
+/* Text notifying the user that their secure session has been reset */
+"ERROR_MESSAGE_SESSION_REFRESH" = "Η συνομιλία ανανεώθηκε";
+
 /* No comment provided by engineer. */
 "ERROR_MESSAGE_UNKNOWN_ERROR" = "Παρουσιάστηκε ένα άγνωστο σφάλμα.";
 
@@ -1394,7 +1418,7 @@
 "ERROR_UNREGISTERED_USER_FORMAT" = "Μη εγγεγραμμένος χρήστης/τρια: %@";
 
 /* Label notifying the user that the app has expired. */
-"EXPIRATION_ERROR" = "Your version of Signal has expired! Tap to update to the most recent version.";
+"EXPIRATION_ERROR" = "Η έκδοση του Signal σου έχει λήξει! Πάτα για να αναβαθμίσεις στην πιο πρόσφατη έκδοση.";
 
 /* Label warning the user that the app will expire soon. */
 "EXPIRATION_WARNING_SOON" = "Η έκδοση Signal σου θα λήξει σε %d ημέρες. Πάτα για αναβάθμιση στην πιο πρόσφατη έκδοση. ";
@@ -1414,7 +1438,7 @@
 /* Button that marks user as verified after a successful fingerprint scan. */
 "FINGERPRINT_SCAN_VERIFY_BUTTON" = "Σημείωση ως επιβεβαιωμένο";
 
-/* No comment provided by engineer. */
+/* Label for button to reset a session. */
 "FINGERPRINT_SHRED_KEYMATERIAL_BUTTON" = "Επαναφορά συνεδρίας";
 
 /* Accessibility label for finishing new group */
@@ -1427,7 +1451,7 @@
 "FORWARD_MESSAGE" = "Προώθηση μηνύματος";
 
 /* Label indicating media gallery is empty */
-"GALLERY_TILES_EMPTY_GALLERY" = "You don't have any media in this chat.";
+"GALLERY_TILES_EMPTY_GALLERY" = "Δεν έχεις πολυμέσα σε αυτη τη συνομιλία.";
 
 /* Label indicating loading is in progress */
 "GALLERY_TILES_LOADING_MORE_RECENT_LABEL" = "Φορτώνονται νεότερα πολυμέσα...";
@@ -1437,6 +1461,15 @@
 
 /* A label for generic attachments. */
 "GENERIC_ATTACHMENT_LABEL" = "Συνημμένο";
+
+/* Title for the 'Get Started' banner */
+"GET_STARTED_BANNER_TITLE" = "Ξεκινήστε";
+
+/* 'Get Started' button directing users to invite friends */
+"GET_STARTED_CARD_INVITE_FRIENDS" = "Πρόσκληση φίλων";
+
+/* 'Get Started' button directing users to create a group */
+"GET_STARTED_CARD_NEW_GROUP" = "Νέα ομάδα";
 
 /* Error displayed when there is a failure fetching a GIF from the remote service. */
 "GIF_PICKER_ERROR_FETCH_FAILURE" = "Αποτυχία λήψης του ζητούμενου GIF. Έλεγξε τη σύνδεση στο διαδίκτυο.";
@@ -1481,7 +1514,7 @@
 "GROUP_ACCESS_ATTRIBUTES_UPDATED_FORMAT" = "Οι πληροφορίες της ομάδας μπορούν να αλλαχθούν από \"%@\".";
 
 /* Description of the 'admins only' access level. */
-"GROUP_ACCESS_LEVEL_ADMINISTRATORS" = "Μόνο διαχειριστές/τριες";
+"GROUP_ACCESS_LEVEL_ADMINISTRATORS" = "Μόνο διαχειριστές";
 
 /* Description of the 'all users' access level. */
 "GROUP_ACCESS_LEVEL_ANY" = "Οποιοσδήποτε χρήστης";
@@ -1503,6 +1536,135 @@
 
 /* Message indicating that the access to the group's members was changed. Embeds {{new access level}}. */
 "GROUP_ACCESS_MEMBERS_UPDATED_FORMAT" = "Οι “%@“ μπορούν να κάνουν αλλαγές στα μέλη της ομάδας.";
+
+/* Message indicating that a feature can only be used by group admins. */
+"GROUP_ADMIN_ONLY_WARNING" = "Μόνο οι διαχειριστές μπορούν να αλλάξουν αυτή την επιλογή.";
+
+/* Message body for alert explaining that a group call participant is blocked */
+"GROUP_CALL_BLOCKED_ALERT_MESSAGE" = "Δεν θα λαμβάνεις τον ήχο ή την εικόνα του/της και δεν θα λαμβάνει τα δικά σου.";
+
+/* Title for alert explaining that a group call participant is blocked. Embeds {{ user's name }} */
+"GROUP_CALL_BLOCKED_ALERT_TITLE_FORMAT" = "Ο/Η %@ είναι σε φραγή";
+
+/* String displayed in group call grid cell when a user is blocked. Embeds {user's name} */
+"GROUP_CALL_BLOCKED_USER_FORMAT" = "Ο/Η %@ είναι σε φραγή";
+
+/* Button to continue an ongoing group call */
+"GROUP_CALL_CONTINUE_BUTTON" = "Συνέχεια κλήσης";
+
+/* Text in conversation view for a group call that has since ended */
+"GROUP_CALL_ENDED_MESSAGE" = "Η ομαδική κλήση τελείωσε";
+
+/* A button to receive more info about not seeing a participant in group call grid */
+"GROUP_CALL_ERROR_DETAILS" = "Περισσότερες πληροφορίες";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. Embeds {{max device count}}. */
+"GROUP_CALL_HAS_MAX_DEVICES_FORMAT" = "Ο μέγιστος αριθμός %ld συμμετεχόντων για αυτή τη κλήση έχει συμπληρωθεί. Προσπάθησε ξανά αργότερα.";
+
+/* An error displayed to the user when the group call ends because it has exceeded the max devices. */
+"GROUP_CALL_HAS_MAX_DEVICES_UNKNOWN_COUNT" = "Ο μέγιστος αριθμός συμμετεχόντων για αυτή τη κλήση έχει συμπληρωθεί. Προσπάθησε ξανά αργότερα.";
+
+/* Text explaining the group call is full */
+"GROUP_CALL_IS_FULL" = "Η κλήση είναι γεμάτη";
+
+/* Button to join an ongoing group call */
+"GROUP_CALL_JOIN_BUTTON" = "Είσοδος στην κλήση";
+
+/* Button to leave a group call */
+"GROUP_CALL_LEAVE_BUTTON" = "Αποχώρηση από την κλήση";
+
+/* String indicating how many people are current in the call */
+"GROUP_CALL_MANY_IN_THIS_CALL_FORMAT" = "Σε αυτή τη κλήση · %ld άτομα";
+
+/* Text explaining that there are more than three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2, %3$@ participantCount-2 }} */
+"GROUP_CALL_MANY_PEOPLE_HERE_FORMAT" = "Οι %1$@, %2$@ και %3$@ ακόμα είναι στην κλήση";
+
+/* String displayed in cell when media from a user can't be displayed in group call grid. Embeds {user's name} */
+"GROUP_CALL_MISSING_MEDIA_KEYS_FORMAT" = "Αδυναμία λήψης ήχου & εικόνας από τον/την %@";
+
+/* Message body for alert explaining that a group call participant cannot be displayed because of missing keys */
+"GROUP_CALL_NO_KEYS_ALERT_MESSAGE" = "Αυτό ίσως οφείλεται στο ότι δεν έχει επιβεβαιώσει την αλλαγή του αριθμού ασφαλείας σου, ότι υπάρχει πρόβλημα με τη συσκευή του/της ή ότι σε έχει μπλοκάρει.";
+
+/* Title for alert explaining that a group call participant cannot be displayed because of missing keys. Embeds {{ user's name }} */
+"GROUP_CALL_NO_KEYS_ALERT_TITLE_FORMAT" = "Αδυναμία λήψης ήχου και εικόνας από τον/την %@";
+
+/* Text explaining that you are the only person currently in the group call */
+"GROUP_CALL_NO_ONE_HERE" = "Δεν είναι κανένας άλλος εδώ";
+
+/* Text explaining to the user that nobody has joined this call yet. */
+"GROUP_CALL_NOBODY_IS_IN_YET" = "Κανείς δεν έχει μπει ακόμα στην κλήση.";
+
+/* Copy explaining that many new users have joined the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_JOINED_FORMAT" = "Οι %@, %@, και %ld ακόμα μπήκαν στην κλήση";
+
+/* Copy explaining that many users have left the group call. Embeds {first member name}, {second member name}, {number of additional members} */
+"GROUP_CALL_NOTIFICATION_MANY_LEFT_FORMAT" = "Οι %@, %@, και %ld ακόμα έφυγαν από την κλήση";
+
+/* Copy explaining that a user has joined the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_JOINED_FORMAT" = "Ο/Η %@ μπήκε στην κλήση";
+
+/* Copy explaining that a user has left the group call. Embeds {member name} */
+"GROUP_CALL_NOTIFICATION_ONE_LEFT_FORMAT" = "Ο/Η %@ έφυγε από την κλήση";
+
+/* Copy explaining that two users have joined the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_JOINED_FORMAT" = "Οι %@ και %@ μπήκαν στην κλήση";
+
+/* Copy explaining that two users have left the group call. Embeds {first member name}, {second member name} */
+"GROUP_CALL_NOTIFICATION_TWO_LEFT_FORMAT" = "Οι %@ και %@ έφυγαν από την κλήση";
+
+/* String indicating one person is currently in the call */
+"GROUP_CALL_ONE_IN_THIS_CALL" = "Σε αυτή τη κλήση · 1 άτομο";
+
+/* Text explaining that there is one person in the group call. Embeds {member name} */
+"GROUP_CALL_ONE_PERSON_HERE_FORMAT" = "Ο/Η %@ είναι στην κλήση";
+
+/* Text indicating that the user has lost their connection to the call and we are reconnecting. */
+"GROUP_CALL_RECONNECTING" = "Επανασυνδέεται";
+
+/* notification body when a group call participant joins with an untrusted safety number */
+"GROUP_CALL_SAFETY_NUMBER_CHANGE_BODY" = "Κάποιος μπήκε στην κλήση με κάποιον αριθμό ασφαλείας που έχει αλλάξει.";
+
+/* Text in conversation view for a group call that someone started. We don't know who */
+"GROUP_CALL_SOMEONE_STARTED_MESSAGE" = "Κάποιος/α ξεκίνησε μια ομαδική κλήση";
+
+/* Toast view text informing user about swiping to speaker view */
+"GROUP_CALL_SPEAKER_VIEW_TOAST" = "Σύρε προς τα πάνω για αλλαγή οπτικής";
+
+/* Button to start a group call */
+"GROUP_CALL_START_BUTTON" = "Έναρξη κλήσης";
+
+/* Tooltip highlighting group calls. */
+"GROUP_CALL_START_TOOLTIP" = "Πάτα εδώ για να ξεκινήσεις μια ομαδική κλήση";
+
+/* Text explaining that you started a group call. */
+"GROUP_CALL_STARTED_BY_YOU" = "Ξεκίνησες μια ομαδική κλήση";
+
+/* Text explaining that someone started a group call. Embeds {{call creator display name}} */
+"GROUP_CALL_STARTED_MESSAGE_FORMAT" = "Ο/Η %@ ξεκίνησε μια ομαδική κλήση";
+
+/* Text explaining that there are three people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_THREE_PEOPLE_HERE_FORMAT" = "Οι %1$@, %2$@ και 1 ακόμα είναι στην κλήση";
+
+/* Text explaining that there are two people in the group call. Embeds {{ %1$@ participant1, %2$@ participant2 }} */
+"GROUP_CALL_TWO_PEOPLE_HERE_FORMAT" = "Οι %1$@ και %2$@ είναι στην κλήση";
+
+/* An error displayed to the user when the group call unexpectedly ends. */
+"GROUP_CALL_UNEXPECTEDLY_ENDED" = "Αποσυνδέθηκες από την κλήση. Έλεγξε τη σύνδεσή σου και ξαναδοκίμασε.";
+
+/* Text describing the local user as a participant in a group call. */
+"GROUP_CALL_YOU" = "Εσύ";
+
+/* Text explaining that you are in the group call. */
+"GROUP_CALL_YOU_ARE_HERE" = "Είσαι στην ομαδική κλήση";
+
+/* Text describing the local user in the group call members sheet when connected from another device. */
+"GROUP_CALL_YOU_ON_ANOTHER_DEVICE" = "Εσύ (από άλλη συσκευή)";
+
+/* Body for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_BODY" = "Δημιούργησε μια Ομάδα νέου τύπου για να κάνεις μια ελεύθερη, κρυπτογραφημένη ομαδική κλήση.";
+
+/* Title for group calls megaphone */
+"GROUP_CALLS_MEGAPHONE_TITLE" = "Ήρθαν οι Ομαδικές κλήσεις";
 
 /* Message indicating that group was created by the local user. */
 "GROUP_CREATED_BY_LOCAL_USER" = "Δημιούργησες την ομάδα.";
@@ -1553,58 +1715,58 @@
 "GROUP_INVALID_INVITES_REMOVED_N" = "Ανακλήθηκαν άκυρες προσκλήσεις.";
 
 /* Message indicating that the group invite link was disabled. */
-"GROUP_INVITE_LINK_DISABLED" = "The group link was turned off.";
+"GROUP_INVITE_LINK_DISABLED" = "Ο σύνδεσμος της ομάδας απενεργοποιήθηκε.";
 
 /* Message indicating that the group invite link was disabled by the local user. */
 "GROUP_INVITE_LINK_DISABLED_BY_LOCAL_USER" = "Απενεργοποίησες το σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was disabled by a remote user. Embeds {{ user who disabled the group invite link }}. */
-"GROUP_INVITE_LINK_DISABLED_BY_REMOTE_USER_FORMAT" = "%@ turned off the group link.";
+"GROUP_INVITE_LINK_DISABLED_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ απενεργοποίησε το σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was enabled. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL" = "The group link was turned on with admin approval on.";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL" = "Ενεργοποιήθηκε ο σύνδεσμος της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.";
 
 /* Message indicating that the group invite link was enabled by the local user. */
 "GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_LOCAL_USER" = "Ενεργοποίησες το σύνδεσμο της ομάδας με έγκριση διαχειριστή.";
 
 /* Message indicating that the group invite link was enabled by a remote user. Embeds {{ user who enabled the group invite link }}. */
-"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned on the group link with admin approval on.";
+"GROUP_INVITE_LINK_ENABLED_WITH_APPROVAL_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ ενεργοποίησε το σύνδεσμο της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.";
 
 /* Message indicating that the group invite link was enabled. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL" = "The group link was turned on with admin approval off.";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL" = "Ενεργοποιήθηκε ο σύνδεσμος της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.";
 
 /* Message indicating that the group invite link was enabled by the local user. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_LOCAL_USER" = "Απνεργοποίησες το σύνδεσμο της ομάδας με έγκριση διαχειριστή.";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_LOCAL_USER" = "Ενεργοποίησες το σύνδεσμο της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.";
 
 /* Message indicating that the group invite link was enabled by a remote user. Embeds {{ user who enabled the group invite link }}. */
-"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned on the group link with admin approval off.";
+"GROUP_INVITE_LINK_ENABLED_WITHOUT_APPROVAL_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ ενεργοποίησε το σύνδεσμο της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.";
 
 /* Message indicating that the group invite link was reset. */
-"GROUP_INVITE_LINK_RESET" = " The group link was reset.";
+"GROUP_INVITE_LINK_RESET" = "Ο σύνδεσμος της ομάδας επαναφέρθηκε.";
 
 /* Message indicating that the group invite link was reset by the local user. */
 "GROUP_INVITE_LINK_RESET_BY_LOCAL_USER" = "Επανέφερες το σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was reset by a remote user. Embeds {{ user who reset the group invite link }}. */
-"GROUP_INVITE_LINK_RESET_BY_REMOTE_USER_FORMAT" = "%@ reset the group link.";
+"GROUP_INVITE_LINK_RESET_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ επανέφερε το σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was set to not require approval. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL" = "Admin approval was turned off for the group link.";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL" = "Η έγκριση διαχειριστή για το σύνδεσμο της ομάδας απενεργοποιήθηκε.";
 
 /* Message indicating that the group invite link was set to not require approval by the local user. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_LOCAL_USER" = "You turned off admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_LOCAL_USER" = "Απενεργοποίησες την έγκριση διαχειριστή για τον σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was set to not require approval by a remote user. Embeds {{ user who set the group invite link to not require approval }}. */
-"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned off admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_NOT_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ απενεργοποίησε την έγκριση διαχειριστή για το σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was set to require approval. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL" = "Admin approval was turned on for the group link.";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL" = "Η έγκριση διαχειριστή για το σύνδεσμο της ομάδας ενεργοποιήθηκε.";
 
 /* Message indicating that the group invite link was set to require approval by the local user. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_LOCAL_USER" = "You turned on admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_LOCAL_USER" = "Ενεργοποίησες την έγκριση διαχειριστή για τον σύνδεσμο της ομάδας.";
 
 /* Message indicating that the group invite link was set to require approval by a remote user. Embeds {{ user who set the group invite link to require approval }}. */
-"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "%@ turned on admin approval for the group link.";
+"GROUP_INVITE_LINK_SET_TO_REQUIRE_APPROVAL_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ ενεργοποίησε την έγκριση διαχειριστή για το σύνδεσμο της ομάδας.";
 
 /* Format for the message for an alert indicating that a member was invited to a group. Embeds: {{ the number of invites sent. }} */
 "GROUP_INVITES_SENT_ALERT_MESSAGE_1_FORMAT" = "Δεν μπορείς να προσθέσεις αυτόματα τον/την %@ σε αυτή την ομάδα. Του/της στάλθηκε πρόσκληση για να μπει, και δεν θα βλέπει τα μηνύματα της ομάδας μέχρι να αποδεχτεί.";
@@ -1618,14 +1780,17 @@
 /* Message for an alert indicating that some members were invited to a group. */
 "GROUP_INVITES_SENT_ALERT_TITLE_N_MESSAGE" = "Δεν μπορείς να προσθέσεις αυτόματα αυτούς τους χρήστες σε αυτή την ομάδα. Τους στάλθηκε πρόσκληση για να μπουν, και δεν θα βλέπουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν.";
 
+/* The title for the 'group invites' view. */
+"GROUP_INVITES_VIEW_TITLE" = "Προσκλήσεις μελών";
+
 /* Subtitle indicating that the group invite link has expired in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "This group link is no longer valid.";
+"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_SUBTITLE" = "Ο σύνδεσμος ομάδας δεν είναι πια έγκυρος";
 
 /* Title indicating that the group invite link has expired in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_TITLE" = "Can’t join group";
+"GROUP_LINK_ACTION_SHEET_VIEW_EXPIRED_LINK_TITLE" = "Δεν μπορείς να μπεις στην ομάδα";
 
 /* Indicator for group conversations in the 'group invite link' action sheet. */
-"GROUP_LINK_ACTION_SHEET_VIEW_GROUP_INDICATOR" = "Group";
+"GROUP_LINK_ACTION_SHEET_VIEW_GROUP_INDICATOR" = "Ομάδα";
 
 /* Label for the 'join' button in the 'group invite link' action sheet. */
 "GROUP_LINK_ACTION_SHEET_VIEW_JOIN_BUTTON" = "Γίνε μέλος";
@@ -1640,52 +1805,67 @@
 "GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_DUE_TO_NETWORK_ERROR_MESSAGE" = "Επιβεβαίωσε πως είσαι συνδεδεμένος/η στο διαδίκτυο και ξαναδοκίμασε.";
 
 /* Error message the attempt to request to join the group failed. */
-"GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_ERROR_MESSAGE" = "Please try again.";
+"GROUP_LINK_COULD_NOT_REQUEST_TO_JOIN_GROUP_ERROR_MESSAGE" = "Παρακαλώ δοκίμασε ξανά.";
 
 /* Message for the 'invalid group invite link' alert. */
-"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_MESSAGE" = "This is not a valid group link. Make sure the entire link is intact and correct before attempting to join.";
+"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_MESSAGE" = "Αυτός δεν είναι έγκυρος σύνδεσμος σε ομάδα. Επιβεβαίωσε πως ο σύνδεσμος είναι ακέραιος και σωστός πριν δοκιμάσεις να μπεις.";
 
 /* Title for the 'invalid group invite link' alert. */
-"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "Invalid Link";
-
-/* Indicator that a group invite link has expired. */
-"GROUP_LINK_INVITE_LINK_IS_EXPIRED" = "Link is no longer valid";
-
-/* Button to join a group from a group link. */
-"GROUP_LINK_JOIN_GROUP_BUTTON" = "Join Group";
+"GROUP_LINK_INVALID_GROUP_INVITE_LINK_ERROR_TITLE" = "Μη έγκυρος σύνδεσμος";
 
 /* Error message indicating that the local user does not support groups v2. */
-"GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "Update Signal on this device to join this group.";
+"GROUP_LINK_LOCAL_USER_DOES_NOT_SUPPORT_GROUPS_V2_ERROR_MESSAGE" = "Αναβάθμισε το Signal σε αυτή τη συσκευή για να μπεις στην ομάδα.";
+
+/* Explanation of the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_EXPLANATION" = "Να απαιτείται η έγκριση απο διαχειριστή/τρια για νέα μέλη που μπαίνουν από το σύνδεσμο της ομάδας.";
+
+/* Label for the 'approve new group members' switch. */
+"GROUP_LINK_PROMOTION_ALERT_APPROVE_NEW_MEMBERS_SWITCH" = "Έγκριση νέων μελών";
+
+/* Label for the 'enable and share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_ENABLE_AND_SHARE_LINK" = "Ενεργοποίηση και διαμοιρασμός συνδέσμου";
+
+/* Label for the 'share link' button in the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SHARE_LINK" = "Διαμοιρασμός συνδέσμου";
+
+/* Subtitle for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_SUBTITLE" = "Μοιράσου αυτόν το σύνδεσμο με τους φίλους σου για να μπορέσουν να μπουν γρήγορα στην ομάδα.";
+
+/* Title for the 'group link promotion' alert view. */
+"GROUP_LINK_PROMOTION_ALERT_TITLE" = "Πρόσκληση φίλων";
+
+/* Suggestion to invite more group members via the group invite link. */
+"GROUP_LINK_PROMOTION_UPDATE" = "Προσκάλεσε φίλους να μπουν στην ομάδα μέσω του συνδέσμου της ομάδας.";
 
 /* Description text in the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_DESCRIPTION" = "Τα άτομα που σκανάρουν αυτό τον κωδικό θα μπορούν να μπουν στην ομάδα. Οι διαχειριστές θα πρέπει να εγκρίνουν τα νέα μέλη αν αυτή η ρύθμιση είναι ενεργοποιημένη.";
 
 /* Label for the 'share code' button in the 'group link QR code' view. */
-"GROUP_LINK_QR_CODE_VIEW_SHARE_CODE_BUTTON" = "Share Code";
+"GROUP_LINK_QR_CODE_VIEW_SHARE_CODE_BUTTON" = "Μοιράσου τον κωδικό";
 
 /* The title for the 'group link QR code' view. */
 "GROUP_LINK_QR_CODE_VIEW_TITLE" = "Κωδικός QR";
 
 /* Label for the 'approve new members' switch in the 'group link' view. */
-"GROUP_LINK_VIEW_APPROVE_NEW_MEMBERS_SWITCH" = "Approve New Members";
+"GROUP_LINK_VIEW_APPROVE_NEW_MEMBERS_SWITCH" = "Έγκριση νέων μελών";
 
 /* Label for the 'copy link' button in the 'group link' view. */
 "GROUP_LINK_VIEW_COPY_LINK" = "Αντιγραφή συνδέσμου";
 
 /* Label for the 'enable group link' switch in the 'group link' view. */
-"GROUP_LINK_VIEW_ENABLE_GROUP_LINK_SWITCH" = "Group Link";
+"GROUP_LINK_VIEW_ENABLE_GROUP_LINK_SWITCH" = "Σύνδεσμος ομάδας";
 
 /* Title for the 'manage and share' section of the 'group link' view. */
-"GROUP_LINK_VIEW_MANAGE_AND_SHARE_SECTION_TITLE" = "Manage and Share";
+"GROUP_LINK_VIEW_MANAGE_AND_SHARE_SECTION_TITLE" = "Διαχείριση και διαμοιρασμός";
 
 /* Footer for the 'member requests' section of the 'group link' view. */
 "GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_FOOTER" = "Να απαιτείται η έγκριση απο διαχειριστή/τρια για νέα μέλη που μπαίνουν από το σύνδεσμο της ομάδας.";
 
 /* Title for the 'member requests' section of the 'group link' view. */
-"GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_TITLE" = "Member Requests";
+"GROUP_LINK_VIEW_MEMBER_REQUESTS_SECTION_TITLE" = "Αιτήματα μελών";
 
 /* Label for the 'reset link' button in the 'group link' view. */
-"GROUP_LINK_VIEW_RESET_LINK" = "Reset Link";
+"GROUP_LINK_VIEW_RESET_LINK" = "Επαναφορά συνδέσμου";
 
 /* Title for the 'confirm reset link' alert in the 'group link' view. */
 "GROUP_LINK_VIEW_RESET_LINK_CONFIRM_ALERT_TITLE" = "Είσαι σίγουρος/η πως θέλεις να επαναφέρεις το σύνδεσμο της ομάδας; Δεν θα μπορεί να μπει κανένας άλλος στην ομάδα χρησιμοποιώντας τον τωρινό σύνδεσμο.";
@@ -1703,19 +1883,19 @@
 "GROUP_LINK_VIEW_SHARE_LINK_VIA_SIGNAL" = "Μοιράσου μέσω Signal";
 
 /* Message for the 'share group link' action sheet in the 'group link' view. */
-"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "Anyone with this link can join the group, or send a request to join. Share it with people you trust.";
+"GROUP_LINK_VIEW_SHARE_SHEET_MESSAGE" = "Με αυτό τον σύνδεσμο, οποιοσδήποτε μπορεί να δεί το όνομα και τα μέλη αυτής της ομάδας, και να ζητήσει να μπει στην ομάδα. Μοιράσου τον μόνο με άτομα που εμπιστεύεσαι.";
 
 /* The title for the 'group link' view. */
-"GROUP_LINK_VIEW_TITLE" = "Group Link";
+"GROUP_LINK_VIEW_TITLE" = "Σύνδεσμος ομάδας";
 
 /* Message indicating that the local user was added to the group by another user. Embeds {{remote user name}}. */
 "GROUP_LOCAL_USER_ADDED_TO_GROUP_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ σε έβαλε στην ομάδα.";
 
 /* Message indicating that the local user was granted administrator role. */
-"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR" = "Είσαι πλέον διαχειριστής/τρια.";
+"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR" = "Είσαι πλέον διαχειριστής.";
 
 /* Message indicating that the local user was granted administrator role by another user. Embeds {{remote user name}}. */
-"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ σε έκανε διαχειριστή/τρια.";
+"GROUP_LOCAL_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ σε έκανε διαχειριστή.";
 
 /* Message indicating that the local user accepted an invite to the group. */
 "GROUP_LOCAL_USER_INVITE_ACCEPTED" = "Δέχτηκες την πρόσκληση στην ομάδα.";
@@ -1754,13 +1934,13 @@
 "GROUP_LOCAL_USER_REMOVED_BY_UNKNOWN_USER" = "Αφαιρέθηκες από την ομάδα.";
 
 /* Message indicating that the local user's request to join the group was approved by another user. Embeds {{ %@ the name of the user who approved the reuqest }}. */
-"GROUP_LOCAL_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%@ approved your request to join the group.";
+"GROUP_LOCAL_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ ενέκρινε το αίτημά σου να μπεις στην ομάδα.";
 
 /* Message indicating that the local user cancelled their request to join the group. */
 "GROUP_LOCAL_USER_REQUEST_CANCELLED_BY_LOCAL_USER" = "Ακύρωσες το αίτημά σου για είσοδο στην ομάδα.";
 
 /* Message indicating that the local user's request to join the group was rejected. */
-"GROUP_LOCAL_USER_REQUEST_REJECTED" = "Your request to join the group was denied.";
+"GROUP_LOCAL_USER_REQUEST_REJECTED" = "Το αίτημά σου για να μπεις στην ομάδα απορρίφθηκε.";
 
 /* Message indicating that the local user requested to join the group. */
 "GROUP_LOCAL_USER_REQUESTED_TO_JOIN_TO_THE_GROUP" = "Έστειλες αίτημα για να μπείς στην ομάδα.";
@@ -1771,11 +1951,11 @@
 /* Message indicating that the local user had their administrator role revoked by another user. Embeds {{remote user name}}. */
 "GROUP_LOCAL_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ ανακάλεσε τα δικαιώματα διαχείρισής σου.";
 
+/* Message indicating that the local user was added to the group. */
+"GROUP_LOCAL_USER_WAS_ADDED_TO_THE_GROUP" = "Ένα μέλος σε πρόσθεσε στην ομάδα.";
+
 /* Label indicating that a group member is an admin. */
 "GROUP_MEMBER_ADMIN_INDICATOR" = "Διαχειριστής/τρια";
-
-/* Format string for the group member count indicator. Embeds {{ %1$@ the number of members in the group, %2$@ the maximum number of members in the group. }}. */
-"GROUP_MEMBER_COUNT_FORMAT" = "%1$@/%2$@";
 
 /* The 'group member count' indicator when there are no members in the group. */
 "GROUP_MEMBER_COUNT_LABEL_0" = "Κανένα μέλος";
@@ -1786,14 +1966,17 @@
 /* Format for the 'group member count' indicator. Embeds {the number of group members}. */
 "GROUP_MEMBER_COUNT_LABEL_FORMAT" = "%@ μέλη";
 
+/* Format string for the group member count indicator. Embeds {{ the number of members in the group }}. */
+"GROUP_MEMBER_COUNT_WITHOUT_LIMIT_FORMAT" = "%@ μέλη";
+
 /* Label indicating the local user. */
 "GROUP_MEMBER_LOCAL_USER" = "Εσύ";
 
 /* Accessibility label for the 'call group member' button */
 "GROUP_MEMBERS_CALL" = "Ηχητική Κλήση";
 
-/* Label indicating that a group has no other members. */
-"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "Κανένα μέλος.";
+/* Label indicating that a new group has no other members. */
+"GROUP_MEMBERS_NO_OTHER_MEMBERS" = "Μπορείς να προσθέσεις ή να προσκαλέσεις φίλους σου αφού δημιουργήσεις την ομάδα.";
 
 /* Title for the 'members' section of the 'group members' view. */
 "GROUP_MEMBERS_SECTION_TITLE_MEMBERS" = "Μέλη";
@@ -1835,13 +2018,13 @@
 "GROUP_REMOTE_USER_DECLINED_INVITE_FROM_LOCAL_USER_FORMAT" = "Ο/Η %@ απέρριψε την πρόσκλησή σου στην ομάδα.";
 
 /* Message indicating that a remote user was granted administrator role. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR" = "Ο/Η %@ έγινε διαχειριστής/τρια.";
+"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR" = "Ο/Η %@ έγινε διαχειριστής";
 
 /* Message indicating that a remote user was granted administrator role by local user. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_LOCAL_USER" = "Έκανες τον/την %@ διαχειριστή/τρια.";
+"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_LOCAL_USER" = "Έκανες τον/την %@ διαχειριστή.";
 
 /* Message indicating that a remote user was granted administrator role by another user. Embeds {{ %1$@ user who granted, %2$@ user who was granted administrator role}}. */
-"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "Ο/Η %1$@ έκανε τον/την %2$@ διαχειριστή/τρια.";
+"GROUP_REMOTE_USER_GRANTED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "Ο/Η %1$@ έκανε τον/την %2$@ διαχειριστή.";
 
 /* Message indicating that a single remote user's invite was revoked. */
 "GROUP_REMOTE_USER_INVITE_REVOKED_1" = "Η πρόσκληση 1 ατόμου στην ομάδα ανακλήθηκε.";
@@ -1880,7 +2063,7 @@
 "GROUP_REMOTE_USER_JOINED_GROUP_FORMAT" = "Ο/Η %@ μπήκε στην ομάδα.";
 
 /* Message indicating that another user has joined the group. Embeds {{remote user name}}. */
-"GROUP_REMOTE_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK_FORMAT" = "%@ joined the group via the group link.";
+"GROUP_REMOTE_USER_JOINED_THE_GROUP_VIA_GROUP_INVITE_LINK_FORMAT" = "Ο/Η %@ μπήκε στην ομάδα μέσω του συνδέσμου της ομάδας.";
 
 /* Message indicating that a remote user has left the group. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_LEFT_GROUP_FORMAT" = "Ο/Η %@ έφυγε από την ομάδα.";
@@ -1892,28 +2075,25 @@
 "GROUP_REMOTE_USER_REMOVED_FROM_GROUP_BY_REMOTE_USER_FORMAT" = "Ο/Η %1$@ αφαίρεσε τον/την %2$@.";
 
 /* Message indicating that a remote user's request to join the group was approved by the local user. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_LOCAL_USER_FORMAT" = "You approved a request to join the group from %@.";
+"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_LOCAL_USER_FORMAT" = "Ενέκρινες το αίτημα του/της %@ να μπει στην ομάδα.";
 
 /* Message indicating that a remote user's request to join the group was approved by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "%2$@ approved a request to join the group from %1$@.";
-
-/* Message indicating that a remote user's request to join the group was approved. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_APPROVED_FORMAT" = "A request to join the group from %@ was approved.";
+"GROUP_REMOTE_USER_REQUEST_APPROVED_BY_REMOTE_USER_FORMAT" = "Ο/Η %2$@ ενέκρινε το αίτημα του/της %1$@ να μπει στην ομάδα.";
 
 /* Message indicating that a remote user cancelled their request to join the group. Embeds {{ the name of the requesting user }}. */
-"GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "%@ canceled their request to join the group.";
+"GROUP_REMOTE_USER_REQUEST_CANCELLED_BY_REMOTE_USER_FORMAT" = "Ο/Η %@ ακύρωσε το αίτημά του/της για είσοδο στην ομάδα.    ";
 
 /* Message indicating that a remote user's request to join the group was rejected by the local user. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_LOCAL_USER_FORMAT" = "You denied a request to join the group from %@.";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_LOCAL_USER_FORMAT" = "Απέρριψες το αίτημα του/της %@ να μπει στην ομάδα.";
 
 /* Message indicating that a remote user's request to join the group was rejected by another user. Embeds {{ %1$@ requesting user name, %2$@ approving user name }}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_REMOTE_USER_FORMAT" = "%2$@ denied a request to join the group from %1$@.";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_BY_REMOTE_USER_FORMAT" = "Ο/Η %2$@ απέρριψε το αίτημα του/της %1$@ να μπει στην ομάδα.";
 
 /* Message indicating that a remote user's request to join the group was rejected. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUEST_REJECTED_FORMAT" = "A request to join the group from %@ was denied.";
+"GROUP_REMOTE_USER_REQUEST_REJECTED_FORMAT" = "Το αίτημα του/της %@ να μπει στην ομάδα απορρίφθηκε.";
 
 /* Message indicating that a remote user requested to join the group. Embeds {{requesting user name}}. */
-"GROUP_REMOTE_USER_REQUESTED_TO_JOIN_THE_GROUP_FORMAT" = "%@ requested to join via the group link.";
+"GROUP_REMOTE_USER_REQUESTED_TO_JOIN_THE_GROUP_FORMAT" = "Ο/Η %@ ζήτησε να μπει στην ομάδα μέσω του συνδέσμου της ομάδας.";
 
 /* Message indicating that a remote user had their administrator role revoked. Embeds {{remote user name}}. */
 "GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR" = "Τα δικαιώματα διαχείρισης του/της %@ ανακλήθηκαν.";
@@ -1925,13 +2105,13 @@
 "GROUP_REMOTE_USER_REVOKED_ADMINISTRATOR_BY_REMOTE_USER_FORMAT" = "Ο/Η %1$@ ανακάλεσε τα δικαιώματα διαχείρισης του/της %2$@.";
 
 /* Label for the 'member requests' mode of the 'group requests and invites' view. */
-"GROUP_REQUESTS_AND_INVITES_VIEW_MEMBER_REQUESTS_MODE" = "Member Requests";
+"GROUP_REQUESTS_AND_INVITES_VIEW_MEMBER_REQUESTS_MODE" = "Αιτήματα μελών";
 
 /* Label for the 'pending invites' mode of the 'group requests and invites' view. */
-"GROUP_REQUESTS_AND_INVITES_VIEW_PENDING_INVITES_MODE" = "Pending Invites";
+"GROUP_REQUESTS_AND_INVITES_VIEW_PENDING_INVITES_MODE" = "Εκκρεμείς προσκλήσεις";
 
 /* The title for the 'group requests and invites' view. */
-"GROUP_REQUESTS_AND_INVITES_VIEW_TITLE" = "Member Requests & Invites";
+"GROUP_REQUESTS_AND_INVITES_VIEW_TITLE" = "Αιτήματα μελών & προσκλήσεις";
 
 /* Info message indicating that the group was updated by an unknown user. */
 "GROUP_UPDATED" = "Η ομάδα ενημερώθηκε.";
@@ -1978,6 +2158,27 @@
 /* Message indicating that the group's name was changed. Embeds {{new group name}}. */
 "GROUP_UPDATED_NAME_UPDATED_FORMAT" = "Το όνομα της ομάδας άλλαξε σε \"%@\".";
 
+/* Message indicating that the group was migrated. */
+"GROUP_WAS_MIGRATED" = "Αυτή η ομάδα αναβαθμίστηκε σε Ομάδα νέου τύπου.";
+
+/* Message indicating that 1 user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_1" = "Ένα μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου, και αφαιρέθηκε από την ομάδα.";
+
+/* Message indicating that the local user was dropped while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_LOCAL_USER" = "Δεν μπόρεσες να προστεθείς στην Ομάδα νέου τύπου, και αφαιρέθηκες από την ομάδα.";
+
+/* Message indicating that N users were dropped while migrating the group. Embeds {{ the number of dropped users }}. */
+"GROUP_WAS_MIGRATED_USERS_DROPPED_N_FORMAT" = "%@ μέλη δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου, και αφαιρέθηκαν από την ομάδα.";
+
+/* Message indicating that 1 user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_1" = "Ένα μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου, και προσκλήθηκε να μπει.";
+
+/* Message indicating that the local user was invited while migrating the group. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_LOCAL_USER" = "Δεν μπόρεσες να προστεθείς στην Ομάδα νέου τύπου, και προσκλήθηκες να μπεις.";
+
+/* Message indicating that N users were invited while migrating the group. Embeds {{ the number of invited users }}. */
+"GROUP_WAS_MIGRATED_USERS_INVITED_N_FORMAT" = "%@ μέλη δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου, και προσκλήθηκαν να μπουν.";
+
 /* Message indicating that the local user left the group. */
 "GROUP_YOU_LEFT" = "Έφυγες από την ομάδα.";
 
@@ -1999,23 +2200,53 @@
 /* Label for 'block inviter' button in group invite view. Embeds {{name of user who invited you}}. */
 "GROUPS_INVITE_BLOCK_INVITER_FORMAT" = "Φραγή του/της %@";
 
+/* Label for 'invite friends to group' button. */
+"GROUPS_INVITE_FRIENDS_BUTTON" = "Πρόσκληση φίλων";
+
 /* Body text for the first section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "Οι ομάδες παλαιού τύπου είναι ομάδες που δεν είναι συμβατές με χαρακτηριστικά των νέων ομαδών, όπως οι διαχειριστές και οι πιο περιγραφικές ανανεώσεις της ομάδας.";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_1_BODY" = "Οι ομάδες παλαιού τύπου είναι ομάδες που δεν είναι συμβατές με δυνατότητες των νέων ομαδών, όπως οι διαχειριστές και οι πιο περιγραφικές ανανεώσεις της ομάδας.";
 
 /* Title for the first section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_1_TITLE" = "Τι είναι οι ομάδες παλαιού τύπου;";
 
 /* Body text for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "Οι ομάδες παλαιού τύπου δεν μπορούν να μετατραπούν σε νέες ομάδες, αλλά μπορείς να δημιουργήσεις μια νέα ομάδα με τα ίδια μέλη.";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_BODY" = "Οι ομάδες παλαιού τύπου δεν μπορούν ακόμα να αναβαθμιστούν σε νέου τύπου, αλλά μπορείς να δημιουργήσεις μια καινούργια ομάδα νέου τύπου, με τα ίδια μέλη, εφ' όσον έχουν την πιο πρόσφατη έκδοση του Signal.\n\nΤο Signal θα παρέχει έναν τρόπο για αναβάθμιση ομαδών παλαιού τύπου, στο μέλλον.";
 
 /* Title for the second section of the 'legacy group' alert view. */
-"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "Πως \"αναβαθμίζω\" μια ομάδα παλαιού τύπου;";
+"GROUPS_LEGACY_GROUP_ALERT_SECTION_2_TITLE" = "Μπορώ να αναβαθμίσω μια ομάδα παλαιού τύπου;";
 
 /* Body text for the third section of the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_SECTION_3_BODY" = "Για τη δημιουργία ομάδας νέου τύπου, όλα τα μέλη θα πρέπει να αναβαθμίσουν στην πιο πρόσφατη έκδοση του Signal.";
 
 /* Title for the 'legacy group' alert view. */
 "GROUPS_LEGACY_GROUP_ALERT_TITLE" = "Ομάδες παλαιού τύπου και νέες ομάδες";
+
+/* Format for indicator that a group cannot be used until it is migrated. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_BLOCKING_MIGRATION_FORMAT" = "Αναβάθμισε την ομάδα για να ενεργοποιήσεις νέες δυνατότητες όπως οι @αναφορές και οι διαχειριστές. Τα μέλη που δεν έχουν μοιραστεί τη φωτογραφία ή το όνομά τους με την ομάδα θα προσκληθούν να μπουν. %@.";
+
+/* Title for the 'can't upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TITLE" = "Αδυναμία αναβάθμισης σε Ομάδα νέου τύπου";
+
+/* Text indicating that a legacy group can't be upgraded because it has too many members. Embeds {{ The maximum number of members allowed in a group. }}. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_ALERT_TOO_MANY_MEMBERS_FORMAT" = "Αυτή η ομάδα δεν μπορεί να αναβαθμιστεί σε Ομάδα νέου τύπου γιατί έχει πάρα πολλά μέλη. Ο μέγιστος αριθμός μελών ομάδας που μπορεί να αναβαθμιστεί είναι %@.";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_1" = "Όταν όλα τα τωρινά μέλη της ομάδας χρησιμοποιήσουν μια έκδοση του Signal που υποστηρίζει τις Ομάδες νέου τύπου, τότε η ομάδα θα αναβαθμιστεί.";
+
+/* Explanation of group migration for groups that can't yet be migrated in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_CANT_UPGRADE_YET_2" = "Όλο το ιστορικό των μηνυμάτων και τα πολυμέσα θα διατηρηθούν ως έχουν πριν την αναβάθμιση.";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_1" = "Αυτή η ομάδα δε μπορεί να δημιουργηθεί επειδή 1 μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Μπορείς να δημιουργήσεις μια Ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αλλιώς μπορείς να τον/την αφαιρέσεις πριν φτιάξεις την ομάδα.";
+
+/* Title for alert that explains that a new group cannot be created 1 member does not support v2 groups. Embeds {{ the number of members which do not support v2 groups. }} */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_ALERT_TITLE_N_FORMAT" = "Αυτή η ομάδα δε μπορεί να δημιουργηθεί επειδή %@ μέλη χρησιμοποιούν μια παλιά έκδοση του Signal. Μπορείς να δημιουργήσεις μια Ομάδα νέου τύπου μαζί τους αφού αναβαθμίσουν το Signal, ή αλλιώς μπορείς να τους αφαιρέσεις πριν φτιάξεις την ομάδα.";
+
+/* Indicates that a new group cannot be created because a member does not support v2 groups. Embeds {{ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_1" = "Αυτή η ομάδα δε μπορεί να δημιουργηθεί επειδή 1 μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Μπορείς να δημιουργήσεις μια Ομάδα νέου τύπου μαζί του/της αφού αναβαθμίσει το Signal, ή αλλιώς μπορείς να τον/την αφαιρέσεις πριν φτιάξεις την ομάδα. %@";
+
+/* Indicates that a new group cannot be created because multiple members do not support v2 groups. Embeds {{ %1$@ the number of members who do not support v2 groups, %2$@ a \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_CREATION_ERROR_FORMAT_N" = "Αυτή η ομάδα δε μπορεί να δημιουργηθεί επειδή %1$@ μέλη χρησιμοποιούν μια παλιά έκδοση του Signal. Μπορείς να δημιουργήσεις μια Ομάδα νέου τύπου μαζί τους αφού αναβαθμίσουν το Signal, ή αλλιώς μπορείς να τους αφαιρέσεις πριν φτιάξεις την ομάδα. %2$@";
 
 /* Title for alert that explains that a new group will be a legacy group because 1 member does not support v2 groups. */
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_ALERT_TITLE_1" = "Θα δημιουργηθεί ομάδα παλαιού τύπου γιατί 1 μέλος χρησιμοποιεί μια παλιά έκδοση του Signal. Θα μπορείς να δημιουργήσεις ομάδα νέου τύπου μαζί τους αφού αναβαθμίσει το Signal, ή αν τον/την αφαιρέσεις πριν δημιουργήσεις την ομάδα.";
@@ -2030,31 +2261,139 @@
 "GROUPS_LEGACY_GROUP_CREATION_WARNING_FORMAT_N" = "%1$@ μέλη δεν έχουν υποστήριξη για Νέες ομάδες, οπότε αυτή η ομάδα θα είναι παλαιού τύπου. %2$@";
 
 /* Brief explanation of legacy groups. Embeds {{ a \"learn more\" link. }}. */
-"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "Αυτή η ομάδα είναι παλαιού τύπου. Για πρόσβαση σε χαρακτηριστικά όπως οι διαχειριστές ομάδας, δημιουργήστε μια νέα ομάδα. %@";
+"GROUPS_LEGACY_GROUP_DESCRIPTION_FORMAT" = "Αυτή είναι ομάδα παλαιού τύπου. Δυνατότητες όπως οι διαχειριστές ομάδας είναι διαθέσιμα μόνο στις ομάδες νέου τύπου. %@";
+
+/* Indicates that a legacy group can't be upgraded because some members can't be migrated. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_MEMBERS_CANT_BE_MIGRATED_FORMAT" = "Αυτή η ομάδα παλαιού τύπου δεν μπορεί ακόμα να αναβαθμιστεί σε Ομάδα νέου τύπου. %@.";
+
+/* Indicates that a legacy group can't be upgraded because it has too many members. Embeds {{ an \"learn more\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_TOO_MANY_MEMBERS_FORMAT" = "Αυτή η ομάδα παλαιού τύπου δεν μπορεί να αναβαθμιστεί σε Ομάδα νέου τύπου επειδή είναι πολύ μεγάλη. %@.";
+
+/* Explanation of legacy groups. Embeds {{ an \"upgrade\" link. }}. */
+"GROUPS_LEGACY_GROUP_DESCRIPTION_WITH_UPGRADE_OFFER_FORMAT" = "Αυτή είναι μια ομάδα παλαιού τύπου. Για πρόσβαση σε δυνατότητες όπως οι @αναφορές και οι διαχειριστές ομάδας, %@.";
+
+/* Title for the the 'dropped group member' banner. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_1" = "1 μέλος δεν μπόρεσε να επαναπροστεθεί στην Ομάδα νέου τύπου. Θέλεις να τον/την προσθέσεις τώρα;";
+
+/* Format for the title for the the 'dropped group members' banner. Embeds: {{ the number of dropped group members }}. */
+"GROUPS_LEGACY_GROUP_DROPPED_MEMBERS_BANNER_N_FORMAT" = "%@ μέλη δεν μπόρεσαν να επαναπροστεθούν στην Ομάδα νέου τύπου. Θέλεις να τα προσθέσεις τώρα;";
 
 /* Label indicating a legacy group. */
 "GROUPS_LEGACY_GROUP_INDICATOR" = "Ομάδα παλαιού τύπου";
 
-/* A \"learn more\" link with more information about legacy groups. */
-"GROUPS_LEGACY_GROUP_LEARN_MORE_LINK" = "Μάθε περισσότερα";
+/* Indicates that the local user needs to accept an invitation to rejoin the group after a group migration. */
+"GROUPS_LEGACY_GROUP_LOCAL_USER_INVITED" = "Θα χρειαστεί να αποδεχτείς πάλι μια πρόσκληση για να μπεις στην ομάδα, και δεν θα λαμβάνεις μηνύματα της ομάδας μέχρι να αποδεχτείς.";
+
+/* Label for the 'migrate' button in the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_MIGRATE_BUTTON" = "Αναβάθμιση ομάδας";
+
+/* Title for the the 'migrate group' banner. */
+"GROUPS_LEGACY_GROUP_MIGRATE_GROUP_OFFER_BANNER" = "Για πρόσβαση σε δυνατότητες όπως οι @αναφορές και οι διαχειριστές ομάδας, αναβάθμισε την ομάδα.";
+
+/* Title for the 'migrated group' alert view. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_ALERT_TITLE" = "Τι είναι οι Ομάδες νέου τύπου;";
+
+/* Explanation of group migration for a migrated group in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_MIGRATED_GROUP_DESCRIPTION" = "Όλο το ιστορικό της συζήτησης και τα πολυμέσα διατηρήθηκαν ως είχαν πριν την αναβάθμιση.";
+
+/* Explanation of new groups in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_NEW_GROUP_DESCRIPTION" = "Οι ομάδες νέου τύπου έχουν δυνατότητες όπως οι @αναφορές και οι διαχειριστές ομάδας, και θα αποκτήσουν παραπάνω δυνατότητες στο μέλλον.";
+
+/* Title for the 'new groups' alert view. */
+"GROUPS_LEGACY_GROUP_NEW_GROUPS_ALERT_TITLE" = "Ομάδες νέου τύπου";
+
+/* Label for the 'add members' button in the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ADD_MEMBERS_BUTTON" = "Προσθήκη μελών";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_1" = "Προσθήκη μέλους;";
+
+/* Title for the 're-add dropped group members' alert view. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_ALERT_TITLE_N" = "Προσθήκη μελών;";
+
+/* Label for the 'add members' button in the 're-add dropped groups members' banner. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_BUTTON" = "Προσθήκη μελών";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_1" = "Αυτό το μέλος δεν μπορεσε να προστεθεί αυτόματα στην Ομάδα νέου τύπου αυτόματα κατά την αναβάθμιση:";
+
+/* Explanation of 're-adding dropped group member' in the 'legacy group' alert views. */
+"GROUPS_LEGACY_GROUP_RE_ADD_DROPPED_GROUP_MEMBERS_DESCRIPTION_N" = "Αυτά τα μέλη δεν μπόρεσαν να προστεθούν αυτόματα στην Ομάδα νέου τύπου αυτόματα κατά την αναβάθμιση:";
+
+/* Body text for the second section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_2_BODY" = "Όλο το ιστορικό της συζήτησης και τα πολυμέσα διατηρήθηκαν ως είχαν πριν την αναβάθμιση.";
+
+/* Body text for the 'dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_1" = "Αυτό το μέλος αφαιρέθηκε από την ομάδα και δεν θα μπορέσει να ξαναμπεί στην ομάδα μέχρι να αναβαθμίσει:";
+
+/* Body text for the 'dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_DROPPED_MEMBERS_N" = "Αυτά τα μέλη αφαιρέθηκαν από την ομάδα και δεν θα μπορέσουν να ξαναμπούν στην ομάδα μέχρι να αναβαθμίσουν:";
+
+/* Body text for the 'invites member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_1" = "Αυτό το μέλος θα πρέπει να αποδεχτεί την πρόσκληση να ξαναμπεί στην ομάδα, και δεν θα λαμβάνει τα μηνύματα της ομάδας μέχρι να αποδεχτεί:";
+
+/* Body text for the 'invites members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_INVITED_MEMBERS_N" = "Αυτά τα μέλη θα πρέπει να αποδεχτούν την πρόσκληση να ξαναμπούν στην ομάδα, και δεν θα λαμβάνουν τα μηνύματα της ομάδας μέχρι να αποδεχτούν:";
+
+/* Body text for the 'possibly dropped member' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_1" = "Αυτό το μέλος δεν μπορεί να μπει σε Ομάδες νέου τύπου, και θα αφαιρεθεί από την ομάδα:";
+
+/* Body text for the 'possibly dropped members' section of the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_SECTION_POSSIBLY_DROPPED_MEMBERS_N" = "Αυτά τα μέλη δεν μπορούν να μπουν σε Ομάδες νέου τύπου, και θα αφαιρεθούν από την ομάδα:";
+
+/* Title for the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_TITLE" = "Αναβάθμιση σε Ομάδα νέου τύπου";
+
+/* Label for the 'upgrade this group' button in the 'upgrade legacy group' alert view. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_BUTTON" = "Αναβάθμιση της ομάδας";
+
+/* Message for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE" = "Αυτή η ομάδα δεν μπορεί να αναβαθμιστεί σε Ομάδα νέου τύπου αυτή τη στιγμή.";
+
+/* Message for error alert indicating the group update failed due to network connectivity. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_MESSAGE_NETWORK" = "Αυτή η ομάδα δεν μπόρεσε να αναβαθμιστεί σε Ομάδα νέου τύπου επειδή δεν είσαι συνδεμένος/η στο διαδίκτυο. Δοκίμασε ξανά αργότερα.";
+
+/* Title for error alert indicating the group update failed. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_FAILED_ERROR_TITLE" = "Αποτυχία ολοκλήρωσης της αναβάθμισης.";
+
+/* Message indicating the group update succeeded. */
+"GROUPS_LEGACY_GROUP_UPGRADE_ALERT_UPGRADE_SUCCEEDED" = "Αναβαθμίστηκε σε Ομάδα νέου τύπου.";
+
+/* An \"upgrade\" link for upgrading legacy groups to new groups. */
+"GROUPS_LEGACY_GROUP_UPGRADE_LINK" = "αναβάθμιση της ομάδας";
 
 /* Message for the 'replace group admin' alert. */
 "GROUPS_REPLACE_ADMIN_ALERT_MESSAGE" = "Πριν φύγεις, διάλεξε έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.";
 
 /* Title for the 'replace group admin' alert. */
-"GROUPS_REPLACE_ADMIN_ALERT_TITLE" = "Επιλογή νέου διαχειριστή/τριας";
+"GROUPS_REPLACE_ADMIN_ALERT_TITLE" = "Επιλογή νέου διαχειριστή";
 
 /* Label for the 'replace group admin' button. */
-"GROUPS_REPLACE_ADMIN_BUTTON" = "Επιλογή νέου διαχειριστή/τριας";
+"GROUPS_REPLACE_ADMIN_BUTTON" = "Επιλογή νέου διαχειριστή";
+
+/* Format for the alert warning the user that they've reached the recommended limit on how many members can be in a group when creating a new group. Embeds {{ the maximum number of recommended members in a group }}. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_MESSAGE_FORMAT" = "Οι ομάδες του Signal λειτουργούν καλύτερα με %@ μέλη ή λιγότερα. Αν προσθέσεις παραπάνω μέλη, θα υπάρξουν καθυστερήσεις στην αποστολή και λήψη μηνυμάτων.";
+
+/* Title for alert warning the user that they've reached the recommended limit on how many members can be in a group. */
+"GROUPS_TOO_MANY_MEMBERS_ALERT_TITLE" = "Έφτασες το προτεινόμενο όριο μελών";
+
+/* Message asking the user to confirm that they want to add a member to the group. */
+"GROUPS_TOO_MANY_MEMBERS_CONFIRM" = "Προσθήκη μέλους παρ' όλα αυτά;";
+
+/* Label for button that lets the user view the request to join the group. */
+"GROUPS_VIEW_REQUEST_BUTTON" = "Προβολή αιτήματος";
+
+/* Label for button that lets the user view the requests to join the group. */
+"GROUPS_VIEW_REQUESTS_BUTTON" = "Προβολή αιτημάτων";
 
 /* Help item allowing the user to file a support request */
 "HELP_CONTACT_US" = "Επικοινωνία";
 
 /* Help item that takes the user to the Signal support website */
-"HELP_SUPPORT_CENTER" = "Κέντρο Υποστήριξης";
+"HELP_SUPPORT_CENTER" = "Κέντρο υποστήριξης";
 
 /* Label for 'archived conversations' button. */
-"HOME_VIEW_ARCHIVED_CONVERSATIONS" = "Archived Chats";
+"HOME_VIEW_ARCHIVED_CONVERSATIONS" = "Αρχειοθετημένες συνομιλίες";
 
 /* Table cell subtitle label for a conversation the user has blocked. */
 "HOME_VIEW_BLOCKED_CONVERSATION" = "Φραγμένος/η";
@@ -2075,7 +2414,7 @@
 "HOME_VIEW_FIRST_CONVERSATION_OFFER_3_CONTACTS_FORMAT" = "Κάποιες από τις επαφές σου είναι ήδη στο Signal, όπως οι %@, %@ και %@";
 
 /* A label offering to start a new conversation with your contacts, if you have no Signal contacts. */
-"HOME_VIEW_FIRST_CONVERSATION_OFFER_NO_CONTACTS" = "Start your first chat here.";
+"HOME_VIEW_FIRST_CONVERSATION_OFFER_NO_CONTACTS" = "Ξεκίνα την πρώτη σου συνομιλία εδώ.";
 
 /* Table cell subtitle label for a group the user has been added to. {Embeds inviter name} */
 "HOME_VIEW_MESSAGE_REQUEST_ADDED_TO_GROUP_FORMAT" = "Ο/Η %@ σε πρόσθεσε στην ομάδα";
@@ -2103,6 +2442,15 @@
 
 /* Momentarily shown to the user when attempting to select more images than is allowed. Embeds {{max number of items}} that can be shared. */
 "IMAGE_PICKER_CAN_SELECT_NO_MORE_TOAST_FORMAT" = "Δεν μπορείς να κοινοποιήσεις πάνω από %@ αντικείμενα.";
+
+/* Button that will present a view for the user to change the photos Signal has access to. */
+"IMAGE_PICKER_CHANGE_PHOTOS" = "Αλλαγή φωτογραφιών";
+
+/* Explanation showing that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_EXPLANATION" = "Δώσε πλήρη πρόσβαση στις Ρυθμίσεις, ή άλλαξε σε ποιές φωτογραφίες έχει πρόσβαση το Signal.";
+
+/* Title show that the user has granted limited access to their photos and can change that in the Settings app. */
+"IMAGE_PICKER_CHANGE_PHOTOS_TITLE" = "Δεν βλέπεις τις φωτογραφίες σου;";
 
 /* alert title */
 "IMAGE_PICKER_FAILED_TO_PROCESS_ATTACHMENTS" = "Δεν μπόρεσε να επιλεχθεί το συνημμένο.";
@@ -2138,16 +2486,16 @@
 "IN_CALL_TERMINATED" = "Η κλήση τερματίστηκε.";
 
 /* Label reminding the user that they are in archive mode. */
-"INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "These chats are archived and will only appear in the Inbox if new messages are received.";
+"INBOX_VIEW_ARCHIVE_MODE_REMINDER" = "Αυτές οι συνομιλίες είναι αρχειοθετημένες και θα εμφανιστούν στα εισερχόμενα μόνο αν ληφθούν νέα μηνύματα.";
 
 /* Message shown in the conversation list when the inbox is empty. */
-"INBOX_VIEW_EMPTY_INBOX" = "Δώσε ζωή στα εισερχόμενά σου! Ξεκίνα στέλνοντας μήνυμα σε κάποιον/α φίλο/η σου.";
+"INBOX_VIEW_EMPTY_INBOX" = "Δεν υπάρχουν ακόμα συνομιλίες.\nΣτείλε σε έναν φίλο σου, για να ξεκινήσεις.";
 
 /* info message text in conversation view. {embeds callee name} */
 "INCOMING_CALL_FORMAT" = "Ο/Η %@ σε κάλεσε";
 
 /* Shown in inbox and conversation after syncing as a placeholder indicating why your message history is missing. */
-"INFO_MESSAGE_SYNCED_THREAD" = "You can send or receive synchronized messages from your phone or iPad.  For your security, chat history isn't transferred to new linked devices.";
+"INFO_MESSAGE_SYNCED_THREAD" = "Μπορείς να στέλνεις και να λαμβάνεις συγχρονισμένα μηνύματα απο το κινητό ή το iPad σου.\nΓια την ασφάλειά σου, το ιστορικό συνομιλίας δεν μεταφέρεται στις νέες συνδεμένες συσκευές.";
 
 /* Shown in inbox and conversation when a user joins Signal, embeds the new user's {{contact name}} */
 "INFO_MESSAGE_USER_JOINED_SIGNAL_BODY_FORMAT" = "Ο/Η %@ ήρθε στο Signal!";
@@ -2179,6 +2527,9 @@
 /* Alert warning that sending an invite to multiple users will create a group message whose recipients will be able to see each other. */
 "INVITE_WARNING_MULTIPLE_INVITES_BY_TEXT" = "Προσκαλώντας πολλούς χρήστες ταυτόχρονα θα ξεκινήσει μια ομαδική συζήτηση. Οι παραλήπτες του μηνύματος θα μπορούν να δουν ο ένας τον άλλον.";
 
+/* Button to join an active group call */
+"JOIN_CALL_PILL_BUTTON" = "Γίνε μέλος";
+
 /* Slider label embeds {{TIME_AMOUNT}}, e.g. '2 hours'. See *_TIME_AMOUNT strings for examples. */
 "KEEP_MESSAGES_DURATION" = "Τα μηνύματα εξαφανίζονται μετά από %@.";
 
@@ -2189,13 +2540,13 @@
 "KEY_COMMAND_ALL_MEDIA" = "Μετάβαση σε όλα τα μέσα";
 
 /* A keyboard command to archive the current coversation. */
-"KEY_COMMAND_ARCHIVE" = "Archive Chat";
+"KEY_COMMAND_ARCHIVE" = "Αρχειοθέτηση συνομιλίας";
 
 /* A keyboard command to open the current conversation's attachment picker. */
 "KEY_COMMAND_ATTACHMENTS" = "Εμφάνιση συνημμένων";
 
 /* A keyboard command to open the current conversation's settings. */
-"KEY_COMMAND_CONVERSATION_INFO" = "Go to Chat Info";
+"KEY_COMMAND_CONVERSATION_INFO" = "Μετάβαση στις πληροφορίες συνομιλίας";
 
 /* A keyboard command to focus the current conversation's input field. */
 "KEY_COMMAND_FOCUS_COMPOSER" = "Εστίαση στην γραμμή εισαγωγής";
@@ -2210,10 +2561,10 @@
 "KEY_COMMAND_NEW_MESSAGE" = "Νέο μήνυμα";
 
 /* A keyboard command to jump to the next conversation in the list. */
-"KEY_COMMAND_NEXT_CONVERSATION" = "Go to Next Chat";
+"KEY_COMMAND_NEXT_CONVERSATION" = "Μετάβαση στην επόμενη συνομιλία";
 
 /* A keyboard command to jump to the previous conversation in the list. */
-"KEY_COMMAND_PREVIOUS_CONVERSATION" = "Go to Previous Chat";
+"KEY_COMMAND_PREVIOUS_CONVERSATION" = "Μετάβαση στην προηγούμενη συνομιλία";
 
 /* A keyboard command to begin a search on the conversation list. */
 "KEY_COMMAND_SEARCH" = "Αναζήτηση";
@@ -2225,7 +2576,7 @@
 "KEY_COMMAND_STICKERS" = "Εμφάνιση αυτοκόλλητων";
 
 /* A keyboard command to unarchive the current coversation. */
-"KEY_COMMAND_UNARCHIVE" = "Unarchive Chat";
+"KEY_COMMAND_UNARCHIVE" = "Απο-αρχειοθέτηση συνομιλίας";
 
 /* Label for the 'learn more' button. */
 "LEARN_MORE" = "Μάθε περισσότερα";
@@ -2246,7 +2597,7 @@
 "LINK_DEVICE_INVALID_CODE_TITLE" = "Αποτυχία σύνδεσης συσκευής";
 
 /* confirm the users intent to link a new device */
-"LINK_DEVICE_PERMISSION_ALERT_BODY" = "This device will be able to see your groups and contacts, access your chats, and send messages in your name.";
+"LINK_DEVICE_PERMISSION_ALERT_BODY" = "Αυτή η συσκευή θα μπορεί να βλέπει τις ομάδες και τις επαφές σου, να έχει πρόσβαση στις συνομιλίες σου και να στέλνει μηνύματα σαν να είναι εσύ.";
 
 /* confirm the users intent to link a new device */
 "LINK_DEVICE_PERMISSION_ALERT_TITLE" = "Σύνδεση της συσκευής;";
@@ -2273,13 +2624,31 @@
 "LINKING_DEVICE_FAILED_TITLE" = "Αποτυχία σύνδεσης συσκευής";
 
 /* Body for link previews megaphone */
-"LINKPREVIEWS_MEGAPHONE_BODY" = "Link previews will now be generated for all sites.";
+"LINKPREVIEWS_MEGAPHONE_BODY" = "Οι προεπισκοπήσεις συνδέσμων δεν δημιουργούνται για όλες τις σελίδες.";
 
 /* Disable button for link previews megaphone */
 "LINKPREVIEWS_MEGAPHONE_BUTTON_DISABLE" = "Απενεργοποίηση";
 
 /* Title for link previews megaphone */
-"LINKPREVIEWS_MEGAPHONE_TITLE" = "Preview Any Link";
+"LINKPREVIEWS_MEGAPHONE_TITLE" = "Προεπισκόπηση κάθε συνδέσμου";
+
+/* Body for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_BODY" = "Για να μεταφέρεις τον λογαριασμό Signal σου, θα πρέπει να ενεργοποιήσεις την πρόσβαση στο τοπικό δίκτυο και στις δύο συσκευές.";
+
+/* A button asking the user if they need further help getting their transfer working. */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_NEED_HELP" = "Χρειάζεσαι βοήθεια;";
+
+/* First step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_ONE" = "Σε κάθε συσκευή, άνοιξε τις Ρυθμίσεις";
+
+/* Third step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_THREE" = "Ενεργοποίησε το \"Τοπικό δίκτυο\"";
+
+/* Second step for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_STEP_TWO" = "Πήγαινε στο Signal";
+
+/* Title for local network permission action sheet */
+"LOCAL_NETWORK_PERMISSION_ACTION_SHEET_TITLE" = "Ενεργοποίησε τη Πρόσβαση στο τοπικό δίκτυο";
 
 /* A string indicating that the user can search for a location */
 "LOCATION_PICKER_SEARCH_PLACEHOLDER" = "Εύρεση βάση ονόματος ή διεύθυνσης";
@@ -2292,6 +2661,9 @@
 
 /* Title for the 'long text message' view. */
 "LONG_TEXT_VIEW_TITLE" = "Μήνυμα";
+
+/* A string describing that the user has many groups in common with another user. Embeds {{common group count}} */
+"MANY_GROUPS_IN_COMMON" = "%@ κοινές ομάδες";
 
 /* nav bar button item */
 "MEDIA_DETAIL_VIEW_ALL_MEDIA_BUTTON" = "Όλα τα Πολυμέσα";
@@ -2307,6 +2679,12 @@
 
 /* Confirmation button text to delete selected media message from the gallery */
 "MEDIA_GALLERY_DELETE_SINGLE_MESSAGE" = "Διαγραφή μηνύματος";
+
+/* Format for an indicator of the number of image items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_IMAGE_COUNT_FORMAT" = "%@ Φωτογραφίες";
+
+/* Format for an indicator of the number of image or video items in a media gallery. Embeds {{ the number of items in the media gallery }}. */
+"MEDIA_GALLERY_ITEM_MIXED_COUNT_FORMAT" = "%@ αντικείμενα";
 
 /* Format for the 'more items' indicator for media galleries. Embeds {{the number of additional items}}. */
 "MEDIA_GALLERY_MORE_ITEMS_FORMAT" = "+ %@";
@@ -2330,7 +2708,7 @@
 "MESSAGE_ACTION_DELETE_FOR_EVERYONE" = "Διαγραφή για όλους/ες";
 
 /* A one-time confirmation that you want to delete for everyone */
-"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "This message will be permanently deleted for everyone in the chat. Members will be able to see that you deleted a message.";
+"MESSAGE_ACTION_DELETE_FOR_EVERYONE_CONFIRMATION" = "Αυτό το μήνυμα θα διαγραφεί για όλους/ες στη συνομιλία, αν έχουν μια πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.";
 
 /* The title for the action sheet asking who the user wants to delete the message for. */
 "MESSAGE_ACTION_DELETE_FOR_TITLE" = "Για ποιούς/ες θα ήθελες να διαγράψεις αυτό το μήνυμα;";
@@ -2432,10 +2810,10 @@
 "MESSAGE_REQUEST_DELETE_CONVERSATION_ACTION" = "Διαγραφή";
 
 /* Action sheet message to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_MESSAGE" = "This chat will be deleted from all of your devices.";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_MESSAGE" = "Αυτή η συνομιλία θα διαγραφεί από όλες τις συσκευές σου.";
 
 /* Action sheet title to confirm deleting a conversation via a message request. */
-"MESSAGE_REQUEST_DELETE_CONVERSATION_TITLE" = "Delete Chat?";
+"MESSAGE_REQUEST_DELETE_CONVERSATION_TITLE" = "Διαγραφή συνομιλίας;";
 
 /* Action sheet action to confirm deleting a group via a message request. */
 "MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_ACTION" = "Διαγραφή και αποχώρηση";
@@ -2445,6 +2823,27 @@
 
 /* Action sheet title to confirm deleting a group via a message request. */
 "MESSAGE_REQUEST_LEAVE_AND_DELETE_GROUP_TITLE" = "Διαγραφή και αποχώρηση απ' την ομάδα;";
+
+/* Banner label notifying user that a new message is from a user with the same name as an existing contact */
+"MESSAGE_REQUEST_NAME_COLLISON_BANNER_LABEL" = "Εξέτασε τα αιτήματα με προσοχή. Το Signal βρήκε μια άλλη επαφή με το ίδιο όνομα.";
+
+/* A header string above a known contact's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_CONTACT_HEADER" = "Επαφή σου";
+
+/* A header string informing the user about name collisions in a message request */
+"MESSAGE_REQUEST_NAME_COLLISON_HEADER" = "Αν δεν είσαι σίγουρος/η από ποιόν είναι το αίτημα, ανασκόπησε τις παρακάτω επαφές, και κάνε κάποια ενέργεια.";
+
+/* A header string above the requester's contact info */
+"MESSAGE_REQUEST_NAME_COLLISON_REQUESTER_HEADER" = "Αίτημα";
+
+/* A title string for a view that allows a user to review name collisions for an incoming message request */
+"MESSAGE_REQUEST_NAME_COLLISON_TITLE" = "Ανασκόπηση αιτήματος";
+
+/* A button that updates a known contact's information to resolve a name collision */
+"MESSAGE_REQUEST_NAME_COLLISON_UPDATE_CONTACT_ACTION" = "Ανανέωση επαφής";
+
+/* Button to allow user to review known name collisions with an incoming message request */
+"MESSAGE_REQUEST_REVIEW_NAME_COLLISION" = "Ανασκόπηση αιτήματος";
 
 /* A button used to accept a user on an incoming message request. */
 "MESSAGE_REQUEST_VIEW_ACCEPT_BUTTON" = "Αποδοχή";
@@ -2461,17 +2860,17 @@
 /* A prompt notifying that the user must unblock this group to continue. */
 "MESSAGE_REQUEST_VIEW_BLOCKED_GROUP_PROMPT_V2" = "Κατάργηση της φραγής αυτής της ομάδας; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να καταργήσεις τη φραγή.";
 
+/* A button used to continue a conversation and share your profile. */
+"MESSAGE_REQUEST_VIEW_CONTINUE_BUTTON" = "Συνέχεια";
+
 /* incoming message request button text which deletes a conversation */
 "MESSAGE_REQUEST_VIEW_DELETE_BUTTON" = "Διαγραφή";
 
 /* A prompt notifying that the user must share their profile with this conversation. Embeds {{contact name}}. */
-"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "You must share your profile to continue your chat with %@.";
+"MESSAGE_REQUEST_VIEW_EXISTING_CONTACT_PROMPT_FORMAT" = "Να συνεχίσεις τη συνομιλία σου με τον/την %@ και να μοιραστείς το όνομα και τη φωτογραφία σου μαζί του/της;";
 
 /* A prompt notifying that the user must share their profile with this group. */
-"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "You must share your profile to continue your chat with this group.";
-
-/* A prompt for the user to accept or decline an invite to a group. Embeds {{name of user who invited you}}. */
-"MESSAGE_REQUEST_VIEW_GROUP_INVITE_PROMPT_FORMAT" = "Ο/Η %@ σε προσκάλεσε στην ομάδα. Θες να επιτρέψεις στα μέλη αυτής της ομάδας να σου στέλνουν μηνύματα;";
+"MESSAGE_REQUEST_VIEW_EXISTING_GROUP_PROMPT" = "Να συνεχίσεις τη συνομιλία με αυτή την ομάδα, και να μοιραστείς το όνομα και τη φωτογραφία σου με τα μέλη της;";
 
 /* A prompt asking if the user wants to accept a conversation invite. Embeds {{contact name}}. */
 "MESSAGE_REQUEST_VIEW_NEW_CONTACT_PROMPT_FORMAT" = "Να επιτραπεί στον/στην %@ να σου στείλει μηνύματα, και να μοιραστεί το όνομα και η φωτογραφία σου μαζί του/της; Δεν θα γνωρίζει ότι έχεις δει τα μηνύματα που έστειλε μέχρι να δεχτείς.";
@@ -2482,9 +2881,6 @@
 /* A prompt asking if the user wants to accept a group invite. */
 "MESSAGE_REQUEST_VIEW_NEW_GROUP_PROMPT_V2" = "Θέλεις να μπεις σε αυτή την ομάδα; Δεν θα γνωρίζουν οτι έχεις δει τα μηνυματά τους μέχρι να δεχτείς.";
 
-/* A button used to share your profile with an existing thread. */
-"MESSAGE_REQUEST_VIEW_SHARE_PROFILE_BUTTON" = "Κοινοποίηση προφίλ";
-
 /* A button used to unlock a blocked conversation. */
 "MESSAGE_REQUEST_VIEW_UNBLOCK_BUTTON" = "Κατάργηση φραγής";
 
@@ -2492,22 +2888,10 @@
 "MESSAGE_REQUESTS_CANCEL_REQUEST_BUTTON" = "Ακύρωση αιτήματος";
 
 /* Title for the confirmation alert when cancelling your request to join the group. */
-"MESSAGE_REQUESTS_CANCEL_REQUEST_CONFIRM_TITLE" = "Cancel your request to join this group?";
+"MESSAGE_REQUESTS_CANCEL_REQUEST_CONFIRM_TITLE" = "Ακύρωση του αιτήματός σου να μπεις στην ομάδα;";
 
 /* Indicator that you have requested to join this group. */
-"MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "Your request to join has been sent to the group admin. You’ll be notified when they take action.";
-
-/* Header for message requests splash screen */
-"MESSAGE_REQUESTS_NAMES_SPLASH_TITLE" = "Υποδέξου τα αιτήματα μηνυμάτων";
-
-/* Button to start a create profile name flow from the one time splash screen that appears after upgrading */
-"MESSAGE_REQUESTS_SPLASH_ADD_PROFILE_NAME_BUTTON" = "Προσθήκη ονόματος προφίλ";
-
-/* Body text for message requests splash screen */
-"MESSAGE_REQUESTS_SPLASH_BODY" = "You can now choose to ”Accept” or ”Delete“ a new chat. Names let people know who’s messaging them.";
-
-/* Toast indicating that a profile name has been created. */
-"MESSAGE_REQUESTS_SPLASH_MEGAPHONE_TOAST" = "Το όνομα προφίλ σου έχει αποθηκευθεί.";
+"MESSAGE_REQUESTS_CONVERSATION_REQUEST_INDICATOR" = "Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.";
 
 /* message status for message delivered to their recipient. */
 "MESSAGE_STATUS_DELIVERED" = "Παραδόθηκε";
@@ -2591,7 +2975,7 @@
 "MULTIDEVICE_PAIRING_MAX_RECOVERY" = "Έχεις φτάσει το μέγιστο αριθμό συσκευών που μπορείς να συνδέσεις στο λογαριασμό σου. Αφαίρεσε κάποια συσκευή και ξαναδοκίμασε.";
 
 /* An explanation of the consequences of muting a thread. */
-"MUTE_BEHAVIOR_EXPLANATION" = "You will not receive notifications for muted chats.";
+"MUTE_BEHAVIOR_EXPLANATION" = "Δεν θα λαμβάνεις ειδοποιήσεις για τις συνομιλίες σε σίγαση.";
 
 /* Badge indicating that the user is muted. */
 "MUTED_BADGE" = "Σε σίγαση";
@@ -2601,6 +2985,18 @@
 
 /* No comment provided by engineer. */
 "NETWORK_ERROR_RECOVERY" = "Επιβεβαίωσε πως είσαι συνδεδεμένος/η στο διαδίκτυο και ξαναδοκίμασε.";
+
+/* String representing only the cellular interface */
+"NETWORK_INTERFACE_SET_CELLULAR" = "Μόνο δίκτυο κινητής";
+
+/* String representing the 'never' condition of having no supported network interfaces */
+"NETWORK_INTERFACE_SET_NEVER" = "Ποτέ";
+
+/* String representing only the wifi interface */
+"NETWORK_INTERFACE_SET_WIFI" = "Μόνο Wi-Fi";
+
+/* String representing both wifi and cellular interfaces */
+"NETWORK_INTERFACE_SET_WIFI_CELLULAR" = "Wi-Fi και δεδομένα κινητής";
 
 /* A label the cell that lets you add a new member to a group. */
 "NEW_CONVERSATION_FIND_BY_PHONE_NUMBER" = "Εύρεση με αριθμό τηλεφώνου";
@@ -2619,6 +3015,9 @@
 
 /* Error indicating that a new group could not be created due to network connectivity problems. */
 "NEW_GROUP_CREATION_FAILED_DUE_TO_NETWORK" = "Δεν μπορέσαμε να δημιουργήσουμε την νέα ομάδα. Έλεγξε τη σύνδεσή σου στο διαδίκτυο και ξαναδοκίμασε.";
+
+/* Indicates that a group member does not support New Groups. */
+"NEW_GROUP_CREATION_MEMBER_DOES_NOT_SUPPORT_NEW_GROUPS" = "Δεν υποστηρίζει Ομάδες νέου τύπου";
 
 /* Message for error alert indicating that a group name is required. */
 "NEW_GROUP_CREATION_MISSING_NAME_ALERT_MESSAGE" = "Το όνομα της ομάδας είναι απαραίτητο.";
@@ -2658,6 +3057,9 @@
 
 /* Label for a button that lets users search for contacts by phone number */
 "NO_CONTACTS_SEARCH_BY_PHONE_NUMBER" = "Αναζήτηση επαφών μέσω αριθμού τηλεφώνου";
+
+/* A string describing that the user has no groups in common with another user */
+"NO_GROUPS_IN_COMMON" = "Καμία κοινή ομάδα";
 
 /* Explanation of how to see a conversation. */
 "NO_SELECTED_CONVERSATION_DESCRIPTION" = "Διάλεξε μια επαφή ή μια ομάδα για να αρχίσεις να συζητάς.";
@@ -2716,6 +3118,9 @@
 /* Label for settings UI that allows user to change the notification sound. */
 "NOTIFICATIONS_SECTION_SOUNDS" = "Ήχοι";
 
+/* Label for settings UI that allows user to add a new notification sound. */
+"NOTIFICATIONS_SECTION_SOUNDS_ADD_CUSTOM_SOUND" = "Προσθήκη προσαρμοσμένου ήχου...";
+
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SENDER_AND_MESSAGE" = "Όνομα, περιεχόμενο, και ενέργειες";
 
@@ -2725,7 +3130,7 @@
 /* No comment provided by engineer. */
 "NOTIFICATIONS_SHOW" = "Προβολή";
 
-/* No comment provided by engineer. */
+/* Label for the 'ok' button. */
 "OK" = "ΟΚ";
 
 /* Label indicating that the 2fa pin is exhausted in the 'onboarding 2fa' view. */
@@ -2789,25 +3194,31 @@
 "ONBOARDING_MODE_SWITCH_WARNING_REGISTERING" = "Η σύνδεση του iPhone δεν προτείνεται και θα περιορίσει βασική λειτουργικότητα.";
 
 /* Label for the 'give access' button in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "Ενεργοποίηση δικαιωμάτων";
+"ONBOARDING_PERMISSIONS_ENABLE_PERMISSIONS_BUTTON" = "Να δοθούν δικαιώματα";
 
 /* Explanation in the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_EXPLANATION" = "Notifications let you see when messages arrive and receive updates about new chat activity.";
+"ONBOARDING_PERMISSIONS_EXPLANATION" = "Δίνοντας δικαιώματα για ειδοποιήσεις και επαφές, θα μπορείς να δεις πότε λαμβάνεις μηνύματα και θα σε βοηθήσει να βρεις άτομα που γνωρίζεις. Οι επαφές κρυπτογραφούνται οπότε η υπηρεσία Signal δεν μπορεί να τις δει.";
 
 /* Title of the 'onboarding permissions' view. */
-"ONBOARDING_PERMISSIONS_TITLE" = "Πάρε το μήνυμα";
+"ONBOARDING_PERMISSIONS_TITLE" = "Να δοθούν δικαιώματα";
 
 /* Explanation of the 'onboarding phone number discoverability' view. Embeds {user phone number} */
-"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "Choose who can find you on Signal with your phone number %@";
+"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_EXPLANATION_FORMAT" = "Επέλεξε ποιοί μπορούν να σε βρουν στο Signal χρησιμοποιώντας τον αριθμό σου %@";
 
 /* Title of the 'onboarding phone number discoverability' view. */
-"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Who can find you with your number?";
+"ONBOARDING_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Ποιοί μπορούν να σε βρουν με τον αριθμό σου;";
+
+/* Placeholder string for phone number field during registration */
+"ONBOARDING_PHONE_NUMBER_PLACEHOLDER" = "Ο αριθμός τηλεφώνου σου";
+
+/* Label indicating that registration has been ratelimited. Embeds {{remaining time string}}. */
+"ONBOARDING_PHONE_NUMBER_RATE_LIMIT_WARNING_FORMAT" = "Παρακαλώ περίμενε μερικά λεπτά πριν ξαναπροσπαθήσεις. (%@)";
 
 /* Title of the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_TITLE" = "Γράψε τον αριθμό τηλεφώνου σου για να ξεκινήσεις";
+"ONBOARDING_PHONE_NUMBER_TITLE" = "Εισαγωγή αριθμού τηλεφώνου";
 
 /* Label indicating that the phone number is invalid in the 'onboarding phone number' view. */
-"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "Μη έγκυρος αριθμός";
+"ONBOARDING_PHONE_NUMBER_VALIDATION_WARNING" = "Άκυροος αριθμός τηλεφώνου. Παρακαλώ γράψε έναν έγκυρο αριθμό τηλεφώνου για να εγγραφτείς.";
 
 /* Explanation of the 'onboarding pin attempts exhausted' view when reglock is disabled. */
 "ONBOARDING_PIN_ATTEMPTS_EXHAUSTED_EXPLANATION" = "Σου τέλειωσαν οι απόπειρες για το PIN, αλλά μπορείς να αποκτήσεις πρόσβαση στο λογαριασμό Signal σου δημιουργώντας νέο PIN. Για την ιδιωτικότητα και την ασφάλειά σου ο λογαριασμός δεν θα έχει προϋπάρχουσες πληροφορίες προφίλ και ρυθμίσεις.";
@@ -2828,10 +3239,19 @@
 "ONBOARDING_PIN_ATTEMPTS_EXHAUSTED_TITLE" = "Λάθος ΡΙΝ";
 
 /* Title of the 'onboarding PIN' view. */
-"ONBOARDING_PIN_EXPLANATION" = "Γράψε το PIN που δημιούργησες για τον λογαριαμό σου. Αυτό είναι διαφορετικό από τον κωδικό επιβεβαίωσης που έλαβες μέσω SMS.";
+"ONBOARDING_PIN_EXPLANATION" = "Γράψε το PIN που δημιούργησες για τον λογαριαμό σου. Αυτό είναι διαφορετικό από τον κωδικό επαλήθευσης που έλαβες μέσω SMS.";
 
 /* Title of the 'onboarding PIN' view. */
 "ONBOARDING_PIN_TITLE" = "Γράψε το PIN σου";
+
+/* Title label for profile creation step of onboarding */
+"ONBOARDING_PROFILE_CREATION_TITLE" = "Το προφίλ σου";
+
+/* Placeholder text for the family name field of the profile creation view. */
+"ONBOARDING_PROFILE_FAMILY_NAME_FIELD" = "Επώνυμο (προαιρετικά)";
+
+/* Placeholder text for the given name field of the profile creation view. */
+"ONBOARDING_PROFILE_GIVEN_NAME_FIELD" = "Όνομα (απαιτείται)";
 
 /* Link to the 'terms and privacy policy' in the 'onboarding splash' view. */
 "ONBOARDING_SPLASH_TERM_AND_PRIVACY_POLICY" = "Όροι & Πολιτική Απορρήτου";
@@ -2842,38 +3262,29 @@
 /* Label for the link that lets users change their phone number in the onboarding views. */
 "ONBOARDING_VERIFICATION_BACK_LINK" = "Λάθος αριθμός;";
 
-/* Format for the label of the 'sent code' label of the 'onboarding verification' view. Embeds {{the time until the code can be resent}}. */
-"ONBOARDING_VERIFICATION_CODE_COUNTDOWN_FORMAT" = "Δεν έλαβα κωδικό (διαθέσιμος σε %@)";
+/* Label for button to perform verification with a phone call. */
+"ONBOARDING_VERIFICATION_CALL_ME_BUTTON" = "Καλέστε με";
 
-/* action sheet item shown after a number of failures to receive a verificaiton SMS during registration */
-"ONBOARDING_VERIFICATION_EMAIL_SIGNAL_SUPPORT" = "Επικοινωνία με την Υποστήριξη Signal";
+/* Format string for button counting down time until phone call verification can be performed. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_CALL_ME_COUNTDOWN_FORMAT" = "\"Καλέστε με\" σε %@";
+
+/* Label for a progress spinner currently validating code */
+"ONBOARDING_VERIFICATION_CODE_VALIDATION_PROGRESS_LABEL" = "Ο κωδικός επαληθεύεται...";
 
 /* Label indicating that the verification code is incorrect in the 'onboarding verification' view. */
 "ONBOARDING_VERIFICATION_INVALID_CODE" = "Ο κωδικός είναι λάθος";
 
-/* Label for link that can be used when the original code did not arrive. */
-"ONBOARDING_VERIFICATION_ORIGINAL_CODE_MISSING_LINK" = "Δεν έλαβα κωδικό";
+/* Label for button to resend SMS verification code. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_BUTTON" = "Αποστολή κωδικού";
 
-/* Message for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_MESSAGE" = "Παρακαλώ βεβαιώσου πως η συσκευή έχει σήμα και μπορεί να λάβει μηνύματα SMS.";
-
-/* Title for the 'resend code' alert in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_ALERT_TITLE" = "Δεν ήρθε κωδικός;";
-
-/* Label for the 'resend code by SMS' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_SMS_BUTTON" = "Αποστολή κωδικού";
-
-/* Label for the 'resend code by voice' button in the 'onboarding verification' view. */
-"ONBOARDING_VERIFICATION_RESEND_CODE_BY_VOICE_BUTTON" = "Καλέστε με αντ' αυτού";
-
-/* Label for link that can be used when the resent code did not arrive. */
-"ONBOARDING_VERIFICATION_RESENT_CODE_MISSING_LINK" = "Δεν ήρθε κωδικός, ακόμα;";
+/* Format string for button counting down time until SMS code can be resent. Embeds {{time remaining}}. */
+"ONBOARDING_VERIFICATION_RESEND_CODE_COUNTDOWN_FORMAT" = "Επαναποστολή κωδικού σε %@";
 
 /* Format for the title of the 'onboarding verification' view. Embeds {{the user's phone number}}. */
 "ONBOARDING_VERIFICATION_TITLE_DEFAULT_FORMAT" = "Γράψε τον κωδικό που στείλαμε στο %@";
 
-/* Format for the title of the 'onboarding verification' view after the verification code has been resent. Embeds {{the user's phone number}}. */
-"ONBOARDING_VERIFICATION_TITLE_RESENT_FORMAT" = "Μόλις ξαναστείλαμε κωδικό στο %@";
+/* Title label for the onboarding verification page */
+"ONBOARDING_VERIFICATION_TITLE_LABEL" = "Κωδικός επαλήθευσης";
 
 /* Button text which opens the settings app */
 "OPEN_SETTINGS_BUTTON" = "Ρυθμίσεις";
@@ -2890,23 +3301,17 @@
 /* info message text in conversation view. {embeds callee name} */
 "OUTGOING_CALL_FORMAT" = "Κάλεσες τον/-ην %@";
 
-/* Error indicating that a PDF could not be displayed. */
-"PDF_VIEW_COULD_NOT_RENDER" = "Το PDF δεν μπορεί να προβληθεί";
-
-/* Navbar title for for PDF view. */
-"PDF_VIEW_TITLE" = "PDF";
-
 /* Title of 'accept member request to join group' button. */
 "PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_BUTTON" = "Προσθήκη σε Ομάδα";
 
 /* Title of 'accept member request to join group' confirmation alert. Embeds {{ the name of the requesting group member. }}. */
-"PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Add “%@” to the group?";
+"PENDING_GROUP_MEMBERS_ACCEPT_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Προσθήκη του/της \"%@\" στην ομάδα;";
 
 /* Title of 'deny member request to join group' button. */
-"PENDING_GROUP_MEMBERS_DENY_REQUEST_BUTTON" = "Deny Request";
+"PENDING_GROUP_MEMBERS_DENY_REQUEST_BUTTON" = "Απόρριψη αιτήματος";
 
 /* Title of 'deny member request to join group' confirmation alert. Embeds {{ the name of the requesting group member. }}. */
-"PENDING_GROUP_MEMBERS_DENY_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Deny request from “%@”?";
+"PENDING_GROUP_MEMBERS_DENY_REQUEST_CONFIRMATION_TITLE_FORMAT" = "Απόρριψη αιτήματος του/της \"%@\";";
 
 /* Format for label indicating the a group member has invited 1 other user to the group. Embeds {{ the name of the inviting group member. }}. */
 "PENDING_GROUP_MEMBERS_MEMBER_INVITED_1_USER_FORMAT" = "Ο/Η %@ προσκάλεσε 1 άτομο";
@@ -2915,22 +3320,22 @@
 "PENDING_GROUP_MEMBERS_MEMBER_INVITED_N_USERS_FORMAT" = "Ο/Η %1$@ προσκάλεσε %2$@ άτομα";
 
 /* Label indicating that a group has no pending member requests. */
-"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "There are no pending member requests.";
+"PENDING_GROUP_MEMBERS_NO_PENDING_MEMBER_REQUESTS" = "Δεν υπάρχουν αιτήματα μελών σε εκκρεμότητα.";
 
 /* Label indicating that a group has no pending members. */
 "PENDING_GROUP_MEMBERS_NO_PENDING_MEMBERS" = "Δεν υπάρχουν προσκλήσεις";
 
 /* Message indicating that a request to join the group was successfully approved. Embeds {{ the name of the approved user }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_APPROVED_FORMAT" = "Added “%@“.";
+"PENDING_GROUP_MEMBERS_REQUEST_APPROVED_FORMAT" = "Ο/Η \"%@\" προστέθηκε.";
 
 /* Format for banner indicating that there are pending member requests to join the group. Embeds {{ the number of pending member requests }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_BANNER_FORMAT" = "%@ pending member requests.";
+"PENDING_GROUP_MEMBERS_REQUEST_BANNER_FORMAT" = "%@ αιτήματα μελών σε εκκρεμότητα.";
 
 /* Label for the 'view requests' button in the pending member requests banner. */
-"PENDING_GROUP_MEMBERS_REQUEST_BANNER_VIEW_REQUESTS" = "View Requests";
+"PENDING_GROUP_MEMBERS_REQUEST_BANNER_VIEW_REQUESTS" = "Προβολή αιτημάτων";
 
 /* Message indicating that a request to join the group was successfully denied. Embeds {{ the name of the denied user }}. */
-"PENDING_GROUP_MEMBERS_REQUEST_DENIED_FORMAT" = "Denied “%@“.";
+"PENDING_GROUP_MEMBERS_REQUEST_DENIED_FORMAT" = "Ο/Η \"%@\" απορρίφθηκε.";
 
 /* Format for 'revoke invalid 1 invite' item. */
 "PENDING_GROUP_MEMBERS_REVOKE_INVALID_INVITE_1" = "Ανάκληση άκυρης πρόσκλησης";
@@ -2957,7 +3362,7 @@
 "PENDING_GROUP_MEMBERS_SECTION_FOOTER_INVITES_FROM_OTHER_MEMBERS" = "Δεν εμφανίζονται λεπτομέρειες των ατόμων που έχουν προσκληθεί από άλλα μέλη της ομάδας. Αν οι προσκεκλημένοι επιλέξουν να δεχτούν την πρόσκληση, οι πληροφορίες τους θα μοιραστούν με την ομάδα εκείνη την ώρα. Δεν θα μπορούν να δουν οποιαδήποτε μηνύματα μέχρι να δεχτούν την πρόσκληση.";
 
 /* Footer for the 'pending member requests' section of the 'member requests and invites' view. Embeds {{ the name of the group }}. */
-"PENDING_GROUP_MEMBERS_SECTION_FOOTER_PENDING_MEMBER_REQUESTS_FORMAT" = "People on this list are attempting to join “%@” via the group link.";
+"PENDING_GROUP_MEMBERS_SECTION_FOOTER_PENDING_MEMBER_REQUESTS_FORMAT" = "Τα άτομα σε αυτή τη λίστα προσπαθούν να μπουν στην ομάδα \"%@\" μέσω του συνδέσμου της ομάδας.";
 
 /* Title for the 'invalid invites' section of the 'member requests and invites' view. */
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_INVALID_INVITES" = "Άκυρες προσκλήσεις";
@@ -2966,7 +3371,7 @@
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_INVITES_FROM_OTHER_MEMBERS" = "Προσκλήσεις από άλλα μέλη της ομάδας";
 
 /* Title for the 'pending member requests' section of the 'member requests and invites' view. */
-"PENDING_GROUP_MEMBERS_SECTION_TITLE_PENDING_MEMBER_REQUESTS" = "Pending Member Requests";
+"PENDING_GROUP_MEMBERS_SECTION_TITLE_PENDING_MEMBER_REQUESTS" = "Αιτήματα μελών σε εκκρεμότητα";
 
 /* Title for the 'people you invited' section of the 'member requests and invites' view. */
 "PENDING_GROUP_MEMBERS_SECTION_TITLE_PEOPLE_YOU_INVITED" = "Άτομα που έχεις προσκαλέσει";
@@ -2996,37 +3401,37 @@
 "PER_MESSAGE_EXPIRATION_VIEWED" = "Αναγνωσμένο";
 
 /* A user friendly name for the 'everybody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY" = "Everybody";
+"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY" = "Όλοι";
 
 /* A user friendly description of the 'everybody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY_DESCRIPTION" = "Anyone who has your phone number in their contacts will see you as a contact on Signal. Others will be able to find you in Search.";
+"PHONE_NUMBER_DISCOVERABILITY_EVERYBODY_DESCRIPTION" = "Οποιοσδήποτε έχει τον αριθμό τηλεφώνου σου στις επαφές του/της, θα μπορεί να σε δει ως επαφή στο Signal. Άλλοι θα μπορούν να σε βρουν στην αναζήτηση.";
 
 /* A user friendly name for the 'nobody' phone number discoverability mode. */
 "PHONE_NUMBER_DISCOVERABILITY_NOBODY" = "Κανένας";
 
 /* A user friendly description of the 'nobody' phone number discoverability mode. */
-"PHONE_NUMBER_DISCOVERABILITY_NOBODY_DESCRIPTION" = "Nobody on Signal will be able to find you with your phone number. You won’t be visible as contact for people who have your phone number in their contacts and others won’t be able to find you with your phone number in search.";
+"PHONE_NUMBER_DISCOVERABILITY_NOBODY_DESCRIPTION" = "Κανένας στο Signal δεν θα μπορεί να σε βρει με τον αριθμό τηλεφώνου σου. Δεν θα είσαι ορατός/η ως επαφή σε άτομα που έχουν τον αριθμό σου στις επαφές τους, και άλλα άτομα δεν θα μπορούν να σε βρούν με τον αριθμό σου στην αναζήτηση.";
 
 /* A format for a label showing an example phone number. Embeds {{the example phone number}}. */
 "PHONE_NUMBER_EXAMPLE_FORMAT" = "Παράδειγμα: %@";
 
 /* A user friendly name for the 'contacts only' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_CONTACTS_ONLY" = "My Contacts";
+"PHONE_NUMBER_SHARING_CONTACTS_ONLY" = "Οι επαφές μου";
 
 /* A user friendly description of the 'contacts only' phone number sharing mode. */
 "PHONE_NUMBER_SHARING_CONTACTS_ONLY_DESCRIPTION" = "Μόνο οι επαφές σου θα βλέπουν τον αριθμό τηλεφώνου σου στο Signal.";
 
 /* A user friendly name for the 'everybody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_EVERYBODY" = "Everybody";
+"PHONE_NUMBER_SHARING_EVERYBODY" = "Όλοι";
 
 /* A user friendly description of the 'everybody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_EVERYBODY_DESCRIPTION" = "Your phone number will be visible to people and groups you message. People who have your number in their phone contacts will also see it on Signal.";
+"PHONE_NUMBER_SHARING_EVERYBODY_DESCRIPTION" = "Ο αριθμός τηλεφώνου σου θα είναι ορατός σε όλα τα άτομα και τις ομάδες που στέλνεις μηνύματα. Τα άτομα που έχουν τον αριθμό σου στις επαφές τους θα μπορούν επίσης να το δουν στο Signal.";
 
 /* A user friendly name for the 'nobody' phone number sharing mode. */
 "PHONE_NUMBER_SHARING_NOBODY" = "Κανένας";
 
 /* A user friendly description of the 'nobody' phone number sharing mode. */
-"PHONE_NUMBER_SHARING_NOBODY_DESCRIPTION" = "Nobody will see your phone number on Signal.";
+"PHONE_NUMBER_SHARING_NOBODY_DESCRIPTION" = "Κανένας δεν θα μπορεί να δει τον αριθμό τηλεφώνου σου στο Signal.";
 
 /* Format for phone number label with an index. Embeds {{Phone number label (e.g. 'home')}} and {{index, e.g. 2}}. */
 "PHONE_NUMBER_TYPE_AND_INDEX_NAME_FORMAT" = "%@ %@";
@@ -3077,7 +3482,7 @@
 "PHOTO_PICKER_UNNAMED_COLLECTION" = "Ανώνυμο άλμπουμ";
 
 /* Pressing this button pins a thread */
-"PIN_ACTION" = "Pin";
+"PIN_ACTION" = "Καρφίτσωμα";
 
 /* Label indicating the user must use at least 4 characters */
 "PIN_CREATION_ALPHANUMERIC_HINT" = "Το PIN πρέπει να έχει τουλάχιστον 4 χαρακτήρες";
@@ -3182,7 +3587,7 @@
 "PIN_REMINDER_MEGAPHONE_TOMORROW_TOAST" = "Θα σ' το υπενθυμίσουμε πάλι αύριο.";
 
 /* Toast indicating that we'll ask you for your PIN again in 2 weeks. */
-"PIN_REMINDER_MEGAPHONE_TWO_WEEK_TOAST" = "Θα σ' το υπενθυμίσουμε πάλι σε μερικές εβδομάδες.";
+"PIN_REMINDER_MEGAPHONE_TWO_WEEK_TOAST" = "Θα σ' το υπενθυμίσουμε ξανα σε μερικές εβδομάδες.";
 
 /* Toast indicating that we'll ask you for your PIN again in a week. */
 "PIN_REMINDER_MEGAPHONE_WEEK_TOAST" = "Θα σ' το υπενθυμίσουμε πάλι σε μια εβδομάδα.";
@@ -3197,7 +3602,7 @@
 "PIN_REMINDER_TOO_SHORT_ERROR" = "Το ΡΙΝ πρέπει να έχει τουλάχιστον 4 ψηφία.";
 
 /* An explanation that you have already pinned the maximum number of conversations. */
-"PINNED_CONVERSATION_LIMIT" = "You can only pin up to 4 chats.";
+"PINNED_CONVERSATION_LIMIT" = "Μπορείς να καρφιτσώσες μόνο μέχρι 4 συνομιλίες.";
 
 /* The title for pinned conversation section on the conversation list */
 "PINNED_SECTION_TITLE" = "Καρφιτσωμένο";
@@ -3242,7 +3647,7 @@
 "PRIVACY_VERIFICATION_FAILED_I_HAVE_WRONG_KEY_FOR_THEM" = "Αυτός δεν μοιάζει με τον αριθμό ασφαλείας με τον/την %@. Επιβεβαιώνεις την σωστή επαφή;";
 
 /* Alert body */
-"PRIVACY_VERIFICATION_FAILED_MISMATCHED_SAFETY_NUMBERS_IN_CLIPBOARD" = "The number in your clipboard doesn't look like the correct safety number for this chat.";
+"PRIVACY_VERIFICATION_FAILED_MISMATCHED_SAFETY_NUMBERS_IN_CLIPBOARD" = "Ο αριθμός στο πρόχειρο δεν μοιάζει με τον σωστό αριθμό ασφαλείας για αυτή τη συνομιλία.";
 
 /* Alert body for user error */
 "PRIVACY_VERIFICATION_FAILED_NO_SAFETY_NUMBERS_IN_CLIPBOARD" = "Το Signal δεν βρήκε αριθμό ασφαλείας στο πρόχειρό σου. Τον αντέγραψες σωστά;";
@@ -3271,14 +3676,50 @@
 /* No comment provided by engineer. */
 "PROCEED_BUTTON" = "Συνέχεια";
 
+/* Placeholder text for the bio field of the profile bio view. */
+"PROFILE_BIO_VIEW_BIO_PLACEHOLDER" = "Γράψε δυο πράγματα για σένα...";
+
+/* The 'Be kind' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_BE_KIND" = "Κάνε το καλό και ρίξτο στο γιαλό";
+
+/* The 'Coffee lover' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_COFFEE_LOVER" = "Λάτρης του καφέ";
+
+/* The 'Encrypted' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_ENCRYPTED" = "Έχει κρυπτογραφηθεί";
+
+/* The 'free to chat' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_FREE_TO_CHAT" = "Ελάτε να συζητήσουμε";
+
+/* The 'Speak Freely' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_SPEAK_FREELY" = "Μίλα ελεύθερα";
+
+/* The 'Taking a break' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_TAKING_A_BREAK" = "Κάνω διάλειμμα";
+
+/* The 'Working on something new' default bio in the profile bio view. */
+"PROFILE_BIO_VIEW_DEFAULT_BIO_WORKING_ON_SOMETHING_NEW" = "Ετοιμάζω κάτι καινούργιο";
+
+/* Title for the profile bio view. */
+"PROFILE_BIO_VIEW_TITLE" = "Πληροφορίες";
+
+/* Title for the profile bio view. Embeds {{ the number of characters that can be added to the profile bio without hitting the length limit }}. */
+"PROFILE_BIO_VIEW_TITLE_FORMAT" = "Πληροφορίες (%@)";
+
 /* The copy rendered in a conversation when someone in your address book changes their profile name. Embeds {contact name}, {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_CONTACT_FORMAT" = "Ο/Η %@ άλλαξε το όνομα προφίλ του/-ης από %@ σε %@.";
 
 /* The copy rendered in a conversation when someone not in your address book changes their profile name. Embeds {old profile name}, {new profile name} */
 "PROFILE_NAME_CHANGE_SYSTEM_NONCONTACT_FORMAT" = "Ο/Η %@ άλλαξε το όνομα προφίλ του/-ης σε %@.";
 
+/* Button to add a 'bio' to the user's profile in the profile view. */
+"PROFILE_VIEW_ADD_BIO_TO_PROFILE" = "Προσθήκη στο προφίλ";
+
 /* Action Sheet title prompting the user for a profile avatar */
 "PROFILE_VIEW_AVATAR_ACTIONSHEET_TITLE" = "Επιλογή Φωτογραφίας Προφίλ";
+
+/* Header for the 'bio' section of the profile view. */
+"PROFILE_VIEW_BIO_SECTION_HEADER" = "Πληροφορίες";
 
 /* Label for action that clear's the user's profile avatar */
 "PROFILE_VIEW_CLEAR_AVATAR" = "Αφαίρεση Φωτογραφίας";
@@ -3311,7 +3752,7 @@
 "PROFILE_VIEW_NO_CONNECTION" = "Το προφίλ μπορεί να ενημερωθεί μόνο όταν υπάρχει σύνδεση στο διαδίκτυο.";
 
 /* Description of the user profile. */
-"PROFILE_VIEW_PROFILE_DESCRIPTION" = "Your profile is end-to-end encrypted. Your profile and changes to it will be visible to your contacts, when you initiate or accept new chats, and when you join new groups.";
+"PROFILE_VIEW_PROFILE_DESCRIPTION" = "Το προφίλ σου είναι κρυπτογραφημένο από άκρο σε άκρο. Το προφίλ σου και οι αλλαγές σε αυτό θα είναι ορατές στις επαφές σου και μόλις ξεκινάς ή δέχεσαι νέες συνομιλίες. ";
 
 /* Button to save the profile view in the profile view. */
 "PROFILE_VIEW_SAVE_BUTTON" = "Αποθήκευση";
@@ -3481,6 +3922,12 @@
 /* alert body during registration */
 "REGISTRATION_ERROR_BLANK_VERIFICATION_CODE" = "Δεν μπορούμε να ενεργοποιήσουμε τον λογαριασμό σου μέχρι να επιβεβαιώσεις τον κωδικό που σου στείλαμε.";
 
+/* Alert body for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_BODY" = "Για να συνεχίσεις, έλεγξε τη σύνδεσή σου στο διαδίκτυο και προσπάθησε ξανά.";
+
+/* Alert title for network failure during registration */
+"REGISTRATION_ERROR_NETWORK_FAILURE_ALERT_TITLE" = "Έλεγχος σύνδεσης";
+
 /* No comment provided by engineer. */
 "REGISTRATION_NON_VALID_NUMBER" = "Αυτή η μορφή αριθμού δεν υποστηρίζεται, παρακαλώ επικοινώνησε με την υποστήριξη.";
 
@@ -3491,7 +3938,7 @@
 "REGISTRATION_RESTRICTED_MESSAGE" = "Θα πρέπει να εγγραφείς πριν μπορέσεις να στείλεις ένα μήνυμα.";
 
 /* Alert view title */
-"REGISTRATION_VERIFICATION_FAILED_TITLE" = "Η επιβεβαίωση απέτυχε";
+"REGISTRATION_VERIFICATION_FAILED_TITLE" = "Η επαλήθευση απέτυχε";
 
 /* Error message indicating that registration failed due to a missing or incorrect verification code. */
 "REGISTRATION_VERIFICATION_FAILED_WRONG_CODE_DESCRIPTION" = "Οι αριθμοί που υπέβαλες δεν συμφωνούν με αυτούς που σου έχουμε στείλει. Θες να το ελέγξεις ξανά;";
@@ -3511,6 +3958,18 @@
 /* Title of alert indicating that users needs to enter a phone number to register. */
 "REGISTRATION_VIEW_NO_PHONE_NUMBER_ALERT_TITLE" = "Κενός αριθμός τηλεφώνου";
 
+/* Message for confirmation alert during phone number registration. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_MESSAGE" = "Ένας κωδικός επαλήθευσης θα σταλθεί σε αυτό τον αριθμό. Είναι ο παραπάνω αριθμός τηλεφώνου σου σωστός;";
+
+/* Title for confirmation alert during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_ALERT_TITLE_FORMAT" = "Επιβεβαίωση αριθμού: %@";
+
+/* A button allowing user to cancel registration and edit a phone number */
+"REGISTRATION_VIEW_PHONE_NUMBER_CONFIRMATION_EDIT_BUTTON" = "Eπεξεργασία";
+
+/* Label for the progress spinner shown during phone number registration. Embeds {{phone number}}. */
+"REGISTRATION_VIEW_PHONE_NUMBER_SPINNER_LABEL_FORMAT" = "Επαλήθευση %@...";
+
 /* notification action */
 "REJECT_CALL_BUTTON_TITLE" = "Απόρριψη";
 
@@ -3518,13 +3977,37 @@
 "RELAY_REGISTERED_ERROR_RECOVERY" = "Ο αριθμός που προσπαθείς να καταχωρήσεις έχει ήδη καταχωρηθεί σε κάποιον άλλον διακομιστή, παρακαλώ απεγγράψου από εκεί και δοκίμασε ξανά. ";
 
 /* The title for the 'replace group admin' view. */
-"REPLACE_ADMIN_VIEW_TITLE" = "Επιλογή νέου διαχειριστή/τριας";
+"REPLACE_ADMIN_VIEW_TITLE" = "Επιλογή νέου διαχειριστή";
 
 /* No comment provided by engineer. */
 "REREGISTER_FOR_PUSH" = "Επανεγγραφή για λήψη ειδοποιήσεων";
 
+/* Body for research megaphone */
+"RESEARCH_MEGAPHONE_BODY" = "Για να κάνουμε το Signal τη καλύτερη εφαρμογή επικοινωνίας στο κόσμο, θα εκτιμούσαμε πραγματικά να ακούσουμε τη γνώμη σου.";
+
+/* Title for research megaphone */
+"RESEARCH_MEGAPHONE_TITLE" = "Πες στο Signal τη γνώμη σου";
+
+/* Text for the research modal footer */
+"RESEARCH_MODAL_FOOTER" = "Αυτή η έρευνα φιλοξενείται από το Surveygizmo στον ασφαλή σύνδεσμο surveys.signalusers.org";
+
+/* Button text for declining the research modal */
+"RESEARCH_MODAL_NO_THANKS" = "Όχι, ευχαριστώ";
+
+/* Text explaining why the user should take the survey */
+"RESEARCH_MODAL_PLEA" = "<bold>Πιστεύουμε στην ιδιωτικότητα.</bold>\n\nΤο Signal δεν σε παρακολουθεί ούτε συλλέγει τα δεδομένα σου. Για να βελτιώσουμε το Signal για όλους, βασιζόμαστε στα σχόλια των χρηστών <bold>και θα εκτιμούσαμε πολύ να ακούσουμε τα δικά σου</bold>.\n\nΚάνουμε μαι έρευνα που θα μας βοηθήσει να καταλάβουμε πως χρησιμοποιείς το Signal. Η έρευνά μας δεν συλλέγει δεδομένα που θα μπορούσαν να αποκαλύψουν την ταυτότητά σου. Αν ενδιαφέρεσαι να μας βοηθήσεις με περαιτέρω πληροφορίες και σχόλια, μπορείς να μας δώσεις στοιχεία επικοινωνίας.\n\nΑν έχεις μερικά λεπτά διαθέσιμα, και έχεις κάτι να σχολιάσεις, με χαρά θα θέλαμε να το ακούσουμε.";
+
+/* Button text for taking the research survey */
+"RESEARCH_MODAL_TAKE_SURVEY" = "Πάρε μέρος στην έρευνα";
+
+/* Title for the research megaphone modal */
+"RESEARCH_MODAL_TITLE" = "Έρευνα Signal";
+
 /* Generic text for button that retries whatever the last action was. */
 "RETRY_BUTTON_TEXT" = "Ξαναδοκίμασε";
+
+/* Button to return to current group call */
+"RETURN_CALL_PILL_BUTTON" = "Επιστροφή";
 
 /* button title to confirm adding a recipient to a group when their safety number has recently changed */
 "SAFETY_NUMBER_CHANGED_CONFIRM_ADD_TO_GROUP_ACTION" = "Προσθήκη στην ομάδα παρ' όλα αυτά";
@@ -3539,7 +4022,7 @@
 "SAFETY_NUMBER_CONFIRMATION_MESSAGE" = "Τα παρακάτω άτομα ίσως επανεγκατεστησαν το Signal ή άλλαξαν συσκευή. Επαλήθευσε τους αριθμούς ασφαλείας με αυτά, για να διασφαλίσεις την ιδιωτικότητα.";
 
 /* Text explaining that the given contact previously had their safety number verified. */
-"SAFETY_NUMBER_CONFIRMATION_PREVIOUSLY_VERIFIED" = "Προηγουμένως Eπαληθευμένοι";
+"SAFETY_NUMBER_CONFIRMATION_PREVIOUSLY_VERIFIED" = "Προηγουμένως Επιβεβαιωμένοι";
 
 /* Title for the 'safety number confirmation' view */
 "SAFETY_NUMBER_CONFIRMATION_TITLE" = "Αλλαγές αριθμού ασφαλείας";
@@ -3835,8 +4318,23 @@
 /* No comment provided by engineer. */
 "SEND_SMS_INVITE_TITLE" = "Θέλεις να προσκαλέσεις τον ακόλουθο αριθμό στο Signal:";
 
+/* Description for the session refresh alert */
+"SESSION_REFRESH_ALERT_MESSAGE" = "Το Signal χρησιμοποιεί κρυπτογράφηση από την πηγή μέχρι τον προορισμό (end to end) και έτσι ίσως χρειαστεί να ανανεώσει τις συνομιλίες σου ανά διαστήματα. Αυτό δεν επηρεάζει την ασφάλεια των συνομιλιών σου, αλλά ίσως δεν λάβεις κάποιο μήνυμα από τη συγκεκριμένη συνομιλία. Σε αυτή την περίπτωση μπορείς να ζητήσεις να σου ξαναστείλουν το μήνυμα.";
+
+/* Title for the session refresh alert */
+"SESSION_REFRESH_ALERT_TITLE" = "Η συνομιλία ανανεώθηκε";
+
+/* Title for the wallpaper choose from photos option */
+"SET_WALLPAPER_CHOOSE_PHOTO" = "Επιλογή από Φωτογραφίες";
+
+/* Title for the wallpaper presets section */
+"SET_WALLPAPER_PRESETS" = "Προεπιλογές";
+
+/* Title for the set wallpaper settings view. */
+"SET_WALLPAPER_TITLE" = "Ορισμός ταπετσαρίας";
+
 /* Navbar title */
-"SETTINGS_ABOUT" = "Σχετικά";
+"SETTINGS_ABOUT" = "Πληροφορίες";
 
 /* Title for the 'add to block list' view. */
 "SETTINGS_ADD_TO_BLOCK_LIST_TITLE" = "Φραγή";
@@ -3891,6 +4389,12 @@
 
 /* table cell label */
 "SETTINGS_ADVANCED_VIEW_ERROR_LOG" = "Αρχεία καταγραφής σφαλμάτων";
+
+/* Footer for avatar section in appearance settings */
+"SETTINGS_APPEARANCE_AVATAR_FOOTER" = "Εμφάνιση των φωτογραφιών των επαφών του συστήματος, αν είναι διαθέσιμες. ";
+
+/* Title for switch to toggle preference between contact and profile avatars */
+"SETTINGS_APPEARANCE_AVATAR_PREFERENCE_LABEL" = "Χρήση των φωτογραφιών των επαφών του συστήματος";
 
 /* The title for the theme section in the appearance settings. */
 "SETTINGS_APPEARANCE_THEME_TITLE" = "Θέμα";
@@ -3950,10 +4454,10 @@
 "SETTINGS_BACKUP_STATUS_SUCCEEDED" = "Η δημιουργία αντιγράφου ασφαλείας ήταν επιτυχής";
 
 /* A label for the 'add phone number' button in the block list table. */
-"SETTINGS_BLOCK_LIST_ADD_BUTTON" = "Προσθήκη φραγμένου/ης χρήστη/τριας";
+"SETTINGS_BLOCK_LIST_ADD_BUTTON" = "Προσθήκη φραγμένου χρήστη";
 
 /* An explanation of the 'blocked' setting */
-"SETTINGS_BLOCK_LIST_FOOTER" = "List of contacts and groups you have blocked.";
+"SETTINGS_BLOCK_LIST_FOOTER" = "Λίστα επαφών και ομάδων που έχεις μπλοκάρει.";
 
 /* A label that indicates the user has no Signal contacts. */
 "SETTINGS_BLOCK_LIST_NO_CONTACTS" = "Δεν έχεις επαφές στο Signal.";
@@ -3971,10 +4475,34 @@
 "SETTINGS_CALLING_HIDES_IP_ADDRESS_PREFERENCE_TITLE_DETAIL" = "Αναμετάδοση όλων των κλήσεων μέσω ενός διακομιστή Signal για να μην αποκαλύπτεται η διεύθυνση IP σου στην επαφή σου. Η ενεργοποίηση θα μειώσει την ποιότητα των κλήσεων.";
 
 /* No comment provided by engineer. */
-"SETTINGS_CLEAR_HISTORY" = "Clear Chat History";
+"SETTINGS_CLEAR_HISTORY" = "Εκκαθάριση ιστορικού συνομιλιών";
 
 /* No comment provided by engineer. */
 "SETTINGS_COPYRIGHT" = "Πνευματική ιδιοκτησία Signal Messenger\nΥπό την άδεια GPLv3";
+
+/* Label for the 'data' section of the app settings. */
+"SETTINGS_DATA" = "Χρήση δεδομένων";
+
+/* Item title for the low bandwidth call setting */
+"SETTINGS_DATA_CALL_LOW_BANDWIDTH_ITEM_TITLE" = "Χρήση λιγότερων δεδομένων";
+
+/* Section footer for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_FOOTER" = "Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση";
+
+/* Section header for the call section in data settings */
+"SETTINGS_DATA_CALL_SECTION_HEADER" = "Κλήσεις";
+
+/* Footer for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_FOOTER" = "Τα μηνύματα φωνής, τα μέσα μιας μόνο προβολής και τα αυτοκόλλητα (κάτω από 100kb) πάντα κατεβαίνουν αυτόματα.";
+
+/* Header for the 'media auto-download' section in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_HEADER" = "ΑΥΤΟΜΑΤΟ ΚΑΤΕΒΑΣΜΑ ΠΟΛΥΜΕΣΩΝ";
+
+/* Label for for the 'reset media auto-download settings' button in the data settings. */
+"SETTINGS_DATA_MEDIA_AUTO_DOWNLOAD_RESET" = "Επαναφορά ρυθμίσεων αυτόματου κατεβάσματος";
+
+/* The title for the data settings. */
+"SETTINGS_DATA_TITLE" = "Χρήση δεδομένων";
 
 /* No comment provided by engineer. */
 "SETTINGS_DELETE_ACCOUNT_BUTTON" = "Διαγραφή λογαριασμού";
@@ -3995,7 +4523,7 @@
 "SETTINGS_HELP" = "Βοήθεια";
 
 /* Section header */
-"SETTINGS_HISTORYLOG_TITLE" = "Clear Chat History";
+"SETTINGS_HISTORYLOG_TITLE" = "Εκκαθάριση ιστορικού συνομιλιών";
 
 /* No comment provided by engineer. */
 "SETTINGS_INFORMATION_HEADER" = "Πληροφορίες";
@@ -4009,26 +4537,50 @@
 /* Label for settings view that allows user to change the notification sound. */
 "SETTINGS_ITEM_NOTIFICATION_SOUND" = "Ήχος μηνύματος";
 
+/* Label for settings view that allows user to change the wallpaper. */
+"SETTINGS_ITEM_WALLPAPER" = "Ταπετσαρία συνομιλίας";
+
 /* table cell label */
 "SETTINGS_LEGAL_TERMS_CELL" = "Όροι & Πολιτική απορρήτου";
 
 /* Setting for enabling & disabling link previews. */
-"SETTINGS_LINK_PREVIEWS" = "Generate Link Previews";
+"SETTINGS_LINK_PREVIEWS" = "Δημιουργία προεπισκοπήσεων συνδέσμων";
 
 /* Footer for setting for enabling & disabling link previews. */
 "SETTINGS_LINK_PREVIEWS_FOOTER" = "Λάβε προεπισκόπεις συνδέσμων απ' ευθείας από σελίδες για τα μηνύματα που στέλνεις.";
 
+/* Label for the 'never' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_NEVER" = "Ποτέ";
+
+/* Label for the 'wifi and cellular' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_AND_CELLULAR" = "Wi-Fi και δεδομένα κινητής";
+
+/* Label for the 'wifi-only' media attachment download behavior in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_CONDITION_WIFI_ONLY" = "Wi-Fi";
+
+/* Label for the 'audio' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_AUDIO" = "Αρχείο ήχου";
+
+/* Label for the 'document' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_DOCUMENT" = "Αρχεία";
+
+/* Label for the 'photo' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_PHOTO" = "Φωτογραφίες";
+
+/* Label for the 'video' attachment type in the media download settings. */
+"SETTINGS_MEDIA_DOWNLOAD_TYPE_VIDEO" = "Βίντεο";
+
 /* Label for the 'messaging' privacy settings. */
-"SETTINGS_MESSAGING" = "Messaging";
+"SETTINGS_MESSAGING" = "Συνομιλίες";
 
 /* Title for settings activity */
 "SETTINGS_NAV_BAR_TITLE" = "Ρυθμίσεις";
 
 /* When the local device discovers a contact has recently installed signal, the app can generates a message encouraging the local user to say hello. Turning this switch off disables that feature. */
-"SETTINGS_NOTIFICATION_BADGE_COUNT_INCLUDES_MUTED_CONVERSATIONS" = "Count Muted Chats";
+"SETTINGS_NOTIFICATION_BADGE_COUNT_INCLUDES_MUTED_CONVERSATIONS" = "Καταμέτρηση συνομιλιών σε σίγαση";
 
 /* table section header */
-"SETTINGS_NOTIFICATION_BADGE_COUNT_TITLE" = "Καταμέτρηση Εμβλημάτων";
+"SETTINGS_NOTIFICATION_BADGE_COUNT_TITLE" = "Έμβλημα μέτρησης";
 
 /* table section footer */
 "SETTINGS_NOTIFICATION_CONTENT_DESCRIPTION" = "Οι ειδοποιήσεις κλήσεων και μηνυμάτων μπορούν να εμφανίζονται ενώ το τηλέφωνό σου είναι κλειδωμένο. Ίσως να θέλεις να περιορίσεις τι εμφανίζεται στις ειδοποιήσεις αυτές.";
@@ -4046,16 +4598,16 @@
 "SETTINGS_NOTIFICATIONS" = "Ειδοποιήσεις";
 
 /* Label for the 'phone number discoverability' setting. */
-"SETTINGS_PHONE_NUMBER_DISCOVERABILITY" = "Find Me by Phone Number";
+"SETTINGS_PHONE_NUMBER_DISCOVERABILITY" = "Να με βρίσκουν με τον αριθμό τηλεφώνου μου";
 
 /* The title for the phone number discoverability settings. */
-"SETTINGS_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Find Me by Phone Number";
+"SETTINGS_PHONE_NUMBER_DISCOVERABILITY_TITLE" = "Να με βρίσκουν με τον αριθμό τηλεφώνου μου";
 
 /* Label for the 'phone number sharing' setting. */
-"SETTINGS_PHONE_NUMBER_SHARING" = "See My Phone Number";
+"SETTINGS_PHONE_NUMBER_SHARING" = "Να δουν το αριθμού τηλεφώνου μου";
 
 /* The title for the phone number sharing settings. */
-"SETTINGS_PHONE_NUMBER_SHARING_TITLE" = "See My Phone Number";
+"SETTINGS_PHONE_NUMBER_SHARING_TITLE" = "Να δουν το αριθμού τηλεφώνου μου";
 
 /* The button text for the dialog asking user to confirm their PIN to disable reminders */
 "SETTINGS_PIN_REMINDER_DISABLE_CONFIRMATION_ACTION" = "Απενεργοποίηση υπενθυμίσεων";
@@ -4097,7 +4649,7 @@
 "SETTINGS_READ_RECEIPT" = "Αποδεικτικά ανάγνωσης";
 
 /* An explanation of the 'read receipts' setting. */
-"SETTINGS_READ_RECEIPTS_SECTION_FOOTER" = "See and share when messages have been read. This setting is optional and applies to all chats.";
+"SETTINGS_READ_RECEIPTS_SECTION_FOOTER" = "Δες και κοινοποίησε πότε διαβάζονται τα μηνύματα. Αυτή η ρύθμιση είναι προαιρετική και ισχύει για όλες τις συνομιλίες.";
 
 /* Action to turn off registration lock */
 "SETTINGS_REGISTRATION_LOCK_TURN_OFF" = "Απενεργοποίηση";
@@ -4147,6 +4699,12 @@
 /* Section header */
 "SETTINGS_SECURITY_TITLE" = "Ασφάλεια οθόνης";
 
+/* Setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS" = "Εμφάνιση στις Προτάσεις";
+
+/* Footer for setting for enabling & disabling sharing suggestions. */
+"SETTINGS_SHARING_SUGGESTIONS_FOOTER" = "Οι συνομιλίες Signal εμφανίζονται ως προτάσεις όταν μοιράζεσαι από άλλες εφαρμογές.";
+
 /* Label for the 'enable registration lock' switch of the privacy settings. */
 "SETTINGS_TWO_FACTOR_AUTH_SWITCH_LABEL" = "Κλείδωμα εγγραφής";
 
@@ -4157,7 +4715,7 @@
 "SETTINGS_TYPING_INDICATORS" = "Δείκτες πληκτρολόγησης";
 
 /* An explanation of the 'typing indicators' setting. */
-"SETTINGS_TYPING_INDICATORS_FOOTER" = "See and share when messages are being typed. This setting is optional and applies to all chats.";
+"SETTINGS_TYPING_INDICATORS_FOOTER" = "Δες και κοινοποίησε πότε πληκτρολογούνται μηνύματα. Αυτή η ρύθμιση είναι προαιρετική και ισχύει σε όλες τις συνομιλίες.";
 
 /* table section label */
 "SETTINGS_UNIDENTIFIED_DELIVERY_SECTION_TITLE" = "Προστατευμένος αποστολέας";
@@ -4178,7 +4736,7 @@
 "SETTINGS_VERSION" = "Έκδοση";
 
 /* Label for the 'who can' privacy settings. */
-"SETTINGS_WHO_CAN" = "Who can...";
+"SETTINGS_WHO_CAN" = "Ποιοί μπορούν...";
 
 /* action sheet item to open native mail app */
 "SHARE_ACTION_MAIL" = "Email";
@@ -4210,6 +4768,9 @@
 /* Alert title */
 "SHARE_EXTENSION_SENDING_FAILURE_TITLE" = "Αδυναμία αποστολής συνημμένου";
 
+/* Send progress for share extension. Embeds {{ %1$@ number of attachments uploaded, %2$@ total number of attachments}} */
+"SHARE_EXTENSION_SENDING_IN_PROGRESS_FORMAT" = "Μεταφόρτωση %1$@ από %2$@… ";
+
 /* Alert title */
 "SHARE_EXTENSION_SENDING_IN_PROGRESS_TITLE" = "Ανεβαίνει...";
 
@@ -4219,11 +4780,26 @@
 /* Title for the 'share extension' view. */
 "SHARE_EXTENSION_VIEW_TITLE" = "Κοινοποίηση στο Signal";
 
+/* Title of alert indicating sharing suggestions failed to deactivate */
+"SHARING_SUGGESTIONS_DISABLE_ERROR" = "Αποτυχία απενεργοποίησης προτάσεων διαμοιρασμού.";
+
+/* Body for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_BODY" = "Οι συνομιλίες Signal μπορούν πλέον να εμφανίζονται ως προτάσεις όταν μοιράζεσαι από άλλες εφαρμογές.";
+
+/* Title for sharing suggestions megaphone */
+"SHARING_SUGGESTIONS_MEGAPHONE_TITLE" = "Μοιράσου ευκολότερα";
+
+/* Disable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_DISABLE" = "Απενεργοποίηση";
+
+/* Enable button for sharing suggestions megaphone */
+"SHARING_SUGGESTIOONS_MEGAPHONE_BUTTON_ENABLE" = "Ενεργοποίηση";
+
 /* Action sheet item */
 "SHOW_SAFETY_NUMBER_ACTION" = "Εμφάνιση αριθμού ασφαλείας";
 
 /* notification action */
-"SHOW_THREAD_BUTTON_TITLE" = "Show Chat";
+"SHOW_THREAD_BUTTON_TITLE" = "Εμφάνιση συνομιλίας";
 
 /* body sent to contacts when inviting to Install Signal */
 "SMS_INVITE_BODY" = "Σε προσκαλώ να εγκαταστήσεις το Signal! Να ο σύνδεσμος:";
@@ -4231,14 +4807,23 @@
 /* Label for the 'no sound' option that allows users to disable sounds for notifications, etc. */
 "SOUNDS_NONE" = "Κανένας";
 
+/* Footer for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_FOOTER" = "Οι υφιστάμενες ομάδες θα λάβουν αυτές τις αναβαθμίσεις αυτόματα μέσα στις επόμενες εβδομάδες.";
+
+/* Instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS" = "Νέα ομάδα";
+
+/* Joiner symbol in the instructions for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_INSTRUCTIONS_JOINER" = "+";
+
+/* Header for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_NAMES_SPLASH_TITLE" = "Ήρθαν οι Ομάδες νέου τύπου!";
+
+/* Body text for 'groups v2 and mentions' splash screen */
+"SPLASH_MEGAPHONE_GROUPS_V2_MENTIONS_SPLASH_BODY" = "Οι Ομάδες νέου τύπου έχουν δυνατότητες όπως οι @αναφορές, οι διαχειριστές ομάδας και άλλα. Δοκίμασέ το πατώντας:";
+
 /* Preview text shown in notifications and conversation list for sticker messages. */
 "STICKER_MESSAGE_PREVIEW" = "Μήνυμα αυτοκόλλητου";
-
-/* Tooltip indicating that a sticker pack was installed. */
-"STICKER_PACK_INSTALLED_TOOLTIP" = "Το πακέτο αυτοκολλήτων εγκαταστάθηκε";
-
-/* Label for a sticker that failed to download. */
-"STICKERS_FAILED_DOWNLOAD" = "Αυτοκόλλητο";
 
 /* Label for the 'install sticker pack' button. */
 "STICKERS_INSTALL_BUTTON" = "Εγκατάσταση";
@@ -4270,9 +4855,6 @@
 /* Default title for sticker packs. */
 "STICKERS_PACK_DEFAULT_TITLE" = "Πακέτο αυτοκολλήτων";
 
-/* Title of the 'share sticker pack' view. */
-"STICKERS_PACK_SHARE_VIEW_TITLE" = "Κοινοποίησε το πακέτο αυτοκόλλητων";
-
 /* The default title for the 'sticker pack' view. */
 "STICKERS_PACK_VIEW_DEFAULT_TITLE" = "Πακέτο αυτοκολλήτων";
 
@@ -4294,8 +4876,35 @@
 /* Placeholder string for support description */
 "SUPPORT_DESCRIPTION_PLACEHOLDER" = "Πες μας τι συμβαίνει";
 
+/* Default prompt for user description in support email requests */
+"SUPPORT_EMAIL_DEFAULT_DESCRIPTION" = "Πες μας για το θέμα σου:";
+
 /* Message for alert dialog presented when a support email failed to send */
 "SUPPORT_EMAIL_ERROR_ALERT_DESCRIPTION" = "Παρακαλώ στείλε το αίτημα υποστήριξής σου με email στο support@signal.org";
+
+/* Localized label for support request email filter string. Embeds {{filter text}}. */
+"SUPPORT_EMAIL_FILTER_LABEL_FORMAT" = "Φίλτρο: %@";
+
+/* Localized label for support request email hardware string (e.g. iPhone or iPad). Embeds {{hardware text}}. */
+"SUPPORT_EMAIL_HARDWARE_LABEL_FORMAT" = "Συσκευή: %@";
+
+/* Localized label for support request email HID string (e.g. 12,1). Embeds {{hid text}}. */
+"SUPPORT_EMAIL_HID_LABEL_FORMAT" = "HID: %@";
+
+/* Localized divider for support request emails internal information */
+"SUPPORT_EMAIL_INFO_DIVIDER" = "--- Πληροφορίες υποστήριξης ---";
+
+/* Localized label for support request email iOS Version string (e.g. 13.4). Embeds {{ios version}}. */
+"SUPPORT_EMAIL_IOS_VERSION_LABEL_FORMAT" = "Έκδοση iOS: %@";
+
+/* Localized label for support request email locale string. Embeds {{locale}}. */
+"SUPPORT_EMAIL_LOCALE_LABEL_FORMAT" = "Τοποθεσία και γλώσσα: %@";
+
+/* Localized label for support request email debug log URL. Embeds {{debug log url}}. */
+"SUPPORT_EMAIL_LOG_URL_LABEL_FORMAT" = "URL αρχείου καταγραφής: %@";
+
+/* Localized label for support request email signal version string. Embeds {{signal version}}. */
+"SUPPORT_EMAIL_SIGNAL_VERSION_LABEL_FORMAT" = "Έκδοση Signal: %@";
 
 /* Localized subject for support request emails */
 "SUPPORT_EMAIL_SUBJECT" = "Αίτημα Υποστήριξης Signal iOS";
@@ -4304,7 +4913,7 @@
 "SUPPORT_EMOJI_PROMPT" = "Πώς αισθάνεσαι; (Προαιρετικό)";
 
 /* Label in support request informing user about Signal FAQ */
-"SUPPORT_FAQ_PROMPT" = "Έχεις διαβάσει το FAQ μας;";
+"SUPPORT_FAQ_PROMPT" = "Έχεις διαβάσει τις Συχνές ερωτήσεις μας;";
 
 /* Label describing support switch to attach debug logs */
 "SUPPORT_INCLUDE_DEBUG_LOG" = "Συμπερίλαβε αρχείο καταγραφής εντοπισμού σφαλμάτων";
@@ -4313,10 +4922,10 @@
 "SUPPORT_LOG_UPLOAD_IN_PROGRESS" = "Φορτώνει";
 
 /* Label for 'off' state of a switch control. */
-"SWITCH_OFF" = "Απενεργοποιημένο";
+"SWITCH_OFF" = "Ανενεργό";
 
 /* Label for 'on' state of a switch control. */
-"SWITCH_ON" = "Ενεργοποιημένο";
+"SWITCH_ON" = "Ενεργό";
 
 /* Label for button to verify a user's safety number. */
 "SYSTEM_MESSAGE_ACTION_VERIFY_SAFETY_NUMBER" = "Επιβεβαίωση";
@@ -4328,7 +4937,7 @@
 "THREAD_DETAILS_MORE_MUTUAL_GROUP" = "Μέλος των %@, %@, και %lu επιπλέον ομάδων";
 
 /* Subtitle appearing at the top of the users 'note to self' conversation */
-"THREAD_DETAILS_NOTE_TO_SELF_EXPLANATION" = "You can add notes for yourself in this chat. If your account has any linked devices, new notes will be synced.";
+"THREAD_DETAILS_NOTE_TO_SELF_EXPLANATION" = "Μπορείς να προσθέσεις σημειώσεις για δική σου χρήση σε αυτήν τη συνομιλία. Εάν ο λογαριασμός σου είναι συνδεμένος με άλλες συσκευές, οι νέες σημειώσεις θα συγχρονίζονται.";
 
 /* A string indicating a mutual group the user shares with this contact. Embeds {{mutual group name}} */
 "THREAD_DETAILS_ONE_MUTUAL_GROUP" = "Μέλος του %@";
@@ -4463,7 +5072,7 @@
 "UNNAMED_DEVICE" = "Ανώνυμη συσκευή";
 
 /* Pressing this button upins a thread */
-"UNPIN_ACTION" = "Unpin";
+"UNPIN_ACTION" = "Ξεκαρφίτσωμα";
 
 /* The title for unpinned conversation section on the conversation list */
 "UNPINNED_SECTION_TITLE" = "Συνομιλίες";
@@ -4568,7 +5177,7 @@
 "VERIFICATION_STATE_CHANGE_FORMAT_VERIFIED_OTHER_DEVICE" = "Σημείωσες τον/την %@ ως επιβεβαιωμένο/η από μια άλλη συσκευή.";
 
 /* Generic message indicating that verification state changed for a given user. */
-"VERIFICATION_STATE_CHANGE_GENERIC" = "Η κατάσταση επαλήθευσης άλλαξε.";
+"VERIFICATION_STATE_CHANGE_GENERIC" = "Η κατάσταση επιβεβαίωσης άλλαξε.";
 
 /* Label for button or row which allows users to verify the safety number of another user. */
 "VERIFY_PRIVACY" = "Εμφάνιση αριθμού ασφαλείας";
@@ -4602,6 +5211,63 @@
 
 /* Activity indicator title, shown upon returning to the device manager, until you complete the provisioning process on desktop */
 "WAITING_TO_COMPLETE_DEVICE_LINK_TEXT" = "Ολοκλήρωσε την εγκατάσταση στο Signal Desktop.";
+
+/* Placeholder text for header of the wallpaper mini preview */
+"WALLPAPER_MINI_PREVIEW_CONTACT_NAME" = "Όνομα επαφής";
+
+/* Blur button on wallpaper preview. */
+"WALLPAPER_PREVIEW_BLUR_BUTTON" = "Θόλωσε την εικόνα";
+
+/* The incoming bubble text when setting a photo */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PHOTO" = "Τσίμπα για ζουμ, σύρε για ρύθμιση";
+
+/* The incoming bubble text when setting a preset */
+"WALLPAPER_PREVIEW_INCOMING_MESSAGE_PRESET" = "Σύρε για προεπισκόπηση περισσότερων ταπετσαριών.";
+
+/* The outgoing bubble text when setting a wallpaper for all chats. */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_ALL_CHATS" = "Ορισμός ταπετσαρίας για όλες τις συνομιλίες.";
+
+/* The outgoing bubble text when setting a wallpaper for specific chat. Embeds {{chat name}} */
+"WALLPAPER_PREVIEW_OUTGOING_MESSAGE_FORMAT" = "Ορισμός ταπετσαρίας για %@.";
+
+/* The text for the set button on wallpaper preview view. */
+"WALLPAPER_PREVIEW_SET_BUTTON" = "Ορισμός";
+
+/* Title for the wallpaper preview view. */
+"WALLPAPER_PREVIEW_TITLE" = "Προεπισκόπηση";
+
+/* Clear wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER" = "Εκκαθάριση ταπετσαρίας";
+
+/* Confirmation dialog when clearing the wallpaper for a specific chat. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_CHAT_CONFIRMATION" = "Εκκαθάριση της ταπετσαρίας αυτής της συνομιλίας;";
+
+/* Confirmation dialog when clearing the global wallpaper. */
+"WALLPAPER_SETTINGS_CLEAR_WALLPAPER_GLOBAL_CONFIRMATION" = "Εκκαθάριση ταπετσαρίας; Αυτό δεν θα εκκαθαρίσει τις προσαρμοσμένες ταπετσαρίες που έχεις ορίσει για τις συνομιλίες σου.";
+
+/* Dim wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_DIM_WALLPAPER" = "Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.";
+
+/* An error indicating to the user that we failed to clear the wallpaper. */
+"WALLPAPER_SETTINGS_FAILED_TO_CLEAR" = "Η ταπετσαρία δεν μπόρεσε να εκκαθαριστεί, παρακαλώ ξαναδοκίμασε αργότερα ή επικοινώνησε με την υποστήριξη αν το σφάλμα δεν διορθωθεί.";
+
+/* An error indicating to the user that we failed to reset all wallpapers. */
+"WALLPAPER_SETTINGS_FAILED_TO_RESET" = "Δεν μπόρεσαν να επαναφερθούν όλες οι ταπετσαρίες, παρακαλώ ξαναδοκίμασε αργότερα ή επικοινώνησε με την υποστήριξη αν το σφάλμα δεν διορθωθεί.";
+
+/* Title for the wallpaper settings preview section. */
+"WALLPAPER_SETTINGS_PREVIEW" = "Προεπισκόπηση";
+
+/* Reset all wallpapers action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_RESET_ALL" = "Επαναφορά όλων των ταπετσαριών";
+
+/* Confirmation dialog when resetting all wallpapers. */
+"WALLPAPER_SETTINGS_RESET_ALL_WALLPAPERS_CONFIRMATION" = "Επαναφορά όλων των ταπετσαριών, συμπεριλαμβανομένων των προσαρμοσμένων ταπετσαριών που έχεις ορίσει στις συνομιλίες σου;";
+
+/* Set wallpaper action in wallpaper settings view. */
+"WALLPAPER_SETTINGS_SET_WALLPAPER" = "Ορισμός ταπετσαρίας";
+
+/* Title for the wallpaper settings view. */
+"WALLPAPER_SETTINGS_TITLE" = "Ταπετσαρία συνομιλίας";
 
 /* text indicating the message was remotely deleted by you */
 "YOU_DELETED_THIS_MESSAGE" = "Διέγραψες αυτό το μήνυμα.";

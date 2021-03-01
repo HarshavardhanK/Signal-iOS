@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSReceiptsForSenderMessage.h"
@@ -60,18 +60,11 @@ NS_ASSUME_NONNULL_BEGIN
     return NO;
 }
 
-- (BOOL)isSilent
-{
-    // Avoid "phantom messages" for "recipient read receipts".
-
-    return YES;
-}
-
-- (nullable NSData *)buildPlainTextData:(SignalRecipient *)recipient
+- (nullable NSData *)buildPlainTextData:(SignalServiceAddress *)address
                                  thread:(TSThread *)thread
                             transaction:(SDSAnyReadTransaction *)transaction
 {
-    OWSAssertDebug(recipient);
+    OWSAssertDebug(address.isValid);
 
     SSKProtoReceiptMessage *_Nullable receiptMessage = [self buildReceiptMessage];
     if (!receiptMessage) {

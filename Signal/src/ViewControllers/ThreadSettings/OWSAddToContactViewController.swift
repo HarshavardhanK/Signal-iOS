@@ -19,14 +19,6 @@ public class OWSAddToContactViewController: OWSViewController {
 
     fileprivate let contactCellReuseIdentifier = "contactCellReuseIdentifier"
 
-    var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
-    var contactsViewHelper: ContactsViewHelper {
-        return Environment.shared.contactsViewHelper
-    }
-
     @objc public init(address: SignalServiceAddress) {
         self.address = address
         super.init()
@@ -120,7 +112,7 @@ extension OWSAddToContactViewController: UITableViewDataSource {
             return cell
         }
 
-        cell.configure(contact: contact, subtitleType: .none, showsWhenSelected: false, contactsManager: contactsManager)
+        cell.configure(contact: contact, subtitleType: .none, showsWhenSelected: false)
 
         return cell
     }

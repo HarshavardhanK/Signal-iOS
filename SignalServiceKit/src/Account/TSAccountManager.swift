@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -83,7 +83,7 @@ public extension TSAccountManager {
     @objc
     func localAccountId(transaction: SDSAnyReadTransaction) -> AccountId? {
         guard let localAddress = localAddress else { return nil }
-        return OWSAccountIdFinder().accountId(forAddress: localAddress, transaction: transaction)
+        return OWSAccountIdFinder.accountId(forAddress: localAddress, transaction: transaction)
     }
 
     // MARK: - Account Attributes & Capabilities
@@ -142,7 +142,7 @@ public extension TSAccountManager {
         let appVersionKey = "appVersion"
 
         let currentDeviceCapabilities: [String: NSNumber] = OWSRequestFactory.deviceCapabilitiesForLocalDevice()
-        let currentAppVersion = AppVersion.sharedInstance().currentAppVersionLong
+        let currentAppVersion = AppVersion.shared().currentAppVersionLong
 
         var lastAttributeRequest: Date?
         let shouldUpdateAttributes = Self.databaseStorage.read { (transaction: SDSAnyReadTransaction) -> Bool in

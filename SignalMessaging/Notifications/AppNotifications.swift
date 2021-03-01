@@ -21,10 +21,12 @@ import PromiseKit
 /// wired directly into the appropriate callback point.
 
 public enum AppNotificationCategory: CaseIterable {
-    case incomingMessageWithActions
+    case incomingMessageWithActions_CanReply
+    case incomingMessageWithActions_CannotReply
     case incomingMessageWithoutActions
     case incomingMessageFromNoLongerVerifiedIdentity
-    case incomingReactionWithActions
+    case incomingReactionWithActions_CanReply
+    case incomingReactionWithActions_CannotReply
     case infoOrErrorMessage
     case threadlessErrorMessage
     case incomingCall
@@ -34,7 +36,7 @@ public enum AppNotificationCategory: CaseIterable {
     case grdbMigration
 }
 
-public enum AppNotificationAction: CaseIterable {
+public enum AppNotificationAction: String, CaseIterable {
     case answerCall
     case callBack
     case declineCall
@@ -42,6 +44,7 @@ public enum AppNotificationAction: CaseIterable {
     case reply
     case showThread
     case reactWithThumbsUp
+    case showCallLobby
 }
 
 public struct AppNotificationUserInfoKey {
@@ -51,19 +54,24 @@ public struct AppNotificationUserInfoKey {
     public static let callBackUuid = "Signal.AppNotificationsUserInfoKey.callBackUuid"
     public static let callBackPhoneNumber = "Signal.AppNotificationsUserInfoKey.callBackPhoneNumber"
     public static let localCallId = "Signal.AppNotificationsUserInfoKey.localCallId"
+    public static let defaultAction = "Signal.AppNotificationsUserInfoKey.defaultAction"
 }
 
 extension AppNotificationCategory {
     var identifier: String {
         switch self {
-        case .incomingMessageWithActions:
+        case .incomingMessageWithActions_CanReply:
             return "Signal.AppNotificationCategory.incomingMessageWithActions"
+        case .incomingMessageWithActions_CannotReply:
+            return "Signal.AppNotificationCategory.incomingMessageWithActionsNoReply"
         case .incomingMessageWithoutActions:
             return "Signal.AppNotificationCategory.incomingMessage"
         case .incomingMessageFromNoLongerVerifiedIdentity:
             return "Signal.AppNotificationCategory.incomingMessageFromNoLongerVerifiedIdentity"
-        case .incomingReactionWithActions:
+        case .incomingReactionWithActions_CanReply:
             return "Signal.AppNotificationCategory.incomingReactionWithActions"
+        case .incomingReactionWithActions_CannotReply:
+            return "Signal.AppNotificationCategory.incomingReactionWithActionsNoReply"
         case .infoOrErrorMessage:
             return "Signal.AppNotificationCategory.infoOrErrorMessage"
         case .threadlessErrorMessage:
@@ -83,14 +91,18 @@ extension AppNotificationCategory {
 
     var actions: [AppNotificationAction] {
         switch self {
-        case .incomingMessageWithActions:
+        case .incomingMessageWithActions_CanReply:
             if DebugFlags.reactWithThumbsUpFromLockscreen {
                 return [.markAsRead, .reply, .reactWithThumbsUp]
             } else {
                 return [.markAsRead, .reply]
             }
-        case .incomingReactionWithActions:
+        case .incomingMessageWithActions_CannotReply:
+            return [.markAsRead]
+        case .incomingReactionWithActions_CanReply:
             return [.markAsRead, .reply]
+        case .incomingReactionWithActions_CannotReply:
+            return [.markAsRead]
         case .incomingMessageWithoutActions,
              .incomingMessageFromNoLongerVerifiedIdentity:
             return []
@@ -129,6 +141,8 @@ extension AppNotificationAction {
             return "Signal.AppNotifications.Action.showThread"
         case .reactWithThumbsUp:
             return "Signal.AppNotifications.Action.reactWithThumbsUp"
+        case .showCallLobby:
+            return "Signal.AppNotifications.Action.showCallLobby"
         }
     }
 }
@@ -174,7 +188,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
 
         super.init()
 
-        AppReadiness.runNowOrWhenAppDidBecomeReady {
+        AppReadiness.runNowOrWhenAppDidBecomeReadySync {
             NotificationCenter.default.addObserver(self, selector: #selector(self.handleMessageRead), name: .incomingMessageMarkedAsRead, object: nil)
         }
         SwiftSingletons.register(self)
@@ -223,7 +237,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         return adaptee.registerNotificationSettings()
     }
 
-    public func presentIncomingCall(_ call: SignalCallNotificationInfo, callerName: String) {
+    public func presentIncomingCall(_ call: IndividualCallNotificationInfo, callerName: String) {
 
         let remoteAddress = call.remoteAddress
         let thread = TSContactThread.getOrCreateThread(contactAddress: remoteAddress)
@@ -261,7 +275,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         }
     }
 
-    public func presentMissedCall(_ call: SignalCallNotificationInfo, callerName: String) {
+    public func presentMissedCall(_ call: IndividualCallNotificationInfo, callerName: String) {
 
         let remoteAddress = call.remoteAddress
         let thread = TSContactThread.getOrCreateThread(contactAddress: remoteAddress)
@@ -300,7 +314,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         }
     }
 
-    public func presentMissedCallBecauseOfNoLongerVerifiedIdentity(call: SignalCallNotificationInfo, callerName: String) {
+    public func presentMissedCallBecauseOfNoLongerVerifiedIdentity(call: IndividualCallNotificationInfo, callerName: String) {
 
         let remoteAddress = call.remoteAddress
         let thread = TSContactThread.getOrCreateThread(contactAddress: remoteAddress)
@@ -332,7 +346,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         }
     }
 
-    public func presentMissedCallBecauseOfNewIdentity(call: SignalCallNotificationInfo, callerName: String) {
+    public func presentMissedCallBecauseOfNewIdentity(call: IndividualCallNotificationInfo, callerName: String) {
 
         let remoteAddress = call.remoteAddress
         let thread = TSContactThread.getOrCreateThread(contactAddress: remoteAddress)
@@ -423,7 +437,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
                                            senderName,
                                            groupThread.groupNameOrDefault)
             default:
-                owsFailDebug("unexpected thread: \(thread)")
+                owsFailDebug("unexpected thread: \(thread.uniqueId)")
                 return
             }
 
@@ -456,7 +470,9 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         } else if !shouldShowActions {
             category = .incomingMessageWithoutActions
         } else {
-            category = .incomingMessageWithActions
+            category = (thread.canSendToThread
+                            ? .incomingMessageWithActions_CanReply
+                            : .incomingMessageWithActions_CannotReply)
         }
         let userInfo = [
             AppNotificationUserInfoKey.threadId: thread.uniqueId,
@@ -497,7 +513,7 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
                 groupThread.groupNameOrDefault
             )
         default:
-            owsFailDebug("unexpected thread: \(thread)")
+            owsFailDebug("unexpected thread: \(thread.uniqueId)")
             return
         }
 
@@ -556,7 +572,9 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         } else if !shouldShowActions {
             category = .incomingMessageWithoutActions
         } else {
-            category = .incomingReactionWithActions
+            category = (thread.canSendToThread
+                            ? .incomingReactionWithActions_CanReply
+                            : .incomingReactionWithActions_CannotReply)
         }
         let userInfo = [
             AppNotificationUserInfoKey.threadId: thread.uniqueId,
@@ -603,6 +621,33 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         }
     }
 
+    public func notifyForGroupCallSafetyNumberChange(inThread thread: TSThread) {
+        let notificationTitle: String?
+        switch previewType {
+        case .noNameNoPreview:
+            notificationTitle = nil
+        case .nameNoPreview, .namePreview:
+            notificationTitle = contactsManager.displayNameWithSneakyTransaction(thread: thread)
+        }
+
+        let notificationBody = NotificationStrings.groupCallSafetyNumberChangeBody
+        let threadId = thread.uniqueId
+        let userInfo: [String: Any] = [
+            AppNotificationUserInfoKey.threadId: threadId,
+            AppNotificationUserInfoKey.defaultAction: AppNotificationAction.showCallLobby.rawValue
+        ]
+
+        DispatchQueue.main.async {
+            let sound = self.requestSound(thread: thread)
+            self.adaptee.notify(category: .infoOrErrorMessage,
+                                title: notificationTitle,
+                                body: notificationBody,
+                                threadIdentifier: nil, // show ungrouped
+                                userInfo: userInfo,
+                                sound: sound)
+        }
+    }
+
     public func notifyUser(for errorMessage: TSErrorMessage, thread: TSThread, transaction: SDSAnyWriteTransaction) {
         switch errorMessage.errorType {
         case .noSession,
@@ -622,11 +667,10 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         notifyUser(for: errorMessage as TSMessage, thread: thread, wantsSound: true, transaction: transaction)
     }
 
-    public func notifyUser(for infoMessage: TSInfoMessage, thread: TSThread, wantsSound: Bool, transaction: SDSAnyWriteTransaction) {
-        notifyUser(for: infoMessage as TSMessage, thread: thread, wantsSound: wantsSound, transaction: transaction)
-    }
-
-    private func notifyUser(for infoOrErrorMessage: TSMessage, thread: TSThread, wantsSound: Bool, transaction: SDSAnyWriteTransaction) {
+    public func notifyUser(for previewableInteraction: TSInteraction & OWSPreviewText, thread: TSThread, wantsSound: Bool, transaction: SDSAnyWriteTransaction) {
+        guard !thread.isMuted else {
+            return
+        }
 
         let notificationTitle: String?
         let threadIdentifier: String?
@@ -644,13 +688,17 @@ public class NotificationPresenter: NSObject, NotificationsProtocol {
         case .noNameNoPreview, .nameNoPreview:
             notificationBody = NotificationStrings.incomingMessageBody
         case .namePreview:
-            notificationBody = infoOrErrorMessage.previewText(transaction: transaction)
+            notificationBody = previewableInteraction.previewText(transaction: transaction)
         }
+
+        let isGroupCallMessage = previewableInteraction is OWSGroupCallMessage
+        let preferredDefaultAction: AppNotificationAction = isGroupCallMessage ? .showCallLobby : .showThread
 
         let threadId = thread.uniqueId
         let userInfo = [
             AppNotificationUserInfoKey.threadId: threadId,
-            AppNotificationUserInfoKey.messageId: infoOrErrorMessage.uniqueId
+            AppNotificationUserInfoKey.messageId: previewableInteraction.uniqueId,
+            AppNotificationUserInfoKey.defaultAction: preferredDefaultAction.rawValue
         ]
 
         transaction.addAsyncCompletion {
@@ -775,7 +823,7 @@ extension TruncatedList: Collection {
     }
 }
 
-public protocol SignalCallNotificationInfo {
+public protocol IndividualCallNotificationInfo {
     var remoteAddress: SignalServiceAddress { get }
     var localId: UUID { get }
     var offerMediaType: TSRecentCallOfferType { get }

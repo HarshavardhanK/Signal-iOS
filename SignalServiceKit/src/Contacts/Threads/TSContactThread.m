@@ -52,8 +52,8 @@ NSUInteger const TSContactThreadSchemaVersion = 1;
                       isArchived:(BOOL)isArchived
                   isMarkedUnread:(BOOL)isMarkedUnread
             lastInteractionRowId:(int64_t)lastInteractionRowId
-               lastVisibleSortId:(uint64_t)lastVisibleSortId
-lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
+       lastVisibleSortIdObsolete:(uint64_t)lastVisibleSortIdObsolete
+lastVisibleSortIdOnScreenPercentageObsolete:(double)lastVisibleSortIdOnScreenPercentageObsolete
          mentionNotificationMode:(TSThreadMentionNotificationMode)mentionNotificationMode
                     messageDraft:(nullable NSString *)messageDraft
           messageDraftBodyRanges:(nullable MessageBodyRanges *)messageDraftBodyRanges
@@ -70,8 +70,8 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
                         isArchived:isArchived
                     isMarkedUnread:isMarkedUnread
               lastInteractionRowId:lastInteractionRowId
-                 lastVisibleSortId:lastVisibleSortId
-lastVisibleSortIdOnScreenPercentage:lastVisibleSortIdOnScreenPercentage
+         lastVisibleSortIdObsolete:lastVisibleSortIdObsolete
+lastVisibleSortIdOnScreenPercentageObsolete:lastVisibleSortIdOnScreenPercentageObsolete
            mentionNotificationMode:mentionNotificationMode
                       messageDraft:messageDraft
             messageDraftBodyRanges:messageDraftBodyRanges
@@ -175,20 +175,6 @@ lastVisibleSortIdOnScreenPercentage:lastVisibleSortIdOnScreenPercentage
     return @[ self.contactAddress ];
 }
 
-- (BOOL)isGroupThread {
-    return NO;
-}
-
-- (BOOL)isGroupV1Thread
-{
-    return NO;
-}
-
-- (BOOL)isGroupV2Thread
-{
-    return NO;
-}
-
 - (BOOL)isNoteToSelf
 {
     if (!IsNoteToSelfEnabled()) {
@@ -210,7 +196,7 @@ lastVisibleSortIdOnScreenPercentage:lastVisibleSortIdOnScreenPercentage
 
 - (BOOL)hasSafetyNumbers
 {
-    return !![[OWSIdentityManager sharedManager] identityKeyForAddress:self.contactAddress];
+    return !![[OWSIdentityManager shared] identityKeyForAddress:self.contactAddress];
 }
 
 + (nullable SignalServiceAddress *)contactAddressFromThreadId:(NSString *)threadId
@@ -228,8 +214,8 @@ lastVisibleSortIdOnScreenPercentage:lastVisibleSortIdOnScreenPercentage
     return [threadId substringWithRange:NSMakeRange(1, threadId.length - 1)];
 }
 
-+ (NSString *)conversationColorNameForContactAddress:(SignalServiceAddress *)address
-                                         transaction:(SDSAnyReadTransaction *)transaction
++ (ConversationColorName)conversationColorNameForContactAddress:(SignalServiceAddress *)address
+                                                    transaction:(SDSAnyReadTransaction *)transaction
 {
     OWSAssertDebug(address);
 

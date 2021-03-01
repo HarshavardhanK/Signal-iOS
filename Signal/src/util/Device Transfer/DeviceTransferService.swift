@@ -65,9 +65,9 @@ protocol DeviceTransferServiceObserver: class {
 ///
 @objc
 class DeviceTransferService: NSObject {
-    var tsAccountManager: TSAccountManager { .sharedInstance() }
+    var tsAccountManager: TSAccountManager { .shared() }
     var databaseStorage: SDSDatabaseStorage { .shared }
-    var sleepManager: DeviceSleepManager { .sharedInstance }
+    var sleepManager: DeviceSleepManager { .shared }
     var modelReadCaches: ModelReadCaches { .shared }
 
     @objc
@@ -83,6 +83,10 @@ class DeviceTransferService: NSObject {
     static let databaseIdentifier = "database"
     static let databaseWALIdentifier = "database-wal"
 
+    static let missingFileData = "Missing File".data(using: .utf8)!
+    static let missingFileHash = Cryptography.computeSHA256Digest(missingFileData)!
+
+    // This must also be updated in the info.plist
     private static let newDeviceServiceIdentifier = "sgnl-new-device"
 
     private let serialQueue = DispatchQueue(label: "DeviceTransferService")
@@ -274,7 +278,10 @@ class DeviceTransferService: NSObject {
     // MARK: -
 
     @objc func didEnterBackground() {
-        if transferState != .idle {
+        switch transferState {
+        case .idle:
+            break
+        default:
             notifyObservers { $0.deviceTransferServiceDidEndTransfer(error: .cancel) }
         }
 
@@ -353,7 +360,7 @@ class DeviceTransferService: NSObject {
 
         guard let progress: Progress = {
             switch transferState {
-            case .incoming(_, _, _, let progress):
+            case .incoming(_, _, _, _, let progress):
                 return progress
             case .outgoing(_, _, _, _, let progress):
                 return progress

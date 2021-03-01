@@ -28,10 +28,10 @@ typedef void (^BlockAlertCompletionBlock)(ActionSheetAction *action);
 
 + (OWSBlockingManager *)blockingManager
 {
-    return OWSBlockingManager.sharedManager;
+    return OWSBlockingManager.shared;
 }
 
-+ (OWSMessageSender *)messageSender
++ (MessageSender *)messageSender
 {
     return SSKEnvironment.shared.messageSender;
 }
@@ -447,7 +447,7 @@ typedef void (^BlockAlertCompletionBlock)(ActionSheetAction *action);
     ActionSheetController *alert = [[ActionSheetController alloc] initWithTitle:title message:message];
 
     ActionSheetAction *okAction =
-        [[ActionSheetAction alloc] initWithTitle:NSLocalizedString(@"OK", nil)
+        [[ActionSheetAction alloc] initWithTitle:CommonStrings.okButton
                          accessibilityIdentifier:ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"ok")
                                            style:ActionSheetActionStyleDefault
                                          handler:completionBlock];

@@ -91,7 +91,6 @@ public class Mention: NSObject {
     override public var hash: Int { uniqueId.hashValue }
 
     public class func threadAllowsMentionSend(_ thread: TSThread) -> Bool {
-        guard RemoteConfig.mentions else { return false }
         guard let groupThread = thread as? TSGroupThread else { return false }
         return groupThread.groupModel.groupsVersion == .V2
     }
@@ -146,6 +145,17 @@ extension MessageBody {
         self.init(text: mutableAttributedString.string, ranges: .init(mentions: mentions))
     }
 
+    public func textValue(style: Mention.Style,
+                          attributes: [NSAttributedString.Key: Any],
+                          shouldResolveAddress: (SignalServiceAddress) -> Bool,
+                          transaction: GRDBReadTransaction) -> CVTextValue {
+        ranges.textValue(text: text,
+                         style: style,
+                         attributes: attributes,
+                         shouldResolveAddress: shouldResolveAddress,
+                         transaction: transaction)
+    }
+
     @objc
     public func attributedBody(
         style: Mention.Style,
@@ -164,6 +174,24 @@ extension MessageBody {
 }
 
 extension MessageBodyRanges {
+
+    public func textValue(text: String,
+                          style: Mention.Style,
+                          attributes: [NSAttributedString.Key: Any],
+                          shouldResolveAddress: (SignalServiceAddress) -> Bool,
+                          transaction: GRDBReadTransaction) -> CVTextValue {
+
+        guard hasMentions || !attributes.isEmpty else {
+            return .text(text: text)
+        }
+        let attributedText = attributedBody(text: text,
+                                            style: style,
+                                            attributes: attributes,
+                                            shouldResolveAddress: shouldResolveAddress,
+                                            transaction: transaction)
+        return .attributedText(attributedText: attributedText)
+    }
+
     @objc
     public func attributedBody(
         text: String,

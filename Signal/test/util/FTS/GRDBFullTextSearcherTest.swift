@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import XCTest
@@ -12,70 +12,83 @@ import Contacts
 // TODO: We might be able to merge this with OWSFakeContactsManager.
 @objc
 class GRDBFullTextSearcherContactsManager: NSObject, ContactsManagerProtocol {
+
+    func hasNameInSystemContacts(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> Bool {
+        false
+    }
+
     private var mockDisplayNameMap = [SignalServiceAddress: String]()
 
     func setMockDisplayName(_ name: String, for address: SignalServiceAddress) {
         mockDisplayNameMap[address] = name
     }
 
+    func comparableName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> String {
+        self.displayName(for: address)
+    }
+
     func comparableName(for signalAccount: SignalAccount, transaction: SDSAnyReadTransaction) -> String {
-        return self.displayName(for: signalAccount.recipientAddress)
+        self.displayName(for: signalAccount.recipientAddress)
     }
 
     func displayName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> String {
-        return self.displayName(for: address)
+        self.displayName(for: address)
     }
 
     func shortDisplayName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> String {
-        return self.displayName(for: address)
+        self.displayName(for: address)
     }
 
     func displayName(for address: SignalServiceAddress) -> String {
-        return mockDisplayNameMap[address] ?? ""
+        mockDisplayNameMap[address] ?? ""
     }
 
     public func displayName(for signalAccount: SignalAccount) -> String {
-        return "Fake name"
+        "Fake name"
     }
 
     public func displayName(for thread: TSThread, transaction: SDSAnyReadTransaction) -> String {
-        return "Fake name"
+        "Fake name"
     }
 
     public func displayNameWithSneakyTransaction(thread: TSThread) -> String {
-        return "Fake name"
+        "Fake name"
     }
 
     func nameComponents(for address: SignalServiceAddress) -> PersonNameComponents? {
-        return PersonNameComponents()
+        PersonNameComponents()
     }
 
     func nameComponents(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> PersonNameComponents? {
-        return PersonNameComponents()
+        PersonNameComponents()
     }
 
     func signalAccounts() -> [SignalAccount] {
-        return []
+        []
     }
 
     func isSystemContact(phoneNumber: String) -> Bool {
-        return true
+        true
     }
 
     func isSystemContact(address: SignalServiceAddress) -> Bool {
-        return true
+        true
     }
 
     func isSystemContact(withSignalAccount recipientId: String) -> Bool {
-        return true
+        true
+    }
+
+    func isSystemContact(withSignalAccount phoneNumber: String, transaction: SDSAnyReadTransaction) -> Bool {
+        true
     }
 
     func hasNameInSystemContacts(for address: SignalServiceAddress) -> Bool {
-        return (mockDisplayNameMap[address] ?? "").count > 0
+        (mockDisplayNameMap[address] ?? "").count > 0
     }
 
-    func conversationColorName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> String {
-        ConversationColorName.taupe.rawValue
+    func conversationColorName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> ConversationColorName {
+        ConversationColorName.taupe
     }
 
     func compare(signalAccount left: SignalAccount, with right: SignalAccount) -> ComparisonResult {
@@ -86,19 +99,19 @@ class GRDBFullTextSearcherContactsManager: NSObject, ContactsManagerProtocol {
 
     public func sortSignalServiceAddresses(_ addresses: [SignalServiceAddress],
                                            transaction: SDSAnyReadTransaction) -> [SignalServiceAddress] {
-        return addresses
+        addresses
     }
 
     func cnContact(withId contactId: String?) -> CNContact? {
-        return nil
+        nil
     }
 
     func avatarData(forCNContactId contactId: String?) -> Data? {
-        return nil
+        nil
     }
 
     func avatarImage(forCNContactId contactId: String?) -> UIImage? {
-        return nil
+        nil
     }
 
     var unknownUserLabel: String = "unknown"
@@ -111,11 +124,11 @@ class GRDBFullTextSearcherTest: SignalBaseTest {
     // MARK: - Dependencies
 
     var searcher: FullTextSearcher {
-        return FullTextSearcher.shared
+        FullTextSearcher.shared
     }
 
     private var tsAccountManager: TSAccountManager {
-        return TSAccountManager.sharedInstance()
+        TSAccountManager.shared()
     }
 
     // MARK: - Test Life Cycle
@@ -154,18 +167,26 @@ class GRDBFullTextSearcherTest: SignalBaseTest {
             let bookClubGroupThread = try! GroupManager.createGroupForTests(members: [self.aliceRecipient, self.bobRecipient],
                                                                             name: "Book Club",
                                                                             transaction: transaction)
-            self.bookClubThread = ThreadViewModel(thread: bookClubGroupThread, transaction: transaction)
+            self.bookClubThread = ThreadViewModel(thread: bookClubGroupThread,
+                                                  forConversationList: true,
+                                                  transaction: transaction)
 
             let snackClubGroupThread = try! GroupManager.createGroupForTests(members: [self.aliceRecipient],
                                                                              name: "Snack Club",
                                                                              transaction: transaction)
-            self.snackClubThread = ThreadViewModel(thread: snackClubGroupThread, transaction: transaction)
+            self.snackClubThread = ThreadViewModel(thread: snackClubGroupThread,
+                                                   forConversationList: true,
+                                                   transaction: transaction)
 
             let aliceContactThread = TSContactThread.getOrCreateThread(withContactAddress: self.aliceRecipient, transaction: transaction)
-            self.aliceThread = ThreadViewModel(thread: aliceContactThread, transaction: transaction)
+            self.aliceThread = ThreadViewModel(thread: aliceContactThread,
+                                               forConversationList: true,
+                                               transaction: transaction)
 
             let bobContactThread = TSContactThread.getOrCreateThread(withContactAddress: self.bobRecipient, transaction: transaction)
-            self.bobEmptyThread = ThreadViewModel(thread: bobContactThread, transaction: transaction)
+            self.bobEmptyThread = ThreadViewModel(thread: bobContactThread,
+                                                  forConversationList: true,
+                                                  transaction: transaction)
 
             let helloAlice = TSOutgoingMessage(in: aliceContactThread, messageBody: "Hello Alice", attachmentId: nil)
             helloAlice.anyInsert(transaction: transaction)

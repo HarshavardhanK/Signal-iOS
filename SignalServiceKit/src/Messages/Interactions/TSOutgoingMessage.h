@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSMessage.h"
@@ -191,8 +191,6 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:receivedAtTimestamp
 // This property won't be accurate for legacy messages.
 @property (atomic, readonly) BOOL isFromLinkedDevice;
 
-@property (nonatomic, readonly) BOOL isSilent;
-
 @property (nonatomic, readonly) BOOL isOnline;
 
 // NOTE: We do not persist this property; it is only used for
@@ -202,7 +200,7 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:receivedAtTimestamp
 /**
  * The data representation of this message, to be encrypted, before being sent.
  */
-- (nullable NSData *)buildPlainTextData:(SignalRecipient *)recipient
+- (nullable NSData *)buildPlainTextData:(SignalServiceAddress *)address
                                  thread:(TSThread *)thread
                             transaction:(SDSAnyReadTransaction *)transaction;
 
@@ -222,6 +220,10 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:receivedAtTimestamp
 
 // All recipients of this message.
 - (NSArray<SignalServiceAddress *> *)recipientAddresses;
+
+// The states for all recipients.
+@property (atomic, nullable, readonly)
+    NSDictionary<SignalServiceAddress *, TSOutgoingMessageRecipientState *> *recipientAddressStates;
 
 // All recipients of this message who we are currently trying to send to (queued, uploading or during send).
 - (NSArray<SignalServiceAddress *> *)sendingRecipientAddresses;
@@ -308,6 +310,11 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:receivedAtTimestamp
                     transaction:(SDSAnyWriteTransaction *)transaction;
 
 - (nullable NSNumber *)firstRecipientReadTimestamp;
+
+- (void)updateWithRecipientAddressStates:
+            (nullable NSDictionary<SignalServiceAddress *, TSOutgoingMessageRecipientState *> *)recipientAddressStates
+                             transaction:(SDSAnyWriteTransaction *)transaction
+    NS_SWIFT_NAME(updateWith(recipientAddressStates:transaction:));
 
 - (NSString *)statusDescription;
 

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSRecipientIdentity.h"
@@ -31,13 +31,13 @@ extern const NSUInteger kStoredIdentityKeyLength;
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithDatabaseStorage:(SDSDatabaseStorage *)databaseStorage;
-- (void)recreateDatabaseQueue;
 
-+ (instancetype)sharedManager;
++ (instancetype)shared;
 
 - (void)generateNewIdentityKey;
 - (void)storeIdentityKeyPair:(ECKeyPair *)keyPair transaction:(SDSAnyWriteTransaction *)transaction;
 
+- (int)localRegistrationIdWithTransaction:(SDSAnyWriteTransaction *)transaction;
 - (nullable ECKeyPair *)identityKeyPairWithTransaction:(SDSAnyReadTransaction *)transaction;
 
 - (void)setVerificationState:(OWSVerificationState)verificationState
@@ -56,6 +56,8 @@ extern const NSUInteger kStoredIdentityKeyLength;
        isUserInitiatedChange:(BOOL)isUserInitiatedChange;
 
 - (nullable OWSRecipientIdentity *)recipientIdentityForAddress:(SignalServiceAddress *)address;
+- (nullable OWSRecipientIdentity *)recipientIdentityForAddress:(SignalServiceAddress *)address
+                                                   transaction:(SDSAnyReadTransaction *)transaction;
 
 /**
  * @param   address of the recipient

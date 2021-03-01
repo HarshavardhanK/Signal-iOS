@@ -14,22 +14,6 @@ protocol GroupMemberRequestsAndInvitesViewControllerDelegate: class {
 @objc
 public class GroupMemberRequestsAndInvitesViewController: OWSTableViewController {
 
-    // MARK: - Dependencies
-
-    fileprivate var databaseStorage: SDSDatabaseStorage {
-        return SDSDatabaseStorage.shared
-    }
-
-    fileprivate var tsAccountManager: TSAccountManager {
-        return .sharedInstance()
-    }
-
-    private var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
-    // MARK: -
-
     weak var groupMemberRequestsAndInvitesViewControllerDelegate: GroupMemberRequestsAndInvitesViewControllerDelegate?
 
     private let oldGroupThread: TSGroupThread
@@ -70,8 +54,13 @@ public class GroupMemberRequestsAndInvitesViewController: OWSTableViewController
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("GROUP_REQUESTS_AND_INVITES_VIEW_TITLE",
-                                  comment: "The title for the 'group requests and invites' view.")
+        if RemoteConfig.groupsV2InviteLinks {
+            title = NSLocalizedString("GROUP_REQUESTS_AND_INVITES_VIEW_TITLE",
+                                      comment: "The title for the 'group requests and invites' view.")
+        } else {
+            title = NSLocalizedString("GROUP_INVITES_VIEW_TITLE",
+                                      comment: "The title for the 'group invites' view.")
+        }
 
         self.useThemeBackgroundColors = false
 
@@ -99,18 +88,22 @@ public class GroupMemberRequestsAndInvitesViewController: OWSTableViewController
     private func updateTableContents() {
         let contents = OWSTableContents()
 
-        let modeSection = OWSTableSection()
-        let modeHeader = UIStackView(arrangedSubviews: [segmentedControl])
-        modeHeader.axis = .vertical
-        modeHeader.alignment = .fill
-        modeHeader.layoutMargins = UIEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
-        modeHeader.isLayoutMarginsRelativeArrangement = true
-        modeSection.customHeaderView = modeHeader
-        contents.addSection(modeSection)
+        var mode = Mode.pendingInvites
+        if RemoteConfig.groupsV2InviteLinks {
+            let modeSection = OWSTableSection()
+            let modeHeader = UIStackView(arrangedSubviews: [segmentedControl])
+            modeHeader.axis = .vertical
+            modeHeader.alignment = .fill
+            modeHeader.layoutMargins = UIEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+            modeHeader.isLayoutMarginsRelativeArrangement = true
+            modeSection.customHeaderView = modeHeader
+            contents.addSection(modeSection)
 
-        guard let mode = Mode(rawValue: segmentedControl.selectedSegmentIndex) else {
-            owsFailDebug("Invalid mode.")
-            return
+            guard let parsedMode = Mode(rawValue: segmentedControl.selectedSegmentIndex) else {
+                owsFailDebug("Invalid mode.")
+                return
+            }
+            mode = parsedMode
         }
 
         switch mode {
@@ -155,10 +148,28 @@ public class GroupMemberRequestsAndInvitesViewController: OWSTableViewController
                         cell.ows_setAccessoryView(self.buildMemberRequestButtons(address: address))
                     }
 
-                    cell.configure(withRecipientAddress: address)
+                    if address.isLocalAddress {
+                        // Use a custom avatar to avoid using the "note to self" icon.
+                        let customAvatar: UIImage?
+                        if let localProfileAvatarImage = OWSProfileManager.shared().localProfileAvatarImage() {
+                            customAvatar = localProfileAvatarImage
+                        } else {
+                            customAvatar = Self.databaseStorage.uiRead { transaction in
+                                OWSContactAvatarBuilder(forLocalUserWithDiameter: kSmallAvatarSize,
+                                                        transaction: transaction).buildDefaultImage()
+                            }
+                        }
+                        cell.setCustomAvatar(customAvatar)
+                        cell.setCustomName(NSLocalizedString("GROUP_MEMBER_LOCAL_USER",
+                                                             comment: "Label indicating the local user."))
+                        cell.selectionStyle = .none
+                    } else {
+                        cell.selectionStyle = .default
+                    }
+
+                    cell.configureWithSneakyTransaction(recipientAddress: address)
                     return cell
-                    },
-                                              customRowHeight: UITableView.automaticDimension) { [weak self] in
+                    }) { [weak self] in
                                                 self?.showMemberActionSheet(for: address)
                 })
             }
@@ -248,10 +259,9 @@ public class GroupMemberRequestsAndInvitesViewController: OWSTableViewController
                     let cell = ContactTableViewCell()
                     cell.selectionStyle = canRevokeInvites ? .default : .none
 
-                    cell.configure(withRecipientAddress: address)
+                    cell.configureWithSneakyTransaction(recipientAddress: address)
                     return cell
-                    },
-                                              customRowHeight: UITableView.automaticDimension) { [weak self] in
+                    }) { [weak self] in
                                                 self?.inviteFromLocalUserWasTapped(address,
                                                                                    canRevoke: canRevokeInvites)
                 })
@@ -304,11 +314,10 @@ public class GroupMemberRequestsAndInvitesViewController: OWSTableViewController
                     }
                     cell.setCustomName(customName)
 
-                    cell.configure(withRecipientAddress: inviterAddress)
+                    cell.configureWithSneakyTransaction(recipientAddress: inviterAddress)
 
                     return cell
-                    },
-                                                   customRowHeight: UITableView.automaticDimension) { [weak self] in
+                    }) { [weak self] in
                                                     self?.invitesFromOtherUserWasTapped(invitedAddresses: invitedAddresses,
                                                                                         inviterAddress: inviterAddress,
                                                                                         canRevoke: canRevokeInvites)

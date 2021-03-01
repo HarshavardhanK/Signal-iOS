@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -34,7 +34,7 @@ public class IncomingContactSyncJobQueue: NSObject, JobQueue {
     public override init() {
         super.init()
 
-        AppReadiness.runNowOrWhenAppDidBecomeReadyPolite {
+        AppReadiness.runNowOrWhenAppDidBecomeReadyAsync {
             self.setup()
         }
     }
@@ -177,8 +177,7 @@ public class IncomingContactSyncOperation: OWSOperation, DurableOperation {
 
         switch attachment {
         case let attachmentPointer as TSAttachmentPointer:
-            return self.attachmentDownloads.downloadAttachmentPointer(attachmentPointer,
-                                                                      bypassPendingMessageRequest: true)
+            return self.attachmentDownloads.enqueueHeadlessDownloadPromise(attachmentPointer: attachmentPointer)
         case let attachmentStream as TSAttachmentStream:
             return Promise.value(attachmentStream)
         default:
@@ -232,13 +231,18 @@ public class IncomingContactSyncOperation: OWSOperation, DurableOperation {
                 let inputStream = ChunkedInputStream(forReadingFrom: pointer, count: bufferPtr.count)
                 let contactStream = ContactsInputStream(inputStream: inputStream)
 
-                try databaseStorage.write { transaction in
-                    while let nextContact = try contactStream.decodeContact() {
+                // We use batching to avoid long-running write transactions.
+                while let contacts = try Self.buildBatch(contactStream: contactStream) {
+                    try databaseStorage.write { transaction in
                         try autoreleasepool {
-                            try self.process(contactDetails: nextContact, transaction: transaction)
+                            for contact in contacts {
+                                try self.process(contactDetails: contact, transaction: transaction)
+                            }
                         }
                     }
+                }
 
+                databaseStorage.write { transaction in
                     // Always fire just one identity change notification, rather than potentially
                     // once per contact. It's possible that *no* identities actually changed,
                     // but we have no convenient way to track that.
@@ -246,6 +250,19 @@ public class IncomingContactSyncOperation: OWSOperation, DurableOperation {
                 }
             }
         }
+    }
+
+    private static func buildBatch(contactStream: ContactsInputStream) throws -> [ContactDetails]? {
+        let batchSize = 8
+        var contacts = [ContactDetails]()
+        while contacts.count < batchSize,
+              let contact = try contactStream.decodeContact() {
+            contacts.append(contact)
+        }
+        guard !contacts.isEmpty else {
+            return nil
+        }
+        return contacts
     }
 
     private func process(contactDetails: ContactDetails, transaction: SDSAnyWriteTransaction) throws {

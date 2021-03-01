@@ -30,8 +30,6 @@ class ContactViewController: OWSViewController, ContactShareViewHelperDelegate {
         }
     }
 
-    private let contactsManager: OWSContactsManager
-
     private let contactShare: ContactShareViewModel
 
     private var contactShareViewHelper: ContactShareViewHelper
@@ -42,9 +40,8 @@ class ContactViewController: OWSViewController, ContactShareViewHelperDelegate {
 
     @objc
     required init(contactShare: ContactShareViewModel) {
-        contactsManager = Environment.shared.contactsManager
         self.contactShare = contactShare
-        self.contactShareViewHelper = ContactShareViewHelper(contactsManager: contactsManager)
+        self.contactShareViewHelper = ContactShareViewHelper()
 
         super.init()
 
@@ -135,13 +132,13 @@ class ContactViewController: OWSViewController, ContactShareViewHelperDelegate {
     private func systemContactsWithSignalAccountsForContact() -> [String] {
         AssertIsOnMainThread()
 
-        return contactShare.systemContactsWithSignalAccountPhoneNumbers(contactsManager)
+        return contactShare.systemContactsWithSignalAccountPhoneNumbers()
     }
 
     private func systemContactsForContact() -> [String] {
         AssertIsOnMainThread()
 
-        return contactShare.systemContactPhoneNumbers(contactsManager)
+        return contactShare.systemContactPhoneNumbers()
     }
 
     private func updateContent() {
@@ -225,7 +222,7 @@ class ContactViewController: OWSViewController, ContactShareViewHelperDelegate {
 
         let avatarSize: CGFloat = 100
         let avatarView = AvatarImageView()
-        avatarView.image = contactShare.getAvatarImage(diameter: avatarSize, contactsManager: contactsManager)
+        avatarView.image = contactShare.getAvatarImageWithSneakyTransaction(diameter: avatarSize)
         topView.addSubview(avatarView)
         avatarView.autoPinEdge(toSuperviewEdge: .top, withInset: 20)
         avatarView.autoHCenterInSuperview()
@@ -528,7 +525,7 @@ class ContactViewController: OWSViewController, ContactShareViewHelperDelegate {
 
         if let e164 = phoneNumber.tryToConvertToE164() {
             let address = SignalServiceAddress(phoneNumber: e164)
-            if contactShare.systemContactsWithSignalAccountPhoneNumbers(contactsManager).contains(e164) {
+            if contactShare.systemContactsWithSignalAccountPhoneNumbers().contains(e164) {
                 actionSheet.addAction(ActionSheetAction(title: CommonStrings.sendMessage,
                                                         style: .default) { _ in
                                                         SignalApp.shared().presentConversation(for: address, action: .compose, animated: true)

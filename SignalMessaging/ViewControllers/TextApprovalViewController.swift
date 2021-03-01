@@ -111,7 +111,6 @@ public class TextApprovalViewController: OWSViewController, MentionTextViewDeleg
 
     // MARK: - Link Previews
 
-    private var linkPreviewManager: OWSLinkPreviewManager { SSKEnvironment.shared.linkPreviewManager }
     private var wasLinkPreviewCancelled = false
     private lazy var linkPreviewView = LinkPreviewView(draftDelegate: self)
 
@@ -240,8 +239,16 @@ extension TextApprovalViewController: InputAccessoryViewPlaceholderDelegate {
         handleKeyboardStateChange(animationDuration: animationDuration, animationCurve: animationCurve)
     }
 
+    func inputAccessoryPlaceholderKeyboardDidPresent() {
+        updateFooterViewPosition()
+    }
+
     func inputAccessoryPlaceholderKeyboardIsDismissing(animationDuration: TimeInterval, animationCurve: UIView.AnimationCurve) {
         handleKeyboardStateChange(animationDuration: animationDuration, animationCurve: animationCurve)
+    }
+
+    func inputAccessoryPlaceholderKeyboardDidDismiss() {
+        updateFooterViewPosition()
     }
 
     func inputAccessoryPlaceholderKeyboardIsDismissingInteractively() {

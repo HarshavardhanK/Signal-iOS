@@ -33,7 +33,7 @@ public class AppExpiry: NSObject {
         let expirationDate: Date?
 
         init(mode: Mode = .default, expirationDate: Date? = nil) {
-            self.version = AppVersion.sharedInstance().currentAppVersionLong
+            self.version = AppVersion.shared().currentAppVersionLong
             self.mode = mode
             self.expirationDate = expirationDate
 
@@ -76,7 +76,7 @@ public class AppExpiry: NSObject {
             }
 
             // We only want to restore the persisted state if it's for our current version.
-            guard persistedExpirationState.version == AppVersion.sharedInstance().currentAppVersionLong else {
+            guard persistedExpirationState.version == AppVersion.shared().currentAppVersionLong else {
                 return nil
             }
 
@@ -125,7 +125,7 @@ public class AppExpiry: NSObject {
             return owsFailDebug("Ignoring expiration date change for expired build.")
         }
 
-        Logger.warn("\(newExpirationDate)")
+        Logger.warn("\(String(describing: newExpirationDate))")
 
         if let newExpirationDate = newExpirationDate {
             // Ignore any expiration date that is later than when the app expires by default.

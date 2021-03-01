@@ -27,7 +27,7 @@ public class MessageSenderJobQueue: NSObject, JobQueue {
     public override init() {
         super.init()
 
-        AppReadiness.runNowOrWhenAppDidBecomeReadyPolite {
+        AppReadiness.runNowOrWhenAppDidBecomeReadyAsync {
             self.setup()
         }
     }
@@ -232,8 +232,12 @@ public class MessageSenderOperation: OWSOperation, DurableOperation {
 
     override public func run() {
         self.messageSender.sendMessage(message.asPreparer,
-                                       success: reportSuccess,
-                                       failure: reportError(withUndefinedRetry:))
+                                       success: {
+                                        self.reportSuccess()
+        },
+                                       failure: { error in
+                                        self.reportError(withUndefinedRetry: error)
+        })
     }
 
     override public func didSucceed() {

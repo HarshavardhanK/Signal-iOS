@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "AppSettingsViewController.h"
@@ -9,14 +9,13 @@
 #import "NotificationSettingsViewController.h"
 #import "OWSBackup.h"
 #import "OWSBackupSettingsViewController.h"
-#import "OWSLinkedDevicesTableViewController.h"
 #import "OWSNavigationController.h"
 #import "PrivacySettingsTableViewController.h"
-#import "ProfileViewController.h"
 #import "Signal-Swift.h"
 #import <SignalMessaging/Environment.h>
 #import <SignalMessaging/OWSContactsManager.h>
 #import <SignalMessaging/UIUtil.h>
+#import <SignalServiceKit/SignalServiceKit-Swift.h>
 #import <SignalServiceKit/TSAccountManager.h>
 #import <SignalServiceKit/TSSocketManager.h>
 
@@ -60,13 +59,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - Dependencies
-
-- (TSAccountManager *)tsAccountManager
-{
-    return TSAccountManager.sharedInstance;
-}
-
 #pragma mark - UIViewController
 
 - (void)loadView
@@ -93,6 +85,8 @@
     self.title = NSLocalizedString(@"SETTINGS_NAV_BAR_TITLE", @"Title for settings activity");
 
     [self updateTableContents];
+
+    [self.bulkProfileFetch fetchProfileWithAddress:self.tsAccountManager.localAddress];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -117,13 +111,11 @@
 #endif
 
     OWSTableSection *section = [OWSTableSection new];
-    [section addItem:[OWSTableItem itemWithCustomCellBlock:^{
-        return [weakSelf profileHeaderCell];
-    }
-                         customRowHeight:100.f
-                         actionBlock:^{
-                             [weakSelf showProfile];
-                         }]];
+    OWSTableItem *profileHeaderItem = [OWSTableItem
+        itemWithCustomCellBlock:^{ return [weakSelf profileHeaderCell]; }
+        actionBlock:^{ [weakSelf showProfile]; }];
+    profileHeaderItem.customRowHeight = @(100.f);
+    [section addItem:profileHeaderItem];
 
     [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_INVITE_TITLE",
                                                               @"Settings table view cell label")
@@ -132,17 +124,12 @@
                                                   [weakSelf showInviteFlow];
                                               }]];
 
-    // Starting with iOS 13, show an appearance section to allow setting the app theme
-    // to match the "system" dark/light mode settings and to adjust the app specific
-    // language settings.
-    if (@available(iOS 13, *)) {
         [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_APPEARANCE_TITLE",
                                                                   @"The title for the appearance settings.")
                                       accessibilityIdentifier:ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"appearance")
                                                   actionBlock:^{
                                                       [weakSelf showAppearance];
                                                   }]];
-    }
 
     [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_PRIVACY_TITLE",
                                                               @"Settings table view cell label")
@@ -153,8 +140,8 @@
     [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_NOTIFICATIONS", nil)
                                   accessibilityIdentifier:ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"notifications")
                                               actionBlock:^{
-                                                  [weakSelf showNotifications];
-                                              }]];
+        [weakSelf showNotifications];
+    }]];
 
     // There's actually nothing AFAIK preventing linking another linked device from an
     // existing linked device, but maybe it's not something we want to expose until
@@ -168,12 +155,18 @@
                                                  [weakSelf showLinkedDevices];
                                              }]];
     }
+    [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_DATA",
+                                                                            @"Label for the 'data' section of the app settings.")
+                                  accessibilityIdentifier:ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"data")
+                                              actionBlock:^{
+        [weakSelf showData];
+    }]];
     [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_ADVANCED_TITLE", @"")
                                   accessibilityIdentifier:ACCESSIBILITY_IDENTIFIER_WITH_NAME(self, @"advanced")
                                               actionBlock:^{
                                                   [weakSelf showAdvanced];
                                               }]];
-    BOOL isBackupEnabled = [OWSBackup.sharedManager isBackupEnabled];
+    BOOL isBackupEnabled = [OWSBackup.shared isBackupEnabled];
     BOOL showBackup = (OWSBackup.isFeatureEnabled && isBackupEnabled);
     if (showBackup) {
         [section addItem:[OWSTableItem disclosureItemWithText:NSLocalizedString(@"SETTINGS_BACKUP",
@@ -223,7 +216,7 @@
     cell.contentView.preservesSuperviewLayoutMargins = YES;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    UIImage *_Nullable localProfileAvatarImage = [OWSProfileManager.sharedManager localProfileAvatarImage];
+    UIImage *_Nullable localProfileAvatarImage = [OWSProfileManager.shared localProfileAvatarImage];
     UIImage *avatarImage = (localProfileAvatarImage
             ?: [[[OWSContactAvatarBuilder alloc] initForLocalUserWithDiameter:kMediumAvatarSize] buildDefaultImage]);
     OWSAssertDebug(avatarImage);
@@ -260,7 +253,7 @@
     [nameView autoPinLeadingToTrailingEdgeOfView:avatarView offset:16.f];
 
     UILabel *titleLabel = [UILabel new];
-    NSString *_Nullable localProfileName = [OWSProfileManager.sharedManager localFullName];
+    NSString *_Nullable localProfileName = [OWSProfileManager.shared localFullName];
     if (localProfileName.length > 0) {
         titleLabel.text = localProfileName;
         titleLabel.textColor = Theme.primaryTextColor;
@@ -293,7 +286,7 @@
     addSubtitle(
         [PhoneNumber bestEffortFormatPartialUserSpecifiedTextToLookLikeAPhoneNumber:[TSAccountManager localNumber]]);
 
-    NSString *_Nullable username = [OWSProfileManager.sharedManager localUsername];
+    NSString *_Nullable username = [OWSProfileManager.shared localUsername];
     if (username.length > 0) {
         addSubtitle([CommonFormats formatUsername:username]);
     }
@@ -344,18 +337,22 @@
 
 - (void)showLinkedDevices
 {
-    OWSLinkedDevicesTableViewController *vc = [OWSLinkedDevicesTableViewController new];
+    LinkedDevicesTableViewController *vc = [LinkedDevicesTableViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showProfile
 {
-    ProfileViewController *profileVC =
-        [[ProfileViewController alloc] initWithMode:ProfileViewMode_AppSettings
-                                  completionHandler:^(ProfileViewController *completedVC) {
-                                      [completedVC.navigationController popViewControllerAnimated:YES];
-                                  }];
+    ProfileSettingsViewController *profileVC = nil;
+    profileVC = [[ProfileSettingsViewController alloc] initWithCompletionHandler:^(
+        ProfileSettingsViewController *vc) { [vc.navigationController popViewControllerAnimated:YES]; }];
     [self.navigationController pushViewController:profileVC animated:YES];
+}
+
+- (void)showData
+{
+    DataSettingsTableViewController *vc = [[DataSettingsTableViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showAdvanced

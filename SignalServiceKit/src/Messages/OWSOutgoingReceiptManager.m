@@ -1,11 +1,11 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSOutgoingReceiptManager.h"
 #import "AppReadiness.h"
+#import "MessageSender.h"
 #import "OWSError.h"
-#import "OWSMessageSender.h"
 #import "OWSReceiptsForSenderMessage.h"
 #import "SSKEnvironment.h"
 #import "TSContactThread.h"
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSUInteger, OWSReceiptType) {
 
 #pragma mark -
 
-+ (instancetype)sharedManager
++ (instancetype)shared
 {
     OWSAssert(SSKEnvironment.shared.outgoingReceiptManager);
 
@@ -75,9 +75,7 @@ typedef NS_ENUM(NSUInteger, OWSReceiptType) {
                                                object:nil];
 
     // Start processing.
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
-        [self process];
-    }];
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{ [self process]; });
 
     return self;
 }
@@ -89,7 +87,7 @@ typedef NS_ENUM(NSUInteger, OWSReceiptType) {
 
 #pragma mark - Dependencies
 
-- (OWSMessageSender *)messageSender
+- (MessageSender *)messageSender
 {
     OWSAssertDebug(SSKEnvironment.shared.messageSender);
 

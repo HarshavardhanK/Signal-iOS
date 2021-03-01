@@ -50,7 +50,7 @@ public extension GroupV2Params {
     }
 
     fileprivate func encryptBlob(_ plaintext: Data) throws -> Data {
-        guard !DebugFlags.groupsV2corruptBlobEncryption else {
+        guard !DebugFlags.groupsV2corruptBlobEncryption.get() else {
             return Randomness.generateRandomBytes(Int32(plaintext.count))
         }
         let clientZkGroupCipher = ClientZkGroupCipher(groupSecretParams: groupSecretParams)
@@ -167,7 +167,7 @@ public extension GroupV2Params {
         let duration = (token.isEnabled
             ? token.durationSeconds
             : 0)
-        let blobBuilder = GroupsProtoGroupAttributeBlob.builder()
+        var blobBuilder = GroupsProtoGroupAttributeBlob.builder()
         blobBuilder.setContent(GroupsProtoGroupAttributeBlobOneOfContent.disappearingMessagesDuration(duration))
         let blobData = try blobBuilder.buildSerializedData()
         let encryptedTimerData = try encryptBlob(blobData)
@@ -197,7 +197,7 @@ public extension GroupV2Params {
     }
 
     func encryptGroupName(_ value: String) throws -> Data {
-        let blobBuilder = GroupsProtoGroupAttributeBlob.builder()
+        var blobBuilder = GroupsProtoGroupAttributeBlob.builder()
         blobBuilder.setContent(GroupsProtoGroupAttributeBlobOneOfContent.title(value))
         let blobData = try blobBuilder.buildSerializedData()
         let encryptedTimerData = try encryptBlob(blobData)
@@ -219,7 +219,7 @@ public extension GroupV2Params {
     }
 
     func encryptGroupAvatar(_ value: Data) throws -> Data {
-        let blobBuilder = GroupsProtoGroupAttributeBlob.builder()
+        var blobBuilder = GroupsProtoGroupAttributeBlob.builder()
         blobBuilder.setContent(GroupsProtoGroupAttributeBlobOneOfContent.avatar(value))
         let blobData = try blobBuilder.buildSerializedData()
         let encryptedTimerData = try encryptBlob(blobData)

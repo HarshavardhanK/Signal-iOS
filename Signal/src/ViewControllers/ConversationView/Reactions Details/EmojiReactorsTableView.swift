@@ -16,10 +16,6 @@ class EmojiReactorsTableView: UITableView {
         didSet { reloadData() }
     }
 
-    var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
     init() {
         super.init(frame: .zero, style: .plain)
 
@@ -117,6 +113,8 @@ private class EmojiReactorCell: UITableViewCell {
             colorName: item.conversationColorName,
             diameter: UInt(avatarDiameter)
         )
+
+        nameLabel.textColor = Theme.primaryTextColor
 
         emojiLabel.text = item.emoji
 

@@ -1,19 +1,11 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import UIKit
 import SignalServiceKit
 
 @objc class GroupTableViewCell: UITableViewCell {
-
-    // MARK: - Dependencies
-
-    private var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
-    // MARK: -
 
     private let avatarView = AvatarImageView()
     private let nameLabel = UILabel()
@@ -69,7 +61,7 @@ import SignalServiceKit
             self.nameLabel.text = MessageStrings.newGroupDefaultTitle
         }
 
-        let groupMembersCount = thread.groupModel.groupMembers.count
+        let groupMembersCount = thread.groupModel.groupMembership.fullMembers.count
         self.subtitleLabel.text = GroupViewUtils.formatGroupMembersLabel(memberCount: groupMembersCount)
 
         self.avatarView.image = OWSAvatarBuilder.buildImage(thread: thread, diameter: kStandardAvatarSize)

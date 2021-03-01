@@ -1,25 +1,23 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "DebugUIMisc.h"
 #import "DebugUIMessagesAssetLoader.h"
 #import "OWSBackup.h"
 #import "OWSCountryMetadata.h"
-#import "OWSTableViewController.h"
 #import "Signal-Swift.h"
 #import "ThreadUtil.h"
 #import <AxolotlKit/PreKeyBundle.h>
 #import <SignalCoreKit/Randomness.h>
 #import <SignalMessaging/AttachmentSharing.h>
 #import <SignalMessaging/Environment.h>
+#import <SignalMessaging/OWSTableViewController.h>
 #import <SignalServiceKit/OWSBlockingManager.h>
 #import <SignalServiceKit/OWSDisappearingMessagesConfiguration.h>
-#import <SignalServiceKit/OWSVerificationStateChangeMessage.h>
-#import <SignalServiceKit/SSKSessionStore.h>
 #import <SignalServiceKit/SignalServiceKit-Swift.h>
 #import <SignalServiceKit/TSCall.h>
-#import <SignalServiceKit/TSInvalidIdentityKeyReceivingErrorMessage.h>
+#import <SignalServiceKit/TSPreKeyManager.h>
 #import <SignalServiceKit/TSThread.h>
 #import <SignalServiceKit/UIImage+OWS.h>
 
@@ -144,14 +142,13 @@ NS_ASSUME_NONNULL_BEGIN
                                                         completion:nil];
                                      }]];
 
-    [items addObject:[OWSTableItem itemWithTitle:@"Reset 2FA Repetition Interval"
-                                     actionBlock:^() {
-                                         DatabaseStorageWrite(
-                                             SDSDatabaseStorage.shared, ^(SDSAnyWriteTransaction *transaction) {
-                                                 [OWS2FAManager.sharedManager
-                                                     setDefaultRepetitionIntervalWithTransaction:transaction];
-                                             });
-                                     }]];
+    [items addObject:[OWSTableItem
+                         itemWithTitle:@"Reset 2FA Repetition Interval"
+                           actionBlock:^() {
+                               DatabaseStorageWrite(SDSDatabaseStorage.shared, ^(SDSAnyWriteTransaction *transaction) {
+                                   [OWS2FAManager.shared setDefaultRepetitionIntervalWithTransaction:transaction];
+                               });
+                           }]];
 
     [items addObject:[OWSTableItem subPageItemWithText:@"Share UIImage"
                                            actionBlock:^(UIViewController *viewController) {
@@ -228,16 +225,54 @@ NS_ASSUME_NONNULL_BEGIN
                                      actionBlock:^() { [DebugUIMisc enableExternalDatabaseAccess]; }]];
 
     [items addObject:[OWSTableItem itemWithTitle:@"Update account attributes"
-                                     actionBlock:^() { [TSAccountManager.sharedInstance updateAccountAttributes]; }]];
+                                     actionBlock:^() { [TSAccountManager.shared updateAccountAttributes]; }]];
+
+    [items addObject:[OWSTableItem itemWithTitle:@"Check Prekeys"
+                                     actionBlock:^() { [TSPreKeyManager checkPreKeysImmediately]; }]];
+
+    [items addObject:[OWSTableItem itemWithTitle:@"Remove All Prekeys"
+                                     actionBlock:^() { [DebugUIMisc removeAllPrekeys]; }]];
+
+    [items addObject:[OWSTableItem itemWithTitle:@"Remove All Sessions"
+                                     actionBlock:^() { [DebugUIMisc removeAllSessions]; }]];
+
+    [items addObject:[OWSTableItem itemWithTitle:@"Discard All Profile Keys"
+                                     actionBlock:^() { [DebugUIMisc discardAllProfileKeys]; }]];
+
+    [items addObject:[OWSTableItem itemWithTitle:@"Log all sticker suggestions"
+                                     actionBlock:^() { [DebugUIMisc logStickerSuggestions]; }]];
 
     return [OWSTableSection sectionWithTitle:self.name items:items];
+}
+
++ (void)removeAllPrekeys
+{
+    DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
+        [SSKEnvironment.shared.signedPreKeyStore removeAll:transaction];
+        [SSKEnvironment.shared.preKeyStore removeAll:transaction];
+    });
+}
+
++ (void)removeAllSessions
+{
+    DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
+        [SSKEnvironment.shared.signedPreKeyStore removeAll:transaction];
+        [SSKEnvironment.shared.preKeyStore removeAll:transaction];
+    });
+}
+
++ (void)discardAllProfileKeys
+{
+    DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
+        [OWSProfileManager discardAllProfileKeysWithTransaction:transaction];
+    });
 }
 
 + (void)reregister
 {
     OWSLogInfo(@"re-registering.");
 
-    if (![[TSAccountManager sharedInstance] resetForReregistration]) {
+    if (![[TSAccountManager shared] resetForReregistration]) {
         OWSFailDebug(@"could not reset for re-registration.");
         return;
     }
@@ -250,7 +285,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setManualCensorshipCircumventionEnabled:(BOOL)isEnabled
 {
     OWSCountryMetadata *countryMetadata = nil;
-    NSString *countryCode = OWSSignalService.sharedInstance.manualCensorshipCircumventionCountryCode;
+    NSString *countryCode = OWSSignalService.shared.manualCensorshipCircumventionCountryCode;
     if (countryCode) {
         countryMetadata = [OWSCountryMetadata countryMetadataForCountryCode:countryCode];
     }
@@ -268,8 +303,8 @@ NS_ASSUME_NONNULL_BEGIN
     }
 
     OWSAssertDebug(countryMetadata);
-    OWSSignalService.sharedInstance.manualCensorshipCircumventionCountryCode = countryCode;
-    OWSSignalService.sharedInstance.isCensorshipCircumventionManuallyActivated = isEnabled;
+    OWSSignalService.shared.manualCensorshipCircumventionCountryCode = countryCode;
+    OWSSignalService.shared.isCensorshipCircumventionManuallyActivated = isEnabled;
 }
 
 + (void)clearHasDismissedOffers
@@ -587,13 +622,6 @@ NS_ASSUME_NONNULL_BEGIN
                               lastSeenAt:[NSDate new]
                                     name:nil] anyInsertWithTransaction:transaction];
 
-    // SSKJobRecord
-    //
-    // NOTE: We insert every kind of job record.
-    [[[SSKMessageDecryptJobRecord alloc] initWithEnvelopeData:[Randomness generateRandomBytes:16]
-                                      serverDeliveryTimestamp:0
-                                                        label:SSKMessageDecryptJobQueue.jobRecordLabel]
-        anyInsertWithTransaction:transaction];
     TSOutgoingMessage *queuedMessage = [[TSOutgoingMessageBuilder outgoingMessageBuilderWithThread:thread
                                                                                        messageBody:@"some body"] build];
     NSError *_Nullable error;
@@ -642,6 +670,24 @@ NS_ASSUME_NONNULL_BEGIN
                              NSURL *destURL = [groupDir URLByAppendingPathComponent:@"dbPayload.txt"];
                              [payloadData writeToURL:destURL atomically:YES];
                          }];
+}
+
++ (void)logStickerSuggestions
+{
+    NSMutableSet<NSString *> *emojiSet = [NSMutableSet new];
+    [self.databaseStorage readWithBlock:^(SDSAnyReadTransaction *transaction) {
+        for (StickerPack *stickerPack in [StickerManager installedStickerPacksWithTransaction:transaction]) {
+
+            for (StickerPackItem *item in stickerPack.items) {
+                if (item.emojiString.length > 0) {
+                    OWSLogVerbose(@"emojiString: %@", item.emojiString);
+                    [emojiSet addObject:item.emojiString];
+                }
+            }
+        }
+    }];
+    OWSLogVerbose(@"emoji: %@",
+        [[emojiSet.allObjects sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@" "]);
 }
 
 @end

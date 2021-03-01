@@ -1,13 +1,13 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSBlockingManager.h"
 #import "AppContext.h"
 #import "AppReadiness.h"
+#import "MessageSender.h"
 #import "NSNotificationCenter+OWS.h"
 #import "OWSBlockedPhoneNumbersMessage.h"
-#import "OWSMessageSender.h"
 #import "SSKEnvironment.h"
 #import "TSContactThread.h"
 #import "TSGroupThread.h"
@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NSNotificationName const kNSNotificationName_BlockListDidChange = @"kNSNotificationName_BlockListDidChange";
+NSNotificationName const kNSNotificationNameBlockListDidChange = @"kNSNotificationNameBlockListDidChange";
 NSNotificationName const OWSBlockingManagerBlockedSyncDidComplete = @"OWSBlockingManagerBlockedSyncDidComplete";
 
 // These keys are used to persist the current local "block list" state.
@@ -70,7 +70,7 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
 
 #pragma mark -
 
-+ (instancetype)sharedManager
++ (instancetype)shared
 {
     OWSAssertDebug(SSKEnvironment.shared.blockingManager);
 
@@ -86,10 +86,8 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
     }
 
     OWSSingletonAssert();
-    
-    [AppReadiness runNowOrWhenAppWillBecomeReady:^{
-        [self ensureLazyInitializationOnLaunch];
-    }];
+
+    AppReadinessRunNowOrWhenAppWillBecomeReady(^{ [self ensureLazyInitializationOnLaunch]; });
 
     return self;
 }
@@ -107,7 +105,7 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
                                                object:nil];
 }
 
-- (OWSMessageSender *)messageSender
+- (MessageSender *)messageSender
 {
     OWSAssertDebug(SSKEnvironment.shared.messageSender);
 
@@ -343,6 +341,7 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
                 continue;
             }
 
+            [TSGroupThread ensureGroupIdMappingForGroupId:groupId transaction:transaction];
             TSGroupThread *_Nullable groupThread = [TSGroupThread fetchWithGroupId:groupId transaction:transaction];
             if (groupThread != nil) {
                 newGroupMap[groupId] = groupThread.groupModel;
@@ -446,6 +445,7 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
     // Open a sneaky transaction and quit the group if we're a member
     if ([groupModel.groupMembers containsObject:TSAccountManager.localAddress]) {
         DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
+            [TSGroupThread ensureGroupIdMappingForGroupId:groupId transaction:transaction];
             TSGroupThread *groupThread = [TSGroupThread fetchWithGroupId:groupId transaction:transaction];
             [GroupManager leaveGroupOrDeclineInviteAsyncWithoutUIWithGroupThread:groupThread
                                                                      transaction:transaction
@@ -483,6 +483,7 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
             return;
         }
 
+        [TSGroupThread ensureGroupIdMappingForGroupId:groupId transaction:transaction];
         TSGroupThread *_Nullable groupThread = [TSGroupThread fetchWithGroupId:groupId transaction:transaction];
 
         // Quit the group if we're a member
@@ -665,7 +666,7 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
             [self saveSyncedBlockListWithPhoneNumbers:blockedPhoneNumbers uuids:blockedUUIDs groupIds:blockedGroupIds];
         }
 
-        [[NSNotificationCenter defaultCenter] postNotificationNameAsync:kNSNotificationName_BlockListDidChange
+        [[NSNotificationCenter defaultCenter] postNotificationNameAsync:kNSNotificationNameBlockListDidChange
                                                                  object:nil
                                                                userInfo:nil];
     });
@@ -831,12 +832,12 @@ NSString *const kOWSBlockingManager_SyncedBlockedGroupIdsKey = @"kOWSBlockingMan
 {
     OWSAssertIsOnMainThread();
 
-    [AppReadiness runNowOrWhenAppDidBecomeReadyPolite:^{
+    AppReadinessRunNowOrWhenAppDidBecomeReadyAsync(^{
         @synchronized(self)
         {
             [self syncBlockListIfNecessary];
         }
-    }];
+    });
 }
 
 @end

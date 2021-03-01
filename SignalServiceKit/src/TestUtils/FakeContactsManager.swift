@@ -54,12 +54,20 @@ public class FakeContactsManager: NSObject, ContactsManagerProtocol {
         return true
     }
 
+    public func isSystemContact(withSignalAccount phoneNumber: String, transaction: SDSAnyReadTransaction) -> Bool {
+        return true
+    }
+
     public func hasNameInSystemContacts(for address: SignalServiceAddress) -> Bool {
         return true
     }
 
-    public func conversationColorName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> String {
-        ConversationColorName.indigo.rawValue
+    public func hasNameInSystemContacts(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> Bool {
+        return true
+    }
+
+    public func conversationColorName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> ConversationColorName {
+        ConversationColorName.indigo
     }
 
     public func sortSignalServiceAddresses(_ addresses: [SignalServiceAddress],
@@ -70,6 +78,10 @@ public class FakeContactsManager: NSObject, ContactsManagerProtocol {
     public func compare(signalAccount left: SignalAccount, with right: SignalAccount) -> ComparisonResult {
         // If this method ends up being used by the tests, we should provide a better implementation.
         owsFail("TODO")
+    }
+
+    public func comparableName(for address: SignalServiceAddress, transaction: SDSAnyReadTransaction) -> String {
+        return "Fake name"
     }
 
     public func comparableName(for signalAccount: SignalAccount, transaction: SDSAnyReadTransaction) -> String {

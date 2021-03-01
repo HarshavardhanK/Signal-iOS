@@ -13,27 +13,6 @@
 
 @implementation AboutTableViewController
 
-#pragma mark - Dependencies
-
-- (SDSDatabaseStorage *)databaseStorage
-{
-    return SDSDatabaseStorage.shared;
-}
-
-- (TSAccountManager *)tsAccountManager
-{
-    OWSAssertDebug(SSKEnvironment.shared.tsAccountManager);
-
-    return SSKEnvironment.shared.tsAccountManager;
-}
-
-- (OWSProfileManager *)profileManager
-{
-    return [OWSProfileManager sharedManager];
-}
-
-#pragma mark -
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -78,7 +57,7 @@
     OWSTableSection *informationSection = [OWSTableSection new];
     informationSection.headerTitle = NSLocalizedString(@"SETTINGS_INFORMATION_HEADER", @"");
     [informationSection addItem:[OWSTableItem labelItemWithText:NSLocalizedString(@"SETTINGS_VERSION", @"")
-                                                  accessoryText:AppVersion.sharedInstance.currentAppVersionLong]];
+                                                  accessoryText:AppVersion.shared.currentAppVersionLong]];
 
     [informationSection
         addItem:[OWSTableItem
@@ -150,6 +129,39 @@
                                              [weakSelf.navigationController pushViewController:testingViewController
                                                                                       animated:YES];
                                          }]];
+
+    TSAccountManager *tsAccountManager = self.tsAccountManager;
+    NSString *localNumber = @"Unknown";
+    if (tsAccountManager.localNumber != nil) {
+        localNumber = tsAccountManager.localNumber;
+    }
+    [debugSection
+        addItem:[OWSTableItem actionItemWithText:[NSString stringWithFormat:@"Local Phone Number: %@", localNumber]
+                                     actionBlock:^{
+                                         if (tsAccountManager.localNumber != nil) {
+                                             UIPasteboard.generalPasteboard.string = tsAccountManager.localNumber;
+                                         }
+                                     }]];
+
+    NSString *localUuid = @"Unknown";
+    if (tsAccountManager.localUuid != nil) {
+        localUuid = tsAccountManager.localUuid.UUIDString;
+    }
+    [debugSection addItem:[OWSTableItem actionItemWithText:[NSString stringWithFormat:@"Local UUID: %@", localUuid]
+                                               actionBlock:^{
+                                                   if (tsAccountManager.localUuid != nil) {
+                                                       UIPasteboard.generalPasteboard.string
+                                                           = tsAccountManager.localUuid.UUIDString;
+                                                   }
+                                               }]];
+
+    [debugSection addItem:[OWSTableItem labelItemWithText:[NSString stringWithFormat:@"Device ID: %lu",
+                                                                    (unsigned long)tsAccountManager.storedDeviceId]]];
+
+    if (tsAccountManager.storedDeviceName != nil) {
+        [debugSection addItem:[OWSTableItem labelItemWithText:[NSString stringWithFormat:@"Device Name: %@",
+                                                                        tsAccountManager.storedDeviceName]]];
+    }
 
     NSString *environmentName = TSConstants.isUsingProductionService ? @"Production" : @"Staging";
     [debugSection
@@ -230,15 +242,20 @@
 {
     SignalServiceAddress *localAddress = self.tsAccountManager.localAddress;
     __block BOOL hasGroupsV2Capability;
+    __block BOOL hasGroupMigrationCapability;
     [self.databaseStorage readWithBlock:^(SDSAnyReadTransaction *transaction) {
         hasGroupsV2Capability = [GroupManager doesUserHaveGroupsV2CapabilityWithAddress:localAddress
                                                                             transaction:transaction];
+        hasGroupMigrationCapability = [GroupManager doesUserHaveGroupsV2MigrationCapabilityWithAddress:localAddress
+                                                                                           transaction:transaction];
     }];
 
     OWSTableSection *section = [OWSTableSection new];
     section.headerTitle = @"Groups v2";
     [section addItem:[OWSTableItem labelItemWithText:[NSString stringWithFormat:@"Has Groups v2 capability: %@",
                                                                @(hasGroupsV2Capability)]]];
+    [section addItem:[OWSTableItem labelItemWithText:[NSString stringWithFormat:@"Has Group Migration capability: %@",
+                                                               @(hasGroupMigrationCapability)]]];
 
     [contents addSection:section];
 }

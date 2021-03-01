@@ -1,15 +1,13 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSRecordTranscriptJob.h"
 #import "FunctionalUtil.h"
-#import "OWSAttachmentDownloads.h"
 #import "OWSDisappearingMessagesJob.h"
 #import "OWSIncomingSentMessageTranscript.h"
 #import "OWSReadReceiptManager.h"
 #import "SSKEnvironment.h"
-#import "SSKSessionStore.h"
 #import "TSAttachmentPointer.h"
 #import "TSGroupThread.h"
 #import "TSInfoMessage.h"
@@ -98,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     if (transcript.isEndSessionMessage) {
         OWSLogInfo(@"EndSession was sent to recipient: %@.", transcript.recipientAddress);
-        [self.sessionStore deleteAllSessionsForAddress:transcript.recipientAddress transaction:transaction];
+        [self.sessionStore archiveAllSessionsForAddress:transcript.recipientAddress transaction:transaction];
 
         TSInfoMessage *infoMessage = [[TSInfoMessage alloc] initWithThread:transcript.thread
                                                                messageType:TSInfoMessageTypeSessionDidEnd];
@@ -189,7 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
             // This is probably a v2 group update.
             OWSLogWarn(@"Ignoring message transcript for empty v2 group message.");
         } else {
-            OWSFailDebug(@"Ignoring message transcript for empty message.");
+            OWSLogWarn(@"Ignoring message transcript for empty message.");
         }
         return;
     }
@@ -209,20 +207,19 @@ NS_ASSUME_NONNULL_BEGIN
     [self.earlyMessageManager applyPendingMessagesFor:outgoingMessage transaction:transaction];
 
     if (outgoingMessage.isViewOnceMessage) {
-        // To be extra-conservative, always mark
+        // To be extra-conservative, always mark as complete immediately.
         [ViewOnceMessages markAsCompleteWithMessage:outgoingMessage sendSyncMessages:NO transaction:transaction];
     } else if (outgoingMessage.allAttachmentIds.count > 0) {
-        // Don't download attachments for "view-once" messages.
-        NSArray<TSAttachment *> *attachments =
-            [outgoingMessage allAttachmentsWithTransaction:transaction.unwrapGrdbRead];
-
+        // Don't download attachments for "view-once" messages from linked devices.
+        //
         // Don't enqueue the attachment downloads until the write
         // transaction is committed or attachmentDownloads might race
         // and not be able to find the attachment(s)/message/thread.
         [transaction addAsyncCompletionOffMain:^{
-            [self.attachmentDownloads downloadAttachmentsForMessage:outgoingMessage
-                bypassPendingMessageRequest:YES
-                attachments:attachments
+            [self.attachmentDownloads enqueueDownloadOfAttachmentsForMessageId:outgoingMessage.uniqueId
+                attachmentGroup:AttachmentGroupAllAttachmentsIncoming
+                downloadBehavior:AttachmentDownloadBehaviorBypassAll
+                touchMessageImmediately:NO
                 success:^(NSArray *attachmentStreams) {
                     NSString *_Nullable quotedThumbnailPointerId
                         = transcript.quotedMessage.thumbnailAttachmentPointerId;
@@ -238,11 +235,6 @@ NS_ASSUME_NONNULL_BEGIN
                         }
                     }
                     DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
-                        // OWSAttachmentDownloads should probably be performing this for us.
-                        // Explicitly touching the interaction here since it's a pattern adopted in a
-                        // couple other places. But if it ends up not being necessary this could be removed.
-                        [self.databaseStorage touchInteraction:outgoingMessage transaction:transaction];
-
                         if (quotedThumbnailStream) {
                             [outgoingMessage
                                 anyUpdateMessageWithTransaction:transaction

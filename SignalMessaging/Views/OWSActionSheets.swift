@@ -39,7 +39,7 @@ import Foundation
 
         let actionSheet = ActionSheetController(title: title, message: message)
 
-        let actionTitle = buttonTitle ?? NSLocalizedString("OK", comment: "")
+        let actionTitle = buttonTitle ?? CommonStrings.okButton
         let okAction = ActionSheetAction(title: actionTitle, style: .default, handler: buttonAction)
         okAction.accessibilityIdentifier = "OWSActionSheets.\("ok")"
         actionSheet.addAction(okAction)
@@ -53,7 +53,7 @@ import Foundation
         let actionSheet = ActionSheetController(title: title, message: message)
         actionSheet.addAction(self.cancelAction)
 
-        let actionTitle = proceedTitle ?? NSLocalizedString("OK", comment: "")
+        let actionTitle = proceedTitle ?? CommonStrings.okButton
         let okAction = ActionSheetAction(
             title: actionTitle,
             accessibilityIdentifier: "OWSActionSheets.ok",
@@ -125,7 +125,7 @@ import Foundation
 
         // Don't show the nag to users who have just launched
         // the app for the first time.
-        guard AppVersion.sharedInstance().lastAppVersion != nil else {
+        guard AppVersion.shared().lastAppVersion != nil else {
             return
         }
 

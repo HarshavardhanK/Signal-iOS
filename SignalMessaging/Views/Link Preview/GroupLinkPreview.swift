@@ -23,10 +23,10 @@ public class LinkPreviewGroupLink: NSObject, LinkPreviewState {
     }
 
     @objc
-    required init(linkType: LinkPreviewLinkType,
-                  linkPreview: OWSLinkPreview,
-                  groupInviteLinkViewModel: GroupInviteLinkViewModel,
-                  conversationStyle: ConversationStyle) {
+    public required init(linkType: LinkPreviewLinkType,
+                         linkPreview: OWSLinkPreview,
+                         groupInviteLinkViewModel: GroupInviteLinkViewModel,
+                         conversationStyle: ConversationStyle) {
         self.linkPreview = linkPreview
         self.linkType = linkType
         self.groupInviteLinkViewModel = groupInviteLinkViewModel
@@ -34,13 +34,11 @@ public class LinkPreviewGroupLink: NSObject, LinkPreviewState {
     }
 
     @objc
-    public var imageSize: CGSize {
+    public var imagePixelSize: CGSize {
         guard let avatar = groupInviteLinkViewModel.avatar else {
             return CGSize.zero
         }
-        let pixelSize = avatar.imageSizePixels
-        return CGSize(width: (pixelSize.width / UIScreen.main.scale),
-                      height: (pixelSize.height / UIScreen.main.scale))
+        return avatar.imageSizePixels
     }
 
     public func isLoaded() -> Bool {
@@ -100,7 +98,7 @@ public class LinkPreviewGroupLink: NSObject, LinkPreviewState {
 
     public func previewDescription() -> String? {
         guard let groupInviteLinkPreview = groupInviteLinkPreview else {
-            owsFailDebug("Missing groupInviteLinkPreview.")
+            Logger.warn("Missing groupInviteLinkPreview.")
             return nil
         }
         let groupIndicator = NSLocalizedString("GROUP_LINK_ACTION_SHEET_VIEW_GROUP_INDICATOR",

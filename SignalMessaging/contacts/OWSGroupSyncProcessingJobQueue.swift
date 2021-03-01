@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -29,7 +29,7 @@ public class IncomingGroupSyncJobQueue: NSObject, JobQueue {
     public override init() {
         super.init()
 
-        AppReadiness.runNowOrWhenAppDidBecomeReadyPolite {
+        AppReadiness.runNowOrWhenAppDidBecomeReadyAsync {
             self.setup()
         }
     }
@@ -155,8 +155,7 @@ public class IncomingGroupSyncOperation: OWSOperation, DurableOperation {
 
         switch attachment {
         case let attachmentPointer as TSAttachmentPointer:
-            return self.attachmentDownloads.downloadAttachmentPointer(attachmentPointer,
-                                                                      bypassPendingMessageRequest: true)
+            return self.attachmentDownloads.enqueueHeadlessDownloadPromise(attachmentPointer: attachmentPointer)
         case let attachmentStream as TSAttachmentStream:
             return Promise.value(attachmentStream)
         default:
@@ -180,7 +179,11 @@ public class IncomingGroupSyncOperation: OWSOperation, DurableOperation {
                             do {
                                 try self.process(groupDetails: nextGroup, transaction: transaction)
                             } catch {
-                                owsFailDebug("Error: \(error)")
+                                if case GroupsV2Error.groupDowngradeNotAllowed = error {
+                                    Logger.warn("Error: \(error)")
+                                } else {
+                                    owsFailDebug("Error: \(error)")
+                                }
                             }
                         }
                     }
@@ -198,6 +201,9 @@ public class IncomingGroupSyncOperation: OWSOperation, DurableOperation {
             owsFailDebug("Invalid group id.")
             return
         }
+
+        TSGroupThread.ensureGroupIdMapping(forGroupId: groupId, transaction: transaction)
+
         // groupUpdateSourceAddress is nil because we don't know
         // who made any changes.
         let groupUpdateSourceAddress: SignalServiceAddress? = nil

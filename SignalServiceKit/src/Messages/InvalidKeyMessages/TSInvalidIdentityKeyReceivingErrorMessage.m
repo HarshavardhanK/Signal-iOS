@@ -1,14 +1,12 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSInvalidIdentityKeyReceivingErrorMessage.h"
 #import "OWSFingerprint.h"
 #import "OWSIdentityManager.h"
 #import "OWSMessageManager.h"
-#import "OWSMessageReceiver.h"
 #import "SSKEnvironment.h"
-#import "SSKSessionStore.h"
 #import "TSContactThread.h"
 #import <AxolotlKit/NSData+keyVersionByte.h>
 #import <AxolotlKit/PreKeyWhisperMessage.h>
@@ -58,10 +56,10 @@ __attribute__((deprecated)) @interface TSInvalidIdentityKeyReceivingErrorMessage
                                                          thread:(TSThread *)thread
                                                incomingEnvelope:(SSKProtoEnvelope *)envelope
 {
-    self = [self initWithTimestamp:timestamp
-                            thread:thread
-                 failedMessageType:TSErrorMessageWrongTrustedIdentityKey
-                           address:nil];
+    TSErrorMessageBuilder *builder =
+        [TSErrorMessageBuilder errorMessageBuilderWithThread:thread errorType:TSErrorMessageWrongTrustedIdentityKey];
+    builder.timestamp = timestamp;
+    self = [super initErrorMessageWithBuilder:builder];
     if (!self) {
         return self;
     }
@@ -107,6 +105,7 @@ __attribute__((deprecated)) @interface TSInvalidIdentityKeyReceivingErrorMessage
                        errorType:(TSErrorMessageType)errorType
                             read:(BOOL)read
                 recipientAddress:(nullable SignalServiceAddress *)recipientAddress
+             wasIdentityVerified:(BOOL)wasIdentityVerified
                         authorId:(NSString *)authorId
                     envelopeData:(nullable NSData *)envelopeData
 {
@@ -132,7 +131,8 @@ __attribute__((deprecated)) @interface TSInvalidIdentityKeyReceivingErrorMessage
                 wasRemotelyDeleted:wasRemotelyDeleted
                          errorType:errorType
                               read:read
-                  recipientAddress:recipientAddress];
+                  recipientAddress:recipientAddress
+               wasIdentityVerified:wasIdentityVerified];
 
     if (!self) {
         return self;
@@ -178,22 +178,26 @@ __attribute__((deprecated)) @interface TSInvalidIdentityKeyReceivingErrorMessage
         return;
     }
 
-    [[OWSIdentityManager sharedManager] saveRemoteIdentity:newKey address:self.envelope.sourceAddress];
+    [[OWSIdentityManager shared] saveRemoteIdentity:newKey address:self.envelope.sourceAddress];
 
     // Decrypt this and any old messages for the newly accepted key
     NSArray<TSInvalidIdentityKeyReceivingErrorMessage *> *_Nullable messagesToDecrypt =
         [self.threadWithSneakyTransaction receivedMessagesForInvalidKey:newKey];
 
     for (TSInvalidIdentityKeyReceivingErrorMessage *errorMessage in messagesToDecrypt) {
-        [SSKEnvironment.shared.messageReceiver handleReceivedEnvelopeData:errorMessage.envelopeData
-                                                  serverDeliveryTimestamp:0];
-
-        // Here we remove the existing error message because handleReceivedEnvelope will either
-        //  1.) succeed and create a new successful message in the thread or...
-        //  2.) fail and create a new identical error message in the thread.
-        DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
-            [errorMessage anyRemoveWithTransaction:transaction];
-        });
+        [MessageProcessor.shared
+            processEncryptedEnvelopeData:errorMessage.envelopeData
+                       encryptedEnvelope:nil
+                 serverDeliveryTimestamp:0
+                              completion:^(NSError *error) {
+                                  // Here we remove the existing error message because handleReceivedEnvelope will
+                                  // either
+                                  //  1.) succeed and create a new successful message in the thread or...
+                                  //  2.) fail and create a new identical error message in the thread.
+                                  DatabaseStorageWrite(self.databaseStorage, ^(SDSAnyWriteTransaction *transaction) {
+                                      [errorMessage anyRemoveWithTransaction:transaction];
+                                  });
+                              }];
     }
 }
 
@@ -230,6 +234,13 @@ __attribute__((deprecated)) @interface TSInvalidIdentityKeyReceivingErrorMessage
         // for existing messages before we were storing author id.
         return self.envelope.sourceE164;
     }
+}
+
+- (SignalServiceAddress *)theirSignalAddress
+{
+    OWSAssertDebug(self.envelope.sourceAddress != nil);
+
+    return self.envelope.sourceAddress;
 }
 
 @end

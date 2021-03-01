@@ -29,11 +29,13 @@ class MessageSenderJobQueueTest: SSKBaseTestSwift {
         let expectation = sentExpectation(message: message)
 
         let jobQueue = MessageSenderJobQueue()
-        jobQueue.setup()
         self.write { transaction in
             jobQueue.add(message: message.asPreparer, transaction: transaction)
         }
-
+        jobQueue.setup()
+        // Make sure the default global queue has a chance to process.
+        // Note that for this to work, this code must be using the same QoS as MessageSenderJobQueue.
+        DispatchQueue.global().sync(flags: .barrier) {}
         self.wait(for: [expectation], timeout: 0.1)
     }
 

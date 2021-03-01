@@ -117,6 +117,10 @@ message CallMessage {
     optional uint32 deviceId = 3;
   }
 
+  message Opaque {
+    optional bytes data = 1;
+  }
+
   optional Offer     offer               = 1;
   optional Answer    answer              = 2;
   repeated IceUpdate iceUpdate           = 3;
@@ -128,6 +132,7 @@ message CallMessage {
   optional Hangup    hangup              = 7;
   optional bool      supportsMultiRing   = 8;
   optional uint32    destinationDeviceId = 9;
+  optional Opaque    opaque              = 10;
 }
 
 message DataMessage {
@@ -249,7 +254,6 @@ message DataMessage {
   message Reaction {
     // @required
     optional string emoji      = 1;
-    // @required
     optional bool   remove     = 2;
     optional string authorE164 = 3;
     optional string authorUuid = 4;
@@ -273,6 +277,10 @@ message DataMessage {
     // oneof associatedValue {
       optional string mentionUuid = 3;
     // }
+  }
+
+  message GroupCallUpdate {
+    optional string eraId = 1;
   }
 
   enum ProtocolVersion {
@@ -305,6 +313,8 @@ message DataMessage {
   optional Reaction          reaction                = 16;
   optional Delete            delete                  = 17;
   repeated BodyRange         bodyRanges              = 18;
+  optional GroupCallUpdate   groupCallUpdate         = 19;
+  // Field 20 is reserved.
 }
 
 message NullMessage {

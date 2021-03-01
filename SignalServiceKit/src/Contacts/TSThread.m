@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSThread.h"
@@ -17,6 +17,8 @@
 #import <SignalCoreKit/NSString+OWS.h>
 #import <SignalServiceKit/AppReadiness.h>
 #import <SignalServiceKit/SignalServiceKit-Swift.h>
+
+@import Intents;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,8 +54,8 @@ ConversationColorName const ConversationColorNameDefault = ConversationColorName
 @property (atomic, nullable) NSDate *mutedUntilDate;
 @property (nonatomic) int64_t lastInteractionRowId;
 
-@property (nonatomic) uint64_t lastVisibleSortId;
-@property (nonatomic) double lastVisibleSortIdOnScreenPercentage;
+@property (nonatomic) uint64_t lastVisibleSortIdObsolete;
+@property (nonatomic) double lastVisibleSortIdOnScreenPercentageObsolete;
 
 @property (nonatomic) TSThreadMentionNotificationMode mentionNotificationMode;
 
@@ -123,8 +125,8 @@ ConversationColorName const ConversationColorNameDefault = ConversationColorName
                       isArchived:(BOOL)isArchived
                   isMarkedUnread:(BOOL)isMarkedUnread
             lastInteractionRowId:(int64_t)lastInteractionRowId
-               lastVisibleSortId:(uint64_t)lastVisibleSortId
-lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
+       lastVisibleSortIdObsolete:(uint64_t)lastVisibleSortIdObsolete
+lastVisibleSortIdOnScreenPercentageObsolete:(double)lastVisibleSortIdOnScreenPercentageObsolete
          mentionNotificationMode:(TSThreadMentionNotificationMode)mentionNotificationMode
                     messageDraft:(nullable NSString *)messageDraft
           messageDraftBodyRanges:(nullable MessageBodyRanges *)messageDraftBodyRanges
@@ -143,8 +145,8 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
     _isArchived = isArchived;
     _isMarkedUnread = isMarkedUnread;
     _lastInteractionRowId = lastInteractionRowId;
-    _lastVisibleSortId = lastVisibleSortId;
-    _lastVisibleSortIdOnScreenPercentage = lastVisibleSortIdOnScreenPercentage;
+    _lastVisibleSortIdObsolete = lastVisibleSortIdObsolete;
+    _lastVisibleSortIdOnScreenPercentageObsolete = lastVisibleSortIdOnScreenPercentageObsolete;
     _mentionNotificationMode = mentionNotificationMode;
     _messageDraft = messageDraft;
     _messageDraftBodyRanges = messageDraftBodyRanges;
@@ -243,6 +245,8 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
 
 - (void)anyWillRemoveWithTransaction:(SDSAnyWriteTransaction *)transaction
 {
+    [SDSDatabaseStorage.shared updateIdMappingWithThread:self transaction:transaction];
+
     [super anyWillRemoveWithTransaction:transaction];
 
     [self removeAllThreadInteractionsWithTransaction:transaction];
@@ -305,26 +309,6 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
 }
 
 #pragma mark - To be subclassed.
-
-- (BOOL)isGroupThread {
-    OWSAbstractMethod();
-
-    return NO;
-}
-
-- (BOOL)isGroupV1Thread
-{
-    OWSAbstractMethod();
-
-    return NO;
-}
-
-- (BOOL)isGroupV2Thread
-{
-    OWSAbstractMethod();
-
-    return NO;
-}
 
 - (NSArray<SignalServiceAddress *> *)recipientAddresses
 {
@@ -482,42 +466,6 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
                                                                                                transaction:transaction];
 }
 
-// Returns YES IFF the interaction should show up in the inbox as the last message.
-+ (BOOL)shouldInteractionAppearInInbox:(TSInteraction *)interaction
-{
-    OWSAssertDebug(interaction);
-
-    if (!interaction.shouldBeSaved) {
-        OWSFailDebug(@"Unexpected interaction type: %@", interaction.class);
-        return NO;
-    }
-    if (interaction.isDynamicInteraction) {
-        OWSFailDebug(@"Unexpected interaction type: %@", interaction.class);
-        return NO;
-    }
-    if ([interaction isKindOfClass:[OWSOutgoingSyncMessage class]]) {
-        OWSFailDebug(@"Unexpected interaction type: %@", interaction.class);
-        return NO;
-    }
-
-    if ([interaction isKindOfClass:[TSErrorMessage class]]) {
-        TSErrorMessage *errorMessage = (TSErrorMessage *)interaction;
-        if (errorMessage.errorType == TSErrorMessageNonBlockingIdentityChange) {
-            // Otherwise all group threads with the recipient will percolate to the top of the inbox, even though
-            // there was no meaningful interaction.
-            return NO;
-        }
-    } else if ([interaction isKindOfClass:[TSInfoMessage class]]) {
-        TSInfoMessage *infoMessage = (TSInfoMessage *)interaction;
-        if (infoMessage.messageType == TSInfoMessageVerificationStateChange
-            || infoMessage.messageType == TSInfoMessageProfileUpdate) {
-            return NO;
-        }
-    }
-
-    return YES;
-}
-
 - (void)updateWithInsertedMessage:(TSInteraction *)message transaction:(SDSAnyWriteTransaction *)transaction
 {
     [self updateWithMessage:message wasMessageInserted:YES transaction:transaction];
@@ -551,18 +499,14 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
     OWSAssertDebug(message != nil);
     OWSAssertDebug(transaction != nil);
 
-    BOOL needsToClearLastVisibleSortId = self.lastVisibleSortId > 0 && wasMessageInserted;
+    BOOL hasLastVisibleInteraction = [self hasLastVisibleInteractionWithTransaction:transaction];
+    BOOL needsToClearLastVisibleSortId = hasLastVisibleInteraction && wasMessageInserted;
 
-    if (![self.class shouldInteractionAppearInInbox:message]) {
-
+    if (![message shouldAppearInInboxWithTransaction:transaction]) {
         // We want to clear the last visible sort ID on any new message,
         // even if the message doesn't appear in the inbox view.
         if (needsToClearLastVisibleSortId) {
-            [self anyUpdateWithTransaction:transaction
-                                     block:^(TSThread *thread) {
-                                         thread.lastVisibleSortId = 0;
-                                         thread.lastVisibleSortIdOnScreenPercentage = 0;
-                                     }];
+            [self clearLastVisibleInteractionWithTransaction:transaction];
         }
 
         return;
@@ -597,15 +541,17 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
                                      if (needsToClearArchived) {
                                          thread.isArchived = NO;
                                      }
-                                     if (needsToClearLastVisibleSortId) {
-                                         thread.lastVisibleSortId = 0;
-                                         thread.lastVisibleSortIdOnScreenPercentage = 0;
-                                     }
                                      if (needsToClearIsMarkedUnread) {
                                          thread.isMarkedUnread = NO;
+                                     }
+
+                                     if (needsToClearIsMarkedUnread || needsToClearArchived) {
                                          [self recordPendingStorageServiceUpdates];
                                      }
                                  }];
+        if (needsToClearLastVisibleSortId) {
+            [self clearLastVisibleInteractionWithTransaction:transaction];
+        }
     } else {
         [self scheduleTouchFinalizationWithTransaction:transaction];
     }
@@ -619,7 +565,9 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
     int64_t messageSortId = [self messageSortIdForMessage:message transaction:transaction];
     BOOL needsToUpdateLastInteractionRowId = messageSortId == self.lastInteractionRowId;
 
-    BOOL needsToUpdateLastVisibleSortId = self.lastVisibleSortId == messageSortId;
+    NSNumber *_Nullable lastVisibleSortId = [self lastVisibleSortIdWithTransaction:transaction];
+    BOOL needsToUpdateLastVisibleSortId
+        = (lastVisibleSortId != nil && lastVisibleSortId.unsignedLongLongValue == messageSortId);
 
     if (needsToUpdateLastInteractionRowId || needsToUpdateLastVisibleSortId) {
         [self anyUpdateWithTransaction:transaction
@@ -629,16 +577,19 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
                                              [thread lastInteractionForInboxWithTransaction:transaction];
                                          thread.lastInteractionRowId = latestInteraction ? latestInteraction.sortId : 0;
                                      }
-
-                                     if (needsToUpdateLastVisibleSortId) {
-                                         TSInteraction *_Nullable messageBeforeDeletedMessage =
-                                             [thread firstInteractionAtOrAroundSortId:thread.lastVisibleSortId
-                                                                          transaction:transaction];
-                                         thread.lastVisibleSortId
-                                             = messageBeforeDeletedMessage ? messageBeforeDeletedMessage.sortId : 0;
-                                         thread.lastVisibleSortIdOnScreenPercentage = 1;
-                                     }
                                  }];
+
+        if (needsToUpdateLastVisibleSortId) {
+            TSInteraction *_Nullable messageBeforeDeletedMessage =
+                [self firstInteractionAtOrAroundSortId:lastVisibleSortId.unsignedLongLongValue transaction:transaction];
+            if (messageBeforeDeletedMessage != nil) {
+                [self setLastVisibleInteractionWithSortId:messageBeforeDeletedMessage.sortId
+                                       onScreenPercentage:1
+                                              transaction:transaction];
+            } else {
+                [self clearLastVisibleInteractionWithTransaction:transaction];
+            }
+        }
     } else {
         [self scheduleTouchFinalizationWithTransaction:transaction];
     }
@@ -654,6 +605,7 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
     [transactionForMethod addTransactionFinalizationBlockForKey:self.transactionFinalizationKey
                                                           block:^(SDSAnyWriteTransaction *transactionForBlock) {
                                                               [self.databaseStorage touchThread:self
+                                                                                  shouldReindex:NO
                                                                                     transaction:transactionForBlock];
                                                           }];
 }
@@ -666,6 +618,9 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
                                  thread.messageDraft = nil;
                                  thread.shouldThreadBeVisible = NO;
                              }];
+
+    // Delete any intents we previously donated for this thread.
+    [INInteraction deleteInteractionsWithGroupIdentifier:self.uniqueId completion:^(NSError *error) {}];
 }
 
 - (BOOL)hasPendingMessageRequestWithTransaction:(GRDBReadTransaction *)transaction
@@ -785,23 +740,6 @@ lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
                              block:^(TSThread *thread) {
                                  thread.messageDraft = draftMessageBody.text;
                                  thread.messageDraftBodyRanges = draftMessageBody.ranges;
-                             }];
-}
-
-#pragma mark - Last Visible
-
-- (void)updateWithLastVisibleSortId:(uint64_t)lastVisibleSortId
-                 onScreenPercentage:(double)onScreenPercentage
-                        transaction:(SDSAnyWriteTransaction *)transaction
-{
-    OWSAssertDebug(onScreenPercentage >= 0);
-    OWSAssertDebug(onScreenPercentage <= 1);
-    OWSAssertDebug(transaction);
-
-    [self anyUpdateWithTransaction:transaction
-                             block:^(TSThread *thread) {
-                                 thread.lastVisibleSortId = lastVisibleSortId;
-                                 thread.lastVisibleSortIdOnScreenPercentage = onScreenPercentage;
                              }];
 }
 

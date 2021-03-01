@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -28,7 +28,7 @@ public class AccountManager: NSObject {
     }
 
     private var tsAccountManager: TSAccountManager {
-        return TSAccountManager.sharedInstance()
+        return TSAccountManager.shared()
     }
 
     private var accountServiceClient: AccountServiceClient {
@@ -67,7 +67,7 @@ public class AccountManager: NSObject {
 
         SwiftSingletons.register(self)
 
-        AppReadiness.runNowOrWhenAppDidBecomeReady {
+        AppReadiness.runNowOrWhenAppDidBecomeReadySync {
             if self.tsAccountManager.isRegistered {
                 self.recordUuidIfNecessary()
             }
@@ -126,6 +126,8 @@ public class AccountManager: NSObject {
                 // not deployed to production yet.
                 if error.httpStatusCode == 404 {
                     Logger.warn("404 while requesting preauthChallenge: \(error)")
+                } else if error.isNetworkFailureOrTimeout {
+                    Logger.warn("Network failure while requesting preauthChallenge: \(error)")
                 } else {
                     fallthrough
                 }
@@ -149,7 +151,7 @@ public class AccountManager: NSObject {
         return firstly {
             self.registerForTextSecure(verificationCode: verificationCode, pin: pin, checkForAvailableTransfer: checkForAvailableTransfer)
         }.then { response -> Promise<Void> in
-            assert(!RemoteConfig.allowUUIDOnlyContacts || response.uuid != nil)
+            assert(response.uuid != nil)
             self.tsAccountManager.uuidAwaitingVerification = response.uuid
 
             self.databaseStorage.write { transaction in
@@ -157,6 +159,9 @@ public class AccountManager: NSObject {
                     // For new users, read receipts are on by default.
                     self.readReceiptManager.setAreReadReceiptsEnabled(true,
                                                                       transaction: transaction)
+
+                    // New users also have the onboarding banner cards enabled
+                    GetStartedBannerViewController.enableAllCards(writeTx: transaction)
                 }
 
                 // If the user previously had a PIN, but we don't have record of it,
@@ -469,10 +474,7 @@ public class AccountManager: NSObject {
             _ = self.ensureUuid().catch { error in
                 // Until we're in a UUID-only world, don't require a
                 // local UUID.
-                if RemoteConfig.allowUUIDOnlyContacts {
-                    owsFailDebug("error: \(error)")
-                }
-                Logger.warn("error: \(error)")
+                owsFailDebug("error: \(error)")
             }
         }
     }

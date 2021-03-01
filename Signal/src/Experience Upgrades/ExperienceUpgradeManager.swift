@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -129,10 +129,9 @@ class ExperienceUpgradeManager: NSObject {
 
     private static func hasSplash(forExperienceUpgrade experienceUpgrade: ExperienceUpgrade) -> Bool {
         switch experienceUpgrade.id {
-        case .messageRequests:
-            // Only use a splash for message requests if the user doesn't have a profile name.
-            return OWSProfileManager.shared().localFullName()?.isEmpty != false
         case .introducingPins:
+            return true
+        case .groupsV2AndMentionsSplash2:
             return true
         default:
             return false
@@ -143,8 +142,8 @@ class ExperienceUpgradeManager: NSObject {
         switch experienceUpgrade.id {
         case .introducingPins:
             return IntroducingPinsSplash(experienceUpgrade: experienceUpgrade)
-        case .messageRequests:
-            return MessageRequestsSplash(experienceUpgrade: experienceUpgrade)
+        case .groupsV2AndMentionsSplash2:
+            return GroupsV2AndMentionsSplash(experienceUpgrade: experienceUpgrade)
         default:
             return nil
         }
@@ -158,10 +157,12 @@ class ExperienceUpgradeManager: NSObject {
              .pinReminder,
              .notificationPermissionReminder,
              .contactPermissionReminder,
-             .linkPreviews:
+             .linkPreviews,
+             .researchMegaphone1,
+             .groupCallsMegaphone,
+             .sharingSuggestions:
             return true
-        case .messageRequests:
-            // no need to annoy user with banner for message requests. They are self explanatory.
+        case .groupsV2AndMentionsSplash2:
             return false
         default:
             return false
@@ -180,6 +181,12 @@ class ExperienceUpgradeManager: NSObject {
             return ContactPermissionReminderMegaphone(experienceUpgrade: experienceUpgrade, fromViewController: fromViewController)
         case .linkPreviews:
             return LinkPreviewsMegaphone(experienceUpgrade: experienceUpgrade, fromViewController: fromViewController)
+        case .researchMegaphone1:
+            return ResearchMegaphone(experienceUpgrade: experienceUpgrade, fromViewController: fromViewController)
+        case .groupCallsMegaphone:
+            return GroupCallsMegaphone(experienceUpgrade: experienceUpgrade, fromViewController: fromViewController)
+        case .sharingSuggestions:
+            return SharingSuggestionsMegaphone(experienceUpgrade: experienceUpgrade, fromViewController: fromViewController)
         default:
             return nil
         }

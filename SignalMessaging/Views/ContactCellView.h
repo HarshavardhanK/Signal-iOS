@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 NS_ASSUME_NONNULL_BEGIN
@@ -12,6 +12,8 @@ extern const CGFloat kContactCellAvatarTextMargin;
 
 @interface ContactCellView : UIStackView
 
+@property (assign, nonatomic) BOOL forceDarkAppearance;
+
 @property (nonatomic, nullable) NSString *accessoryMessage;
 
 @property (nonatomic, nullable) NSAttributedString *customName;
@@ -20,7 +22,10 @@ extern const CGFloat kContactCellAvatarTextMargin;
 
 @property (nonatomic) BOOL useSmallAvatars;
 
-- (void)configureWithRecipientAddress:(SignalServiceAddress *)address;
+- (void)configureWithRecipientAddressWithSneakyTransaction:(SignalServiceAddress *)address
+    NS_SWIFT_NAME(configureWithSneakyTransaction(recipientAddress:));
+
+- (void)configureWithRecipientAddress:(SignalServiceAddress *)address transaction:(SDSAnyReadTransaction *)transaction;
 
 - (void)configureWithThread:(TSThread *)thread transaction:(SDSAnyReadTransaction *)transaction;
 
@@ -29,6 +34,8 @@ extern const CGFloat kContactCellAvatarTextMargin;
 - (NSAttributedString *)verifiedSubtitle;
 
 - (void)setAttributedSubtitle:(nullable NSAttributedString *)attributedSubtitle;
+
+- (void)setSubtitle:(nullable NSString *)subtitle;
 
 - (BOOL)hasAccessoryText;
 

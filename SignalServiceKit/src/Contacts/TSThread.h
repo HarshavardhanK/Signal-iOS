@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "BaseModel.h"
@@ -59,8 +59,8 @@ typedef NS_CLOSED_ENUM(NSUInteger, TSThreadMentionNotificationMode) { TSThreadMe
 //
 // If a new message is inserted into the conversation, this value
 // is cleared. We only restore this state if there are no unread messages.
-@property (nonatomic, readonly) uint64_t lastVisibleSortId;
-@property (nonatomic, readonly) double lastVisibleSortIdOnScreenPercentage;
+@property (nonatomic, readonly) uint64_t lastVisibleSortIdObsolete;
+@property (nonatomic, readonly) double lastVisibleSortIdOnScreenPercentageObsolete;
 
 // zero if thread has never had an interaction.
 // The corresponding interaction may have been deleted.
@@ -84,27 +84,18 @@ typedef NS_CLOSED_ENUM(NSUInteger, TSThreadMentionNotificationMode) { TSThreadMe
                       isArchived:(BOOL)isArchived
                   isMarkedUnread:(BOOL)isMarkedUnread
             lastInteractionRowId:(int64_t)lastInteractionRowId
-               lastVisibleSortId:(uint64_t)lastVisibleSortId
-lastVisibleSortIdOnScreenPercentage:(double)lastVisibleSortIdOnScreenPercentage
+       lastVisibleSortIdObsolete:(uint64_t)lastVisibleSortIdObsolete
+lastVisibleSortIdOnScreenPercentageObsolete:(double)lastVisibleSortIdOnScreenPercentageObsolete
          mentionNotificationMode:(TSThreadMentionNotificationMode)mentionNotificationMode
                     messageDraft:(nullable NSString *)messageDraft
           messageDraftBodyRanges:(nullable MessageBodyRanges *)messageDraftBodyRanges
                   mutedUntilDate:(nullable NSDate *)mutedUntilDate
            shouldThreadBeVisible:(BOOL)shouldThreadBeVisible
-NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:conversationColorName:creationDate:isArchived:isMarkedUnread:lastInteractionRowId:lastVisibleSortId:lastVisibleSortIdOnScreenPercentage:mentionNotificationMode:messageDraft:messageDraftBodyRanges:mutedUntilDate:shouldThreadBeVisible:));
+NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:conversationColorName:creationDate:isArchived:isMarkedUnread:lastInteractionRowId:lastVisibleSortIdObsolete:lastVisibleSortIdOnScreenPercentageObsolete:mentionNotificationMode:messageDraft:messageDraftBodyRanges:mutedUntilDate:shouldThreadBeVisible:));
 
 // clang-format on
 
 // --- CODE GENERATION MARKER
-
-/**
- *  Whether the object is a group thread or not.
- *
- *  @return YES if is a group thread, NO otherwise.
- */
-@property (nonatomic, readonly) BOOL isGroupThread;
-@property (nonatomic, readonly) BOOL isGroupV1Thread;
-@property (nonatomic, readonly) BOOL isGroupV2Thread;
 
 @property (nonatomic) ConversationColorName conversationColorName;
 
@@ -165,8 +156,6 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:conversationColorNa
 - (void)updateWithRemovedMessage:(TSInteraction *)message transaction:(SDSAnyWriteTransaction *)transaction;
 - (BOOL)hasPendingMessageRequestWithTransaction:(GRDBReadTransaction *)transaction
     NS_SWIFT_NAME(hasPendingMessageRequest(transaction:));
-
-- (void)scheduleTouchFinalizationWithTransaction:(SDSAnyWriteTransaction *)transactionForMethod;
 
 #pragma mark Archival
 
@@ -230,17 +219,11 @@ NS_DESIGNATED_INITIALIZER NS_SWIFT_NAME(init(grdbId:uniqueId:conversationColorNa
 
 #pragma mark - Update With... Methods
 
-- (void)updateWithLastVisibleSortId:(uint64_t)lastVisibleSortId
-                 onScreenPercentage:(double)onScreenPercentage
-                        transaction:(SDSAnyWriteTransaction *)transaction;
-
 - (void)updateWithMutedUntilDate:(nullable NSDate *)mutedUntilDate transaction:(SDSAnyWriteTransaction *)transaction;
 
 - (void)updateWithMentionNotificationMode:(TSThreadMentionNotificationMode)mentionNotificationMode
                               transaction:(SDSAnyWriteTransaction *)transaction
     NS_SWIFT_NAME(updateWithMentionNotificationMode(_:transaction:));
-
-+ (BOOL)shouldInteractionAppearInInbox:(TSInteraction *)interaction;
 
 @end
 

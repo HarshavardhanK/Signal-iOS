@@ -104,6 +104,11 @@ CREATE
             ,"bodyRanges" BLOB
             ,"offerType" INTEGER
             ,"serverDeliveryTimestamp" INTEGER
+            ,"eraId" TEXT
+            ,"hasEnded" BOOLEAN
+            ,"creatorUuid" TEXT
+            ,"joinedMemberUuids" BLOB
+            ,"wasIdentityVerified" BOOLEAN
         )
 ;
 
@@ -336,6 +341,8 @@ CREATE
             ,"isUuidCapable" BOOLEAN NOT NULL DEFAULT 0
             ,"lastFetchDate" DOUBLE
             ,"lastMessagingDate" DOUBLE
+            ,"bio" TEXT
+            ,"bioEmoji" TEXT
         )
 ;
 
@@ -881,12 +888,6 @@ CREATE
 ;
 
 CREATE
-    INDEX "index_model_TSThread_on_isMarkedUnread"
-        ON "model_TSThread"("isMarkedUnread"
-)
-;
-
-CREATE
     INDEX "index_model_TSInteraction_on_uniqueThreadId_recordType_messageType"
         ON "model_TSInteraction"("uniqueThreadId"
     ,"recordType"
@@ -932,5 +933,28 @@ CREATE
     UNIQUE INDEX "index_model_TSMention_on_uniqueMessageId_and_uuidString"
         ON "model_TSMention"("uniqueMessageId"
     ,"uuidString"
+)
+;
+
+CREATE
+    INDEX "index_model_TSThread_on_isMarkedUnread_and_shouldThreadBeVisible"
+        ON "model_TSThread"("isMarkedUnread"
+    ,"shouldThreadBeVisible"
+)
+;
+
+CREATE
+    INDEX "index_model_TSInteraction_on_uniqueThreadId_and_hasEnded_and_recordType"
+        ON "model_TSInteraction"("uniqueThreadId"
+    ,"hasEnded"
+    ,"recordType"
+)
+;
+
+CREATE
+    INDEX "index_model_TSInteraction_on_uniqueThreadId_and_eraId_and_recordType"
+        ON "model_TSInteraction"("uniqueThreadId"
+    ,"eraId"
+    ,"recordType"
 )
 ;

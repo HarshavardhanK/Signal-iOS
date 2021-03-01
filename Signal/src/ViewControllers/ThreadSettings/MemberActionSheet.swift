@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -132,8 +132,10 @@ class MemberActionSheet: NSObject {
         safetyNumberAction.leadingIcon = .settingsViewSafetyNumber
         actionSheet.addAction(safetyNumberAction)
 
-        if let groupViewHelper = self.groupViewHelper {
-            let address = self.address
+        let address = self.address
+        if let groupViewHelper = self.groupViewHelper,
+            groupViewHelper.isFullOrInvitedMember(address) {
+
             if groupViewHelper.memberActionSheetCanMakeGroupAdmin(address: address) {
                 let action = ActionSheetAction(
                     title: NSLocalizedString("CONVERSATION_SETTINGS_MAKE_GROUP_ADMIN_BUTTON",
@@ -181,17 +183,6 @@ extension MemberActionSheet: CNContactViewControllerDelegate {
 }
 
 private class MemberHeader: UIStackView {
-    var databaseStorage: SDSDatabaseStorage {
-        return .shared
-    }
-
-    var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
-    var profileManager: OWSProfileManager {
-        return .shared()
-    }
 
     private var dismiss: () -> Void
 
@@ -213,11 +204,13 @@ private class MemberHeader: UIStackView {
         var fetchedThread: TSContactThread?
         var fetchedDisplayName: String?
         var username: String?
+        var bioForDisplay: String?
 
         databaseStorage.read { transaction in
             fetchedThread = TSContactThread.getWithContactAddress(address, transaction: transaction)
             fetchedDisplayName = self.contactsManager.displayName(for: address, transaction: transaction)
             username = self.profileManager.username(for: address, transaction: transaction)
+            bioForDisplay = self.profileManager.profileBioForDisplay(for: address, transaction: transaction)
         }
 
         // Only open a write transaction if we need to create a new thread record.
@@ -257,7 +250,7 @@ private class MemberHeader: UIStackView {
         }
 
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.ows_dynamicTypeBodyClamped.ows_semibold()
+        titleLabel.font = UIFont.ows_dynamicTypeBodyClamped.ows_semibold
         titleLabel.textColor = Theme.primaryTextColor
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byWordWrapping
@@ -284,17 +277,27 @@ private class MemberHeader: UIStackView {
             }
         }
 
+        func buildSubtitleLabel(text: String) -> UILabel {
+            let label = UILabel()
+            label.font = .ows_dynamicTypeSubheadline
+            label.textColor = Theme.secondaryTextAndIconColor
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            label.textAlignment = .center
+            label.setContentHuggingVerticalHigh()
+            label.setCompressionResistanceVerticalHigh()
+            label.text = text
+            return label
+        }
+
+        if let bioForDisplay = bioForDisplay {
+            let label = buildSubtitleLabel(text: bioForDisplay)
+            label.numberOfLines = 0
+            addArrangedSubview(label)
+        }
+
         if let detailText = detailText {
-            let detailsLabel = UILabel()
-            detailsLabel.font = .ows_dynamicTypeSubheadline
-            detailsLabel.textColor = Theme.secondaryTextAndIconColor
-            detailsLabel.numberOfLines = 0
-            detailsLabel.lineBreakMode = .byWordWrapping
-            detailsLabel.textAlignment = .center
-            detailsLabel.setContentHuggingVerticalHigh()
-            detailsLabel.setCompressionResistanceVerticalHigh()
-            detailsLabel.text = detailText
-            addArrangedSubview(detailsLabel)
+            addArrangedSubview(buildSubtitleLabel(text: detailText))
         }
 
         let actionsStackView = UIStackView()

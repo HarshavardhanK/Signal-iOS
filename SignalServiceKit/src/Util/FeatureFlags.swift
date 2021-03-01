@@ -1,8 +1,9 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
+import PromiseKit
 
 enum FeatureBuild: Int {
     case dev
@@ -132,16 +133,16 @@ public class FeatureFlags: BaseFlags {
     public static let strictYDBExtensions = build.includes(.beta)
 
     @objc
-    public static let phoneNumberSharing = build.includes(.dev)
+    public static let phoneNumberSharing = build.includes(.qa)
 
     @objc
-    public static let phoneNumberDiscoverability = build.includes(.dev)
+    public static let phoneNumberDiscoverability = build.includes(.qa)
 
     @objc
     public static let complainAboutSlowDBWrites = true
 
     // Don't consult this flags; consult RemoteConfig.usernames.
-    static let usernamesSupported = build.includes(.dev)
+    static let usernamesSupported = build.includes(.qa)
 
     // Don't consult this flags; consult RemoteConfig.groupsV2...
     static var groupsV2Supported: Bool { !CurrentAppContext().isRunningTests }
@@ -153,7 +154,16 @@ public class FeatureFlags: BaseFlags {
     public static let groupsV2processProtosInGroupUpdates = true
 
     @objc
-    public static let linkedPhones = build.includes(.internalPreview)
+    public static let groupsV2showSplash = build.includes(.beta)
+
+    @objc
+    public static var groupsV2Migrations = true
+
+    @objc
+    public static let groupsV2MigrationSetCapability = groupsV2Migrations
+
+    @objc
+    public static let linkedPhones = build.includes(.qa)
 
     @objc
     public static let isUsingProductionService = true
@@ -176,9 +186,6 @@ public class FeatureFlags: BaseFlags {
     @objc
     public static let deviceTransferThrowAway = false
 
-    // Don't consult this flags; consult RemoteConfig.mentions.
-    static let mentionsSupported = groupsV2Supported
-
     @objc
     public static let attachmentUploadV3ForV1GroupAvatars = false
 
@@ -190,20 +197,6 @@ public class FeatureFlags: BaseFlags {
 
     @objc
     public static let supportAnimatedStickers_AnimatedWebp = true
-
-    private static let _ignoreCDSUndiscoverableUsersInMessageSends = AtomicBool(true)
-    @objc
-    public static var ignoreCDSUndiscoverableUsersInMessageSends: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return true
-            }
-            return _ignoreCDSUndiscoverableUsersInMessageSends.get()
-        }
-        set {
-            _ignoreCDSUndiscoverableUsersInMessageSends.set(newValue)
-        }
-    }
 
     public static func buildFlagMap() -> [String: Any] {
         BaseFlags.buildFlagMap(for: FeatureFlags.self) { (key: String) -> Any? in
@@ -229,12 +222,17 @@ public class FeatureFlags: BaseFlags {
     }
 }
 
+// MARK: -
+
 /// Flags that we'll leave in the code base indefinitely that are helpful for
 /// development should go here, rather than cluttering up FeatureFlags.
 @objc(SSKDebugFlags)
 public class DebugFlags: BaseFlags {
     @objc
     public static let internalLogging = build.includes(.qa)
+
+    @objc
+    public static let betaLogging = build.includes(.beta)
 
     // DEBUG builds won't receive push notifications, which prevents receiving messages
     // while the app is backgrounded or the system call screen is active.
@@ -254,119 +252,72 @@ public class DebugFlags: BaseFlags {
     public static let suppressBackgroundActivity = false
 
     @objc
-    public static let logSQLQueries = build.includes(.dev)
+    public static let reduceLogChatter = build.includes(.dev) && false
+
+    @objc
+    public static let logSQLQueries = build.includes(.dev) && !reduceLogChatter
 
     @objc
     public static let groupsV2IgnoreCapability = false
 
     // We can use this to test recovery from "missed updates".
-    private static let _groupsV2dontSendUpdates = AtomicBool(false)
     @objc
-    public static var groupsV2dontSendUpdates: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return false
-            }
-            return _groupsV2dontSendUpdates.get()
-        }
-        set {
-            _groupsV2dontSendUpdates.set(newValue)
-        }
-    }
+    public static let groupsV2dontSendUpdates = TestableFlag(false)
 
     @objc
     public static let groupsV2showV2Indicator = FeatureFlags.groupsV2Supported && build.includes(.qa)
 
     // If set, v2 groups will be created and updated with invalid avatars
     // so that we can test clients' robustness to this case.
-    private static let _groupsV2corruptAvatarUrlPaths = AtomicBool(false)
     @objc
-    public static var groupsV2corruptAvatarUrlPaths: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return false
-            }
-            return _groupsV2corruptAvatarUrlPaths.get()
-        }
-        set {
-            _groupsV2corruptAvatarUrlPaths.set(newValue)
-        }
-    }
+    public static let groupsV2corruptAvatarUrlPaths = TestableFlag(false)
 
     // If set, v2 groups will be created and updated with
     // corrupt avatars, group names, and/or dm state
     // so that we can test clients' robustness to this case.
-    private static let _groupsV2corruptBlobEncryption = AtomicBool(false)
     @objc
-    public static var groupsV2corruptBlobEncryption: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return false
-            }
-            return _groupsV2corruptBlobEncryption.get()
-        }
-        set {
-            _groupsV2corruptBlobEncryption.set(newValue)
-        }
-    }
-
-    static let groupsV2ForceEnable = FeatureFlags.groupsV2Supported && build.includes(.qa)
+    public static let groupsV2corruptBlobEncryption = TestableFlag(false)
 
     // If set, client will invite instead of adding other users.
-    private static let _groupsV2forceInvites = AtomicBool(false)
     @objc
-    public static var groupsV2forceInvites: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return false
-            }
-            return _groupsV2forceInvites.get()
-        }
-        set {
-            _groupsV2forceInvites.set(newValue)
-        }
-    }
+    public static let groupsV2forceInvites = TestableFlag(false)
 
     // If set, client will always send corrupt invites.
-    private static let _groupsV2corruptInvites = AtomicBool(false)
     @objc
-    public static var groupsV2corruptInvites: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return false
-            }
-            return _groupsV2corruptInvites.get()
-        }
-        set {
-            _groupsV2corruptInvites.set(newValue)
-        }
-    }
+    public static let groupsV2corruptInvites = TestableFlag(false)
 
-    private static let _groupsV2onlyCreateV1Groups = AtomicBool(false)
     @objc
-    public static var groupsV2onlyCreateV1Groups: Bool {
-        get {
-            guard build.includes(.qa) else {
-                return false
-            }
-            return _groupsV2onlyCreateV1Groups.get()
-        }
-        set {
-            _groupsV2onlyCreateV1Groups.set(newValue)
-        }
-    }
+    public static let groupsV2onlyCreateV1Groups = TestableFlag(false)
+
+    @objc
+    public static let groupsV2migrationsForceEnableAutoMigrations = TestableFlag(build.includes(.beta))
+
+    @objc
+    public static let groupsV2migrationsForceEnableManualMigrations = TestableFlag(build.includes(.qa))
+
+    @objc
+    public static let groupsV2MigrationForceBlockingMigrations = TestableFlag(false)
+
+    @objc
+    public static let groupsV2migrationsDropOtherMembers = TestableFlag(false)
+
+    @objc
+    public static let groupsV2migrationsInviteOtherMembers = TestableFlag(false)
+
+    @objc
+    public static let groupsV2migrationsDisableMigrationCapability = TestableFlag(false, affectsCapabilities: true)
+
+    @objc
+    public static let groupsV2migrationsIgnoreMigrationCapability = false
+
+    @objc
+    public static let aggressiveProfileFetching = TestableFlag(false)
 
     @objc
     public static let groupsV2ignoreCorruptInvites = false
 
     @objc
     public static let groupsV2memberStatusIndicators = FeatureFlags.groupsV2Supported && build.includes(.qa)
-
-    @objc
-    public static let groupsV2editMemberAccess = build.includes(.qa)
-
-    @objc
-    public static let groupsV2ForceInviteLinks = build.includes(.qa)
 
     @objc
     public static let isMessageProcessingVerbose = false
@@ -379,8 +330,6 @@ public class DebugFlags: BaseFlags {
     @objc
     public static let logCurlOnSuccess = false
 
-    static let forceModernContactDiscovery = build.includes(.beta)
-
     // Our "group update" info messages should be robust to
     // various situations that shouldn't occur in production,
     // bug we want to be able to test them using the debug UI.
@@ -389,6 +338,9 @@ public class DebugFlags: BaseFlags {
 
     @objc
     public static let showProfileKeyAndUuidsIndicator = build.includes(.qa)
+
+    @objc
+    public static let showCapabilityIndicators = build.includes(.qa)
 
     @objc
     public static let verboseNotificationLogging = build.includes(.qa)
@@ -402,22 +354,50 @@ public class DebugFlags: BaseFlags {
     @objc
     public static let deviceTransferVerboseProgressLogging = build.includes(.qa)
 
-    // We currently want to force-enable versioned profiles for
-    // all beta users, but not production.
-    static let forceVersionedProfiles = build.includes(.beta)
-
     @objc
     public static let reactWithThumbsUpFromLockscreen = build.includes(.qa)
-
-    static let forceMentions = build.includes(.dev)
-
-    static let forceAttachmentUploadV3 = build.includes(.beta)
 
     @objc
     public static let messageDetailsExtraInfo = build.includes(.qa)
 
     @objc
     public static let exposeCensorshipCircumvention = build.includes(.qa)
+
+    @objc
+    public static let allowV1GroupsUpdates = build.includes(.qa)
+
+    @objc
+    public static let forceProfilesForAll = build.includes(.beta)
+
+    @objc
+    public static let forceGroupCalling = build.includes(.beta)
+
+    @objc
+    public static let disableMessageProcessing = TestableFlag(false)
+
+    @objc
+    public static let dontSendContactOrGroupSyncMessages = TestableFlag(false)
+
+    @objc
+    public static let forceAttachmentDownloadFailures = TestableFlag(false)
+
+    @objc
+    public static let forceAttachmentDownloadPendingMessageRequest = TestableFlag(false)
+
+    @objc
+    public static let forceAttachmentDownloadPendingManualDownload = TestableFlag(false)
+
+    @objc
+    public static let fastPerfTests = false
+
+    @objc
+    public static let messageSendsFail = false
+
+    @objc
+    public static let extraDebugLogs = build.includes(.qa)
+
+    @objc
+    public static let shouldShowColorPicker = false
 
     public static func buildFlagMap() -> [String: Any] {
         BaseFlags.buildFlagMap(for: DebugFlags.self) { (key: String) -> Any? in
@@ -428,7 +408,9 @@ public class DebugFlags: BaseFlags {
     @objc
     public static func logFlags() {
         let logFlag = { (prefix: String, key: String, value: Any?) in
-            if let value = value {
+            if let flag = value as? TestableFlag {
+                Logger.info("\(prefix): \(key) = \(flag.get())", function: "")
+            } else if let value = value {
                 Logger.info("\(prefix): \(key) = \(value)", function: "")
             } else {
                 Logger.info("\(prefix): \(key) = nil", function: "")
@@ -463,5 +445,72 @@ public class BaseFlags: NSObject {
             }
         }
         return result
+    }
+}
+
+// MARK: -
+
+@objc
+public class TestableFlag: NSObject {
+    private let defaultValue: Bool
+    private let affectsCapabilities: Bool
+    private let flag: AtomicBool
+
+    fileprivate init(_ defaultValue: Bool, affectsCapabilities: Bool = false) {
+        self.defaultValue = defaultValue
+        self.affectsCapabilities = affectsCapabilities
+        self.flag = AtomicBool(defaultValue)
+
+        super.init()
+
+        NotificationCenter.default.addObserver(forName: Self.ResetAllTestableFlagsNotification,
+                                               object: nil, queue: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.set(self.defaultValue)
+        }
+    }
+
+    @objc
+    @available(swift, obsoleted: 1.0)
+    public var value: Bool {
+        self.get()
+    }
+
+    public func get() -> Bool {
+        guard build.includes(.qa) else {
+            return defaultValue
+        }
+        return flag.get()
+    }
+
+    public func set(_ value: Bool) {
+        flag.set(value)
+
+        if affectsCapabilities {
+            updateCapabilities()
+        }
+    }
+
+    @objc
+    public func switchDidChange(_ sender: UISwitch) {
+        set(sender.isOn)
+    }
+
+    @objc
+    public var switchSelector: Selector {
+        #selector(switchDidChange(_:))
+    }
+
+    @objc
+    public static let ResetAllTestableFlagsNotification = NSNotification.Name("ResetAllTestableFlags")
+
+    private func updateCapabilities() {
+        firstly(on: .global()) { () -> Promise<Void> in
+            TSAccountManager.shared().updateAccountAttributes().asVoid()
+        }.done {
+            Logger.info("")
+        }.catch { error in
+            owsFailDebug("Error: \(error)")
+        }
     }
 }

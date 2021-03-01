@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -23,6 +23,11 @@ public enum GroupsV2Error: Error {
     case requestingMemberCantLoadGroupState
     case cantApplyChangesToPlaceholder
     case expiredGroupInviteLink
+    case groupDoesNotExistOnService
+    case groupNeedsToBeMigrated
+    case groupCannotBeMigrated
+    case groupDowngradeNotAllowed
+    case missingGroupChangeProtos
 }
 
 // MARK: -
@@ -50,11 +55,11 @@ public enum GroupsV2LinkMode: UInt, CustomStringConvertible {
 @objc
 public protocol GroupsV2: AnyObject {
 
-    func createNewGroupOnServiceObjc(groupModel: TSGroupModelV2) -> AnyPromise
-
     func generateGroupSecretParamsData() throws -> Data
 
     func groupId(forGroupSecretParamsData groupSecretParamsData: Data) throws -> Data
+
+    func v2GroupId(forV1GroupId v1GroupId: Data) -> Data?
 
     func hasProfileKeyCredential(for address: SignalServiceAddress,
                                  transaction: SDSAnyReadTransaction) -> Bool
@@ -67,9 +72,6 @@ public protocol GroupsV2: AnyObject {
                                   changeActionsProtoData: Data?) throws -> SSKProtoGroupContextV2
 
     func groupV2ContextInfo(forMasterKeyData masterKeyData: Data?) throws -> GroupV2ContextInfo
-
-    func parseAndVerifyChangeActionsProto(_ changeProtoData: Data,
-                                          ignoreSignature: Bool) throws -> GroupsProtoGroupChangeActions
 
     func scheduleAllGroupsV2ForProfileKeyUpdate(transaction: SDSAnyWriteTransaction)
 
@@ -88,7 +90,8 @@ public protocol GroupsV2: AnyObject {
 // MARK: -
 
 public protocol GroupsV2Swift: GroupsV2 {
-    func createNewGroupOnService(groupModel: TSGroupModelV2) -> Promise<Void>
+    func createNewGroupOnService(groupModel: TSGroupModelV2,
+                                 disappearingMessageToken: DisappearingMessageToken) -> Promise<Void>
 
     func tryToEnsureProfileKeyCredentials(for addresses: [SignalServiceAddress]) -> Promise<Void>
 
@@ -104,17 +107,20 @@ public protocol GroupsV2Swift: GroupsV2 {
                         newGroupModel: TSGroupModelV2,
                         oldDMConfiguration: OWSDisappearingMessagesConfiguration,
                         newDMConfiguration: OWSDisappearingMessagesConfiguration,
-                        transaction: SDSAnyReadTransaction) throws -> GroupsV2ChangeSet
+                        transaction: SDSAnyReadTransaction) throws -> GroupsV2OutgoingChanges
 
     // On success returns a group thread model that reflects the
     // latest state in the service, which (due to races) might
     // reflect changes after the change set.
-    func updateExistingGroupOnService(changeSet: GroupsV2ChangeSet) -> Promise<TSGroupThread>
+    func updateExistingGroupOnService(changes: GroupsV2OutgoingChanges) -> Promise<TSGroupThread>
 
     func updateGroupV2(groupModel: TSGroupModelV2,
-                       changeSetBlock: @escaping (GroupsV2ChangeSet) -> Void) -> Promise<TSGroupThread>
+                       changesBlock: @escaping (GroupsV2OutgoingChanges) -> Void) -> Promise<TSGroupThread>
 
     func reuploadLocalProfilePromise() -> Promise<Void>
+
+    func parseAndVerifyChangeActionsProto(_ changeProtoData: Data,
+                                          ignoreSignature: Bool) throws -> GroupsProtoGroupChangeActions
 
     func updateGroupWithChangeActions(groupId: Data,
                                       changeActionsProto: GroupsProtoGroupChangeActions,
@@ -148,12 +154,15 @@ public protocol GroupsV2Swift: GroupsV2 {
     func cancelMemberRequests(groupModel: TSGroupModelV2) -> Promise<TSGroupThread>
 
     func tryToUpdatePlaceholderGroupModelUsingInviteLinkPreview(groupModel: TSGroupModelV2)
+
+    func fetchGroupExternalCredentials(groupModel: TSGroupModelV2) throws -> Promise<GroupsProtoGroupExternalCredential>
+
+    func updateAlreadyMigratedGroupIfNecessary(v2GroupId: Data) -> Promise<Void>
 }
 
 // MARK: -
 
-// TODO: Rename to GroupsV2ProposedChanges
-public protocol GroupsV2ChangeSet: AnyObject {
+public protocol GroupsV2OutgoingChanges: AnyObject {
     var groupId: Data { get }
     var groupSecretParamsData: Data { get }
 
@@ -379,11 +388,11 @@ public class GroupInviteLinkPreview: NSObject {
     public override func isEqual(_ object: Any?) -> Bool {
         guard let otherRecipient = object as? GroupInviteLinkPreview else { return false }
         return (title == otherRecipient.title &&
-            avatarUrlPath == otherRecipient.avatarUrlPath &&
-            memberCount == otherRecipient.memberCount &&
-            addFromInviteLinkAccess == otherRecipient.addFromInviteLinkAccess &&
-            revision == otherRecipient.revision &&
-            isLocalUserRequestingMember == otherRecipient.isLocalUserRequestingMember)
+                    avatarUrlPath == otherRecipient.avatarUrlPath &&
+                    memberCount == otherRecipient.memberCount &&
+                    addFromInviteLinkAccess == otherRecipient.addFromInviteLinkAccess &&
+                    revision == otherRecipient.revision &&
+                    isLocalUserRequestingMember == otherRecipient.isLocalUserRequestingMember)
     }
 }
 
@@ -428,8 +437,8 @@ public struct GroupV2DownloadedAvatars {
         return from(avatarData: groupModel.groupAvatarData, avatarUrlPath: groupModel.avatarUrlPath)
     }
 
-    public static func from(changeSet: GroupsV2ChangeSet) -> GroupV2DownloadedAvatars {
-        return from(avatarData: changeSet.newAvatarData, avatarUrlPath: changeSet.newAvatarUrlPath)
+    public static func from(changes: GroupsV2OutgoingChanges) -> GroupV2DownloadedAvatars {
+        return from(avatarData: changes.newAvatarData, avatarUrlPath: changes.newAvatarUrlPath)
     }
 
     private static func from(avatarData: Data?, avatarUrlPath: String?) -> GroupV2DownloadedAvatars {
@@ -441,9 +450,13 @@ public struct GroupV2DownloadedAvatars {
             return .empty
         }
         guard let avatarData = avatarData,
-            let avatarUrlPath = avatarUrlPath else {
-                // No avatar.
-                return .empty
+              let avatarUrlPath = avatarUrlPath else {
+            // No avatar.
+            return .empty
+        }
+        guard TSGroupModel.isValidGroupAvatarData(avatarData) else {
+            owsFailDebug("Invalid group avatar")
+            return .empty
         }
         // Avatar found, add it to the result set.
         var downloadedAvatars = GroupV2DownloadedAvatars()
@@ -468,20 +481,31 @@ public struct InvalidInvite: Equatable {
 
 public class MockGroupsV2: NSObject, GroupsV2Swift {
 
-    public func createNewGroupOnService(groupModel: TSGroupModelV2) -> Promise<Void> {
-        owsFail("Not implemented.")
-    }
-
-    public func createNewGroupOnServiceObjc(groupModel: TSGroupModelV2) -> AnyPromise {
+    public func createNewGroupOnService(groupModel: TSGroupModelV2,
+                                        disappearingMessageToken: DisappearingMessageToken) -> Promise<Void> {
         owsFail("Not implemented.")
     }
 
     public func generateGroupSecretParamsData() throws -> Data {
+        if CurrentAppContext().isRunningTests {
+            return Randomness.generateRandomBytes(289)
+        }
         owsFail("Not implemented.")
     }
 
     public func groupId(forGroupSecretParamsData groupSecretParamsData: Data) throws -> Data {
+        if CurrentAppContext().isRunningTests {
+            owsAssert(groupSecretParamsData.count >= 32)
+            return groupSecretParamsData.subdata(in: Int(0)..<Int(32))
+        }
         owsFail("Not implemented.")
+    }
+
+    public func v2GroupId(forV1GroupId v1GroupId: Data) -> Data? {
+        let v2GroupId = v1GroupId + v1GroupId
+        owsAssert(GroupManager.isV1GroupId(v1GroupId))
+        owsAssert(GroupManager.isV2GroupId(v2GroupId))
+        return v2GroupId
     }
 
     public func hasProfileKeyCredential(for address: SignalServiceAddress,
@@ -524,16 +548,16 @@ public class MockGroupsV2: NSObject, GroupsV2Swift {
                                newGroupModel: TSGroupModelV2,
                                oldDMConfiguration: OWSDisappearingMessagesConfiguration,
                                newDMConfiguration: OWSDisappearingMessagesConfiguration,
-                               transaction: SDSAnyReadTransaction) throws -> GroupsV2ChangeSet {
+                               transaction: SDSAnyReadTransaction) throws -> GroupsV2OutgoingChanges {
         owsFail("Not implemented.")
     }
 
-    public func updateExistingGroupOnService(changeSet: GroupsV2ChangeSet) -> Promise<TSGroupThread> {
+    public func updateExistingGroupOnService(changes: GroupsV2OutgoingChanges) -> Promise<TSGroupThread> {
         owsFail("Not implemented.")
     }
 
     public func updateGroupV2(groupModel: TSGroupModelV2,
-                              changeSetBlock: @escaping (GroupsV2ChangeSet) -> Void) -> Promise<TSGroupThread> {
+                              changesBlock: @escaping (GroupsV2OutgoingChanges) -> Void) -> Promise<TSGroupThread> {
         owsFail("Not implemented.")
     }
 
@@ -633,6 +657,14 @@ public class MockGroupsV2: NSObject, GroupsV2Swift {
 
     public func tryToUpdatePlaceholderGroupModelUsingInviteLinkPreview(groupModel: TSGroupModelV2) {
         owsFail("Not implemented.")
+    }
+
+    public func fetchGroupExternalCredentials(groupModel: TSGroupModelV2) throws -> Promise<GroupsProtoGroupExternalCredential> {
+        owsFail("Not implemented")
+    }
+
+    public func updateAlreadyMigratedGroupIfNecessary(v2GroupId: Data) -> Promise<Void> {
+        owsFail("Not implemented")
     }
 }
 

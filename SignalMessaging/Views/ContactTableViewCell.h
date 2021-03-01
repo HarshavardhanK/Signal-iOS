@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 NS_ASSUME_NONNULL_BEGIN
@@ -9,6 +9,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class TSThread;
 
 @interface ContactTableViewCell : UITableViewCell
+
+@property (assign, nonatomic) BOOL forceDarkAppearance;
 
 + (NSString *)reuseIdentifier;
 
@@ -20,7 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
               reuseIdentifier:(nullable NSString *)reuseIdentifier
          allowUserInteraction:(BOOL)allowUserInteraction NS_DESIGNATED_INITIALIZER;
 
-- (void)configureWithRecipientAddress:(SignalServiceAddress *)address;
+- (void)configureWithRecipientAddressWithSneakyTransaction:(SignalServiceAddress *)address
+    NS_SWIFT_NAME(configureWithSneakyTransaction(recipientAddress:));
+
+- (void)configureWithRecipientAddress:(SignalServiceAddress *)address transaction:(SDSAnyReadTransaction *)transaction;
 
 - (void)configureWithThread:(TSThread *)thread transaction:(SDSAnyReadTransaction *)transaction;
 
@@ -29,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // This method should be called _after_ the configure... methods.
 - (void)setAttributedSubtitle:(nullable NSAttributedString *)attributedSubtitle;
+
+// This method should be called _after_ the configure... methods.
+- (void)setSubtitle:(nullable NSString *)subtitle;
 
 - (void)setCustomName:(nullable NSString *)customName;
 - (void)setCustomNameAttributed:(nullable NSAttributedString *)customName;

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -8,11 +8,14 @@ import Contacts
 
 public enum ExperienceUpgradeId: String, CaseIterable {
     case introducingPins = "009"
-    case messageRequests = "012"
     case pinReminder // Never saved, used to periodically prompt the user for their PIN
     case notificationPermissionReminder
     case contactPermissionReminder
     case linkPreviews
+    case researchMegaphone1
+    case groupsV2AndMentionsSplash2
+    case groupCallsMegaphone
+    case sharingSuggestions
 
     // Until this flag is true the upgrade won't display to users.
     func hasLaunched(transaction: GRDBReadTransaction) -> Bool {
@@ -24,8 +27,6 @@ public enum ExperienceUpgradeId: String, CaseIterable {
             return RemoteConfig.kbs &&
                 SSKEnvironment.shared.reachabilityManager.isReachable &&
                 !KeyBackupService.hasMasterKey(transaction: transaction.asAnyRead)
-        case .messageRequests:
-            return !SSKEnvironment.shared.profileManager.hasProfileName
         case .pinReminder:
             return OWS2FAManager.shared().isDueForV2Reminder(transaction: transaction.asAnyRead)
         case .notificationPermissionReminder:
@@ -55,6 +56,14 @@ public enum ExperienceUpgradeId: String, CaseIterable {
             return CNContactStore.authorizationStatus(for: CNEntityType.contacts) != .authorized
         case .linkPreviews:
             return true
+        case .researchMegaphone1:
+            return RemoteConfig.researchMegaphone
+        case .groupsV2AndMentionsSplash2:
+            return FeatureFlags.groupsV2showSplash
+        case .groupCallsMegaphone:
+            return RemoteConfig.groupCalling
+        case .sharingSuggestions:
+            return true
         }
     }
 
@@ -74,8 +83,8 @@ public enum ExperienceUpgradeId: String, CaseIterable {
     // If false, this will not be marked complete after registration.
     var skipForNewUsers: Bool {
         switch self {
-        case .messageRequests,
-             .introducingPins:
+        case .introducingPins,
+             .researchMegaphone1:
             return false
         default:
             return true
@@ -95,8 +104,6 @@ public enum ExperienceUpgradeId: String, CaseIterable {
         switch self {
         case .introducingPins:
             return .high
-        case .messageRequests:
-            return .high
         case .linkPreviews:
             return .medium
         case .pinReminder:
@@ -104,6 +111,14 @@ public enum ExperienceUpgradeId: String, CaseIterable {
         case .notificationPermissionReminder:
             return .medium
         case .contactPermissionReminder:
+            return .medium
+        case .researchMegaphone1:
+            return .low
+        case .groupsV2AndMentionsSplash2:
+            return .medium
+        case .groupCallsMegaphone:
+            return .medium
+        case .sharingSuggestions:
             return .medium
         }
     }
@@ -151,6 +166,8 @@ public enum ExperienceUpgradeId: String, CaseIterable {
             return true
         case .contactPermissionReminder:
             return true
+        case .sharingSuggestions:
+            return true
         default:
             return false
         }
@@ -159,11 +176,14 @@ public enum ExperienceUpgradeId: String, CaseIterable {
     var objcRepresentation: ObjcExperienceUpgradeId {
         switch self {
         case .introducingPins:                  return .introducingPins
-        case .messageRequests:                  return .messageRequests
         case .pinReminder:                      return .pinReminder
         case .notificationPermissionReminder:   return .notificationPermissionReminder
         case .contactPermissionReminder:        return .contactPermissionReminder
         case .linkPreviews:                     return .linkPreviews
+        case .researchMegaphone1:               return .researchMegaphone1
+        case .groupsV2AndMentionsSplash2:       return .groupsV2AndMentionsSplash2
+        case .groupCallsMegaphone:              return .groupCallsMegaphone
+        case .sharingSuggestions:               return .sharingSuggestions
         }
     }
 }
@@ -248,7 +268,14 @@ public class ExperienceUpgradeFinder: NSObject {
 
         while true {
             guard let experienceUpgrade = try? cursor.next() else { break }
-            if !experienceUpgrade.isComplete { experienceUpgrades.append(experienceUpgrade) }
+            guard experienceUpgrade.id.shouldSave else {
+                // Ignore saved upgrades that we don't currently save.
+                continue
+            }
+            if !experienceUpgrade.isComplete && !experienceUpgrade.hasCompletedVisibleDuration {
+                experienceUpgrades.append(experienceUpgrade)
+            }
+
             unsavedIds.removeAll { $0 == experienceUpgrade.uniqueId }
         }
 
@@ -289,6 +316,13 @@ public extension ExperienceUpgrade {
         return Int(secondsSinceFirstView / kDayInterval)
     }
 
+    var hasCompletedVisibleDuration: Bool {
+        switch id {
+        case .researchMegaphone1: return daysSinceFirstViewed >= 7
+        default: return false
+        }
+    }
+
     var hasViewed: Bool { firstViewedTimestamp > 0 }
 
     func upsertWith(transaction: SDSAnyWriteTransaction, changeBlock: (ExperienceUpgrade) -> Void) {
@@ -305,20 +339,26 @@ public extension ExperienceUpgrade {
 @objc(OWSObjcExperienceUpgradeId)
 public enum ObjcExperienceUpgradeId: Int {
     case introducingPins
-    case messageRequests
     case pinReminder
     case notificationPermissionReminder
     case contactPermissionReminder
     case linkPreviews
+    case researchMegaphone1
+    case groupsV2AndMentionsSplash2
+    case groupCallsMegaphone
+    case sharingSuggestions
 
     public var swiftRepresentation: ExperienceUpgradeId {
         switch self {
         case .introducingPins:                  return .introducingPins
-        case .messageRequests:                  return .messageRequests
         case .pinReminder:                      return .pinReminder
         case .notificationPermissionReminder:   return .notificationPermissionReminder
         case .contactPermissionReminder:        return .contactPermissionReminder
         case .linkPreviews:                     return .linkPreviews
+        case .researchMegaphone1:               return .researchMegaphone1
+        case .groupsV2AndMentionsSplash2:       return .groupsV2AndMentionsSplash2
+        case .groupCallsMegaphone:              return .groupCallsMegaphone
+        case .sharingSuggestions:               return .sharingSuggestions
         }
     }
 }

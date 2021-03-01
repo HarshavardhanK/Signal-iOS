@@ -13,18 +13,6 @@ protocol ReplaceAdminViewControllerDelegate: class {
 
 class ReplaceAdminViewController: OWSTableViewController {
 
-    // MARK: - Dependencies
-
-    private var contactsManager: OWSContactsManager {
-        return Environment.shared.contactsManager
-    }
-
-    private var databaseStorage: SDSDatabaseStorage {
-        return SDSDatabaseStorage.shared
-    }
-
-    // MARK: -
-
     weak var replaceAdminViewControllerDelegate: ReplaceAdminViewControllerDelegate?
 
     private let candidates: Set<SignalServiceAddress>
@@ -70,11 +58,10 @@ class ReplaceAdminViewController: OWSTableViewController {
                 imageView.setTemplateImageName("empty-circle-outline-24", tintColor: .ows_gray25)
                 cell.ows_setAccessoryView(imageView)
 
-                cell.configure(withRecipientAddress: address)
+                cell.configureWithSneakyTransaction(recipientAddress: address)
 
                 return cell
                 },
-                                     customRowHeight: UITableView.automaticDimension,
                                      actionBlock: { [weak self] in
                                         self?.candidateWasSelected(candidate: address)
                 }

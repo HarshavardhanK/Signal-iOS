@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -49,7 +49,7 @@ fileprivate extension OWSUpload {
     }
 
     static var signalService: OWSSignalService {
-        return OWSSignalService.sharedInstance()
+        return OWSSignalService.shared()
     }
 
     // MARK: -
@@ -144,6 +144,11 @@ public class OWSAttachmentUploadV2: NSObject {
             self.encryptionKey = encryptionKey
             self.digest = digest
 
+            guard attachmentData.count <= OWSMediaUtils.kMaxFileSizeGeneric,
+                  encryptedAttachmentData.count <= OWSMediaUtils.kMaxAttachmentUploadSizeBytes else {
+                throw OWSAssertionError("Data is too large: \(encryptedAttachmentData.count).").asUnretryableError
+            }
+
             return encryptedAttachmentData
         }
     }
@@ -155,7 +160,7 @@ public class OWSAttachmentUploadV2: NSObject {
     }
 
     public func upload(progressBlock: ProgressBlock? = nil) -> Promise<Void> {
-        return (canUseV3 && RemoteConfig.attachmentUploadV3
+        return (canUseV3
             ? uploadV3(progressBlock: progressBlock)
             : uploadV2(progressBlock: progressBlock))
     }
@@ -723,11 +728,7 @@ public extension OWSUpload {
                     AppExpiry.shared.setHasAppExpiredAtCurrentVersion()
                 }
 
-                if IsNetworkConnectivityFailure(error) {
-                    Logger.warn("Error: \(error)")
-                } else {
-                    owsFailDebug("Error: \(error)")
-                }
+                owsFailDebugUnlessNetworkFailure(error)
                 resolver.reject(error)
             })
         }

@@ -7,7 +7,6 @@ import ZXingObjC
 import MultipeerConnectivity
 
 class DeviceTransferQRScanningViewController: DeviceTransferBaseViewController {
-    var deviceTransferService: DeviceTransferService { .shared }
 
     var capture: ZXCapture?
     var isCapturing = false
@@ -173,7 +172,7 @@ extension DeviceTransferQRScanningViewController: ZXCaptureDelegate {
                         return
                     case .modeMismatch:
                         let desiredMode: DeviceTransferService.TransferMode =
-                            TSAccountManager.sharedInstance().isPrimaryDevice ? .linked : .primary
+                            TSAccountManager.shared().isPrimaryDevice ? .linked : .primary
                         switch desiredMode {
                         case .linked:
                             self.showError(

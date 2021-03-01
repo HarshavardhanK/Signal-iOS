@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "OWSUserProfile.h"
@@ -37,6 +37,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
 // Ultimately used as an alias of givenName, but sqlite doesn't support renaming columns
 @property (atomic, nullable) NSString *profileName;
 @property (atomic, nullable) NSString *familyName;
+@property (atomic, nullable) NSString *bio;
+@property (atomic, nullable) NSString *bioEmoji;
 @property (atomic, nullable) NSString *username;
 @property (atomic) BOOL isUuidCapable;
 @property (atomic, nullable) NSString *avatarUrlPath;
@@ -108,6 +110,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
                       uniqueId:(NSString *)uniqueId
                   avatarFileName:(nullable NSString *)avatarFileName
                    avatarUrlPath:(nullable NSString *)avatarUrlPath
+                             bio:(nullable NSString *)bio
+                        bioEmoji:(nullable NSString *)bioEmoji
                       familyName:(nullable NSString *)familyName
                    isUuidCapable:(BOOL)isUuidCapable
                    lastFetchDate:(nullable NSDate *)lastFetchDate
@@ -127,6 +131,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
 
     _avatarFileName = avatarFileName;
     _avatarUrlPath = avatarUrlPath;
+    _bio = bio;
+    _bioEmoji = bioEmoji;
     _familyName = familyName;
     _isUuidCapable = isUuidCapable;
     _lastFetchDate = lastFetchDate;
@@ -351,6 +357,18 @@ NSUInteger const kUserProfileSchemaVersion = 1;
 
 #pragma mark - Update With... Methods
 
++ (BOOL)shouldReuploadProtectedProfileName
+{
+    // Only re-upload once per launch.
+    //
+    // This value will only be accessed within write transactions,
+    // so it is thread-safe.
+    static BOOL hasReuploaded = NO;
+    BOOL canReupload = !hasReuploaded;
+    hasReuploaded = YES;
+    return canReupload;
+}
+
 // Similar in spirit to anyUpdateWithTransaction,
 // but with significant differences.
 //
@@ -409,6 +427,25 @@ NSUInteger const kUserProfileSchemaVersion = 1;
                                                                                   equalTo:profile.familyName];
                                    BOOL avatarUrlPathDidChange = ![NSObject isNullableObject:avatarUrlPathBefore
                                                                                      equalTo:profile.avatarUrlPath];
+
+                                   if ([profile.address.phoneNumber
+                                           isEqualToString:kLocalProfileInvariantPhoneNumber]) {
+                                       BOOL hasValidProfileNameBefore = givenNameBefore.length > 0;
+                                       BOOL hasValidProfileNameAfter = profile.givenName.length > 0;
+                                       if (hasValidProfileNameBefore && !hasValidProfileNameAfter) {
+                                           OWSFailDebug(@"Restoring local profile name.");
+                                           // Profile names are required; never clear the profile
+                                           // name for the local user.
+                                           profile.givenName = givenNameBefore;
+
+                                           if (OWSUserProfile.shouldReuploadProtectedProfileName) {
+                                               [transaction addAsyncCompletionOffMain:^{
+                                                   [self.profileManager reuploadLocalProfile];
+                                               }];
+                                           }
+                                       }
+                                   }
+
                                    NSString *profileKeyDescription;
                                    if (profile.profileKey.keyData != nil) {
                                        if (SSKDebugFlags.internalLogging) {
@@ -548,6 +585,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
 
 - (void)updateWithGivenName:(nullable NSString *)givenName
                  familyName:(nullable NSString *)familyName
+                        bio:(nullable NSString *)bio
+                   bioEmoji:(nullable NSString *)bioEmoji
                    username:(nullable NSString *)username
               isUuidCapable:(BOOL)isUuidCapable
               avatarUrlPath:(nullable NSString *)avatarUrlPath
@@ -559,6 +598,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
                applyChanges:^(OWSUserProfile *userProfile) {
                    [userProfile setGivenName:givenName];
                    [userProfile setFamilyName:familyName];
+                   [userProfile setBio:bio];
+                   [userProfile setBioEmoji:bioEmoji];
                    [userProfile setUsername:username];
                    [userProfile setIsUuidCapable:isUuidCapable];
                    [userProfile setAvatarUrlPath:avatarUrlPath];
@@ -572,6 +613,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
 
 - (void)updateWithGivenName:(nullable NSString *)givenName
                  familyName:(nullable NSString *)familyName
+                        bio:(nullable NSString *)bio
+                   bioEmoji:(nullable NSString *)bioEmoji
                    username:(nullable NSString *)username
               isUuidCapable:(BOOL)isUuidCapable
               avatarUrlPath:(nullable NSString *)avatarUrlPath
@@ -584,6 +627,8 @@ NSUInteger const kUserProfileSchemaVersion = 1;
                applyChanges:^(OWSUserProfile *userProfile) {
                    [userProfile setGivenName:givenName];
                    [userProfile setFamilyName:familyName];
+                   [userProfile setBio:bio];
+                   [userProfile setBioEmoji:bioEmoji];
                    [userProfile setUsername:username];
                    [userProfile setIsUuidCapable:isUuidCapable];
                    // Update the avatar properties in lockstep.
@@ -736,6 +781,18 @@ NSUInteger const kUserProfileSchemaVersion = 1;
     // to sync lastMessagingDate to the storage service.
     [self
                applyChanges:^(OWSUserProfile *userProfile) { userProfile.lastFetchDate = lastFetchDate; }
+               functionName:__PRETTY_FUNCTION__
+        wasLocallyInitiated:NO
+                transaction:transaction
+                 completion:nil];
+}
+
+- (void)discardProfileKeyWithTransaction:(SDSAnyWriteTransaction *)transaction
+{
+    // We use wasLocallyInitiated = NO because we don't need
+    // to sync lastMessagingDate to the storage service.
+    [self
+               applyChanges:^(OWSUserProfile *userProfile) { userProfile.profileKey = nil; }
                functionName:__PRETTY_FUNCTION__
         wasLocallyInitiated:NO
                 transaction:transaction

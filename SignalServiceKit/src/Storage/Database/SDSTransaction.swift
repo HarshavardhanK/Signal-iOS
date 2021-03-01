@@ -1,9 +1,10 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
 import GRDB
+import SignalClient
 
 // MARK: - Any*Transaction
 
@@ -13,6 +14,8 @@ public class GRDBReadTransaction: NSObject {
     public let database: Database
 
     public let isUIRead: Bool
+
+    public let startDate = Date()
 
     init(database: Database, isUIRead: Bool) {
         self.database = database
@@ -149,6 +152,14 @@ public class SDSAnyReadTransaction: NSObject, SPKProtocolReadContext {
     }
 
     public let readTransaction: ReadTransactionType
+    public var startDate: Date {
+        switch readTransaction {
+        case .yapRead:
+            owsFail("Invalid transaction.")
+        case .grdbRead(let grdbRead):
+            return grdbRead.startDate
+        }
+    }
 
     init(_ readTransaction: ReadTransactionType) {
         self.readTransaction = readTransaction
@@ -186,7 +197,7 @@ public class SDSAnyReadTransaction: NSObject, SPKProtocolReadContext {
 }
 
 @objc
-public class SDSAnyWriteTransaction: SDSAnyReadTransaction, SPKProtocolWriteContext {
+public class SDSAnyWriteTransaction: SDSAnyReadTransaction, SPKProtocolWriteContext, StoreContext {
     public enum WriteTransactionType {
         case yapWrite(_ transaction: YapDatabaseReadWriteTransaction)
         case grdbWrite(_ transaction: GRDBWriteTransaction)
@@ -302,6 +313,12 @@ public class SDSAnyWriteTransaction: SDSAnyReadTransaction, SPKProtocolWriteCont
         case .grdbWrite(let grdbWrite):
             grdbWrite.addRemovedFinalizationKey(key)
         }
+    }
+}
+
+public extension StoreContext {
+    var asTransaction: SDSAnyWriteTransaction {
+        return self as! SDSAnyWriteTransaction
     }
 }
 

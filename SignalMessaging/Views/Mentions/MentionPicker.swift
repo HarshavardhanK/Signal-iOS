@@ -20,10 +20,6 @@ class MentionPicker: UIView {
 
     lazy private(set) var filteredMentionableUsers = mentionableUsers
 
-    static var contactsManager: OWSContactsManager { Environment.shared.contactsManager }
-    static var databaseStorage: SDSDatabaseStorage { .shared }
-    static var profileManager: OWSProfileManager { .shared() }
-
     let style: Mention.Style
     let selectedAddressCallback: (SignalServiceAddress) -> Void
 
@@ -44,9 +40,8 @@ class MentionPicker: UIView {
                     address: address,
                     username: Self.profileManager.username(for: address, transaction: transaction),
                     displayName: Self.contactsManager.displayName(for: address, transaction: transaction),
-                    conversationColorName: ConversationColorName(
-                        rawValue: TSContactThread.conversationColorName(forContactAddress: address, transaction: transaction)
-                    )
+                    conversationColorName: TSContactThread.conversationColorName(forContactAddress: address,
+                                                                                 transaction: transaction)
                 )
             }
         }

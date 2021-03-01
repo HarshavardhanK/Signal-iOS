@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ public class RotateSignedPreKeyOperation: OWSOperation {
     // MARK: - Dependencies
 
     private var tsAccountManager: TSAccountManager {
-        return TSAccountManager.sharedInstance()
+        return TSAccountManager.shared()
     }
 
     private var accountServiceClient: AccountServiceClient {
@@ -26,8 +26,8 @@ public class RotateSignedPreKeyOperation: OWSOperation {
         return SDSDatabaseStorage.shared
     }
 
-    private var messageProcessing: MessageProcessing {
-        return SSKEnvironment.shared.messageProcessing
+    private var messageProcessor: MessageProcessor {
+        return SSKEnvironment.shared.messageProcessor
     }
 
     // MARK: -
@@ -43,7 +43,7 @@ public class RotateSignedPreKeyOperation: OWSOperation {
         let signedPreKeyRecord: SignedPreKeyRecord = self.signedPreKeyStore.generateRandomSignedRecord()
 
         firstly(on: .global()) { () -> Promise<Void> in
-            self.messageProcessing.flushMessageFetchingAndDecryptionPromise()
+            self.messageProcessor.fetchingAndProcessingCompletePromise()
         }.then(on: .global()) { () -> Promise<Void> in
             self.databaseStorage.write { transaction in
                 self.signedPreKeyStore.storeSignedPreKey(signedPreKeyRecord.id,

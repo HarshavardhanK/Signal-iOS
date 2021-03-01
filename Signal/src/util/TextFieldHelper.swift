@@ -1,18 +1,49 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-@objc public class TextFieldHelper: NSObject {
+@objc
+public class TextFieldHelper: NSObject {
 
     // Used to implement the UITextFieldDelegate method: `textField:shouldChangeCharactersInRange:replacementString`
     // Takes advantage of Swift's superior unicode handling to append partial pasted text without splitting multi-byte characters.
-    @objc public class func textField(_ textField: UITextField, shouldChangeCharactersInRange editingRange: NSRange, replacementString: String, byteLimit: UInt) -> Bool {
+    @objc
+    public class func textField(_ textField: UITextField,
+                                shouldChangeCharactersInRange editingRange: NSRange,
+                                replacementString: String,
+                                maxByteCount: Int) -> Bool {
+        self.textField(textField,
+                       shouldChangeCharactersInRange: editingRange,
+                       replacementString: replacementString,
+                       maxByteCount: maxByteCount,
+                       maxGlyphCount: nil)
+    }
 
-        let byteLength = { (string: String) -> UInt in
-            return UInt(string.utf8.count)
+    public class func textField(_ textField: UITextField,
+                                shouldChangeCharactersInRange editingRange: NSRange,
+                                replacementString: String,
+                                maxByteCount: Int? = nil,
+                                maxGlyphCount: Int? = nil) -> Bool {
+        // At least one must be set.
+        owsAssertDebug(maxByteCount != nil || maxGlyphCount != nil)
+
+        func hasValidLength(_ string: String) -> Bool {
+            if let maxByteCount = maxByteCount {
+                let byteCount = string.utf8.count
+                guard byteCount <= maxByteCount else {
+                    return false
+                }
+            }
+            if let maxGlyphCount = maxGlyphCount {
+                let glyphCount = string.glyphCount
+                guard glyphCount <= maxGlyphCount else {
+                    return false
+                }
+            }
+            return true
         }
 
         let existingString = textField.text ?? ""
@@ -25,10 +56,9 @@ import UIKit
             .replacingCharacters(in: editingRange, with: replacementString)
         let filteredForDisplay = notFilteredForDisplay.filterStringForDisplay()
 
-        let newUnfilteredLength = byteLength(notFilteredForDisplay)
-        let newFilteredLength = byteLength(filteredForDisplay)
+        if hasValidLength(notFilteredForDisplay),
+           hasValidLength(filteredForDisplay) {
 
-        if newUnfilteredLength <= byteLimit && newFilteredLength <= byteLimit {
             // Only allow the textfield to insert the replacement
             // if _both_ it's filtered and unfiltered length are
             // valid.
@@ -62,7 +92,7 @@ import UIKit
                 .replacingCharacters(in: editingRange, with: maybeAcceptableSubstring)
                 .filterStringForDisplay()
 
-            if byteLength(newFilteredString) <= byteLimit {
+            if hasValidLength(newFilteredString) {
                 acceptableSubstring = maybeAcceptableSubstring
             } else {
                 break

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 import Foundation
@@ -157,6 +157,7 @@ public class InteractionFinder: NSObject, InteractionFinderAdapter {
                 SELECT COUNT(*)
                 FROM \(ThreadRecord.databaseTableName)
                 WHERE \(threadColumn: .isMarkedUnread) = 1
+                AND \(threadColumn: .shouldThreadBeVisible) = 1
             """
 
             guard let markedUnreadCount = try UInt.fetchOne(transaction.database, sql: markedUnreadThreadQuery) else {
@@ -673,7 +674,7 @@ struct YAPDBInteractionFinderAdapter: InteractionFinderAdapter {
                 owsFailDebug("unexpected interaction: \(type(of: object))")
                 return
             }
-            if TSThread.shouldInteractionAppear(inInbox: interaction) {
+            if interaction.shouldAppearInInbox(transaction: transaction.asAnyRead) {
                 last = interaction
                 stopPtr.pointee = true
             }
@@ -908,6 +909,50 @@ public class GRDBInteractionFinder: NSObject, InteractionFinderAdapter {
         return result
     }
 
+    public static func existsGroupCallMessageForEraId(_ eraId: String, thread: TSThread, transaction: SDSAnyReadTransaction) -> Bool {
+        let sql = """
+        SELECT EXISTS(
+            SELECT 1
+            FROM \(InteractionRecord.databaseTableName)
+            WHERE \(interactionColumn: .recordType) IS \(SDSRecordType.groupCallMessage.rawValue)
+            AND \(interactionColumn: .threadUniqueId) = ?
+            AND \(interactionColumn: .eraId) = ?
+            LIMIT 1
+        )
+        """
+        let arguments: StatementArguments = [thread.uniqueId, eraId]
+        return try! Bool.fetchOne(transaction.unwrapGrdbRead.database, sql: sql, arguments: arguments) ?? false
+    }
+
+    public static func unendedCallsForGroupThread(_ thread: TSThread, transaction: SDSAnyReadTransaction) -> [OWSGroupCallMessage] {
+        let sql: String = """
+        SELECT *
+        FROM \(InteractionRecord.databaseTableName)
+        WHERE \(interactionColumn: .recordType) IS \(SDSRecordType.groupCallMessage.rawValue)
+        AND \(interactionColumn: .hasEnded) IS FALSE
+        AND \(interactionColumn: .threadUniqueId) = ?
+        """
+
+        var groupCalls: [OWSGroupCallMessage] = []
+        let cursor = OWSGroupCallMessage.grdbFetchCursor(
+            sql: sql,
+            arguments: [thread.uniqueId],
+            transaction: transaction.unwrapGrdbRead)
+
+        do {
+            while let interaction = try cursor.next() {
+                guard let groupCall = interaction as? OWSGroupCallMessage, !groupCall.hasEnded else {
+                    owsFailDebug("Unexpectedly result: \(interaction.timestamp)")
+                    continue
+                }
+                groupCalls.append(groupCall)
+            }
+        } catch {
+            owsFailDebug("unexpected error \(error)")
+        }
+        return groupCalls
+    }
+
     static func attemptingOutInteractionIds(transaction: ReadTransaction) -> [String] {
         let sql: String = """
         SELECT \(interactionColumn: .uniqueId)
@@ -1029,7 +1074,7 @@ public class GRDBInteractionFinder: NSObject, InteractionFinderAdapter {
     // MARK: - instance methods
 
     func mostRecentInteractionForInbox(transaction: GRDBReadTransaction) -> TSInteraction? {
-        let sql = """
+        let interactionsSql = """
                 SELECT *
                 FROM \(InteractionRecord.databaseTableName)
                 WHERE \(interactionColumn: .threadUniqueId) = ?
@@ -1037,13 +1082,40 @@ public class GRDBInteractionFinder: NSObject, InteractionFinderAdapter {
                 AND \(interactionColumn: .messageType) IS NOT ?
                 AND \(interactionColumn: .messageType) IS NOT ?
                 ORDER BY \(interactionColumn: .id) DESC
-                LIMIT 1
                 """
+        let firstInteractionSql = interactionsSql + " LIMIT 1"
         let arguments: StatementArguments = [threadUniqueId,
                                              TSErrorMessageType.nonBlockingIdentityChange.rawValue,
                                              TSInfoMessageType.verificationStateChange.rawValue,
                                              TSInfoMessageType.profileUpdate.rawValue]
-        return TSInteraction.grdbFetchOne(sql: sql, arguments: arguments, transaction: transaction)
+        guard let firstInteraction = TSInteraction.grdbFetchOne(sql: firstInteractionSql,
+                                                                arguments: arguments,
+                                                                transaction: transaction) else {
+            return nil
+        }
+
+        // We can't exclude specific group updates in the query.
+        // In the (mildly) rare case that the most recent message
+        // is a group update that shouldn't be shown,
+        // we iterate backward until we find a good interaction.
+        let anyTransaction = transaction.asAnyRead
+        if firstInteraction.shouldAppearInInbox(transaction: anyTransaction) {
+            return firstInteraction
+        }
+        do {
+            let cursor = TSInteraction.grdbFetchCursor(sql: interactionsSql,
+                                                       arguments: arguments,
+                                                       transaction: transaction)
+            while let interaction = try cursor.next() {
+                if interaction.shouldAppearInInbox(transaction: anyTransaction) {
+                    return interaction
+                }
+            }
+            return nil
+        } catch {
+            owsFailDebug("Error: \(error)")
+            return nil
+        }
     }
 
     func earliestKnownInteractionRowId(transaction: GRDBReadTransaction) -> Int? {

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2020 Open Whisper Systems. All rights reserved.
+//  Copyright (c) 2021 Open Whisper Systems. All rights reserved.
 //
 
 #import "TSNetworkManager.h"
@@ -36,16 +36,16 @@ BOOL IsNetworkConnectivityFailure(NSError *_Nullable error)
                 // TODO: We might want to add kCFURLErrorCannotFindHost.
                 return YES;
             default:
-                break;
+                return NO;
         }
     }
     BOOL isObjCNetworkConnectivityFailure = ([error.domain isEqualToString:TSNetworkManagerErrorDomain]
         && error.code == TSNetworkManagerErrorFailedConnection);
+    BOOL isOWSWebSocketFailure = ([error.domain isEqualToString:OWSSignalServiceKitErrorDomain]
+        && error.code == OWSErrorCodeMessageRequestFailed);
     BOOL isNetworkProtocolError = ([error.domain isEqualToString:NSPOSIXErrorDomain] && error.code == 100);
 
-    if (isObjCNetworkConnectivityFailure) {
-        return YES;
-    } else if (isNetworkProtocolError) {
+    if (isObjCNetworkConnectivityFailure || isOWSWebSocketFailure || isNetworkProtocolError) {
         return YES;
     } else if ([TSNetworkManager isSwiftNetworkConnectivityError:error]) {
         return YES;
@@ -106,7 +106,7 @@ dispatch_queue_t NetworkManagerQueue()
 
 - (OWSSignalService *)signalService
 {
-    return [OWSSignalService sharedInstance];
+    return [OWSSignalService shared];
 }
 
 #pragma mark -
@@ -154,7 +154,6 @@ dispatch_queue_t NetworkManagerQueue()
     }
 
     OWSHttpHeaders *httpHeaders = [OWSHttpHeaders new];
-    [httpHeaders addHeaders:request.allHTTPHeaderFields overwriteOnConflict:NO];
 
     // Apply the default headers for this session manager.
     [httpHeaders addHeaders:self.defaultHeaders overwriteOnConflict:NO];
@@ -163,6 +162,9 @@ dispatch_queue_t NetworkManagerQueue()
     [httpHeaders addHeader:OWSURLSession.kUserAgentHeader
                       value:OWSURLSession.signalIosUserAgent
         overwriteOnConflict:YES];
+
+    // Then apply any custom headers for the request
+    [httpHeaders addHeaders:request.allHTTPHeaderFields overwriteOnConflict:YES];
 
     if (canUseAuth && request.shouldHaveAuthorizationHeaders) {
         OWSAssertDebug(request.authUsername.length > 0);
@@ -331,12 +333,12 @@ dispatch_queue_t NetworkManagerQueue()
 
 + (TSAccountManager *)tsAccountManager
 {
-    return TSAccountManager.sharedInstance;
+    return TSAccountManager.shared;
 }
 
 #pragma mark - Singleton
 
-+ (instancetype)sharedManager
++ (instancetype)shared
 {
     OWSAssertDebug(SSKEnvironment.shared.networkManager);
 
@@ -422,10 +424,10 @@ dispatch_queue_t NetworkManagerQueue()
 
             successParam(task, responseObject);
 
-            [OutageDetection.sharedManager reportConnectionSuccess];
+            [OutageDetection.shared reportConnectionSuccess];
         });
     };
-    TSNetworkManagerSuccess failure = ^(NSURLSessionDataTask *task, NSError *error) {
+    TSNetworkManagerFailure failure = ^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(NetworkManagerQueue(), ^{
             [sessionManagerPool returnToPool:sessionManager];
         });
@@ -526,7 +528,7 @@ dispatch_queue_t NetworkManagerQueue()
     [TSNetworkManager logCurlForTask:task];
 #endif
 
-    [OutageDetection.sharedManager reportConnectionFailure];
+    [OutageDetection.shared reportConnectionFailure];
 
     if (statusCode == AppExpiry.appExpiredStatusCode) {
         [AppExpiry.shared setHasAppExpiredAtCurrentVersion];

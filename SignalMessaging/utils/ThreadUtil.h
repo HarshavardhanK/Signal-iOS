@@ -5,9 +5,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class MessageBody;
+@class MessageSender;
 @class OWSContact;
 @class OWSLinkPreviewDraft;
-@class OWSMessageSender;
 @class OWSQuotedReplyModel;
 @class SDSAnyReadTransaction;
 @class SDSAnyWriteTransaction;
@@ -92,13 +92,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Delete Content
 
 + (void)deleteAllContent;
-
-#pragma mark - Find Content
-
-+ (nullable TSInteraction *)findInteractionInThreadByTimestamp:(uint64_t)timestamp
-                                                 authorAddress:(SignalServiceAddress *)authorAddress
-                                                threadUniqueId:(NSString *)threadUniqueId
-                                                   transaction:(SDSAnyReadTransaction *)transaction;
 
 @end
 

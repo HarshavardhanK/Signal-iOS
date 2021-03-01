@@ -6,8 +6,6 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
-  - Argon2 (1.3.0)
-  - Argon2/Tests (1.3.0)
   - AxolotlKit (0.9.0):
     - CocoaLumberjack
     - Curve25519Kit (~> 2.1.0)
@@ -21,14 +19,17 @@ PODS:
     - SignalCoreKit
     - SwiftProtobuf
   - blurhash (0.0.1)
-  - CocoaLumberjack (3.6.2):
-    - CocoaLumberjack/Core (= 3.6.2)
-  - CocoaLumberjack/Core (3.6.2)
+  - BonMot (5.6.0)
+  - CocoaLumberjack (3.7.0):
+    - CocoaLumberjack/Core (= 3.7.0)
+  - CocoaLumberjack/Core (3.7.0)
   - Curve25519Kit (2.1.0):
     - CocoaLumberjack
+    - SignalClient
     - SignalCoreKit
   - Curve25519Kit/Tests (2.1.0):
     - CocoaLumberjack
+    - SignalClient
     - SignalCoreKit
   - GRDB.swift/SQLCipher (4.3.0):
     - SQLCipher (>= 3.4.0)
@@ -80,6 +81,12 @@ PODS:
   - PureLayout (3.1.4)
   - Reachability (3.2)
   - SAMKeychain (1.5.3)
+  - SignalArgon2 (1.3.2)
+  - SignalArgon2/Tests (1.3.2)
+  - SignalClient (0.3.1):
+    - SignalCoreKit
+  - SignalClient/Tests (0.3.1):
+    - SignalCoreKit
   - SignalCoreKit (1.0.0):
     - CocoaLumberjack
     - GRKOpenSSLFramework
@@ -91,6 +98,7 @@ PODS:
     - CocoaLumberjack
     - Curve25519Kit
     - HKDFKit
+    - SignalClient
     - SignalCoreKit
     - SwiftProtobuf
   - SignalMetadataKit/Tests (1.0.0):
@@ -98,16 +106,18 @@ PODS:
     - CocoaLumberjack
     - Curve25519Kit
     - HKDFKit
+    - SignalClient
     - SignalCoreKit
     - SwiftProtobuf
-  - SignalRingRTC (2.5.1):
+  - SignalRingRTC (2.9.0):
+    - PromiseKit
     - SignalCoreKit
-    - SignalRingRTC/WebRTC (= 2.5.1)
-  - SignalRingRTC/WebRTC (2.5.1):
+    - SignalRingRTC/WebRTC (= 2.9.0)
+  - SignalRingRTC/WebRTC (2.9.0):
+    - PromiseKit
     - SignalCoreKit
   - SignalServiceKit (0.9.0):
     - AFNetworking/NSURLSession
-    - Argon2
     - AxolotlKit
     - blurhash
     - CocoaLumberjack
@@ -120,6 +130,8 @@ PODS:
     - PromiseKit (~> 6.0)
     - Reachability
     - SAMKeychain
+    - SignalArgon2
+    - SignalClient
     - SignalCoreKit
     - SignalMetadataKit
     - Starscream
@@ -128,7 +140,6 @@ PODS:
     - YYImage/WebP
   - SignalServiceKit/Tests (0.9.0):
     - AFNetworking/NSURLSession
-    - Argon2
     - AxolotlKit
     - blurhash
     - CocoaLumberjack
@@ -141,6 +152,8 @@ PODS:
     - PromiseKit (~> 6.0)
     - Reachability
     - SAMKeychain
+    - SignalArgon2
+    - SignalClient
     - SignalCoreKit
     - SignalMetadataKit
     - Starscream
@@ -230,13 +243,12 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking/NSURLSession
-  - Argon2 (from `https://github.com/signalapp/Argon2.git`)
-  - Argon2/Tests (from `https://github.com/signalapp/Argon2.git`)
   - AxolotlKit (from `https://github.com/signalapp/SignalProtocolKit.git`, branch `master`)
   - AxolotlKit/Tests (from `https://github.com/signalapp/SignalProtocolKit.git`, branch `master`)
   - blurhash (from `https://github.com/signalapp/blurhash`, branch `signal-master`)
-  - Curve25519Kit (from `https://github.com/signalapp/Curve25519Kit`)
-  - Curve25519Kit/Tests (from `https://github.com/signalapp/Curve25519Kit`)
+  - BonMot
+  - "Curve25519Kit (from `ssh://git@github.com/signalapp/Curve25519Kit`, branch `feature/SignalClient-adoption`)"
+  - "Curve25519Kit/Tests (from `ssh://git@github.com/signalapp/Curve25519Kit`, branch `feature/SignalClient-adoption`)"
   - GRDB.swift/SQLCipher
   - GRKOpenSSLFramework (from `https://github.com/signalapp/GRKOpenSSLFramework`, branch `mkirk/1.0.2t`)
   - HKDFKit (from `https://github.com/signalapp/HKDFKit.git`)
@@ -247,10 +259,14 @@ DEPENDENCIES:
   - PromiseKit
   - PureLayout
   - Reachability
+  - SignalArgon2 (from `https://github.com/signalapp/Argon2.git`)
+  - SignalArgon2/Tests (from `https://github.com/signalapp/Argon2.git`)
+  - SignalClient (from `https://github.com/signalapp/libsignal-client.git`)
+  - SignalClient/Tests (from `https://github.com/signalapp/libsignal-client.git`)
   - SignalCoreKit (from `https://github.com/signalapp/SignalCoreKit.git`)
   - SignalCoreKit/Tests (from `https://github.com/signalapp/SignalCoreKit.git`)
-  - SignalMetadataKit (from `https://github.com/signalapp/SignalMetadataKit`)
-  - SignalMetadataKit/Tests (from `https://github.com/signalapp/SignalMetadataKit`)
+  - "SignalMetadataKit (from `ssh://git@github.com/signalapp/SignalMetadataKit`, branch `feature/SignalClient-adoption`)"
+  - "SignalMetadataKit/Tests (from `ssh://git@github.com/signalapp/SignalMetadataKit`, branch `feature/SignalClient-adoption`)"
   - SignalRingRTC (from `ThirdParty/SignalRingRTC.podspec`)
   - SignalServiceKit (from `.`)
   - SignalServiceKit/Tests (from `.`)
@@ -267,6 +283,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - BonMot
     - CocoaLumberjack
     - GRDB.swift
     - libwebp
@@ -280,9 +297,6 @@ SPEC REPOS:
     - SwiftProtobuf
 
 EXTERNAL SOURCES:
-  Argon2:
-    :git: https://github.com/signalapp/Argon2.git
-    :submodules: true
   AxolotlKit:
     :branch: master
     :git: https://github.com/signalapp/SignalProtocolKit.git
@@ -290,7 +304,8 @@ EXTERNAL SOURCES:
     :branch: signal-master
     :git: https://github.com/signalapp/blurhash
   Curve25519Kit:
-    :git: https://github.com/signalapp/Curve25519Kit
+    :branch: feature/SignalClient-adoption
+    :git: "ssh://git@github.com/signalapp/Curve25519Kit"
   GRKOpenSSLFramework:
     :branch: mkirk/1.0.2t
     :git: https://github.com/signalapp/GRKOpenSSLFramework
@@ -302,12 +317,17 @@ EXTERNAL SOURCES:
   Mantle:
     :branch: signal-master
     :git: https://github.com/signalapp/Mantle
+  SignalArgon2:
+    :git: https://github.com/signalapp/Argon2.git
+    :submodules: true
+  SignalClient:
+    :git: https://github.com/signalapp/libsignal-client.git
   SignalCoreKit:
     :git: https://github.com/signalapp/SignalCoreKit.git
   SignalMetadataKit:
-    :git: https://github.com/signalapp/SignalMetadataKit
+    :branch: feature/SignalClient-adoption
+    :git: "ssh://git@github.com/signalapp/SignalMetadataKit"
   SignalRingRTC:
-    :inhibit_wranings: true
     :path: ThirdParty/SignalRingRTC.podspec
   SignalServiceKit:
     :path: "."
@@ -325,19 +345,15 @@ EXTERNAL SOURCES:
     :git: https://github.com/zxingify/zxingify-objc.git
 
 CHECKOUT OPTIONS:
-  Argon2:
-    :commit: 6da4513f13d60b8ae00348284d02f714c481d4d4
-    :git: https://github.com/signalapp/Argon2.git
-    :submodules: true
   AxolotlKit:
-    :commit: 97ae15634e386b4fd403484e5e2680e72d283bb4
+    :commit: 36601e4bbeac575782167e4d482dd77e73b8ae30
     :git: https://github.com/signalapp/SignalProtocolKit.git
   blurhash:
-    :commit: c0538ea830d4ecc0f4dfcaf3dc53c0003847df20
+    :commit: 890ffdab14207154819415da7e6c969e9dfff0e9
     :git: https://github.com/signalapp/blurhash
   Curve25519Kit:
-    :commit: 4fc1c10e98fff2534b5379a9bb587430fdb8e577
-    :git: https://github.com/signalapp/Curve25519Kit
+    :commit: 87bfaf0748ecbac417fe90219b529d4f6f0eb272
+    :git: "ssh://git@github.com/signalapp/Curve25519Kit"
   GRKOpenSSLFramework:
     :commit: 4d9944de35ed56a95879c5a8a1b410ae03f71d57
     :git: https://github.com/signalapp/GRKOpenSSLFramework
@@ -345,17 +361,24 @@ CHECKOUT OPTIONS:
     :commit: b6985abcacda0292b82785ba93b8be47c0d608b6
     :git: https://github.com/signalapp/HKDFKit.git
   libPhoneNumber-iOS:
-    :commit: 01c0b2a0626a149c98d3cfa4909184843f094293
+    :commit: 9e30e12883947b95972c1eee36b6801a09689364
     :git: https://github.com/signalapp/libPhoneNumber-iOS
   Mantle:
-    :commit: b72c2d1e6132501db906de2cffa8ded7803c54f4
+    :commit: e7e46253bb01ce39525d90aa69ed9e85e758bfc4
     :git: https://github.com/signalapp/Mantle
+  SignalArgon2:
+    :commit: 6a37e32167500ff7830e337b726a1653061d86b2
+    :git: https://github.com/signalapp/Argon2.git
+    :submodules: true
+  SignalClient:
+    :commit: a983a564ac58148cdd69dc69aaf45149db3dde63
+    :git: https://github.com/signalapp/libsignal-client.git
   SignalCoreKit:
-    :commit: 5f10c3d245e18d71544658bf441dd26af2473584
+    :commit: 96b09fe32d71f3f52131b906c6ac33f132e80bce
     :git: https://github.com/signalapp/SignalCoreKit.git
   SignalMetadataKit:
-    :commit: 7addcc1c4bb837b3ad44a05f72bf18ad8869b30c
-    :git: https://github.com/signalapp/SignalMetadataKit
+    :commit: 6bcb9a4e21fc0beabfd4f1026c69e369ff9c1565
+    :git: "ssh://git@github.com/signalapp/SignalMetadataKit"
   Starscream:
     :commit: b09ea163c3cb305152c65b299cb024610f52e735
     :git: https://github.com/signalapp/Starscream.git
@@ -363,7 +386,7 @@ CHECKOUT OPTIONS:
     :commit: e43ab163b2dcb4c817339c819b07dac545f05fea
     :git: https://github.com/signalapp/YapDatabase.git
   YYImage:
-    :commit: a2e189da5c92196552475d1122a924a3732ad01e
+    :commit: d91910e6f313a255febbf69795198e74259bd51c
     :git: https://github.com/signalapp/YYImage
   ZKGroup:
     :commit: 0ea29d4a20f90464023d4e1fd38551c1b478da2a
@@ -374,11 +397,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Argon2: b11fcfa58057e2522356ddc6a817cd875297edfe
   AxolotlKit: ac03e4d79486b62d08282c840da410116227683e
-  blurhash: 150e9ffe986f028a38f7b469b5a279eab45352df
-  CocoaLumberjack: bd155f2dd06c0e0b03f876f7a3ee55693122ec94
-  Curve25519Kit: e63f9859ede02438ae3defc5e1a87e09d1ec7ee6
+  blurhash: 4b3b2b8909cf41ab59fa349788654b8387284ff4
+  BonMot: 2217a66e5ddc6a8d2ffb759fe8c85a8528e0d3e7
+  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  Curve25519Kit: 4b6cddbe2d44be0ccb37e15ba719a145edab8aff
   GRDB.swift: 083ec261ce573888d8ed2eae1b49bc0bf40d9e2c
   GRKOpenSSLFramework: 4abc733a8fcbc37060619a86a54202d2938dd70e
   HKDFKit: bd6b9566654253aa45ef60a205979ec291f00641
@@ -390,10 +413,12 @@ SPEC CHECKSUMS:
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SignalCoreKit: 4562b2bbd9830077439ca003f952a798457d4ea5
-  SignalMetadataKit: a7aacedf262d947c22e2c619f0fd217163d2a637
-  SignalRingRTC: a9440c9e4ff69f399bbd35609b7732da73254636
-  SignalServiceKit: 2adac6fb54ddf719e17c1adaf5b6bfa01cdfdde1
+  SignalArgon2: 1c24183835ca861e6af06631c18b1671cdf35571
+  SignalClient: 33768bc23cd46f738665d597323bea8f9e3965d0
+  SignalCoreKit: 43daa8f15d6125d54705f35628ac35051bb205c6
+  SignalMetadataKit: a40217605426975468175eb9328a170e2162be94
+  SignalRingRTC: d59de0ae05da586f043f83e5a6f7e5bc0c60a482
+  SignalServiceKit: af084384e66b5b2ea468261a15eb01552677d600
   SQLCipher: d305a7bd9af4b64f095c79bdc1a1fa50f2a15116
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   Starscream: 8aaf1a7feb805c816d0e7d3190ef23856f6665b9
@@ -403,6 +428,6 @@ SPEC CHECKSUMS:
   ZKGroup: 15a08eed5870a44b9dd14af0824ac95f6eed7380
   ZXingObjC: fdbb269f25dd2032da343e06f10224d62f537bdb
 
-PODFILE CHECKSUM: 59fbce5662ea70763675102e61f3678abe002f32
+PODFILE CHECKSUM: 70ac5af4c2290ee2d38793a59f26395582cd0bd8
 
 COCOAPODS: 1.9.2
